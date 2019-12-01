@@ -259,6 +259,97 @@ body {
   justify-content: center;
 }
 
+.articles-section__cover-tags .tag-item {
+    border-radius: 2px;
+    box-shadow: 3px 0 20px rgba(0,0,0,.12);
+    background: #fff;
+    padding: 6px 25px;
+    color: #303335;
+    text-transform: uppercase;
+    font-size: 13px;
+    display: inline-block;
+    margin-right: 30px;
+    margin-bottom: 20px;
+    transition: .3s ease;
+}
+.articles-section__cover-tags .tag-item {
+    border-radius: 2px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+    box-shadow: 3px 0 20px rgba(0,0,0,.12);
+    background: #fff;
+    background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgb(255, 255, 255);
+    padding: 6px 25px;
+    padding-top: 6px;
+    padding-right: 25px;
+    padding-bottom: 6px;
+    padding-left: 25px;
+    color: #303335;
+    text-transform: uppercase;
+    font-size: 13px;
+    display: inline-block;
+    margin-right: 30px;
+    margin-bottom: 20px;
+    transition: .3s ease;
+    transition-property: all;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
+    transition-delay: 0s;
+}
+.tag-item.nuxt-link-active{
+  color:#303335;
+  font-size: 13px;
+  background-color: #ffffff;
+  margin:0px 20px 30px 0px;
+  padding:6px 25px;
+}
+.countdown-title {
+  color: #396;
+  font-weight: 100;
+  font-size: 40px;
+  margin: 40px 0px 20px;
+}
+
+.countdown {
+  font-family: sans-serif;
+  color: #fff;
+  display: inline-block;
+  font-weight: 100;
+  text-align: center;
+  font-size: 30px;
+}
+
+.countdown-number {
+  padding: 10px;
+  border-radius: 3px;
+  background: #00bf96;
+  display: inline-block;
+}
+
+.countdown-time {
+  padding: 15px;
+  border-radius: 3px;
+  background: #00816a;
+  display: inline-block;
+}
+
+.countdown-text {
+  display: block;
+  padding-top: 5px;
+  font-size: 16px;
+}
+
 ol,
 ul {
   list-style-type: none;
