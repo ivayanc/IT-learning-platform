@@ -1,0 +1,42 @@
+in profile - name, about, working place
+
+GET / - отримати головну сторінку ресурсу
+GET /posts/<page>/?tag= - отримати статі відсортовані за датою та сторінкою 
+        (параметр tag - необов'язковий, фільтр статей за тегом)
+GET /news/<page>/?tag= - отримати новини відсортовані за датою та сторінкою 
+        (параметр tag - необов'язковий, фільтр статей за тегом)
+GET /post/<id>/ - отримами статтю за id
+
+GET /profile - отримати інформацію про профіль 
+GET /profile/bookmarks - отримати обрані статі
+POST /profile/settings - зберегти налаштування профіля
+GET /profile/<profile_id> - отримати користувача за id
+
+GET /about - отримати сторінку про нас
+
+GET /login - отримати форму входу
+POST /login - відправити форму входу
+
+GET /register - отримати форму регістрації
+POST /register - відправити форму регістрації
+
+____________________________________________
+
+GET /olympiad - отримати головну сторінку СПОО
+GET /olympiad/<id> - отримати інформацію про олімпіаду за id
+POST /olympiad/<id>/register - зареєструватися на олімпіаду
+
+GET /olympiad/<id>/task/<task_id> - отримати задачу з олімпіади
+POST /olympiad/<id>/task/<task_id>/submit - відправити задачу на перевірку
+
+GET /olympiad/<id>/management - доступ до сторінки з управлінням олімпіадою
+POST /olympiad/<id>/management/task/add - додати задачу до олімпіади
+POST /olympiad/<id>/managment/task/<id>/criteria_list/add - додати критерії до задачі (активні до початку олімпіади) 
+POST /olympiad/<id>/managment/task/<id>/criteria_list/сhange - змінити критерії до задачі (активні до початку олімпіади) 
+
+GET /olympiad/<id>/verify  - доступ до сторінки для перевірки задач
+
+GET /olympiad/<id>/verify?solution_id=hash - отримати файл розв'язку для перевірки
+POST /olympiad/<id>/verify/criteria_list/<id>/?solution_id=hash  - надіслати результат перевірки за критерієм
+
+
