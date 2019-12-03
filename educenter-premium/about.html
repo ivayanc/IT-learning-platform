@@ -47,21 +47,22 @@
         </div>
         <div class="col-lg-8 text-center text-lg-right">
           <ul class="list-inline">
-            <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="notice.html">Scratch</a></li>
+            <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="notice.html">Пошук</a></li>
             <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="research.html">Про нас</a></li>
             <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="scholarship.html">Новини</a></li>
             <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="#" data-toggle="modal" data-target="#loginModal">Увійти</a></li>
-            <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="#" data-toggle="modal" data-target="#signupModal">Реєстрація</a></li>
+            <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="#" data-toggle="modal" data-target="#signupModal">Зворотній зв'зок</a></li>
           </ul>
         </div>
       </div>
     </div>
   </div>
+
   <!-- navbar -->
   <div class="navigation w-100">
     <div class="container">
       <nav class="navbar navbar-expand-lg navbar-light p-0">
-        <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="logo" width=50px height=50px></a>
+        <a class="navbar-brand" href="index.html"><img src="images/logo.png" width=70px height=70px alt="logo"></a>
         <button class="navbar-toggler rounded-0" type="button" data-toggle="collapse" data-target="#navigation"
           aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -72,10 +73,10 @@
             <li class="nav-item @@index">
               <a class="nav-link" href="index.html">Головна</a>
             </li>
-            <li class="nav-item @@about">
+            <li class="nav-item active">
               <a class="nav-link" href="about.html">Програмування</a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item @@courses">
               <a class="nav-link" href="courses.html">Шкільна інформатика</a>
             </li>
             <li class="nav-item @@events">
@@ -96,7 +97,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content rounded-0 border-0 p-4">
             <div class="modal-header border-0">
-                <h3>Реєстрація</h3>
+                <h3>Register</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -105,19 +106,19 @@
                 <div class="login">
                     <form action="#" class="row">
                         <div class="col-12">
-                            <input type="text" class="form-control mb-3" id="signupPhone" name="signupPhone" placeholder="Телефон">
+                            <input type="text" class="form-control mb-3" id="signupPhone" name="signupPhone" placeholder="Phone">
                         </div>
                         <div class="col-12">
-                            <input type="text" class="form-control mb-3" id="signupName" name="signupName" placeholder="Ім'я'">
+                            <input type="text" class="form-control mb-3" id="signupName" name="signupName" placeholder="Name">
                         </div>
                         <div class="col-12">
                             <input type="email" class="form-control mb-3" id="signupEmail" name="signupEmail" placeholder="Email">
                         </div>
                         <div class="col-12">
-                            <input type="password" class="form-control mb-3" id="signupPassword" name="signupPassword" placeholder="Пароль">
+                            <input type="password" class="form-control mb-3" id="signupPassword" name="signupPassword" placeholder="Password">
                         </div>
                         <div class="col-12">
-                            <button type="submit" class="btn btn-primary">Реєстрація</button>
+                            <button type="submit" class="btn btn-primary">SIGN UP</button>
                         </div>
                     </form>
                 </div>
@@ -160,33 +161,20 @@
 </div>
 
 <!-- page title -->
-<section class="hero-section overlay bg-cover" data-background="images/banner/banner-5.jpg">
+<section class="hero-section overlay bg-cover" data-background="images/banner/banner-4.jpg">
   <div class="container">
     <div class="row">
       <div class="col-md-8">
         <ul class="list-inline custom-breadcrumb">
-          <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="courses.html">Шкільна інформатика</a></li>
-          <li class="list-inline-item text-white h3 font-secondary "></li>
+          <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="@@page-link">Програмування</a></li>
+          <li class="list-inline-item text-white h3 font-secondary @@nasted"></li>
         </ul>
         <p class="text-lighten">Our courses offer a good compromise between the continuous assessment favoured by some universities and the emphasis placed on final exams by others.</p>
-
-        <form action="about.html">
-          <button type="submit" class="tag-item nuxt-link-active">#scratch</button>
-          <button type="submit" class="tag-item nuxt-link-active">#word</button>
-          <button type="submit" class="tag-item nuxt-link-active">#веб-технології</button>
-          <button type="submit" class="tag-item nuxt-link-active">#графіка</button>
-          <button type="submit" class="tag-item nuxt-link-active">#windows</button>
-          </form>
-
-
-
       </div>
     </div>
   </div>
 </section>
 <!-- /page title -->
-
-<!-- courses -->
 <section class="section">
   <div class="container">
     <!-- course list -->
@@ -416,6 +404,9 @@
   </div>
 </section>
 <!-- /courses -->
+
+
+
 
 <!-- footer -->
 <footer>

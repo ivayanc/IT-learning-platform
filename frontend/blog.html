@@ -29,6 +29,7 @@
   <!--Favicon-->
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+  <script src="timer.js" type="text/javascript"></script>
 
 </head>
 
@@ -156,6 +157,7 @@
     </div>
 </div>
 
+
 <!-- page title -->
 <section class="hero-section overlay bg-cover" data-background="images/banner/online_olymp.jpg">
   <div class="container">
@@ -171,131 +173,105 @@
   </div>
 </section>
 <!-- /page title -->
-
+<section class="hero-section overlay bg-cover" class="timer">
+<div id="countdown">
+  <div id="tiles"></div>
+  <div class="labels">
+    <li>Дней</li>
+    <li>Часов</li>
+    <li>Минут</li>
+    <li>Секунд</li>
+  </div>
+</div>
+</section>
+<script type="text/javascript">
+var target_date = new Date().getTime() + (1000*3600*48); // установить дату обратного отсчета
+var days, hours, minutes, seconds; // переменные для единиц времени
+ 
+var countdown = document.getElementById("tiles"); // получить элемент тега
+ 
+getCountdown();
+ 
+setInterval(function () { getCountdown(); }, 1000);
+ 
+function getCountdown(){
+ 
+    var current_date = new Date().getTime();
+    var seconds_left = (target_date - current_date) / 1000;
+ 
+    days = pad( parseInt(seconds_left / 86400) );
+    seconds_left = seconds_left % 86400;
+          
+    hours = pad( parseInt(seconds_left / 3600) );
+    seconds_left = seconds_left % 3600;
+           
+    minutes = pad( parseInt(seconds_left / 60) );
+    seconds = pad( parseInt( seconds_left % 60 ) );
+ 
+    // строка обратного отсчета  + значение тега
+    countdown.innerHTML = "<span>" + days + "</span><span>" + hours + "</span><span>" + minutes + "</span><span>" + seconds + "</span>";
+}
+ 
+function pad(n) {
+    return (n < 10 ? '0' : '') + n;
+}
+</script>
+</section>
 <!-- blogs -->
 <section class="section">
-  <div class="container">
-    <div class="row">
-      <!-- blog post -->
-      <article class="col-lg-4 col-sm-6 mb-5">
-        <div class="card rounded-0 border-bottom border-primary border-top-0 border-left-0 border-right-0 hover-shadow">
-          <img class="card-img-top rounded-0" src="images/blog/post-1.jpg" alt="Post thumb">
-          <div class="card-body">
-            <!-- post meta -->
-            <ul class="list-inline mb-3">
-              <!-- post date -->
-              <li class="list-inline-item mr-3 ml-0">August 28, 2018</li>
-              <!-- author -->
-              <li class="list-inline-item mr-3 ml-0">By Somrat Sorkar</li>
-            </ul>
-            <a href="blog-single.html">
-              <h4 class="card-title">Elegant Light Box Paper Cut Dioramas</h4>
-            </a>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicin</p>
-            <a href="blog-single.html" class="btn btn-primary btn-sm">read more</a>
+  <section class="section bg-gray">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="d-flex align-items-center section-title justify-content-between">
+            <h2 class="mb-0 text-nowrap mr-3">Олімпіади</h2>
+            <div class="border-top w-100 border-primary d-none d-sm-block"></div>
+
           </div>
         </div>
-      </article>
-      <!-- blog post -->
-      <article class="col-lg-4 col-sm-6 mb-5">
-        <div class="card rounded-0 border-bottom border-primary border-top-0 border-left-0 border-right-0 hover-shadow">
-          <img class="card-img-top rounded-0" src="images/blog/post-2.jpg" alt="Post thumb">
-          <div class="card-body">
-            <!-- post meta -->
-            <ul class="list-inline mb-3">
-              <!-- post date -->
-              <li class="list-inline-item mr-3 ml-0">August 13, 2018</li>
-              <!-- author -->
-              <li class="list-inline-item mr-3 ml-0">By Jonathon Drew</li>
-            </ul>
-            <a href="blog-single.html">
-              <h4 class="card-title">The Expenses You Are Thinking</h4>
-            </a>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicin</p>
-            <a href="blog-single.html" class="btn btn-primary btn-sm">read more</a>
-          </div>
+      </div>
+      <div class="row justify-content-center">
+    <!-- event -->
+    <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
+      <div class="card border-0 rounded-0 hover-shadow">
+        <div class="card-img position-relative">
+          <img class="card-img-top rounded-0" src="images/events/event-1.jpg" alt="event thumb">
+          <div class="card-date"><span>18</span><br>Грудня</div>
         </div>
-      </article>
-      <!-- blog post -->
-      <article class="col-lg-4 col-sm-6 mb-5">
-        <div class="card rounded-0 border-bottom border-primary border-top-0 border-left-0 border-right-0 hover-shadow">
-          <img class="card-img-top rounded-0" src="images/blog/post-3.jpg" alt="Post thumb">
-          <div class="card-body">
-            <!-- post meta -->
-            <ul class="list-inline mb-3">
-              <!-- post date -->
-              <li class="list-inline-item mr-3 ml-0">August 24, 2018</li>
-              <!-- author -->
-              <li class="list-inline-item mr-3 ml-0">By Alex Pitt</li>
-            </ul>
-            <a href="blog-single.html">
-              <h4 class="card-title">Lorem ipsum dolor amet, adipisicing eiusmod tempor.</h4>
-            </a>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicin</p>
-            <a href="blog-single.html" class="btn btn-primary btn-sm">read more</a>
-          </div>
+        <div class="card-body">
+          <!-- location -->
+          <p><i class="ti-location-pin text-primary mr-2"></i>Чернігів, школа №2</p>
+          <a href="event-single.html"><h4 class="card-title">Олімпіада з програмування</h4></a>
         </div>
-      </article>
-      <!-- blog post -->
-      <article class="col-lg-4 col-sm-6 mb-5">
-        <div class="card rounded-0 border-bottom border-primary border-top-0 border-left-0 border-right-0 hover-shadow">
-          <img class="card-img-top rounded-0" src="images/blog/post-1.jpg" alt="Post thumb">
-          <div class="card-body">
-            <!-- post meta -->
-            <ul class="list-inline mb-3">
-              <!-- post date -->
-              <li class="list-inline-item mr-3 ml-0">August 28, 2018</li>
-              <!-- author -->
-              <li class="list-inline-item mr-3 ml-0">By Somrat Sorkar</li>
-            </ul>
-            <a href="blog-single.html">
-              <h4 class="card-title">Enrolling new members into the Libraray</h4>
-            </a>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicin</p>
-            <a href="blog-single.html" class="btn btn-primary btn-sm">read more</a>
-          </div>
+      </div>
+    </div>
+    <!-- event -->
+    <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
+      <div class="card border-0 rounded-0 hover-shadow">
+        <div class="card-img position-relative">
+          <img class="card-img-top rounded-0" src="images/events/event-2.jpg" alt="event thumb">
+          <div class="card-date"><span>21</span><br>Грудня</div>
         </div>
-      </article>
-      <!-- blog post -->
-      <article class="col-lg-4 col-sm-6 mb-5">
-        <div class="card rounded-0 border-bottom border-primary border-top-0 border-left-0 border-right-0 hover-shadow">
-          <img class="card-img-top rounded-0" src="images/blog/post-2.jpg" alt="Post thumb">
-          <div class="card-body">
-            <!-- post meta -->
-            <ul class="list-inline mb-3">
-              <!-- post date -->
-              <li class="list-inline-item mr-3 ml-0">August 13, 2018</li>
-              <!-- author -->
-              <li class="list-inline-item mr-3 ml-0">By Jonathon Drew</li>
-            </ul>
-            <a href="blog-single.html">
-              <h4 class="card-title">Completion of Projects before the deadline</h4>
-            </a>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicin</p>
-            <a href="blog-single.html" class="btn btn-primary btn-sm">read more</a>
-          </div>
+        <div class="card-body">
+          <!-- location -->
+          <p><i class="ti-location-pin text-primary mr-2"></i>Чернігів, школа №2</p>
+          <a href="event-single.html"><h4 class="card-title">Олімпіада з програмування </h4></a>
         </div>
-      </article>
-      <!-- blog post -->
-      <article class="col-lg-4 col-sm-6 mb-5">
-        <div class="card rounded-0 border-bottom border-primary border-top-0 border-left-0 border-right-0 hover-shadow">
-          <img class="card-img-top rounded-0" src="images/blog/post-3.jpg" alt="Post thumb">
-          <div class="card-body">
-            <!-- post meta -->
-            <ul class="list-inline mb-3">
-              <!-- post date -->
-              <li class="list-inline-item mr-3 ml-0">August 24, 2018</li>
-              <!-- author -->
-              <li class="list-inline-item mr-3 ml-0">By Alex Pitt</li>
-            </ul>
-            <a href="blog-single.html">
-              <h4 class="card-title">The changing scenario in music industry</h4>
-            </a>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicin</p>
-            <a href="blog-single.html" class="btn btn-primary btn-sm">read more</a>
-          </div>
+      </div>
+    </div>
+    <!-- event -->
+    <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
+      <div class="card border-0 rounded-0 hover-shadow">
+        <div class="card-img position-relative">
+          <img class="card-img-top rounded-0" src="images/events/event-3.jpg" alt="event thumb">
+          <div class="card-date"><span>23</span><br>Грудня</div>
         </div>
-      </article>
+        <div class="card-body">
+          <!-- location -->
+          <p><i class="ti-location-pin text-primary mr-2"></i>Чернігів, школа №2</p>
+          <a href="event-single.html"><h4 class="card-title">Олімпіада з програмування</h4></a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
