@@ -29,6 +29,7 @@
   <!--Favicon-->
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+  <script src="timer.js" type="text/javascript"></script>
 
 </head>
 
@@ -156,6 +157,7 @@
     </div>
 </div>
 
+
 <!-- page title -->
 <section class="hero-section overlay bg-cover" data-background="images/banner/online_olymp.jpg">
   <div class="container">
@@ -171,26 +173,49 @@
   </div>
 </section>
 <!-- /page title -->
-<section class="section">
-  <h1 class="countdown-title">Countdown Clock</h1>
-<div id="countdown" class="countdown">
-  <div class="countdown-number">
-    <span class="days countdown-time"></span>
-    <span class="countdown-text">Days</span>
-  </div>
-  <div class="countdown-number">
-    <span class="hours countdown-time"></span>
-    <span class="countdown-text">Hours</span>
-  </div>
-  <div class="countdown-number">
-    <span class="minutes countdown-time"></span>
-    <span class="countdown-text">Minutes</span>
-  </div>
-  <div class="countdown-number">
-    <span class="seconds countdown-time"></span>
-    <span class="countdown-text">Seconds</span>
+<section class="hero-section overlay bg-cover" class="timer">
+<div id="countdown">
+  <div id="tiles"></div>
+  <div class="labels">
+    <li>Дней</li>
+    <li>Часов</li>
+    <li>Минут</li>
+    <li>Секунд</li>
   </div>
 </div>
+</section>
+<script type="text/javascript">
+var target_date = new Date().getTime() + (1000*3600*48); // установить дату обратного отсчета
+var days, hours, minutes, seconds; // переменные для единиц времени
+ 
+var countdown = document.getElementById("tiles"); // получить элемент тега
+ 
+getCountdown();
+ 
+setInterval(function () { getCountdown(); }, 1000);
+ 
+function getCountdown(){
+ 
+    var current_date = new Date().getTime();
+    var seconds_left = (target_date - current_date) / 1000;
+ 
+    days = pad( parseInt(seconds_left / 86400) );
+    seconds_left = seconds_left % 86400;
+          
+    hours = pad( parseInt(seconds_left / 3600) );
+    seconds_left = seconds_left % 3600;
+           
+    minutes = pad( parseInt(seconds_left / 60) );
+    seconds = pad( parseInt( seconds_left % 60 ) );
+ 
+    // строка обратного отсчета  + значение тега
+    countdown.innerHTML = "<span>" + days + "</span><span>" + hours + "</span><span>" + minutes + "</span><span>" + seconds + "</span>";
+}
+ 
+function pad(n) {
+    return (n < 10 ? '0' : '') + n;
+}
+</script>
 </section>
 <!-- blogs -->
 <section class="section">
