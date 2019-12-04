@@ -72,7 +72,7 @@
           <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light p-0">
                
-              <a class="navbar-brand" href="index.html">{% load static %}<img src="{% static 'images/logo.png' %}" alt="logo" width=50px height=50px></a>
+              <a class="navbar-brand" href="{% url 'index'%}">{% load static %}<img src="{% static 'images/logo.png' %}" alt="logo" width=50px height=50px></a>
               <button class="navbar-toggler rounded-0" type="button" data-toggle="collapse" data-target="#navigation"
                 aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -80,19 +80,19 @@
       
               <div class="collapse navbar-collapse" id="navigation">
                 <ul class="navbar-nav ml-auto text-center">
-                  <li class="nav-item active">
-                    <a class="nav-link" href="index.html">Головна</a>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'index'%}">Головна</a>
                   </li>
-                  <li class="nav-item @@about">
-                    <a class="nav-link" href="about.html">Програмування</a>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/posts?category=programming">Програмування</a>
                   </li>
-                  <li class="nav-item @@courses">
-                    <a class="nav-link" href="courses.html">Шкільна інформатика</a>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/posts?category=school">Шкільна інформатика</a>
                   </li>
-                  <li class="nav-item @@events">
-                    <a class="nav-link" href="events.html">Інформаційні технології</a>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/posts?category=It">Інформаційні технології</a>
                   </li>
-                  <li class="nav-item @@blog">
+                  <li class="nav-item ">
                     <a class="nav-link" href="blog.html">Система онлайн олімпіад</a>
                   </li>
                 </ul>
@@ -103,6 +103,60 @@
       </header>
       <!-- /header -->
 <body>
+    <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content rounded-0 border-0 p-4">
+                <div class="modal-header border-0">
+                    <h3>Реєстрація</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="login">
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit">Sign up</button>
+                          </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content rounded-0 border-0 p-4">
+            <div class="modal-header border-0">
+                <h3>Увійти в систему</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="#" class="row">
+                    <div class="col-12">
+                        <input type="text" class="form-control mb-3" id="loginPhone" name="loginPhone" placeholder="Ім'я">
+                    </div>
+                     <div class="col-12">
+                          <input type="text" class="form-control mb-3"  name="loginPhone" placeholder="Про себе">
+                      </div>
+                    <div class="col-12">
+                        <input type="text" class="form-control mb-3" id="loginName" name="loginName" placeholder="Логін">
+                    </div>
+                    <div class="col-12">
+                        <input type="password" class="form-control mb-3" id="loginPassword" name="loginPassword" placeholder="Пароль">
+                    </div>
+
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Увійти</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
   <main>
     {% block content %}
     {% endblock %}
@@ -110,6 +164,22 @@
 </body>
 
 <footer>
+    <div class="newsletter">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-9 ml-auto bg-primary py-5 newsletter-block">
+              <h4 class="text-white">Немає часу відвідувати сайт кожного дня?</h4>
+              <h4 class="text-white">Підпишись та отримуй найважливіше одним листом.</h4>
+              <form action="#">
+                <div class="input-wrapper">
+                  <input type="email" class="form-control border-0" id="newsletter" name="newsletter" placeholder="Введіть ваш Email...">
+                  <button type="submit" value="send" class="btn btn-primary">Підписатися</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
    
     <!-- footer content -->
     <div class="footer bg-footer section border-bottom">
@@ -119,7 +189,7 @@
             
             <!-- logo -->
             {% load static %}
-            <a class="logo-footer" href="index.html"><img class="img-fluid mb-4" src="{% static 'images/logo.png' %}" width=100px height=100pxalt="logo"></a>
+            <a class="logo-footer" href="{% url 'index'%}"><img class="img-fluid mb-4" src="{% static 'images/logo.png' %}" width=100px height=100pxalt="logo"></a>
             <ul class="list-unstyled">
               <li class="mb-2">місто Чернігів, Україна</li>
               <li class="mb-2">admin@it-science.com.ua</li>
