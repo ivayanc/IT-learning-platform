@@ -1,3 +1,14 @@
 from django.contrib import admin
+from django.contrib.auth import get_user_model
+from django.contrib.auth.admin import UserAdmin
 
-# Register your models here.
+from .forms import SystemUserCreationForm, SystemUserChangeForm
+from .models import SystemUser
+
+class SystemUserAdmin(UserAdmin):
+    add_form = SystemUserCreationForm
+    form = SystemUserChangeForm
+    model = SystemUser
+    list_display = ['email', 'username', 'name', 'about']
+
+admin.site.register(SystemUser, SystemUserAdmin)
