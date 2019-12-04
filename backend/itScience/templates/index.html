@@ -5,10 +5,10 @@
 
 {% block content %}
 
-
+{%load static%}
 
 <!-- hero slider -->
-<section class="hero-section overlay bg-cover" data-background="images/banner/banner-3.jpg">
+<section class="hero-section overlay bg-cover" data-background="{% static 'images/banner/banner-3.jpg'%}">
   <div class="container">
     <div class="hero-slider">
       <!-- slider item -->
@@ -105,7 +105,7 @@
   <!-- course item -->
   <div class="col-lg-4 col-sm-6 mb-5">
     <div class="card p-0 border-primary rounded-0 hover-shadow">
-      <img class="card-img-top rounded-0" src="images/courses/course-1.jpg" alt="course thumb">
+      <img class="card-img-top rounded-0" src="{% static 'images/courses/course-1.jpg'%}" alt="course thumb">
       <div class="card-body">
         <ul class="list-inline mb-2">
           <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>02-14-2018</li>
@@ -123,7 +123,7 @@
   <!-- course item -->
   <div class="col-lg-4 col-sm-6 mb-5">
     <div class="card p-0 border-primary rounded-0 hover-shadow">
-      <img class="card-img-top rounded-0" src="images/courses/course-2.jpg" alt="course thumb">
+      <img class="card-img-top rounded-0" src="{% static 'images/courses/course-2.jpg'%}" alt="course thumb">
       <div class="card-body">
         <ul class="list-inline mb-2">
           <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>02-14-2018</li>
@@ -141,7 +141,7 @@
   <!-- course item -->
   <div class="col-lg-4 col-sm-6 mb-5">
     <div class="card p-0 border-primary rounded-0 hover-shadow">
-      <img class="card-img-top rounded-0" src="images/courses/course-3.jpg" alt="course thumb">
+      <img class="card-img-top rounded-0" src="{% static 'images/courses/course-3.jpg'%}" alt="course thumb">
       <div class="card-body">
         <ul class="list-inline mb-2">
           <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>02-14-2018</li>
@@ -159,7 +159,7 @@
   <!-- course item -->
   <div class="col-lg-4 col-sm-6 mb-5">
     <div class="card p-0 border-primary rounded-0 hover-shadow">
-      <img class="card-img-top rounded-0" src="images/courses/course-4.jpg" alt="course thumb">
+      <img class="card-img-top rounded-0" src="{% static 'images/courses/course-4.jpg'%}" alt="course thumb">
       <div class="card-body">
         <ul class="list-inline mb-2">
           <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>02-14-2018</li>
@@ -177,7 +177,7 @@
   <!-- course item -->
   <div class="col-lg-4 col-sm-6 mb-5">
     <div class="card p-0 border-primary rounded-0 hover-shadow">
-      <img class="card-img-top rounded-0" src="images/courses/course-5.jpg" alt="course thumb">
+      <img class="card-img-top rounded-0" src="{% static 'images/courses/course-5.jpg'%}" alt="course thumb">
       <div class="card-body">
         <ul class="list-inline mb-2">
           <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>02-14-2018</li>
@@ -195,7 +195,7 @@
   <!-- course item -->
   <div class="col-lg-4 col-sm-6 mb-5">
     <div class="card p-0 border-primary rounded-0 hover-shadow">
-      <img class="card-img-top rounded-0" src="images/courses/course-6.jpg" alt="course thumb">
+      <img class="card-img-top rounded-0" src="{% static 'images/courses/course-6.jpg'%}" alt="course thumb">
       <div class="card-body">
         <ul class="list-inline mb-2">
           <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>02-14-2018</li>
@@ -240,7 +240,7 @@ fb: https://www.facebook.com/anton.dasyuk
 
       </div>
       <div class="col-md-6 order-1 order-md-2 mb-4 mb-md-0">
-        <img class="img-fluid w-100" src="images/logo.png"  alt="about image">
+        <img class="img-fluid w-100" src="{% static 'images/logo.png'%}"  alt="about image">
       </div>
     </div>
   </div>
@@ -268,7 +268,7 @@ fb: https://www.facebook.com/anton.dasyuk
   <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
     <div class="card border-0 rounded-0 hover-shadow">
       <div class="card-img position-relative">
-        <img class="card-img-top rounded-0" src="images/events/event-1.jpg" alt="event thumb">
+        <img class="card-img-top rounded-0" src="{% static 'images/events/event-1.jpg'%}" alt="event thumb">
         <div class="card-date"><span>18</span><br>Грудня</div>
       </div>
       <div class="card-body">
@@ -282,7 +282,7 @@ fb: https://www.facebook.com/anton.dasyuk
   <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
     <div class="card border-0 rounded-0 hover-shadow">
       <div class="card-img position-relative">
-        <img class="card-img-top rounded-0" src="images/events/event-2.jpg" alt="event thumb">
+        <img class="card-img-top rounded-0" src="{% static 'images/events/event-2.jpg'%}" alt="event thumb">
         <div class="card-date"><span>21</span><br>Грудня</div>
       </div>
       <div class="card-body">
@@ -296,7 +296,7 @@ fb: https://www.facebook.com/anton.dasyuk
   <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
     <div class="card border-0 rounded-0 hover-shadow">
       <div class="card-img position-relative">
-        <img class="card-img-top rounded-0" src="images/events/event-3.jpg" alt="event thumb">
+        <img class="card-img-top rounded-0" src="{% static 'images/events/event-3.jpg'%}" alt="event thumb">
         <div class="card-date"><span>23</span><br>Грудня</div>
       </div>
       <div class="card-body">
@@ -329,7 +329,7 @@ fb: https://www.facebook.com/anton.dasyuk
   <!-- blog post -->
   <article class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
     <div class="card rounded-0 border-bottom border-primary border-top-0 border-left-0 border-right-0 hover-shadow">
-      <img class="card-img-top rounded-0" src="images/blog/post-1.jpg" alt="Post thumb">
+      <img class="card-img-top rounded-0" src="{% static 'images/blog/post-1.jpg'%}" alt="Post thumb">
       <div class="card-body">
         <!-- post meta -->
         <ul class="list-inline mb-3">
@@ -349,7 +349,7 @@ fb: https://www.facebook.com/anton.dasyuk
   <!-- blog post -->
   <article class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
     <div class="card rounded-0 border-bottom border-primary border-top-0 border-left-0 border-right-0 hover-shadow">
-      <img class="card-img-top rounded-0" src="images/blog/post-2.jpg" alt="Post thumb">
+      <img class="card-img-top rounded-0" src="{% static 'images/blog/post-2.jpg'%}" alt="Post thumb">
       <div class="card-body">
         <!-- post meta -->
         <ul class="list-inline mb-3">
@@ -369,7 +369,7 @@ fb: https://www.facebook.com/anton.dasyuk
   <!-- blog post -->
   <article class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
     <div class="card rounded-0 border-bottom border-primary border-top-0 border-left-0 border-right-0 hover-shadow">
-      <img class="card-img-top rounded-0" src="images/blog/post-3.jpg" alt="Post thumb">
+      <img class="card-img-top rounded-0" src="{% static 'images/blog/post-3.jpg'%}" alt="Post thumb">
       <div class="card-body">
         <!-- post meta -->
         <ul class="list-inline mb-3">
