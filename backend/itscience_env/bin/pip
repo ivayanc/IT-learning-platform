@@ -1,5 +1,5 @@
 #!/bin/sh
-'''exec' "/Users/user/Documents/Study/Software engineering/IT-Science/backend/itscience_env/bin/python3.7" "$0" "$@"
+'''exec' "/Users/user/Documents/Study/Software_engineering/IT-Science/backend/itscience_env/bin/python3.7" "$0" "$@"
 ' '''
 # -*- coding: utf-8 -*-
 import re
