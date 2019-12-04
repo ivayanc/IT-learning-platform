@@ -35,24 +35,24 @@
   <div class="row justify-content-center">
     
     <!-- course item -->
-    {% for post in it %}
+    {% for post in posts %}
     <div class="col-lg-4 col-sm-6 mb-5">
-      <div class="card p-0 border-primary rounded-0 hover-shadow">
-        <img class="card-img-top rounded-0" src="images/courses/course-6.jpg" alt="course thumb">
-        <div class="card-body">
-          <ul class="list-inline mb-2">
-            <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>02-14-2018</li>
-            <li class="list-inline-item"><a class="text-color" href="#">Humanities</a></li>
-          </ul>
-          <a href="course-single.html">
-            <h4 class="card-title">Стаття №6</h4>
-          </a>
-          <p class="card-text mb-4"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna.</p>
-          <a href="course-single.html" class="btn btn-primary btn-sm">Детальніше</a>
+        <div class="card p-0 border-primary rounded-0 hover-shadow">
+          {%load static%}
+          <img class="card-img-top rounded-0" src="{%static 'post.post.title_image' %}" alt="{{post.post.title}}">
+          <div class="card-body">
+            <ul class="list-inline mb-2">
+              <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>{{post.post.published}}</li>
+              <li class="list-inline-item"><a class="text-color" href="#">{{post.post.author}}</a></li>
+            </ul>
+            <a href="course-single.html">
+              <h4 class="card-title">{{post.post.title}}</h4>
+            </a>
+            <p class="card-text mb-4">{{post.post.description}}</p>
+            <a href="course-single.html" class="btn btn-primary btn-sm">Детальніше</a>
+          </div>
         </div>
       </div>
-    </div>
     {% endfor %}
   </div>
   <!-- /course list -->
