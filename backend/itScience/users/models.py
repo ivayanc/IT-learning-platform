@@ -3,5 +3,8 @@ from django.contrib.auth.models import AbstractUser
 
 
 class SystemUser(AbstractUser):
-    name = models.CharField(max_length=200)
-    about = models.TextField()
+    name = models.CharField(max_length=200, verbose_name="Ім'я")
+    about = models.TextField(verbose_name="Про себе")
+
+    def __str__(self):
+        return self.username
