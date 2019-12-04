@@ -8,19 +8,13 @@ VERSION:	Versoin Number
 [TABLE OF CONTENTS]
 -------------------------------------------------------------------*/
 /*  typography */
-@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700");
-@font-face {
-  font-family: 'futura-bold';
-  src: url("../fonts/Futura-Bold.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
+
 *{
   font-family: "Gill Sans", sans-serif;
 }
 body {
   line-height: 1.2;
-  font-family: "Poppins", sans-serif;
+  font-family: "Gill Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   font-size: 15px;
   color: #5c5c77;
@@ -31,7 +25,7 @@ p, .paragraph {
   color: #5c5c77;
   font-size: 15px;
   line-height: 1.9;
-  font-family: "Poppins", sans-serif;
+  font-family: "Gill Sans", sans-serif;
 }
 
 
@@ -105,7 +99,7 @@ h6, .h6 {
 /* Button style */
 .btn {
   font-size: 16px;
-  font-family: "Poppins", sans-serif;
+  font-family: "Gill Sans", sans-serif;
   text-transform: capitalize;
   padding: 15px 40px;
   border-radius: 0;
@@ -769,7 +763,7 @@ link:focus,
   position: relative;
   color: #1e1e4b;
   transition: .2s ease;
-  font-family: "Poppins", sans-serif;
+  font-family: "Gill Sans", sans-serif;
 }
 
 @media (max-width: 991px) {
