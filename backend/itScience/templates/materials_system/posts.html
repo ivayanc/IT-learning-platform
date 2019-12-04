@@ -1,0 +1,59 @@
+{% extends '../base.html' %}
+
+{% block content %}
+
+  <div class="infinite-container">
+    {% for post in posts %}
+      <div class="infinite-item">
+        <h3>{{ post.short_title }}</h3>
+        <p>
+          <small>{{ post.author }} / {{ post.published }}</small>
+        </p>
+        <p>{{ post.publication|truncatechars:100 }}</p>
+      </div>
+
+    {% endfor %}
+  </div>
+
+  {% if is_paginated %}
+  <div class="row">
+      <div class="col-sm-4">
+          <div class="dataTables_info" id="dynamic-table_info" role="status" aria-live="polite">
+              Показано с {{ page_obj.start_index }} по {{ page_obj.end_index }} из {{ page_obj.paginator.count }} результатов
+          </div>
+      </div>
+      <div class="col-sm-2">
+          <div class="dataTables_paginate paging_simple_numbers" id="dynamic-table_paginate">
+              <ul class="pagination">
+
+                  {% if page_obj.has_previous %}
+                  <li class="paginate_button previous" aria-controls="dynamic-table" tabindex="0">
+                      <a href="{% url 'posts'%}?page={{ page_obj.previous_page_number }}">Пред.</a>
+                  </li>
+                  {% else %}
+                  <li class="paginate_button disabled previous" aria-controls="dynamic-table" tabindex="0">
+                      <a href="{% url 'posts'%}">Пред.</a>
+                  </li>
+                  {% endif %}
+
+                  <li class="paginate_button active" aria-controls="dynamic-table" tabindex="0">
+                      <a href="{% url 'posts'%}?page={{page_obj.number}}">{{ page_obj.number }}</a>
+                  </li>
+
+                  {% if page_obj.has_next %}
+                  <li class="paginate_button next" aria-controls="dynamic-table" tabindex="0">
+                      <a href="{% url 'posts'%}?page={{ page_obj.next_page_number }}">След.</a>
+                  </li>
+                  {% else %}
+                  <li class="paginate_button next disabled" aria-controls="dynamic-table" tabindex="0">
+                      <a href="{% url 'posts'%}?page={{ page_obj.paginator.num_pages }}">След.</a>
+                  </li>
+                  {% endif %}
+
+
+              </ul>
+          </div>
+      </div>
+  </div>
+{% endif %}
+{%endblock%}

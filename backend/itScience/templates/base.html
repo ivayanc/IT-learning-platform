@@ -103,10 +103,11 @@
       </header>
       <!-- /header -->
 <body>
-  <main>
+
+  <div class="main">
     {% block content %}
     {% endblock %}
-  </main>
+  </div>
 </body>
 
 <footer>
@@ -171,34 +172,26 @@
       </div>
     </div>
   </footer>
-  
-  <!-- jQuery -->
-  {% load static %}
-  <script src="{% static 'plugins/jQuery/jquery.min.js' %}"></script>
-  <!-- Bootstrap JS -->
-  {% load static %}
-  <script src="{% static 'plugins/bootstrap/bootstrap.min.js' %}"></script>
-  <!-- slick slider -->
-  {% load static %}
-  <script src="{% static 'plugins/slick/slick.min.js' %}"></script>
-  <!-- aos -->
-  {% load static %}
-  <script src="{% static 'plugins/aos/aos.js' %}"></script>
-  <!-- venobox popup -->
-  {% load static %}
-  <script src="{% static 'plugins/venobox/venobox.min.js' %}"></script>
-  <!-- mixitup filter -->
-  {% load static %}
-  <script src="{% static 'plugins/mixitup/mixitup.min.js' %}"></script>
+
   <!-- google map -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&libraries=places"></script>
   {% load static %}
-  <script src="{% static 'plugins/google-map/gmap.js' %}"></script>
-  
+  <!-- jQuery -->
+  <script src="{% static 'plugins/jQuery/jquery.min.js' %}"></script>
+  <!-- Bootstrap JS -->
+  <script src="{% static 'plugins/bootstrap/bootstrap.min.js' %}"></script>
+  <!-- slick slider -->
+  <script src="{% static 'plugins/slick/slick.min.js' %}"></script>
+  <!-- aos -->
+  <script src="{% static 'plugins/aos/aos.js' %}"></script>
+  <!-- venobox popup -->
+  <script src="{% static 'plugins/venobox/venobox.min.js' %}"></script>
+  <!-- mixitup filter -->
+  <script src="{% static 'plugins/mixitup/mixitup.min.js' %}"></script>
+  <script src="{% static 'plugins/google-map/gmap.js' %}"></script>  
   <!-- Main Script -->
-  {% load static %}
   <script src="{% static 'js/script.js' %}"></script>
-
+  {% block javascript %}{% endblock %}
 
 
 

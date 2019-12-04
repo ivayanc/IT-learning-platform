@@ -7,12 +7,12 @@ class UserInfo(models.Model):
 
 class Post(models.Model):
     #moderator = models.ForeignKey(User,on_delete=models.CASCADE)
-    author = models.CharField(max_length=255)
-    short_title = models.CharField(max_length=150)
-    full_title = models.CharField(max_length=255)
-    description = models.CharField(max_length=500)
-    published = models.DateTimeField(auto_now=True)
-    title_image = models.ImageField(upload_to='static/post_images/')
+    author = models.CharField(max_length=255,blank=True)
+    short_title = models.CharField(max_length=150,blank=True)
+    full_title = models.CharField(max_length=255,blank=True)
+    description = models.CharField(max_length=500,blank=True)
+    published = models.DateTimeField(auto_now=True,blank=True)
+    title_image = models.ImageField(upload_to='static/post_images/',blank=True)
     publication = models.TextField()
 
 class HashTag(models.Model):
