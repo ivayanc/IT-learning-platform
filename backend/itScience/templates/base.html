@@ -1,14 +1,206 @@
 <!-- templates/base.html -->
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>{% block title %}Django Auth Tutorial{% endblock %}</title>
-</head>
+    <head>
+        <meta charset="utf-8">
+        <title>Інформ</title>
+      
+        <!-- mobile responsive meta -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+      
+        <!-- ** Plugins Needed for the Project ** -->
+        <!-- Bootstrap -->
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'plugins/bootstrap/bootstrap.min.css' %}">
+        <!-- slick slider -->
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'plugins/slick/slick.css' %}">
+        <!-- themefy-icon -->
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'plugins/themify-icons/themify-icons.css' %}">
+        <!-- animation css -->
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'plugins/animate/animate.css' %}">
+        <!-- aos -->
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'plugins/aos/aos.css' %}">
+        <!-- venobox popup -->
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'plugins/venobox/venobox.css' %}">
+      
+        <!-- Main Stylesheet -->
+        {% load static %}
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+      
+        <!--Favicon-->
+        {% load static %}
+        <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+        {% load static %}
+        <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+      
+      </head>
+      
+      <body>
+      
+      
+      <!-- header -->
+      <header class="fixed-top header">
+        <!-- top header -->
+        <div class="top-header py-2 bg-white">
+          <div class="container">
+            <div class="row no-gutters">
+              <div class="col-lg-4 text-center text-lg-left">
+                  {% load static %}
+                <a class="text-color mr-3"><strong>Інф<img src="{% static 'images/logo.png' %}" alt="logo" width=20px height=20px>рматика</strong></a>
+      
+              </div>
+              <div class="col-lg-8 text-center text-lg-right">
+                <ul class="list-inline">
+                  <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="notice.html">Scratch</a></li>
+                  <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="research.html">Про нас</a></li>
+                  <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="scholarship.html">Новини</a></li>
+                  <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="#" data-toggle="modal" data-target="#loginModal">Увійти</a></li>
+                  <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="#" data-toggle="modal" data-target="#signupModal">Реєстрація</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- navbar -->
+        <div class="navigation w-100">
+          <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light p-0">
+               
+              <a class="navbar-brand" href="index.html">{% load static %}<img src="{% static 'images/logo.png' %}" alt="logo" width=50px height=50px></a>
+              <button class="navbar-toggler rounded-0" type="button" data-toggle="collapse" data-target="#navigation"
+                aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+      
+              <div class="collapse navbar-collapse" id="navigation">
+                <ul class="navbar-nav ml-auto text-center">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Головна</a>
+                  </li>
+                  <li class="nav-item @@about">
+                    <a class="nav-link" href="about.html">Програмування</a>
+                  </li>
+                  <li class="nav-item @@courses">
+                    <a class="nav-link" href="courses.html">Шкільна інформатика</a>
+                  </li>
+                  <li class="nav-item @@events">
+                    <a class="nav-link" href="events.html">Інформаційні технології</a>
+                  </li>
+                  <li class="nav-item @@blog">
+                    <a class="nav-link" href="blog.html">Система онлайн олімпіад</a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </header>
+      <!-- /header -->
 <body>
   <main>
     {% block content %}
     {% endblock %}
   </main>
 </body>
+
+<footer>
+   
+    <!-- footer content -->
+    <div class="footer bg-footer section border-bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-sm-8 mb-5 mb-lg-0">
+            
+            <!-- logo -->
+            {% load static %}
+            <a class="logo-footer" href="index.html"><img class="img-fluid mb-4" src="{% static 'images/logo.png' %}" width=100px height=100pxalt="logo"></a>
+            <ul class="list-unstyled">
+              <li class="mb-2">місто Чернігів, Україна</li>
+              <li class="mb-2">admin@it-science.com.ua</li>
+            </ul>
+          </div>
+          <!-- company -->
+          <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-5 mb-md-0">
+            <h4 class="text-white mb-5">Додаткова інформація</h4>
+            <ul class="list-unstyled">
+              <li class="mb-3"><a class="text-color" href="about.html">Про нас</a></li>
+              <li class="mb-3"><a class="text-color" href="teacher.html">Пошук</a></li>
+              <li class="mb-3"><a class="text-color" href="contact.html">Новини</a></li>
+              <li class="mb-3"><a class="text-color" href="blog.html">Зворотній зв'язок</a></li>
+            </ul>
+          </div>
+          <!-- links -->
+          <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-5 mb-md-0">
+            <h4 class="text-white mb-5">Корисні матеріли</h4>
+            <ul class="list-unstyled">
+              <li class="mb-3"><a class="text-color" href="courses.html">Scratch</a></li>
+              <li class="mb-3"><a class="text-color" href="event.html">Програмування</a></li>
+              <li class="mb-3"><a class="text-color" href="gallary.html">Шкільна інформатика</a></li>
+              <li class="mb-3"><a class="text-color" href="faqs.html">Інформаційні технології</a></li>
+            </ul>
+          </div>
+          <!-- support -->
+  
+          <!-- support -->
+  
+        </div>
+      </div>
+    </div>
+    <!-- copyright -->
+    <div class="copyright py-4 bg-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-7 text-sm-left text-center">
+            <p class="mb-0">Всі права захищені ©
+              <script>
+                var CurrentYear = new Date().getFullYear()
+                document.write(CurrentYear)
+              </script>
+  
+          </div>
+          <div class="col-sm-5 text-sm-right text-center">
+  
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- jQuery -->
+  {% load static %}
+  <script src="{% static 'plugins/jQuery/jquery.min.js' %}"></script>
+  <!-- Bootstrap JS -->
+  {% load static %}
+  <script src="{% static 'plugins/bootstrap/bootstrap.min.js' %}"></script>
+  <!-- slick slider -->
+  {% load static %}
+  <script src="{% static 'plugins/slick/slick.min.js' %}"></script>
+  <!-- aos -->
+  {% load static %}
+  <script src="{% static 'plugins/aos/aos.js' %}"></script>
+  <!-- venobox popup -->
+  {% load static %}
+  <script src="{% static 'plugins/venobox/venobox.min.js' %}"></script>
+  <!-- mixitup filter -->
+  {% load static %}
+  <script src="{% static 'plugins/mixitup/mixitup.min.js' %}"></script>
+  <!-- google map -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&libraries=places"></script>
+  {% load static %}
+  <script src="{% static 'plugins/google-map/gmap.js' %}"></script>
+  
+  <!-- Main Script -->
+  {% load static %}
+  <script src="{% static 'js/script.js' %}"></script>
+
+
+
+
+
 </html>
