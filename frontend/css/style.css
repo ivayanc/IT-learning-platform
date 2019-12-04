@@ -16,6 +16,9 @@ VERSION:	Versoin Number
   font-style: normal;
 }
 
+*{
+  font-family: "Gill Sans", sans-serif;
+}
 body {
   line-height: 1.2;
   font-family: "Poppins", sans-serif;
@@ -34,7 +37,7 @@ p, .paragraph {
 
 h1, h2, h3, h4, h5, h6 {
   color: #1e1e4b;
-  font-family: "futura-bold";
+  font-family: "Gill Sans";
   font-weight: 700;
   line-height: 1.2;
 }
@@ -239,6 +242,7 @@ body {
   background: #ffcd6e;
   color: #fff;
 }
+
 
 ::selection {
   background: #ffcd6e;
