@@ -11,6 +11,7 @@ class Post(models.Model):
     moderator = models.ForeignKey(SystemUser,on_delete=models.CASCADE)
     author = models.CharField(max_length=255,blank=True)
     title = models.CharField(max_length=255,blank=True)
+    views = models.IntegerField(default=0)
     description = models.CharField(max_length=500,blank=True)
     published = models.DateTimeField(auto_now=True,blank=True)
     title_image = models.ImageField(blank=True)
