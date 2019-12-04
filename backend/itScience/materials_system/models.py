@@ -25,6 +25,9 @@ class SchoolPost(models.Model):
 class ProgrammingPost(models.Model):
     post = models.OneToOneField(Post, on_delete=models.CASCADE)
 
+class ScratchPost(models.Model):
+    post = models.OneToOneField(Post, on_delete=models.CASCADE)
+
 class HashTag(models.Model):
     tag_name = models.CharField(max_length=50)
 
