@@ -15,7 +15,9 @@ VERSION:	Versoin Number
   font-weight: normal;
   font-style: normal;
 }
-
+*{
+  font-family: "Gill Sans", sans-serif;
+}
 body {
   line-height: 1.2;
   font-family: "Poppins", sans-serif;
