@@ -1,5 +1,5 @@
 from django.views.generic.list import ListView
-from .models import Post, ItPost, SchoolPost, ProgrammingPost
+from .models import Post, ItPost, SchoolPost, ProgrammingPost, ScratchPost
 from django.shortcuts import render, redirect
 
 
@@ -28,3 +28,9 @@ class SchoolPostView(ListView):
     paginate_by = 9
     context_object_name = 'posts'
     template_name = 'materials_system/school.html'
+
+class ScratchPostView(ListView):
+    model = ScratchPost
+    paginate_by = 9
+    context_object_name = 'posts'
+    template_name = 'materials_system/scratch.html'

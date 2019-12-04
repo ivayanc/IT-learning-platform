@@ -57,9 +57,9 @@
               </div>
               <div class="col-lg-8 text-center text-lg-right">
                 <ul class="list-inline">
-                  <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="notice.html">Scratch</a></li>
-                  <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="research.html">Про нас</a></li>
-                  <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="scholarship.html">Новини</a></li>
+                  <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="{%url 'scratch'%}">Scratch</a></li>
+                  <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="{%url 'about'%}">Про нас</a></li>
+                  <!--<li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="">Новини</a></li>-->
                   <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="#" data-toggle="modal" data-target="#loginModal">Увійти</a></li>
                   <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="#" data-toggle="modal" data-target="#signupModal">Реєстрація</a></li>
                 </ul>
@@ -201,20 +201,19 @@
           <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-5 mb-md-0">
             <h4 class="text-white mb-5">Додаткова інформація</h4>
             <ul class="list-unstyled">
-              <li class="mb-3"><a class="text-color" href="about.html">Про нас</a></li>
-              <li class="mb-3"><a class="text-color" href="teacher.html">Пошук</a></li>
-              <li class="mb-3"><a class="text-color" href="contact.html">Новини</a></li>
-              <li class="mb-3"><a class="text-color" href="blog.html">Зворотній зв'язок</a></li>
+              <li class="mb-3"><a class="text-color" href="{% url 'index'%}">Головна</a></li>
+              <li class="mb-3"><a class="text-color" href="{% url 'about'%}">Про нас</a></li>
+              
             </ul>
           </div>
           <!-- links -->
           <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-5 mb-md-0">
             <h4 class="text-white mb-5">Корисні матеріли</h4>
             <ul class="list-unstyled">
-              <li class="mb-3"><a class="text-color" href="courses.html">Scratch</a></li>
-              <li class="mb-3"><a class="text-color" href="event.html">Програмування</a></li>
-              <li class="mb-3"><a class="text-color" href="gallary.html">Шкільна інформатика</a></li>
-              <li class="mb-3"><a class="text-color" href="faqs.html">Інформаційні технології</a></li>
+              <li class="mb-3"><a class="text-color" href="{% url 'scratch'%}">Scratch</a></li>
+              <li class="mb-3"><a class="text-color" href="{% url 'programming'%}">Програмування</a></li>
+              <li class="mb-3"><a class="text-color" href="{% url 'school'%}">Шкільна інформатика</a></li>
+              <li class="mb-3"><a class="text-color" href="{% url 'it'%}">Інформаційні технології</a></li>
             </ul>
           </div>
           <!-- support -->

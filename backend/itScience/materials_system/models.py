@@ -13,7 +13,7 @@ class Post(models.Model):
     title = models.CharField(max_length=255,blank=True)
     description = models.CharField(max_length=500,blank=True)
     published = models.DateTimeField(auto_now=True,blank=True)
-    title_image = models.ImageField(upload_to='static/post_images/',blank=True)
+    title_image = models.ImageField(blank=True)
     publication = models.TextField()
 
 class ItPost(models.Model):
@@ -23,6 +23,9 @@ class SchoolPost(models.Model):
     post = models.OneToOneField(Post, on_delete=models.CASCADE)
 
 class ProgrammingPost(models.Model):
+    post = models.OneToOneField(Post, on_delete=models.CASCADE)
+
+class ScratchPost(models.Model):
     post = models.OneToOneField(Post, on_delete=models.CASCADE)
 
 class HashTag(models.Model):
