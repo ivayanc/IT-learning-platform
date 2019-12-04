@@ -1,18 +1,26 @@
 from django.db import models
 
-
 class UserInfo(models.Model):
-    #user = Models.OneToOneField()
+    #user = models.OneToOneField(User)
+    name = models.CharField(max_length=255)
+    about = models.CharField(max_length=500)
 
 class Post(models.Model):
-    moderator = models.ForeignKey(User,on_delete=models.CASCADE)
-    author = models.CharField(max_length=200)
+    #moderator = models.ForeignKey(User,on_delete=models.CASCADE)
+    author = models.CharField(max_length=255)
     short_title = models.CharField(max_length=150)
-    full_title = models.CharField(max_length=300)
+    full_title = models.CharField(max_length=255)
     description = models.CharField(max_length=500)
     published = models.DateTimeField(auto_now=True)
-    title_image = models.ImageField()
-    
+    title_image = models.ImageField(upload_to='static/post_images/')
+    publication = models.TextField()
 
 class HashTag(models.Model):
-    pass
+    tag_name = models.CharField(max_length=50)
+
+
+class PostHashTag(models.Model):
+    post = models.ForeignKey(Post,on_delete=models.CASCADE)
+    tag = models.ForeignKey(HashTag,on_delete=models.CASCADE)
+
+
