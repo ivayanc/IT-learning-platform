@@ -12,4 +12,5 @@ urlpatterns = [
     path('programming/', views.ProgrammingPostView.as_view(), name='programming'),
     path('school/', views.SchoolPostView.as_view(), name='school'),
     path('scratch/', views.ScratchPostView.as_view(), name='scratch'),
+    path('posts/<int:pk>', views.SinglePostView.as_view(), name='post-details'),
 ]

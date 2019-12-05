@@ -3,31 +3,12 @@
 
 {% block title %}Home{% endblock %}
 
-{% block content %}
-{%load static%}
+{% block posts_header %}
+{% endblock %}
 
-<section class="hero-section overlay bg-cover" data-background="{% static 'images/banner/banner-5.jpg'%}">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8">
-          <ul class="list-inline custom-breadcrumb">
-            <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="@@page-link">Шкільна інформатика</a></li>
-            <li class="list-inline-item text-white h3 font-secondary @@nasted"></li>
-          </ul>
-          <p class="text-lighten">На цій сторінці зібрано найпопулярніші матеріали для підготовки до олімпіади з інформатики,а також опрацьовано матеріали з шкільного курсу інформатики.</p>
-          
-            <form action="about.html">
-              <button type="submit" class="tag-item nuxt-link-active">#scratch</button>
-              <button type="submit" class="tag-item nuxt-link-active">#word</button>
-              <button type="submit" class="tag-item nuxt-link-active">#веб-технології</button>
-              <button type="submit" class="tag-item nuxt-link-active">#графіка</button>
-              <button type="submit" class="tag-item nuxt-link-active">#windows</button>
-              </form>
-        </div>
-  
-      </div>
-    </div>
-  </section>
+{% block content %}
+
+
   <!-- /page title -->
   <section class="section">
     <div class="container">
@@ -49,7 +30,7 @@
               <h4 class="card-title">{{post.post.title}}</h4>
             </a>
             <p class="card-text mb-4">{{post.post.description}}</p>
-            <a href="{%url 'posts'%}{{post.post.pk}}" class="btn btn-primary btn-sm">Детальніше</a>
+            <a href="course-single.html" class="btn btn-primary btn-sm">Детальніше</a>
           </div>
         </div>
       </div>

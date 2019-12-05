@@ -1,7 +1,11 @@
-from django.views.generic.list import ListView
+from django.views.generic import ListView, DetailView
 from .models import Post, ItPost, SchoolPost, ProgrammingPost, ScratchPost
 from django.shortcuts import render, redirect
 
+
+class SinglePostView(DetailView):
+    template_name = 'materials_system/post_page.html'
+    queryset = Post.objects.all()
 
 class PostsView(ListView):
     model = Post
