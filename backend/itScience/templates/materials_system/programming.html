@@ -40,17 +40,17 @@
     <div class="col-lg-4 col-sm-6 mb-5">
         <div class="card p-0 border-primary rounded-0 hover-shadow">
           
-          <img class="card-img-top rounded-0" src="{{ post.post.title_image.url }}" alt="{{post.post.title}}">
+          <img class="card-img-top rounded-0" src="{{ post.title_image.url }}" alt="{{post.title}}">
           <div class="card-body">
             <ul class="list-inline mb-2">
-              <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>{{post.post.published}}</li>
-              <li class="list-inline-item"><a class="text-color" href="#">{{post.post.author}}</a></li>
+              <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>{{post.published}}</li>
+              <li class="list-inline-item"><a class="text-color" href="#">{{post.moderator}}</a></li>
             </ul>
             <a href="course-single.html">
-              <h4 class="card-title">{{post.post.title}}</h4>
+              <h4 class="card-title">{{post.title}}</h4>
             </a>
-            <p class="card-text mb-4">{{post.post.description}}</p>
-            <a href="{%url 'posts'%}{{post.post.pk}}" class="btn btn-primary btn-sm">Детальніше</a>
+            <p class="card-text mb-4">{{post.description}}</p>
+            <a href="{%url 'posts'%}{{post.pk}}" class="btn btn-primary btn-sm">Детальніше</a>
           </div>
         </div>
       </div>

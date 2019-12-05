@@ -11,4 +11,8 @@ class SystemUserAdmin(UserAdmin):
     model = SystemUser
     list_display = ['email', 'username', 'name', 'about']
 
+    fieldsets = UserAdmin.fieldsets + (
+            (None, {'fields': ('name','about', 'avatar')}),
+    )
+
 admin.site.register(SystemUser, SystemUserAdmin)

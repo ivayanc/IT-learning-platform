@@ -1,7 +1,16 @@
 from django.contrib import admin
-from .models import Post, ItPost, ProgrammingPost, SchoolPost
+from .models import Post
 
-admin.site.register(Post)
-admin.site.register(SchoolPost)
-admin.site.register(ItPost)
-admin.site.register(ProgrammingPost)
+
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    fields = (
+    'category',
+    'time_to_read',
+    'moderator',
+    'title',
+    'views',
+    'description',
+    'title_image',
+    'publication',)
+    list_display = ('category', 'title', 'time_to_read')
