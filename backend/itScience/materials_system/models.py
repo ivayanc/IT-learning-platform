@@ -8,6 +8,7 @@ class UserInfo(models.Model):
     about = models.CharField(max_length=500)
 
 class Post(models.Model):
+    time_to_read = models.CharField(max_length=20)
     moderator = models.ForeignKey(SystemUser,on_delete=models.CASCADE)
     author = models.CharField(max_length=255,blank=True)
     title = models.CharField(max_length=255,blank=True)
