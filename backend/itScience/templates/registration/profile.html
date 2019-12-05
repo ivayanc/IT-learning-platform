@@ -34,7 +34,7 @@
             </ul>
           </div>
           {%if object.pk == user.pk %}
-              Редагувати профіль
+          <a href="{% url 'programming'%}" class="btn btn-primary" data-animation-out="fadeOutRight" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInLeft" data-delay-in=".7">Редагувати профіль</a>
            {%endif%}
       </div>
     
