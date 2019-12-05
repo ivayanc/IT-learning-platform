@@ -11,5 +11,6 @@ class SignUpView(CreateView):
     template_name = 'registration/singup.html'
 
 class ProfileView(DetailView):
+    
     template_name = 'registration/profile.html'
     queryset = SystemUser.objects.all()

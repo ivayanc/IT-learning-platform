@@ -12,7 +12,18 @@
     <div class="row">
       <div class="col-md-8">
         <ul class="list-inline custom-breadcrumb">
-          <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="courses.html">Програмування</a></li>
+          {% if object.category == 1 %}
+          <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="{%url 'programming'%}">Програмування</a></li>
+          {% elif object.category == 2 %}
+          <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="{%url 'school'%}">Шкільна Інформатика</a></li>
+          {% elif object.category == 3 %}
+          <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="{%url 'it'%}">Інформаційні технології</a></li>
+          {% elif object.category == 4 %}
+          <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="{%url 'scratch'%}">Scratch</a></li>
+          {% else %}
+          <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="{%url 'scratch'%}">Статті</a></li>
+          {% endif %}
+          
           <li class="list-inline-item text-white h3 font-secondary nasted">{{object.title}}</li>
         </ul>
         <p class="text-lighten">{{object.description}}</p>
