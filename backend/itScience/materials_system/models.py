@@ -28,7 +28,7 @@ class Post(models.Model):
     views = models.IntegerField(default=0,verbose_name="Кількість переглядів")
     description = models.CharField(max_length=500,blank=True, verbose_name="Короткий опис")
     published = models.DateTimeField(auto_now=True,blank=True,verbose_name="Дата публікації")
-    title_image = models.ImageField(upload_to="posts",blank=True, verbose_name="Зображення")
+    title_image = models.ImageField(upload_to="posts",blank=True, verbose_name="Зображення",default="posts/default.png")
     publication = models.TextField(verbose_name="Текст публікації")
     category = models.PositiveSmallIntegerField(
         choices = CATEGORY_CHOICES,
