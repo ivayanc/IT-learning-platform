@@ -11,9 +11,7 @@ class PostView(ListView):
     model = Post
     paginate_by = 9
     context_object_name = 'posts'
-         
     template_name = 'materials_system/it.html'
-
 
 class ItPostView(ListView):
     model = Post
@@ -24,7 +22,6 @@ class ItPostView(ListView):
          return Post.objects.filter(category=Post.IT)
          
     template_name = 'materials_system/it.html'
-
 
 class ProgrammingPostView(ListView):
     model = Post
