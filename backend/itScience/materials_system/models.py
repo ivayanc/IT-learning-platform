@@ -25,13 +25,12 @@ class Post(models.Model):
     published        = models.DateTimeField(auto_now=True,blank=True,verbose_name="Дата публікації")
     title_image      = models.ImageField(upload_to="posts",blank=True, verbose_name="Зображення",default="posts/default.png")
     publication      = models.TextField(verbose_name="Текст публікації")
-    favourites       = models.ManyToManyField(SystemUser, related_name="Обрані", blank=True)
+    favorites       = models.ManyToManyField(SystemUser, related_name="Обрані", blank=True)
     likes            = models.ManyToManyField(SystemUser, related_name="Лайки", blank=True)
     category         = models.PositiveSmallIntegerField(
                             choices = CATEGORY_CHOICES,
                             default = OTHER,
     )
-
 
 class HashTag(models.Model):
     tag_name = models.CharField(max_length=50)
