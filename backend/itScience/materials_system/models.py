@@ -17,22 +17,21 @@ class Post(models.Model):
         (OTHER, ('Стаття')),
     ]
 
-    time_to_read = models.CharField(max_length=20,verbose_name="Прочитаєте за")
-    moderator = models.ForeignKey(SystemUser,on_delete=models.CASCADE,verbose_name="Автор")
-    title = models.CharField(max_length=255,blank=True,verbose_name="Заголовок")
-    views = models.IntegerField(default=0,verbose_name="Кількість переглядів")
-    description = models.CharField(max_length=500,blank=True, verbose_name="Короткий опис")
-    published = models.DateTimeField(auto_now=True,blank=True,verbose_name="Дата публікації")
-    title_image = models.ImageField(upload_to="posts",blank=True, verbose_name="Зображення",default="posts/default.png")
-    publication = models.TextField(verbose_name="Текст публікації")
-    category = models.PositiveSmallIntegerField(
-        choices = CATEGORY_CHOICES,
-        default = OTHER,
+    time_to_read     = models.CharField(max_length=20,verbose_name="Прочитаєте за")
+    moderator        = models.ForeignKey(SystemUser,on_delete=models.CASCADE,verbose_name="Автор")
+    title            = models.CharField(max_length=255,blank=True,verbose_name="Заголовок")
+    views            = models.IntegerField(default=0,verbose_name="Кількість переглядів")
+    description      = models.CharField(max_length=500,blank=True, verbose_name="Короткий опис")
+    published        = models.DateTimeField(auto_now=True,blank=True,verbose_name="Дата публікації")
+    title_image      = models.ImageField(upload_to="posts",blank=True, verbose_name="Зображення",default="posts/default.png")
+    publication      = models.TextField(verbose_name="Текст публікації")
+    favourites       = models.ManyToManyField(SystemUser, related_name="Обрані", blank=True)
+    likes            = models.ManyToManyField(SystemUser, related_name="Лайки", blank=True)
+    category         = models.PositiveSmallIntegerField(
+                            choices = CATEGORY_CHOICES,
+                            default = OTHER,
     )
 
-class Favorite(models.Model):
-    user = models.ForeignKey(SystemUser, on_delete=models.CASCADE)
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
 
 class HashTag(models.Model):
     tag_name = models.CharField(max_length=50)
