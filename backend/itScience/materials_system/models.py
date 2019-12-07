@@ -2,11 +2,6 @@ from django.db import models
 
 from users.models import SystemUser
 
-class UserInfo(models.Model):
-    #user = models.OneToOneField(User)
-    name = models.CharField(max_length=255)
-    about = models.CharField(max_length=500)
-
 class Post(models.Model):
 
     PROGRAMMING = 1
@@ -34,6 +29,10 @@ class Post(models.Model):
         choices = CATEGORY_CHOICES,
         default = OTHER,
     )
+
+class Favorite(models.Model):
+    user = models.ForeignKey(SystemUser, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
 
 class HashTag(models.Model):
     tag_name = models.CharField(max_length=50)

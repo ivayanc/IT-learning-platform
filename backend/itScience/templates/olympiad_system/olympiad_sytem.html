@@ -1,0 +1,131 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{%load static%}
+
+
+
+<!-- page title -->
+<section class="hero-section overlay bg-cover" data-background="images/banner/online_olymp.jpg">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <ul class="list-inline custom-breadcrumb">
+          <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="@@page-link">Система онлайн олімпіад</a></li>
+          <li class="list-inline-item text-white h3 font-secondary @@nasted"></li>
+        </ul>
+        <p class="text-lighten">Our courses offer a good compromise between the continuous assessment favoured by some universities and the emphasis placed on final exams by others.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /page title -->
+<section class="hero-section overlay bg-cover" class="timer">
+<div id="countdown">
+  <div id="tiles"></div>
+  <div class="labels">
+    <li>Дней</li>
+    <li>Часов</li>
+    <li>Минут</li>
+    <li>Секунд</li>
+  </div>
+</div>
+</section>
+<script type="text/javascript">
+var target_date = new Date().getTime() + (1000*3600*48); // установить дату обратного отсчета
+var days, hours, minutes, seconds; // переменные для единиц времени
+ 
+var countdown = document.getElementById("tiles"); // получить элемент тега
+ 
+getCountdown();
+ 
+setInterval(function () { getCountdown(); }, 1000);
+ 
+function getCountdown(){
+ 
+    var current_date = new Date().getTime();
+    var seconds_left = (target_date - current_date) / 1000;
+ 
+    days = pad( parseInt(seconds_left / 86400) );
+    seconds_left = seconds_left % 86400;
+          
+    hours = pad( parseInt(seconds_left / 3600) );
+    seconds_left = seconds_left % 3600;
+           
+    minutes = pad( parseInt(seconds_left / 60) );
+    seconds = pad( parseInt( seconds_left % 60 ) );
+ 
+    // строка обратного отсчета  + значение тега
+    countdown.innerHTML = "<span>" + days + "</span><span>" + hours + "</span><span>" + minutes + "</span><span>" + seconds + "</span>";
+}
+ 
+function pad(n) {
+    return (n < 10 ? '0' : '') + n;
+}
+</script>
+</section>
+<!-- blogs -->
+<section class="section">
+  <section class="section bg-gray">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="d-flex align-items-center section-title justify-content-between">
+            <h2 class="mb-0 text-nowrap mr-3">Олімпіади</h2>
+            <div class="border-top w-100 border-primary d-none d-sm-block"></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+    <!-- event -->
+    <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
+      <div class="card border-0 rounded-0 hover-shadow">
+        <div class="card-img position-relative">
+          <img class="card-img-top rounded-0" src="images/events/event-1.jpg" alt="event thumb">
+          <div class="card-date"><span>18</span><br>Грудня</div>
+        </div>
+        <div class="card-body">
+          <!-- location -->
+          <p><i class="ti-location-pin text-primary mr-2"></i>Чернігів, школа №2</p>
+          <a href="event-single.html"><h4 class="card-title">Олімпіада з програмування</h4></a>
+        </div>
+      </div>
+    </div>
+    <!-- event -->
+    <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
+      <div class="card border-0 rounded-0 hover-shadow">
+        <div class="card-img position-relative">
+          <img class="card-img-top rounded-0" src="images/events/event-2.jpg" alt="event thumb">
+          <div class="card-date"><span>21</span><br>Грудня</div>
+        </div>
+        <div class="card-body">
+          <!-- location -->
+          <p><i class="ti-location-pin text-primary mr-2"></i>Чернігів, школа №2</p>
+          <a href="event-single.html"><h4 class="card-title">Олімпіада з програмування </h4></a>
+        </div>
+      </div>
+    </div>
+    <!-- event -->
+    <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
+      <div class="card border-0 rounded-0 hover-shadow">
+        <div class="card-img position-relative">
+          <img class="card-img-top rounded-0" src="images/events/event-3.jpg" alt="event thumb">
+          <div class="card-date"><span>23</span><br>Грудня</div>
+        </div>
+        <div class="card-body">
+          <!-- location -->
+          <p><i class="ti-location-pin text-primary mr-2"></i>Чернігів, школа №2</p>
+          <a href="event-single.html"><h4 class="card-title">Олімпіада з програмування</h4></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /blogs -->
+
+{% endblock %}
+
