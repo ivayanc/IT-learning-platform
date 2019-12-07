@@ -1084,5 +1084,47 @@ link:focus,
 .filter-controls li:hover {
   color: #ff5233;
 }
+table{
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+text-align: left;
+border-collapse: separate;
+border-spacing: 5px;
+background: #FFA07A;
+color: #ff5233;
+border: 16px solid #FF7F50;
+
+}
+td, th{
+  background: white; /* Цвет фона ячеек */
+   padding: 10px; /* Поля вокруг текста */
+}
+.table-section{
+  padding: 20px 40px;
+   margin: 50px 20px;
+
+}
+.btn_olymp{
+   margin: 20px 20px;
+   background: #ff5233;
+   color: #fff;
+   border-radius: 5px;
+}
+.btn-olymp::before {
+  background: #fff;
+}
+
+.btn-olymp:active {
+  background: #ff5233 !important;
+  color: #ff5233;
+}
+
+.btn-olymp:active::before {
+  height: 80%;
+}
+
+.btn-olymp:hover {
+  background: #fff;
+  color: #ff5233;
+}
 
 /*# sourceMappingURL=maps/style.css.map */
