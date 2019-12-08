@@ -17,6 +17,7 @@ class IndexView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['latest_posts'] = Post.objects.all().order_by('-published')[:6]
+        context['latest_news'] = Post.objects.all().filter(category=Post.OTHER).order_by('-published')[:3]
         return context
 
 class SinglePostView(DetailView):
@@ -119,6 +120,18 @@ class ScratchPostView(PostView):
         context = super().get_context_data(**kwargs)
         context['category_name'] = "Scratch"
         context['category_description'] = "Скретч — інтерпретована динамічна візуальна мова програмування основана і реалізована на Squeak. Завдяки динамічності, вона дає змогу змінювати код навіть під час виконання."
+        context['category_tags'] = ""
+        context['category_photo'] = "/static/images/banner/banner-5.jpg"
+        return context
+         
+class NewsPostView(PostView):
+    def get_queryset(self):
+         return Post.objects.filter(category=Post.OTHER).order_by('-published')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category_name'] = "Новини"
+        context['category_description'] = "Новини"
         context['category_tags'] = ""
         context['category_photo'] = "/static/images/banner/banner-5.jpg"
         return context

@@ -231,65 +231,26 @@
     </div>
     <div class="row justify-content-center">
   <!-- blog post -->
-  <article class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
-    <div class="card rounded-0 border-bottom border-primary border-top-0 border-left-0 border-right-0 hover-shadow">
-      <img class="card-img-top rounded-0" src="{% static 'images/blog/post-1.jpg'%}" alt="Post thumb">
-      <div class="card-body">
-        <!-- post meta -->
-        <ul class="list-inline mb-3">
-          <!-- post date -->
-          <li class="list-inline-item mr-3 ml-0">August 28, 2019</li>
-          <!-- author -->
-          <li class="list-inline-item mr-3 ml-0">Автор</li>
-        </ul>
-        <a href="blog-single.html">
-          <h4 class="card-title">Новина №1</h4>
-        </a>
-        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicin</p>
-        <a href="blog-single.html" class="btn btn-primary btn-sm">Детальніше</a>
+  {% for post in latest_news %}
+    
+      <!-- course item -->
+      <div class="col-lg-4 col-sm-6 mb-5">
+        <div class="card p-0 border-primary rounded-0 hover-shadow">
+          <img class="card-img-top rounded-0" src="{{ post.title_image.url }}" alt="{{post.title}}">
+          <div class="card-body">
+            <ul class="list-inline mb-2">
+              <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>{{post.published}}</li>
+              <li class="list-inline-item"><a class="text-color" href="#">{{post.moderator}}</a></li>
+            </ul>
+            <a href="course-single.html">
+              <h4 class="card-title">{{post.title}}</h4>
+            </a>
+            <p class="card-text mb-4">{{post.description}}</p>
+            <a href="course-single.html" class="btn btn-primary btn-sm">Детальніше</a>
+          </div>
+        </div>
       </div>
-    </div>
-  </article>
-  <!-- blog post -->
-  <article class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
-    <div class="card rounded-0 border-bottom border-primary border-top-0 border-left-0 border-right-0 hover-shadow">
-      <img class="card-img-top rounded-0" src="{% static 'images/blog/post-2.jpg'%}" alt="Post thumb">
-      <div class="card-body">
-        <!-- post meta -->
-        <ul class="list-inline mb-3">
-          <!-- post date -->
-          <li class="list-inline-item mr-3 ml-0">August 13, 2019</li>
-          <!-- author -->
-          <li class="list-inline-item mr-3 ml-0">Автор</li>
-        </ul>
-        <a href="blog-single.html">
-          <h4 class="card-title">Новина №2</h4>
-        </a>
-        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicin</p>
-        <a href="blog-single.html" class="btn btn-primary btn-sm">Детальніше</a>
-      </div>
-    </div>
-  </article>
-  <!-- blog post -->
-  <article class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
-    <div class="card rounded-0 border-bottom border-primary border-top-0 border-left-0 border-right-0 hover-shadow">
-      <img class="card-img-top rounded-0" src="{% static 'images/blog/post-3.jpg'%}" alt="Post thumb">
-      <div class="card-body">
-        <!-- post meta -->
-        <ul class="list-inline mb-3">
-          <!-- post date -->
-          <li class="list-inline-item mr-3 ml-0">August 24, 2018</li>
-          <!-- author -->
-          <li class="list-inline-item mr-3 ml-0">Автор</li>
-        </ul>
-        <a href="blog-single.html">
-          <h4 class="card-title">Новина №3</h4>
-        </a>
-        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicin</p>
-        <a href="blog-single.html" class="btn btn-primary btn-sm">Детальніше</a>
-      </div>
-    </div>
-  </article>
+      {%endfor%}
 </div>
   </div>
 </section>
