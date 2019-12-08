@@ -1,7 +1,6 @@
 from django.urls import path
 from django.views.generic.base import TemplateView
 
-
 from . import views
 
 urlpatterns = [
@@ -13,4 +12,5 @@ urlpatterns = [
     path('scratch/', views.ScratchPostView.as_view(), name='scratch'),
     path('posts/', views.PostView.as_view(), name='posts'),
     path('posts/<int:pk>', views.SinglePostView.as_view(), name='post-details'),
+    path('posts/create', views.PostCreateView.as_view(), name='post-create'),
 ]

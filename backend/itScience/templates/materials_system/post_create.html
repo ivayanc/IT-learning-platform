@@ -1,0 +1,34 @@
+{% extends '../base.html' %}
+
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<form action="{%url 'post-create'%}" method="POST">
+  {%csrf_token%}
+  {{form.as_p}}
+  <input type="submit" name="save" value="Додати">
+</form>
+
+{% endblock %}

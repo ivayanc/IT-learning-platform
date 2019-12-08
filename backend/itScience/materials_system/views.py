@@ -1,5 +1,10 @@
-from django.views.generic import ListView, DetailView
+from django.views.generic import (
+        ListView, 
+        DetailView,
+        CreateView
+)
 from .models import Post
+from .forms import PostCreateForm
 from django.shortcuts import render, redirect
 
 
@@ -7,6 +12,14 @@ class SinglePostView(DetailView):
     template_name = 'materials_system/post_page.html'
     queryset = Post.objects.all()
 
+class PostCreateView(CreateView):
+    template_name = 'materials_system/post_create.html'
+    form_class = PostCreateForm
+    queryset = Post.objects.all()
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+    
 class PostView(ListView):
     model = Post
     paginate_by = 9
@@ -33,7 +46,6 @@ class ItPostView(PostView):
         context['category_photo'] = "/static/images/banner/programming.jpg"
         return context
          
-
 class ProgrammingPostView(PostView):
     def get_queryset(self):
          return Post.objects.filter(category=Post.PROGRAMMING)
@@ -46,7 +58,6 @@ class ProgrammingPostView(PostView):
         context['category_photo'] = "/static/images/banner/banner-4.jpg"
         return context
          
-
 class SchoolPostView(PostView):
     def get_queryset(self):
          return Post.objects.filter(category=Post.SCHOOL)
