@@ -25,10 +25,10 @@
 <br>
 <br>
 
-<form action="{%url 'post-create'%}" method="POST">
+<form action="." method="POST">
   {%csrf_token%}
   {{form.as_p}}
-  <input type="submit" name="save" value="Додати">
+  <input type="submit" name="save" value="Зберегти">
 </form>
 
 {% endblock %}

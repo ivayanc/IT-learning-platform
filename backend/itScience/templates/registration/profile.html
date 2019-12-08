@@ -35,8 +35,12 @@
             </ul>
           </div>
           {%if object.pk == user.pk %}
-          <a href="{% url 'programming'%}" class="btn btn-primary" data-animation-out="fadeOutRight" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInLeft" data-delay-in=".7">Редагувати профіль</a>
-           {%endif%}
+          
+          <div class="col-xl-3 text-sm-right text-left order-sm-2 order-3 order-xl-3 col-sm-6 mb-4 mb-xl-0">
+              <a href="{% url 'profile-edit' id=object.pk %}" class="btn btn-primary"><i class="ti-pencil  mr-1"></i>Редагувати профіль</a>
+            </div> 
+          {%endif%}
+           
       </div>
     
     </div>

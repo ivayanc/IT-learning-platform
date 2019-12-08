@@ -13,3 +13,13 @@ class SystemUserChangeForm(UserChangeForm):
     class Meta:
         model = SystemUser
         fields = ('username', 'email', 'name', 'about')
+
+class SystemUserEditForm(forms.ModelForm):
+
+    class Meta:
+        model = SystemUser
+        fields = [
+            'email',
+            'name',
+            'about'
+        ]

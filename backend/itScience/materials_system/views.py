@@ -1,16 +1,41 @@
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import (
+        TemplateView,
         ListView, 
         DetailView,
-        CreateView
+        CreateView, 
+        UpdateView,
+        DeleteView
 )
 from .models import Post
 from .forms import PostCreateForm
 from django.shortcuts import render, redirect
 
+class IndexView(TemplateView):
+    template_name = 'materials_system/index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['latest_posts'] = Post.objects.all().order_by('-published')[:6]
+        return context
 
 class SinglePostView(DetailView):
     template_name = 'materials_system/post_page.html'
+    
     queryset = Post.objects.all()
+
+    def get_object(self, queryset=None):
+        id_ = self.kwargs.get("id")
+        post = get_object_or_404(Post, pk=id_)
+        post.views += 1
+        post.save()
+        return post
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['latest_posts'] = Post.objects.all().filter(category=context['object'].category)[:3]
+        return context
+    
 
 class PostCreateView(CreateView):
     template_name = 'materials_system/post_create.html'
@@ -19,8 +44,24 @@ class PostCreateView(CreateView):
 
     def form_valid(self, form):
         return super().form_valid(form)
+
+class PostUpdateView(UpdateView):
+    template_name = 'materials_system/post_create.html'
+    form_class = PostCreateForm
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+    def get_object(self, queryset=None):
+        id_ = self.kwargs.get("id")
+        return  get_object_or_404(Post, pk=id_)
+        
+        
     
 class PostView(ListView):
+    def get_queryset(self):
+         return Post.objects.order_by('-published')
+
     model = Post
     paginate_by = 9
     context_object_name = 'posts'
@@ -36,7 +77,7 @@ class PostView(ListView):
 
 class ItPostView(PostView):  
     def get_queryset(self):
-         return Post.objects.filter(category=Post.IT)
+         return Post.objects.filter(category=Post.IT).order_by('-published')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -48,7 +89,7 @@ class ItPostView(PostView):
          
 class ProgrammingPostView(PostView):
     def get_queryset(self):
-         return Post.objects.filter(category=Post.PROGRAMMING)
+         return Post.objects.filter(category=Post.PROGRAMMING).order_by('-published')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -60,7 +101,7 @@ class ProgrammingPostView(PostView):
          
 class SchoolPostView(PostView):
     def get_queryset(self):
-         return Post.objects.filter(category=Post.SCHOOL)
+         return Post.objects.filter(category=Post.SCHOOL).order_by('-published')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -72,7 +113,7 @@ class SchoolPostView(PostView):
          
 class ScratchPostView(PostView):
     def get_queryset(self):
-         return Post.objects.filter(category=Post.SCRATCH)
+         return Post.objects.filter(category=Post.SCRATCH).order_by('-published')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

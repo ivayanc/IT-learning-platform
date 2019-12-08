@@ -34,7 +34,7 @@ class Post(models.Model):
     )
 
     def get_absolute_url(self):
-        return reverse("post-details", kwargs={"pk": self.pk})
+        return reverse("post-details", kwargs={"id": self.pk})
 
 class HashTag(models.Model):
     tag_name = models.CharField(max_length=50)
