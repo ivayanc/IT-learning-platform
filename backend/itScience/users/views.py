@@ -10,33 +10,14 @@ from django.views.generic import (
         FormView
 )
 from .models import SystemUser
-from .forms import SystemUserChangeForm, SystemUserCreationForm,SystemUserLoginForm
-
+from .forms import SystemUserChangeForm, SystemUserCreationForm
 
 
 class SingUp(CreateView):
     form_class = SystemUserCreationForm
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('login')
     template_name = 'registration/singup.html'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['page_title'] = "Реєстрація"
-        context['button_text'] = "Зареєструватися"
-        
-        return context
-
-class Login(FormView):
-    form_class = SystemUserLoginForm
-    template_name = 'registration/singup.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['page_title'] = "Вхід"
-        context['button_text'] = "Увійти"
-        return context
-
-    
 class ProfileView(DetailView):
     template_name = 'registration/profile.html'
     

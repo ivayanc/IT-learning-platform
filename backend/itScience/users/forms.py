@@ -4,10 +4,12 @@ from .models import SystemUser
 
 
 class SystemUserLoginForm(AuthenticationForm):
+
     def __init__(self, *args, **kwargs):
+        self.model = SystemUser
         super(SystemUserLoginForm, self).__init__(*args, **kwargs)
 
-    username = forms.EmailField(widget=forms.TextInput(
+    username = forms.CharField(widget=forms.TextInput(
         attrs={'class': 'form-control', 'placeholder': '', 'id': 'login'}))
     password = forms.CharField(widget=forms.PasswordInput(
         attrs={
@@ -16,6 +18,10 @@ class SystemUserLoginForm(AuthenticationForm):
             'id': 'pass',
         }
     ))
+
+    class Meta():
+        model = SystemUser
+        fields = ('username', 'password')
 
 class SystemUserCreationForm(UserCreationForm):
 
