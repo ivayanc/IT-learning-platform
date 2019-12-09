@@ -57,8 +57,6 @@ class PostUpdateView(UpdateView):
         id_ = self.kwargs.get("id")
         return  get_object_or_404(Post, pk=id_)
         
-        
-    
 class PostView(ListView):
     def get_queryset(self):
          return Post.objects.order_by('-published')

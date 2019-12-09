@@ -25,7 +25,12 @@
 <br>
 <br>
 
-<form action="." method="POST">
+<style>
+  .django-form {
+    margin-left: 100px ;
+  }
+</style>
+<form class="post-create-form" action="." method="POST">
   {%csrf_token%}
   {{form.as_p}}
   <input type="submit" name="save" value="Зберегти">

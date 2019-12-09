@@ -126,10 +126,10 @@
                 </div>
                 <div class="modal-body">
                     <div class="login">
-                        <form method="post">
+                        <form method="post" action="/users/singup/">
                             {% csrf_token %}
-                            {{ form.as_p }}
-                            <button type="submit">Sign up</button>
+                            {{registration_form}}
+                            <button type="submit">Зареєструватися</button>
                           </form>
                     </div>
                 </div>
@@ -147,23 +147,10 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="#" class="row">
-                    <div class="col-12">
-                        <input type="text" class="form-control mb-3" id="loginPhone" name="loginPhone" placeholder="Ім'я">
-                    </div>
-                     <div class="col-12">
-                          <input type="text" class="form-control mb-3"  name="loginPhone" placeholder="Про себе">
-                      </div>
-                    <div class="col-12">
-                        <input type="text" class="form-control mb-3" id="loginName" name="loginName" placeholder="Логін">
-                    </div>
-                    <div class="col-12">
-                        <input type="password" class="form-control mb-3" id="loginPassword" name="loginPassword" placeholder="Пароль">
-                    </div>
-
-                    <div class="col-12">
-                        <button type="submit" class="btn btn-primary">Увійти</button>
-                    </div>
+                <form method="post" action="/users/login/" class="row">
+                    {% csrf_token %}
+                     {{login_form}}
+                    <button type="submit">Увійти</button>
                 </form>
             </div>
         </div>

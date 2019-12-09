@@ -6,18 +6,37 @@ from django.views.generic import (
         DetailView,
         CreateView, 
         UpdateView,
-        DeleteView
+        DeleteView,
+        FormView
 )
 from .models import SystemUser
+from .forms import SystemUserChangeForm, SystemUserCreationForm,SystemUserLoginForm
 
 
-from .forms import SystemUserCreationForm, SystemUserEditForm
 
-class SignUpView(CreateView):
+class SingUp(CreateView):
     form_class = SystemUserCreationForm
-    success_url = reverse_lazy('login')
+    success_url = reverse_lazy('index')
     template_name = 'registration/singup.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = "Реєстрація"
+        context['button_text'] = "Зареєструватися"
+        
+        return context
+
+class Login(FormView):
+    form_class = SystemUserLoginForm
+    template_name = 'registration/singup.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = "Вхід"
+        context['button_text'] = "Увійти"
+        return context
+
+    
 class ProfileView(DetailView):
     template_name = 'registration/profile.html'
     
@@ -33,7 +52,7 @@ class ProfileView(DetailView):
 
 class ProfileUpdateView(UpdateView):
     template_name = 'registration/edit.html'
-    form_class = SystemUserEditForm
+    form_class = SystemUserChangeForm
     
     def get_object(self, queryset=None):
         id_ = self.kwargs.get("id")
