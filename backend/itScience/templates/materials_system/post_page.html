@@ -86,7 +86,21 @@
         </ul>
       </div>
       <div class="col-xl-3 text-sm-right text-left order-sm-2 order-3 order-xl-3 col-sm-6 mb-4 mb-xl-0">
-        <a href="#" class="btn btn-primary"><i class="ti-heart  mr-1"></i>Додати в обране</a>
+        {%if user.is_authenticated %}
+        
+        <form action="{%url 'post-favorite' id=object.pk %}" method="post">
+            {% csrf_token %}
+            <button  class="btn btn-primary" type="submit">
+              {% if is_favorite %}
+                  <i class="fas fa-heart"></i>Додано в обране
+              {%else%}
+                  <i class="far fa-heart"></i>Додати в обране
+              {%endif%}
+            </button>
+        </form>
+        {%else%}
+          <a class="btn btn-primary" href="#loginModal" data-toggle="modal" data-target="#loginModal"><i class="ti-heart  mr-1"></i>Додати в обране</a>
+        {%endif%}
       </div>
       <!-- border -->
       <div class="col-12 mt-4 order-4">

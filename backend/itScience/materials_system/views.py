@@ -33,11 +33,15 @@ class SinglePostView(DetailView):
         return post
     
     def get_context_data(self, **kwargs):
+                
         context = super().get_context_data(**kwargs)
         context['latest_posts'] = Post.objects.all().filter(category=context['object'].category)[:3]
+        context['is_favorite'] = False
+        if len(self.get_object().favorite.filter(id = self.request.user.pk)):
+            context['is_favorite'] = True
+
         return context
     
-
 class PostCreateView(CreateView):
     template_name = 'materials_system/post_create.html'
     form_class = PostCreateForm
@@ -56,7 +60,26 @@ class PostUpdateView(UpdateView):
     def get_object(self, queryset=None):
         id_ = self.kwargs.get("id")
         return  get_object_or_404(Post, pk=id_)
-        
+
+class AddToFavoriteView(UpdateView):
+
+    http_method_names = ['post', ]
+    model = Post
+
+    def get_object(self, queryset=None):
+        id_ = self.kwargs.get("id")
+        return  get_object_or_404(Post, pk=id_)
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+
+        if self.object.favorite.filter(id=request.user.id).exists():
+            self.object.favorite.remove(request.user)
+        else:
+            self.object.favorite.add(request.user)
+
+        return redirect('post-details', id=self.object.pk)
+  
 class PostView(ListView):
     def get_queryset(self):
          return Post.objects.order_by('-published')

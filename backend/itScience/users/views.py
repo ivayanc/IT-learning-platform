@@ -9,6 +9,7 @@ from django.views.generic import (
         DeleteView,
         FormView
 )
+from materials_system.models import Post
 from .models import SystemUser
 from .forms import SystemUserChangeForm, SystemUserCreationForm
 
@@ -27,7 +28,7 @@ class ProfileView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(ProfileView, self).get_context_data(**kwargs) # get the default context data
-        context['favorites'] = 1
+        context['favorites'] = Post.objects.filter(favorite__in=[self.get_object().pk])
         print(context)
         return context
 

@@ -16,3 +16,4 @@ class PostCreateForm(forms.ModelForm):
             'title_image',
             'publication',   
         ]
+

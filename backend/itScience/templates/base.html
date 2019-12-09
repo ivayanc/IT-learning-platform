@@ -11,6 +11,7 @@
       
         <!-- ** Plugins Needed for the Project ** -->
         <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         {% load static %}
         <link rel="stylesheet" href="{% static 'plugins/bootstrap/bootstrap.min.css' %}">
         <!-- slick slider -->
@@ -42,8 +43,6 @@
       </head>
       
       <body>
-      
-      
       <!-- header -->
       <header class="fixed-top header">
         <!-- top header -->
@@ -65,7 +64,6 @@
                   <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="{%url 'scratch'%}">Scratch</a></li>
                   <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="{%url 'news'%}">Новини</a></li>
                   <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="{%url 'about'%}">Про нас</a></li>
-                  <!--<li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="">Новини</a></li>-->
                   {% if user.is_authenticated %}
                   <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="{%url 'profile' user.pk%}">Профіль</a></li>
                   <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="{%url 'logout'%}">Вийти</a></li>
