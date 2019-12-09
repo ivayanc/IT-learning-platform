@@ -44,6 +44,7 @@
       </div>
     
     </div>
+    {% if request.user.pk == object.pk%}
     <div class="row justify-content-center">
       <div class="col-12">
         <h4 class="mb-4">Обрані матеріали</h4>
@@ -68,6 +69,7 @@
       {%endfor%}
       
   </div>
+  {%endif%}
 </section>
 <!-- /teacher details -->
 
