@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     
     #Local apps
     'materials_system.apps.MaterialsSystemConfig', 
+    'olympiad_system.apps.OlympiadSystemConfig', 
     'users.apps.UsersConfig', 
 ]
 
