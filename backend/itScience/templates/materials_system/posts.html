@@ -62,18 +62,18 @@
     <div class="d-flex justify-content-center">
           <ul class="list-inline">
               {% if page_obj.has_previous %}
-                  <li class="list-inline-item"><a href="{% url 'it'%}?page={{ page_obj.previous_page_number }}" class="btn btn-primary btn-sm">Попередня</a></li>
+                  <li class="list-inline-item"><a href="{{category_link}}?page={{ page_obj.previous_page_number }}" class="btn btn-primary btn-sm">Попередня</a></li>
                   {% else %}
-                  <li class="list-inline-item"><a href="{% url 'it'%}" class="btn btn-primary btn-sm">Попередня</a></li>
+                  <li class="list-inline-item"><a href="{{category_link}}" class="btn btn-primary btn-sm">Попередня</a></li>
               {% endif %}
               
               <li class="list-inline-item" aria-controls="dynamic-table" tabindex="0">
-                    <a href="{% url 'it'%}?page={{page_obj.number}}">{{ page_obj.number }}</a>
+                    <a href="{{category_link}}?page={{page_obj.number}}">{{ page_obj.number }}</a>
               </li>
               {% if page_obj.has_next %}
-                    <li class="list-inline-item"><a href="{% url 'it'%}?page={{ page_obj.next_page_number }}" class="btn btn-primary btn-sm">Наступна</a></li>
+                    <li class="list-inline-item"><a href="{{category_link}}?page={{ page_obj.next_page_number }}" class="btn btn-primary btn-sm">Наступна</a></li>
               {% else %}
-                    <li class="list-inline-item"><a href="{% url 'it'%}?page={{ page_obj.paginator.num_pages }}" class="btn btn-primary btn-sm">Наступна</a></li>    
+                    <li class="list-inline-item"><a href="{{category_link}}?page={{ page_obj.paginator.num_pages }}" class="btn btn-primary btn-sm">Наступна</a></li>    
               {% endif %}
               
           </ul>

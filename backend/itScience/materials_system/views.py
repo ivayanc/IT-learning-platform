@@ -95,6 +95,7 @@ class PostView(ListView):
         context['category_description'] = "Тут ви можете знайти стрічку всіх статей на сайті"
         context['category_tags'] = ""
         context['category_photo'] = "/static/images/banner/banner-4.jpg"
+        context['category_link'] = "/posts/"
         return context
 
 class ItPostView(PostView):  
@@ -107,6 +108,7 @@ class ItPostView(PostView):
         context['category_description'] = "На цій сторінці зібрано найпопулярніші матеріали для підготовки до олімпіади з інформатики,а також опрацьовано матеріали з шкільного курсу інформатики."
         context['category_tags'] = ""
         context['category_photo'] = "/static/images/banner/programming.jpg"
+        context['category_link'] = "/it/"
         return context
          
 class ProgrammingPostView(PostView):
@@ -119,6 +121,7 @@ class ProgrammingPostView(PostView):
         context['category_description'] = "Збірка статей з шкільного курсу 5-11 класів з програмування."
         context['category_tags'] = ""
         context['category_photo'] = "/static/images/banner/banner-4.jpg"
+        context['category_link'] = "/programming/"
         return context
          
 class SchoolPostView(PostView):
@@ -131,6 +134,7 @@ class SchoolPostView(PostView):
         context['category_description'] = "На цій сторінці зібрано найпопулярніші матеріали для підготовки до олімпіади з інформатики,а також опрацьовано матеріали з шкільного курсу інформатики."
         context['category_tags'] = ""
         context['category_photo'] = "/static/images/banner/banner-5.jpg"
+        context['category_link'] = "/school/"
         return context
          
 class ScratchPostView(PostView):
@@ -143,6 +147,7 @@ class ScratchPostView(PostView):
         context['category_description'] = "Скретч — інтерпретована динамічна візуальна мова програмування основана і реалізована на Squeak. Завдяки динамічності, вона дає змогу змінювати код навіть під час виконання."
         context['category_tags'] = ""
         context['category_photo'] = "/static/images/banner/banner-5.jpg"
+        context['category_link'] = "/scratch/"
         return context
          
 class NewsPostView(PostView):
@@ -155,5 +160,6 @@ class NewsPostView(PostView):
         context['category_description'] = "Новини"
         context['category_tags'] = ""
         context['category_photo'] = "/static/images/banner/banner-5.jpg"
+        context['category_link'] = "/news/"
         return context
          
