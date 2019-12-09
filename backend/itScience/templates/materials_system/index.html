@@ -81,15 +81,17 @@
 <!-- courses -->
 <section class="section-sm">
   <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <div class="d-flex align-items-center section-title justify-content-between">
-          <h2 class="mb-0 text-nowrap mr-3">Останні статті</h2>
-          <div class="border-top w-100 border-primary d-none d-sm-block"></div>
-          
+      <div class="row">
+          <div class="col-12">
+            <div class="d-flex align-items-center section-title justify-content-between">
+              <h2 class="mb-0 text-nowrap mr-3">Останні статті</h2>
+              <div class="border-top w-100 border-primary d-none d-sm-block"></div>
+              <div>
+                <a href="{%url 'posts'%}" class="btn btn-sm btn-primary-outline ml-sm-3 d-none d-sm-block">Переглянути всі</a>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
     <!-- course list -->
     <div class="row justify-content-center">
     {% for post in latest_posts %}
@@ -123,7 +125,7 @@
   </div>
 </section>
 <!-- /courses -->
-<!-- about us -->
+<!-- 
 <section class="section">
   <div class="container">
     <div class="row align-items-center">
@@ -150,7 +152,7 @@
   </div>
 </section>
 
-
+-->
 
 
 <!-- events -->
@@ -224,11 +226,17 @@
 <!-- blog -->
 <section class="section pt-0">
   <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <h2 class="section-title">Останні новини</h2>
-      </div>
-    </div>
+      <div class="row">
+          <div class="col-12">
+            <div class="d-flex align-items-center section-title justify-content-between">
+              <h2 class="mb-0 text-nowrap mr-3">Останні новини</h2>
+              <div class="border-top w-100 border-primary d-none d-sm-block"></div>
+              <div>
+                <a href="events.html" class="btn btn-sm btn-primary-outline ml-sm-3 d-none d-sm-block">преглянути всі</a>
+              </div>
+            </div>
+          </div>
+        </div>
     <div class="row justify-content-center">
   <!-- blog post -->
   {% for post in latest_news %}
