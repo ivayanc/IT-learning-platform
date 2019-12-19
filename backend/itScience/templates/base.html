@@ -102,7 +102,12 @@
                     <a class="nav-link" href="{% url 'it'%}">Інформаційні технології</a>
                   </li>
                   <li class="nav-item ">
-                    <a class="nav-link" href="{% url 'olympiad_system'%}">Система онлайн олімпіад</a>
+                    {%if user.is_authenticated %}
+                    <a class="nav-link" href="{% url 'olympiad_system'%}">IT-Science new</a>
+                    {%else%}
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModalInfo">IT-Science new</a></li>
+
+                    {%endif%}
                   </li>
                 </ul>
               </div>
@@ -145,6 +150,27 @@
                 </button>
             </div>
             <div class="modal-body">
+                <form method="post" action="/users/login/" class="row">
+                    {% csrf_token %}
+                     {{login_form}}
+                    <button type="submit">Увійти</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="loginModalInfo" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content rounded-0 border-0 p-4">
+            <div class="modal-header border-0">
+                <h3>Увійти в систему</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+              Увійдіть щоб отримати доступ до цієї сторінки
                 <form method="post" action="/users/login/" class="row">
                     {% csrf_token %}
                      {{login_form}}

@@ -4,10 +4,11 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
+{%load static%}
 
 
 <!-- page title -->
-<section class="page-title-section overlay" data-background="images/backgrounds/page-title.jpg">
+<section class="page-title-section overlay" data-background="{% static 'images/backgrounds/page-title.jpg' %}">
   <div class="container">
     <div class="row">
       <div class="col-md-8">

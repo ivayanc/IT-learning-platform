@@ -4,20 +4,21 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-{%load static%}
 
 
 
 <!-- page title -->
-<section class="hero-section overlay bg-cover" data-background="images/banner/online_olymp.jpg">
+{%load static%}
+
+<section class="hero-section overlay bg-cover" data-background="{%static 'images/banner/online_olymp.jpg' %}">
   <div class="container">
     <div class="row">
       <div class="col-md-8">
         <ul class="list-inline custom-breadcrumb">
-          <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="@@page-link">Система онлайн олімпіад</a></li>
+          <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="#">IT-Science</a></li>
           <li class="list-inline-item text-white h3 font-secondary @@nasted"></li>
         </ul>
-        <p class="text-lighten">Our courses offer a good compromise between the continuous assessment favoured by some universities and the emphasis placed on final exams by others.</p>
+        <p class="text-lighten">{{user.name}}, вітаємо Вас на платформі для проведення онлайн олімпіад з Інформаційних Технологій, Web-дизайну та Комп'ютерної графіки</p>
       </div>
     </div>
   </div>
