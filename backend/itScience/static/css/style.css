@@ -1101,6 +1101,10 @@ color: #ff5233;
 border: 16px solid #FF7F50;
 
 }
+.table_k{
+width:60%;
+text-align: left;
+}
 td, th{
   background: white; /* Цвет фона ячеек */
    padding: 10px; /* Поля вокруг текста */
@@ -1132,6 +1136,85 @@ td, th{
 .btn-olymp:hover {
   background: #fff;
   color: #ff5233;
+}
+.parent
+{
+	border: 1px solid black;
+	height: 200px;
+}
+.child
+{
+	height: 100px;
+	display: inline-block;
+	background: red;
+	width: 30%;
+}
+div.selectBox {
+  position:relative;
+  display:inline-block;
+  cursor:default;
+  text-align:left;
+  line-height:30px;
+  clear:both;
+  color:#888;
+}
+span.selected {
+  width:167px;
+  text-indent:20px;
+  border:1px solid #ccc;
+  border-right:none;
+  border-top-left-radius:5px;
+  border-bottom-left-radius:5px;
+  background:#f6f6f6;
+  overflow:hidden;
+}
+span.selectArrow {
+  width:30px;
+  border:1px solid #60abf8;
+  border-top-right-radius:5px;
+  border-bottom-right-radius:5px;
+  text-align:center;
+  font-size:20px;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  background:	#4096ee;
+  color:#fff;
+}
+
+span.selectArrow,span.selected {
+  position:relative;
+  float:left;
+  height:30px;
+  z-index:1;
+}
+
+div.selectOptions {
+  position:absolute;
+  top:28px;
+  left:0;
+  width:198px;
+  border:1px solid #ccc;
+  border-bottom-right-radius:5px;
+  border-bottom-left-radius:5px;
+  overflow:hidden;
+  background:#f6f6f6;
+  padding-top:2px;
+  display:none;
+}
+
+span.selectOption {
+  display:block;
+  width:80%;
+  line-height:20px;
+  padding:5px 10%;
+}
+
+span.selectOption:hover {
+  color:#f6f6f6;
+  background:#4096ee;	
 }
 #timer{color:#F6F4F3;text-align:center;text-transform:uppercase;font-family:"Lato",sans-serif;font-size:.7em;letter-spacing:5px;margin-top:25%}
 .days,.hours,.minutes,.seconds{display:inline-block;padding:20px;width:100px;border-radius:5px}
