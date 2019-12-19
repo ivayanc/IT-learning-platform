@@ -13,4 +13,3 @@ class PostAdmin(admin.ModelAdmin):
     'description',
     'title_image',
     'publication',)
-    list_display = ('category', 'title', 'time_to_read')

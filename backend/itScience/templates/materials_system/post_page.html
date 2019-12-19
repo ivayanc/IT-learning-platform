@@ -4,10 +4,11 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
+{%load static%}
 
 
 <!-- page title -->
-<section class="page-title-section overlay" data-background="images/backgrounds/page-title.jpg">
+<section class="page-title-section overlay" data-background="{% static 'images/backgrounds/page-title.jpg' %}">
   <div class="container">
     <div class="row">
       <div class="col-md-8">
@@ -68,11 +69,39 @@
               </div>
             </div>
           </li>
+
+          {%if user.is_superuser%}
+          <li class="list-inline-item mr-4 mb-3 mb-sm-0">
+              <div class="d-flex align-items-center">
+                  <a href="{% url 'post-update' id=object.pk %}">
+                <i class="ti-pencil text-primary icon-md mr-2"></i>
+                <div class="text-left">
+                  
+                      <h6 class="mb-0">Редагувати</h6>
+                  </a>
+                </div>
+              </div>
+            </li>
+          {% endif %}
          
         </ul>
       </div>
       <div class="col-xl-3 text-sm-right text-left order-sm-2 order-3 order-xl-3 col-sm-6 mb-4 mb-xl-0">
-        <a href="#" class="btn btn-primary"><i class="ti-heart  mr-1"></i>Додати в обране</a>
+        {%if user.is_authenticated %}
+        
+        <form action="{%url 'post-favorite' id=object.pk %}" method="post">
+            {% csrf_token %}
+            <button  class="btn btn-primary" type="submit">
+              {% if is_favorite %}
+                  <i class="fas fa-heart"></i>Додано в обране
+              {%else%}
+                  <i class="far fa-heart"></i>Додати в обране
+              {%endif%}
+            </button>
+        </form>
+        {%else%}
+          <a class="btn btn-primary" href="#loginModal" data-toggle="modal" data-target="#loginModal"><i class="ti-heart  mr-1"></i>Додати в обране</a>
+        {%endif%}
       </div>
       <!-- border -->
       <div class="col-12 mt-4 order-4">
@@ -87,12 +116,12 @@
     
       <!-- teacher -->
       <div class="col-12">
-        <h5 class="mb-3">Автор</h5>
+        a<h5 class="mb-3">Автор</h5>
         <div class="d-flex justify-content-between align-items-center flex-wrap">
           <div class="media mb-2 mb-sm-0">
             <img class="mr-4 img-fluid" src="{{post.moderator.avatar.url}}" alt="Teacher" width="50">
             <div class="media-body">
-              <h6 class="mt-0">{{object.moderator.name}}</h6>
+              <a href="{% url 'profile' id=object.moderator.pk%}"><h6 class="mt-0">{{object.moderator.name}}</h6></a>
               {{object.moderator.about}}
             </div>
           </div>
@@ -115,59 +144,25 @@
     </div>
     <div class="row justify-content-center">
       <!-- course item -->
-      <div class="col-lg-4 col-sm-6 mb-5">
-        <div class="card p-0 border-primary rounded-0 hover-shadow">
-          <img class="card-img-top rounded-0" src="images/courses/course-1.jpg" alt="course thumb">
-          <div class="card-body">
-            <ul class="list-inline mb-2">
-              <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>02-14-2018</li>
-              <li class="list-inline-item"><a class="text-color" href="#">Humanities</a></li>
-            </ul>
-            <a href="course-single.html">
-              <h4 class="card-title">Photography</h4>
-            </a>
-            <p class="card-text mb-4"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna.</p>
-            <a href="course-single.html" class="btn btn-primary btn-sm">Apply now</a>
-          </div>
-        </div>
-      </div>
+      {% for post in latest_posts %}
       <!-- course item -->
       <div class="col-lg-4 col-sm-6 mb-5">
         <div class="card p-0 border-primary rounded-0 hover-shadow">
-          <img class="card-img-top rounded-0" src="images/courses/course-2.jpg" alt="course thumb">
+          <img class="card-img-top rounded-0" src="{{post.title_image.url}}" alt="course thumb">
           <div class="card-body">
             <ul class="list-inline mb-2">
-              <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>02-14-2018</li>
-              <li class="list-inline-item"><a class="text-color" href="#">Humanities</a></li>
+              <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>{{post.published}}</li>
+              <li class="list-inline-item"><a class="text-color" href="#">{{post.moderator}}</a></li>
             </ul>
-            <a href="course-single.html">
-              <h4 class="card-title">Programming</h4>
+            <a href="{%url 'post-details' id=post.pk%}">
+              <h4 class="card-title">{{post.title}}</h4>
             </a>
-            <p class="card-text mb-4"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna.</p>
-            <a href="course-single.html" class="btn btn-primary btn-sm">Apply now</a>
+            <p class="card-text mb-4">{{post.description}}</p>
+            <a href="{%url 'post-details' id=post.pk%}" class="btn btn-primary btn-sm">Детальніше</a>
           </div>
         </div>
       </div>
-      <!-- course item -->
-      <div class="col-lg-4 col-sm-6 mb-5">
-        <div class="card p-0 border-primary rounded-0 hover-shadow">
-          <img class="card-img-top rounded-0" src="images/courses/course-3.jpg" alt="course thumb">
-          <div class="card-body">
-            <ul class="list-inline mb-2">
-              <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>02-14-2018</li>
-              <li class="list-inline-item"><a class="text-color" href="#">Humanities</a></li>
-            </ul>
-            <a href="course-single.html">
-              <h4 class="card-title">Lifestyle Archives</h4>
-            </a>
-            <p class="card-text mb-4"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna.</p>
-            <a href="course-single.html" class="btn btn-primary btn-sm">Apply now</a>
-          </div>
-        </div>
-      </div>
+      {% endfor %}
     </div>
   </div>
 </section>

@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 from users.models import SystemUser
 
@@ -25,12 +26,16 @@ class Post(models.Model):
     published        = models.DateTimeField(auto_now=True,blank=True,verbose_name="Дата публікації")
     title_image      = models.ImageField(upload_to="posts",blank=True, verbose_name="Зображення",default="posts/default.png")
     publication      = models.TextField(verbose_name="Текст публікації")
-    favourites       = models.ManyToManyField(SystemUser, related_name="Обрані", blank=True)
+    favorite         = models.ManyToManyField(SystemUser, related_name="Обрані", blank=True)
     likes            = models.ManyToManyField(SystemUser, related_name="Лайки", blank=True)
     category         = models.PositiveSmallIntegerField(
                             choices = CATEGORY_CHOICES,
                             default = OTHER,
     )
+
+    def get_absolute_url(self):
+        return reverse("post-details", kwargs={"id": self.pk})
+
 
 
 class HashTag(models.Model):

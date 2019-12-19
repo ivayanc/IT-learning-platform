@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     
     #Local apps
     'materials_system.apps.MaterialsSystemConfig', 
+    'olympiad_system.apps.OlympiadSystemConfig', 
     'users.apps.UsersConfig', 
 ]
 
@@ -67,6 +68,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'users.context_processors.add_login_forms'
             ],
         },
     },
