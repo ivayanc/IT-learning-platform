@@ -440,11 +440,17 @@ a h4:hover {
 .bg-gray {
   background: #f8f8f8;
 }
+.bg-downloads{
+  background: #f8f8f8;
+  height: 100px;
+}
 
 .text-primary {
   color: #ff5233 !important;
 }
-
+.text-red{
+  color: #ff5233 !important;
+}
 .text-color {
   color: #5c5c77;
 }
