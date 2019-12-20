@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.conf import settings
 from users.models import SystemUser
 
 
@@ -18,8 +18,10 @@ class Olympiad(models.Model):
                             choices = TYPE_CHOICES,
                             default = PUBLIC,
     )
-    participants    = models.ManyToManyField(SystemUser,verbose_name="Зареєстровані для участі", blank=True)
+    participants    = models.ManyToManyField(settings.AUTH_USER_MODEL,verbose_name="Зареєстровані для участі", blank=True)
+    reviewers       = models.ManyToManyField(settings.AUTH_USER_MODEL,related_name="reviewers", verbose_name="Члени жюрі", blank=True)
     is_ended        = models.BooleanField(verbose_name="Завершена олімпіада", default=False)
+   
     def __str__(self):
         return self.title
 
@@ -52,10 +54,11 @@ class Task(models.Model):
 
 
 class Solution(models.Model):
-    user            = models.ForeignKey(SystemUser, on_delete=models.CASCADE, verbose_name="Відправник", related_name='sender')
+    user            = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="Відправник", related_name='sender')
     task            = models.ForeignKey(Task, on_delete=models.CASCADE, verbose_name="Задача")
-    solution_file   = models.FileField(verbose_name="Файл розв'язок")
-    reviewer        = models.ForeignKey(SystemUser, on_delete=models.CASCADE, blank=True, related_name='reviewer')
+    solution_file   = models.FileField(verbose_name="Файл розв'язок", upload_to='solutions/',max_length='500')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+    reviewer        = models.ForeignKey(settings.AUTH_USER_MODEL,  on_delete=models.CASCADE, null=True, blank=True, related_name='reviewer')
 
 class Criteria(models.Model):
     task            = models.ForeignKey(Task, on_delete=models.CASCADE, verbose_name="Задача")

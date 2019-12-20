@@ -26,11 +26,14 @@
 <!-- /page title -->
 
 <!-- notice -->
+{% if  not is_time_started %}
+
 <section class="bg-gray">
 <div  class="row d-flex justify-content-center">
 <h2 class="text-primary">До початку олімпіади</h2>
 </div>
 </section>
+
 <section class="bg-gray">
    
     <div  class="row d-flex justify-content-center">
@@ -125,7 +128,7 @@
               {%endif%}
 
           </div>
-          <div class="d-md-table-cell text-right pr-0 pr-md-4"><a href="{%url 'olympiad_system'%}" class="btn btn-primary">Члени жюрі</a></div>
+          <!-- <div class="d-md-table-cell text-right pr-0 pr-md-4"><a href="{%url 'olympiad_system'%}" class="btn btn-primary">Члени жюрі</a></div> -->
           <div class="d-md-table-cell text-right pr-0 pr-md-4"><a href="{%url 'olympiad_system'%}" class="btn btn-primary">Назад</a></div>
           
           
@@ -134,7 +137,15 @@
       </div>
 
 </section>
+{% endif %}
 
+
+{%if is_time_ended %}
+{% endif %}
+
+{{is_time_started}}
+{{is_time_ended}}
+{% if is_time_started and not is_time_ended %}
 <section class="section">
   <div class="container">
     <div class="row">
@@ -180,6 +191,7 @@
     </div>
   </div>
 </section>
-<!-- /notice -->
+{% endif %}
+
 
 {%endblock%}

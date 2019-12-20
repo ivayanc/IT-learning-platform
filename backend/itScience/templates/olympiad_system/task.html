@@ -79,17 +79,37 @@
         
             <div class="d-md-table-cell text-right pr-0 pr-md-4">
               
-                    <form action="#" method="post">
+                    <form action="{%url 'olympiad_task_send' id=object.olympiad.pk task_id=object.task_alias  %}" method="post" enctype="multipart/form-data">
                       {% csrf_token %}
-                      <input type="file" style="width:200px">
+                      <input type="file" style="width:200px" id="solution" name="solution" required="True">
                         <button  class="btn btn-primary" type="submit">
                           <i class="fas fa-sign-in-alt"></i> Надіслати розв'язок
                         </button>          
                   </form>
-                  <p>Увага! Варто зауважити що на перевірку буде відправлена тільки остання версія, яку ви надіслали </p>
+                  <p>Увага! Варто зауважити що на перевірку буде відправлена тільки остання версія розв'язку, яку ви надіслали </p>
             </div>
             
-            
+            <table>
+              <tr>
+                <td></td>
+                <td>Microsoft Office 2003 (або пізніша версія, але успішне виконання завдання не передбачає використання нововведень щодо версії 2003).</td>
+               <td>
+                 <select>
+               <option>1</option>
+               <option>2</option>
+               <option>3</option>
+               <option>4</option>
+               <option>5</option>
+               <option>6</option>
+               <option>7</option>
+               <option>8</option>
+               <option>9</option>
+               <option>10</option>
+             </select>
+             </td>
+               <td>10</td>
+             </tr>
+            </table>
             
           </div>
 

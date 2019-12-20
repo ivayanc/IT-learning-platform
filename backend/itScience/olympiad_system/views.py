@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
-
+from django.conf import settings
+from django.core.files.storage import default_storage
 from materials_system.models import Post
-from .models import Olympiad, Task
+from .models import Olympiad, Task, Solution
 
 from django.views.generic import (
         TemplateView,
@@ -14,6 +15,8 @@ from django.views.generic import (
 
 from datetime import datetime
 from django.utils import timezone
+
+import os
 
 
 class IndexView(TemplateView):
@@ -43,8 +46,8 @@ class OlympiadView(DetailView):
         
         olymp = self.get_object()
         end_time = olymp.start_time + olymp.duration
-        now = timezone.now()
-
+        now = timezone.localtime(timezone.now())
+        #TODO fix time zone
         context['is_time_started'] = False
         context['is_time_ended'] = False
 
@@ -54,9 +57,11 @@ class OlympiadView(DetailView):
         elif now > olymp.start_time:
             context['is_time_started'] = True
 
-        o = olymp.participants
-        print(o)
-        
+        #import pdb; pdb.set_trace()
+        # if olymp.reviewers
+        if self.request.user in olymp.reviewers.all():
+            pass
+
         context['not_registred'] = not olymp.participants.filter(id=self.request.user.id).exists()
         context['tasks'] = Task.objects.filter(olympiad=olymp)
         return context
@@ -84,22 +89,36 @@ class OlympiadRegisterView(UpdateView):
 class TaskSendSolutionView(UpdateView):
 
     http_method_names = ['post', ]
-    model = Olympiad
+    model = Task
 
     def get_object(self, queryset=None):
+
         id_ = self.kwargs.get("id")
-        return  get_object_or_404(Olympiad, pk=id_)
+        task_id_ = self.kwargs.get("task_id")
+        task = get_object_or_404(Task, olympiad=id_, task_alias=task_id_)
+
+        return task
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
+        request.FILES['solution']
+        save_path = os.path.join('solutions', str(self.object.olympiad.pk) ,
+                                    str(self.object.task_alias), str(request.user.pk))
+        
+        if len(request.FILES['solution'].name.split('.')) > 0:
+            save_path += '.' + request.FILES['solution'].name.split('.')[-1]
 
-        if self.object.participants.filter(id=request.user.id).exists():
-            self.object.participants.remove(request.user)
-        else:
-            self.object.participants.add(request.user)
+        if not os.path.exists(os.path.dirname(save_path)):
+            os.makedirs(save_path)
 
-        return redirect('olympiad', id=self.object.pk)
+        path = default_storage.save(save_path, request.FILES['solution'])
+        
+        old_solutions = Solution.objects.filter(user=request.user, task=self.object).delete()
 
+        new_solution = Solution.objects.create(solution_file=path, user=request.user, task=self.object)
+        return redirect ('olympiad_task', id=self.object.olympiad.pk, task_id=self.object.task_alias)
+                                        
+        
 class TaskView(DetailView):
     template_name = 'olympiad_system/task.html'
     
@@ -107,7 +126,6 @@ class TaskView(DetailView):
         id_ = self.kwargs.get("id")
         task_id_ = self.kwargs.get("task_id")
         task = get_object_or_404(Task, olympiad=id_, task_alias=task_id_)
-
         return task
 
 
@@ -115,6 +133,7 @@ class TaskView(DetailView):
         context = super(TaskView, self).get_context_data(**kwargs) # get the default context data
         
         task = self.get_object()
+
         
         return context
 
