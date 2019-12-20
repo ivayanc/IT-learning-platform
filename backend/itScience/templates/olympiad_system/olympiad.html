@@ -37,17 +37,19 @@
        
           
         <script type="text/javascript">
-        const year = new Date().getFullYear();
-        const fourthOfDecember = new Date(year, 11, 26).getTime();
+        const olympDate = new Date({{ object.start_time|date:'Y' }}, 
+                                   {{ object.start_time|date:'m' }}, 
+                                   {{ object.start_time|date:'d' }},
+                                   ).getTime();
         
         // countdown
         let timer = setInterval(function() {
         
          // get today's date
          const today = new Date().getTime();
-        
+          console.log(today.toString());
          // get the difference
-         const diff = fourthOfDecember - today;
+         const diff = olympDate - today;
         
          // math
          let days = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -124,7 +126,7 @@
           <li class="d-md-table mb-4 w-100 border-bottom hover-shadow">
             <div class="d-md-table-cell text-center p-4 bg-primary text-white mb-4 mb-md-0"><span class="h2 d-block">1</span> задача</div>
             <div class="d-md-table-cell px-4 vertical-align-middle mb-4 mb-md-0">
-              <a href="notice-single.html" class="h4 mb-3 d-block">Їдальня</a>
+              <a href="notice-single.html" class="h4 mb-3 d-block">{{ object.start_time|date:'d m Y' }}</a>
               <p class="mb-0">Шкільне життя неможливо уявити без їдальні. Школярі мають можливість отримати перші та другі страви, солодощі тощо. Зрозуміло, що рецептура всіх страв строго регламентована і працівники їдальні заздалегідь прораховують необхідну кількість різноманітних інгредієнтів та суму коштів, яку необхідно витратити на їх закупівлю.</p>
             </div>
             <div class="d-md-table-cell text-right pr-0 pr-md-4"><a href="notice-single.html" class="btn btn-primary">Переглянути умову</a></div>
