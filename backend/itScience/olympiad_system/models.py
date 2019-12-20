@@ -19,6 +19,7 @@ class Olympiad(models.Model):
                             default = PUBLIC,
     )
     participants    = models.ManyToManyField(SystemUser,verbose_name="Зареєстровані для участі", blank=True)
+    is_ended        = models.BooleanField(verbose_name="Завершена олімпіада", default=False)
     def __str__(self):
         return self.title
 

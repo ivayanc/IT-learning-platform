@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 from materials_system.models import Post
+from .models import Olympiad
 
 from django.views.generic import (
         TemplateView,
@@ -11,13 +12,16 @@ from django.views.generic import (
         DeleteView
 )
 
+# @login_required
 class IndexView(TemplateView):
-    template_name = 'materials_system/olympiad_system.html'
+    template_name = 'olympiad_system/olympiad_system.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['latest_posts'] = Post.objects.all().order_by('-published')[:6]
-        context['latest_news'] = Post.objects.all().filter(category=Post.OTHER).order_by('-published')[:3]
+        
+        context['registred_olympiads'] = Olympiad.objects.all().filter(participants__in=[self.request.user], is_ended=False).order_by('start_time')[:6]
+        context['upcoming_olympiads'] = Olympiad.objects.filter(olymp_type=Olympiad.PUBLIC).exclude(participants__in=[self.request.user]).order_by('start_time')[:6]
+        context['ended_olympiads'] = Olympiad.objects.filter(participants__in=[self.request.user], is_ended=True).order_by('start_time')[:6]
         return context
 
 

@@ -1,0 +1,153 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+
+
+<!-- page title -->
+{%load static%}
+
+<section class="hero-section overlay bg-cover" data-background="{%static 'images/banner/online_olymp.jpg' %}">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <ul class="list-inline custom-breadcrumb">
+          <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="#">IT-Science</a></li>
+          <li class="list-inline-item text-white h3 font-secondary @@nasted"></li>
+        </ul>
+        <p class="text-lighten">{{user.name}}, вітаємо Вас на платформі для проведення онлайн олімпіад з Інформаційних Технологій, Web-дизайну та Комп'ютерної графіки</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /page title -->
+
+
+<!-- blogs -->
+<section class="section">
+  <section class="section bg-gray">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="d-flex align-items-center section-title justify-content-between">
+            <h2 class="mb-0 text-nowrap mr-3">Зареєстровано для участі</h2>
+            <div class="border-top w-100 border-primary d-none d-sm-block"></div>
+            <div>
+              <a href="{%url 'posts'%}" class="btn btn-sm btn-primary-outline ml-sm-3 d-none d-sm-block">переглянути всі</a>
+            </div>
+          </div>
+        </div>
+      </div>
+     
+      <div class="row justify-content-center">
+        {% if registred_olympiads|length > 0 %}
+          {%for olymp in registred_olympiads%}
+          <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
+            <div class="card border-0 rounded-0 hover-shadow">
+              <div class="card-img position-relative">
+                <img class="card-img-top rounded-0" src="images/events/event-2.jpg" alt="event thumb">
+                <div class="card-date">{{olymp.start_time}}</div>
+              </div>
+              <div class="card-body">
+                <!-- location -->
+                <p><i class="ti-location-pin text-primary mr-2"></i>{{olymp.description}}</p>
+                <a href="event-single.html"><h4 class="card-title">{{olymp.title}} </h4></a>
+              </div>
+            </div>
+          </div>
+          {%endfor%}
+      {%else%}
+          <div class="col-lg-5 col-sm-7 mb-8">
+            Тут будуть відображені олімпіади на які ви зареєстровані
+          </div>  
+      {%endif%}
+      </div>
+</section>
+</section>
+
+<section class="section">
+  <section class="section bg-gray">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="d-flex align-items-center section-title justify-content-between">
+            <h2 class="mb-0 text-nowrap mr-3">Відкриті для реєстрації</h2>
+            <div class="border-top w-100 border-primary d-none d-sm-block"></div>
+            <div>
+              <a href="{%url 'posts'%}" class="btn btn-sm btn-primary-outline ml-sm-3 d-none d-sm-block">переглянути всі</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+    
+    {% if upcoming_olympiads|length > 0 %}
+        {%for olymp in upcoming_olympiads%}
+        <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
+          <div class="card border-0 rounded-0 hover-shadow">
+            <div class="card-img position-relative">
+              <img class="card-img-top rounded-0" src="images/events/event-2.jpg" alt="event thumb">
+              <div class="card-date">{{olymp.start_time}}</div>
+            </div>
+            <div class="card-body">
+              <!-- location -->
+              <p><i class="ti-location-pin text-primary mr-2"></i>{{olymp.description}}</p>
+              <a href="event-single.html"><h4 class="card-title">{{olymp.title}} </h4></a>
+            </div>
+          </div>
+        </div>
+        {%endfor%}
+    {%else%}
+        <div class="col-lg-5 col-sm-7 mb-8">
+          Тут будуть відображені олімпіади на які ти зможеш зареєструватися
+        </div>  
+    {%endif%}
+</section>
+</section>
+
+<section class="section">
+  <section class="section bg-gray">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="d-flex align-items-center section-title justify-content-between">
+            <h2 class="mb-0 text-nowrap mr-3">Завершені олімпіади</h2>
+            <div class="border-top w-100 border-primary d-none d-sm-block"></div>
+            <div>
+              <a href="{%url 'posts'%}" class="btn btn-sm btn-primary-outline ml-sm-3 d-none d-sm-block">переглянути всі</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+    {% if ended_olympiads|length > 0 %}
+        {%for olymp in ended_olympiads%}
+          <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
+            <div class="card border-0 rounded-0 hover-shadow">
+              <div class="card-img position-relative">
+                <img class="card-img-top rounded-0" src="images/events/event-2.jpg" alt="event thumb">
+                <div class="card-date">{{olymp.start_time}}</div>
+              </div>
+              <div class="card-body">
+                <!-- location -->
+                <p><i class="ti-location-pin text-primary mr-2"></i>{{olymp.description}}</p>
+                <a href="event-single.html"><h4 class="card-title">{{olymp.title}} </h4></a>
+              </div>
+            </div>
+          </div>
+        {%endfor%}
+    {%else%}
+        <div class="col-lg-5 col-sm-7 mb-8">
+          Тут будуть відображені олімпіади в яких ви приймали участь
+        </div>  
+    {%endif%}
+      </div>  
+    
+    </section>
+  </section>
+
+{% endblock %}
+
