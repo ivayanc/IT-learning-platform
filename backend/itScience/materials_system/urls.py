@@ -17,6 +17,6 @@ urlpatterns = [
     path('posts/<int:id>/', views.SinglePostView.as_view(), name='post-details'),
     path('posts/<int:id>/favorite_post', views.AddToFavoriteView.as_view(), name='post-favorite'),
     path('posts/<int:id>/update/', views.PostUpdateView.as_view(), name='post-update'),
-    #pa th('posts/<int:id>/delete', views.PostDeleteView.as_view(), name='post-details'),
+    #path('posts/<int:id>/delete', views.PostDeleteView.as_view(), name='post-details'),
 
 ]

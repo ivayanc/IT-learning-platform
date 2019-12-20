@@ -87,7 +87,7 @@
               <h2 class="mb-0 text-nowrap mr-3">Останні статті</h2>
               <div class="border-top w-100 border-primary d-none d-sm-block"></div>
               <div>
-                <a href="{%url 'posts'%}" class="btn btn-sm btn-primary-outline ml-sm-3 d-none d-sm-block">Переглянути всі</a>
+                <a href="{%url 'posts'%}" class="btn btn-sm btn-primary-outline ml-sm-3 d-none d-sm-block">Стрічка</a>
               </div>
             </div>
           </div>
@@ -119,40 +119,11 @@
     <!-- mobile see all button -->
     <div class="row">
       <div class="col-12 text-center">
-        <a href="courses.html" class="btn btn-sm btn-primary-outline d-sm-none d-inline-block">sell all</a>
+                <a href="{%url 'posts'%}" class="btn btn-sm btn-primary-outline d-sm-none d-inline-block">Стрічка</a>
       </div>
     </div>
   </div>
 </section>
-<!-- /courses -->
-<!-- 
-<section class="section">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-md-6 order-2 order-md-1">
-        <h2 class="section-title">Про нас</h2>
-        <p>
-            Раді вітати вас на сайті "Інформатика". Даний сайт є інтелектуальною власністю розробників сайту.
-
-            Авторська група:
-            
-            Дасюк Антон - засновник та розробник клієнтської та серверної частини, адміністратор сайту.
-            Гур'янова Дар'я - front-end розробник.
-            Яків Артюхов - backend розробник.
-            e-mail: anton.dasyuk@gmail.com, admin@it-science.com.ua
-            fb: https://www.facebook.com/anton.dasyuk
-</p>
-        <p></p>
-
-      </div>
-      <div class="col-md-6 order-1 order-md-2 mb-4 mb-md-0">
-        <img class="img-fluid w-100" src="{% static 'images/logo.png'%}"  alt="about image">
-      </div>
-    </div>
-  </div>
-</section>
-
--->
 
 
 <!-- events -->
@@ -161,65 +132,43 @@
     <div class="row">
       <div class="col-12">
         <div class="d-flex align-items-center section-title justify-content-between">
-          <h2 class="mb-0 text-nowrap mr-3">Майбутні події</h2>
+          <h2 class="mb-0 text-nowrap mr-3">Відкриті олімпіади</h2>
           <div class="border-top w-100 border-primary d-none d-sm-block"></div>
           <div>
-            <a href="events.html" class="btn btn-sm btn-primary-outline ml-sm-3 d-none d-sm-block">see all</a>
+            <a href="{%url 'olympiad_system'%}" class="btn btn-sm btn-primary-outline ml-sm-3 d-none d-sm-block">Переглянути всі</a>
           </div>
         </div>
       </div>
     </div>
+    {% if olympiads|length > 0 %}
     <div class="row justify-content-center">
-  <!-- event -->
-  <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
-    <div class="card border-0 rounded-0 hover-shadow">
-      <div class="card-img position-relative">
-        <img class="card-img-top rounded-0" src="{% static 'images/events/event-1.jpg'%}" alt="event thumb">
-        <div class="card-date"><span>18</span><br>Грудня</div>
+        {%for olymp in olympiads%}
+        <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
+          <div class="card border-0 rounded-0 hover-shadow">
+            <div class="card-img position-relative">
+              <img class="card-img-top rounded-0" src="images/events/event-2.jpg" alt="event thumb">
+              <div class="card-date">{{olymp.start_time}}</div>
+            </div>
+            <div class="card-body">
+              <!-- location -->
+              <p><i class="ti-location-pin text-primary mr-2"></i>{{olymp.description}}</p>
+              <a href="{%url 'olympiad' id=olymp.pk%}"><h4 class="card-title">{{olymp.title}} </h4></a>
+            </div>
+          </div>
+        </div>
+        <!-- mobile see all button -->
+        <div class="row">
+          <div class="col-12 text-center">
+            <a href="{%url 'olympiad_system'%}" class="btn btn-sm btn-primary-outline d-sm-none d-inline-block">Переглянути всі</a>
+          </div>
+        </div>
       </div>
-      <div class="card-body">
-        <!-- location -->
-        <p><i class="ti-location-pin text-primary mr-2"></i>Чернігів, школа №2</p>
-        <a href="event-single.html"><h4 class="card-title">Олімпіада з програмування</h4></a>
+        {%endfor%}
       </div>
-    </div>
-  </div>
-  <!-- event -->
-  <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
-    <div class="card border-0 rounded-0 hover-shadow">
-      <div class="card-img position-relative">
-        <img class="card-img-top rounded-0" src="{% static 'images/events/event-2.jpg'%}" alt="event thumb">
-        <div class="card-date"><span>21</span><br>Грудня</div>
-      </div>
-      <div class="card-body">
-        <!-- location -->
-        <p><i class="ti-location-pin text-primary mr-2"></i>Чернігів, школа №2</p>
-        <a href="event-single.html"><h4 class="card-title">Олімпіада з програмування </h4></a>
-      </div>
-    </div>
-  </div>
-  <!-- event -->
-  <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
-    <div class="card border-0 rounded-0 hover-shadow">
-      <div class="card-img position-relative">
-        <img class="card-img-top rounded-0" src="{% static 'images/events/event-3.jpg'%}" alt="event thumb">
-        <div class="card-date"><span>23</span><br>Грудня</div>
-      </div>
-      <div class="card-body">
-        <!-- location -->
-        <p><i class="ti-location-pin text-primary mr-2"></i>Чернігів, школа №2</p>
-        <a href="event-single.html"><h4 class="card-title">Олімпіада з програмування</h4></a>
-      </div>
-    </div>
-  </div>
-</div>
-    <!-- mobile see all button -->
-    <div class="row">
-      <div class="col-12 text-center">
-        <a href="course.html" class="btn btn-sm btn-primary-outline d-sm-none d-inline-block">Дивитися усі</a>
-      </div>
-    </div>
-  </div>
+
+    {%endif%}
+    
+    
 </section>
 <!-- /events -->
 

@@ -8,6 +8,7 @@ from django.views.generic import (
         DeleteView
 )
 from .models import Post
+from olympiad_system.models import Olympiad
 from .forms import PostCreateForm
 from django.shortcuts import render, redirect
 
@@ -18,6 +19,8 @@ class IndexView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['latest_posts'] = Post.objects.all().order_by('-published')[:6]
         context['latest_news'] = Post.objects.all().filter(category=Post.OTHER).order_by('-published')[:3]
+        context['olympiads'] = Olympiad.objects.all().filter(olymp_type=Olympiad.PUBLIC,is_ended=False).order_by('start_time')[:3]
+        
         return context
 
 class SinglePostView(DetailView):

@@ -23,11 +23,11 @@ class IndexView(TemplateView):
         context = super().get_context_data(**kwargs)
 
         if self.request.user.is_authenticated:
-            context['upcoming_olympiads'] = Olympiad.objects.filter(olymp_type=Olympiad.PUBLIC).exclude(participants__in=[self.request.user]).order_by('start_time')[:6]
+            context['upcoming_olympiads'] = Olympiad.objects.filter(olymp_type=Olympiad.PUBLIC).exclude(participants__in=[self.request.user], is_ended=False).order_by('start_time')[:6]
             context['registred_olympiads'] = Olympiad.objects.all().filter(participants__in=[self.request.user], is_ended=False).order_by('start_time')[:6]
             context['ended_olympiads'] = Olympiad.objects.filter(participants__in=[self.request.user], is_ended=True).order_by('start_time')[:6]
         else:
-            context['upcoming_olympiads'] = Olympiad.objects.filter(olymp_type=Olympiad.PUBLIC).order_by('start_time')[:6]
+            context['upcoming_olympiads'] = Olympiad.objects.filter(olymp_type=Olympiad.PUBLIC, is_ended=False).order_by('start_time')[:6]
 
         return context
 
