@@ -33,12 +33,15 @@
       <div class="row">
         <div class="col-12">
           <div class="d-flex align-items-center section-title justify-content-between">
-            <h2 class="mb-0 text-nowrap mr-3">Майбутні Олімпіади</h2>
+            <h2 class="mb-0 text-nowrap mr-3">Зареєстровано для участі</h2>
             <div class="border-top w-100 border-primary d-none d-sm-block"></div>
-
+            <div>
+              <a href="{%url 'posts'%}" class="btn btn-sm btn-primary-outline ml-sm-3 d-none d-sm-block">переглянути всі</a>
+            </div>
           </div>
         </div>
       </div>
+     
       <div class="row justify-content-center">
     <!-- event -->
     <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
@@ -84,6 +87,100 @@
     </div>
   </div>
 </section>
+
+<section class="section">
+  <section class="section bg-gray">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="d-flex align-items-center section-title justify-content-between">
+            <h2 class="mb-0 text-nowrap mr-3">Відкриті для реєстрації</h2>
+            <div class="border-top w-100 border-primary d-none d-sm-block"></div>
+            <div>
+              <a href="{%url 'posts'%}" class="btn btn-sm btn-primary-outline ml-sm-3 d-none d-sm-block">переглянути всі</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+    
+    <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
+      <div class="card border-0 rounded-0 hover-shadow">
+        <div class="card-img position-relative">
+          <img class="card-img-top rounded-0" src="images/events/event-2.jpg" alt="event thumb">
+          <div class="card-date"><span>21</span><br>Грудня</div>
+        </div>
+        <div class="card-body">
+          <!-- location -->
+          <p><i class="ti-location-pin text-primary mr-2"></i>Чернігів, школа №2</p>
+          <a href="event-single.html"><h4 class="card-title">Олімпіада з програмування </h4></a>
+        </div>
+      </div>
+    </div>
+    <!-- event -->
+    <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
+      <div class="card border-0 rounded-0 hover-shadow">
+        <div class="card-img position-relative">
+          <img class="card-img-top rounded-0" src="images/events/event-3.jpg" alt="event thumb">
+          <div class="card-date"><span>23</span><br>Грудня</div>
+        </div>
+        <div class="card-body">
+          <!-- location -->
+          <p><i class="ti-location-pin text-primary mr-2"></i>Чернігів, школа №2</p>
+          <a href="event-single.html"><h4 class="card-title">Олімпіада з програмування</h4></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <section class="section bg-gray">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="d-flex align-items-center section-title justify-content-between">
+            <h2 class="mb-0 text-nowrap mr-3">Завершені олімпіади</h2>
+            <div class="border-top w-100 border-primary d-none d-sm-block"></div>
+            <div>
+              <a href="{%url 'posts'%}" class="btn btn-sm btn-primary-outline ml-sm-3 d-none d-sm-block">переглянути всі</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+    
+    <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
+      <div class="card border-0 rounded-0 hover-shadow">
+        <div class="card-img position-relative">
+          <img class="card-img-top rounded-0" src="images/events/event-2.jpg" alt="event thumb">
+          <div class="card-date"><span>21</span><br>Грудня</div>
+        </div>
+        <div class="card-body">
+          <!-- location -->
+          <p><i class="ti-location-pin text-primary mr-2"></i>Чернігів, школа №2</p>
+          <a href="event-single.html"><h4 class="card-title">Олімпіада з програмування </h4></a>
+        </div>
+      </div>
+    </div>
+    <!-- event -->
+    <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
+      <div class="card border-0 rounded-0 hover-shadow">
+        <div class="card-img position-relative">
+          <img class="card-img-top rounded-0" src="images/events/event-3.jpg" alt="event thumb">
+          <div class="card-date"><span>23</span><br>Грудня</div>
+        </div>
+        <div class="card-body">
+          <!-- location -->
+          <p><i class="ti-location-pin text-primary mr-2"></i>Чернігів, школа №2</p>
+          <a href="event-single.html"><h4 class="card-title">Олімпіада з програмування</h4></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- /blogs -->
 
 {% endblock %}

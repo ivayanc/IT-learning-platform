@@ -1,5 +1,26 @@
 from django.shortcuts import render
 
+from materials_system.models import Post
+
+from django.views.generic import (
+        TemplateView,
+        ListView, 
+        DetailView,
+        CreateView, 
+        UpdateView,
+        DeleteView
+)
+
+class IndexView(TemplateView):
+    template_name = 'materials_system/olympiad_system.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['latest_posts'] = Post.objects.all().order_by('-published')[:6]
+        context['latest_news'] = Post.objects.all().filter(category=Post.OTHER).order_by('-published')[:3]
+        return context
+
+
 # class VerifySolutionView(DetailView):
 #     template_name = 'olympiad_system/verify.html'
     

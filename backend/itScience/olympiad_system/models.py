@@ -2,6 +2,7 @@ from django.db import models
 
 from users.models import SystemUser
 
+
 class Olympiad(models.Model):
     PUBLIC = 1
     PRIVATE = 2
@@ -17,10 +18,10 @@ class Olympiad(models.Model):
                             choices = TYPE_CHOICES,
                             default = PUBLIC,
     )
-    
+    participants    = models.ManyToManyField(SystemUser,verbose_name="Зареєстровані для участі", blank=True)
     def __str__(self):
         return self.title
-    
+
 class Task(models.Model):
     EXCEL = 1
     ACCESS = 2
