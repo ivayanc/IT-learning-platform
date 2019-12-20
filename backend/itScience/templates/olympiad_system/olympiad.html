@@ -7,18 +7,18 @@
 {%load static%}
 
 
-        <link rel="stylesheet" href="{% static 'css/timer.css' %}">
-        {% load static %}
+    <link rel="stylesheet" href="{% static 'css/timer.css' %}">
+    {% load static %}
 <!-- page title -->
 <section class="page-title-section overlay" data-background="images/backgrounds/page-title.jpg">
   <div class="container">
     <div class="row">
       <div class="col-md-8">
         <ul class="list-inline custom-breadcrumb">
-          <li class="list-inline-item"><h3><a class="text-primary" href="@@page-link">Олімпіада з Інформаційних технологій</h3></a></li>
+          <li class="list-inline-item"><h3><a class="text-primary" href="">{{object.title}}</h3></a></li>
           <li class="list-inline-item text-white h3 font-secondary @@nasted"></li>
         </ul>
-        <h3 class="text-lighten">Вітаємо ,друже!</h3>
+        <h3 class="text-lighten">Вітаємо ,{{user.name}}</h3>
       </div>
     </div>
   </div>
@@ -38,8 +38,10 @@
           
         <script type="text/javascript">
         const olympDate = new Date({{ object.start_time|date:'Y' }}, 
-                                   {{ object.start_time|date:'m' }}, 
+                                   {{ object.start_time|date:'m' }} - 1, 
                                    {{ object.start_time|date:'d' }},
+                                   {{ object.start_time|date:'H' }},
+                                   {{ object.start_time|date:'i' }},
                                    ).getTime();
         
         // countdown
@@ -108,13 +110,28 @@
           <br>
           <div  class="row d-flex justify-content-center">
         
-          <div class="d-md-table-cell text-right pr-0 pr-md-4"><a href="notice-single.html" class="btn btn-primary">Зареєструватись</a></div>
-          <div class="d-md-table-cell text-right pr-0 pr-md-4"><a href="notice-single.html" class="btn btn-primary">Назад</a></div>
+          <div class="d-md-table-cell text-right pr-0 pr-md-4">
+            {% if not_registred %}
+                  <form action="{%url 'olympiad_register' id=object.pk %}" method="post">
+                    {% csrf_token %}
+                      <button  class="btn btn-primary" type="submit">
+                        <i class="fas fa-sign-in-alt"></i> Зареєструватись
+                      </button>          
+                </form>
+              {%else%}
+                  <div  class="btn btn-primary">
+                      <i class="fas fa-sign-in-alt"></i>  Ви зареєстровані            
+                  </div>
+              {%endif%}
+
+          </div>
+          <div class="d-md-table-cell text-right pr-0 pr-md-4"><a href="{%url 'olympiad_system'%}" class="btn btn-primary">Назад</a></div>
           
           
         </div>
         </div>
       </div>
+
 </section>
 
 <section class="section">
@@ -123,57 +140,40 @@
       <div class="col-12">
         <ul class="list-unstyled">
           <!-- notice item -->
+          {%for task in tasks %}
           <li class="d-md-table mb-4 w-100 border-bottom hover-shadow">
-            <div class="d-md-table-cell text-center p-4 bg-primary text-white mb-4 mb-md-0"><span class="h2 d-block">1</span> задача</div>
-            <div class="d-md-table-cell px-4 vertical-align-middle mb-4 mb-md-0">
-              <a href="notice-single.html" class="h4 mb-3 d-block">{{ object.start_time|date:'d m Y' }}</a>
-              <p class="mb-0">Шкільне життя неможливо уявити без їдальні. Школярі мають можливість отримати перші та другі страви, солодощі тощо. Зрозуміло, що рецептура всіх страв строго регламентована і працівники їдальні заздалегідь прораховують необхідну кількість різноманітних інгредієнтів та суму коштів, яку необхідно витратити на їх закупівлю.</p>
+            <div class="d-md-table-cell text-center p-4 bg-primary text-white mb-4 mb-md-0"><span class="h2 d-block">
+              {% if task.task_type == 1 %}
+                    <i class="fas fa-file-excel"></i>
+                {%elif task.task_type == 2 %}
+                    <i class="fas fa-database"></i>
+                {%elif task.task_type == 3 %}
+                    <i class="fas fa-file-word"></i>
+                {%elif task.task_type == 4 %}
+                    <i class="fas fa-file-powerpoint"></i>
+                {%elif task.task_type == 5 %}
+                    <i class="fas fa-file-alt"></i>
+                {%endif%}
+              
+            </span>
+              {% if task.task_type == 1 %}
+                  Excel
+                {%elif task.task_type == 2 %}
+                  Access
+                {%elif task.task_type == 3 %}
+                  Word
+                {%elif task.task_type == 4 %}
+                  PowerPoint
+                {%elif task.task_type == 5 %}
+                  Задача
+                {%endif%}
             </div>
-            <div class="d-md-table-cell text-right pr-0 pr-md-4"><a href="notice-single.html" class="btn btn-primary">Переглянути умову</a></div>
-          </li>
-          <!-- notice item -->
-          <li class="d-md-table mb-4 w-100 border-bottom hover-shadow">
-            <div class="d-md-table-cell text-center p-4 bg-primary text-white mb-4 mb-md-0"><span class="h2 d-block">2</span> задача</div>
             <div class="d-md-table-cell px-4 vertical-align-middle mb-4 mb-md-0">
-              <a href="notice-single.html" class="h4 mb-3 d-block">Їдальня</a>
-              <p class="mb-0">Шкільне життя неможливо уявити без їдальні. Школярі мають можливість отримати перші та другі страви, солодощі тощо. Зрозуміло, що рецептура всіх страв строго регламентована і працівники їдальні заздалегідь прораховують необхідну кількість різноманітних інгредієнтів та суму коштів, яку необхідно витратити на їх закупівлю.</p>
+              <a href="{{task.task_alias}}" class="h4 mb-3 d-block">{{task.title}}</a>
             </div>
-            <div class="d-md-table-cell text-right pr-0 pr-md-4"><a href="notice-single.html" class="btn btn-primary">Переглянути умову</a></div>
+            <div class="d-md-table-cell text-right pr-0 pr-md-4"><a href="{{task.task_alias}}" class="btn btn-primary">Переглянути умову</a></div>
           </li>
-          <!-- notice item -->
-          <li class="d-md-table mb-4 w-100 border-bottom hover-shadow">
-            <div class="d-md-table-cell text-center p-4 bg-primary text-white mb-4 mb-md-0"><span class="h2 d-block">3</span> задача</div>
-            <div class="d-md-table-cell px-4 vertical-align-middle mb-4 mb-md-0">
-              <a href="notice-single.html" class="h4 mb-3 d-block">Їдальня</a>
-              <p class="mb-0">Шкільне життя неможливо уявити без їдальні. Школярі мають можливість отримати перші та другі страви, солодощі тощо. Зрозуміло, що рецептура всіх страв строго регламентована і працівники їдальні заздалегідь прораховують необхідну кількість різноманітних інгредієнтів та суму коштів, яку необхідно витратити на їх закупівлю.</p>
-            </div>
-            <div class="d-md-table-cell text-right pr-0 pr-md-4"><a href="notice-single.html" class="btn btn-primary">Переглянути умову</a></div>
-          </li>
-          <!-- notice item -->
-          <li class="d-md-table mb-4 w-100 border-bottom hover-shadow">
-            <div class="d-md-table-cell text-center p-4 bg-primary text-white mb-4 mb-md-0"><span class="h2 d-block">4</span> задача</div>
-            <div class="d-md-table-cell px-4 vertical-align-middle mb-4 mb-md-0">
-              <a href="notice-single.html" class="h4 mb-3 d-block">Їдальня</a>
-              <p class="mb-0">Шкільне життя неможливо уявити без їдальні. Школярі мають можливість отримати перші та другі страви, солодощі тощо. Зрозуміло, що рецептура всіх страв строго регламентована і працівники їдальні заздалегідь прораховують необхідну кількість різноманітних інгредієнтів та суму коштів, яку необхідно витратити на їх закупівлю.</p>
-            </div>
-            <div class="d-md-table-cell text-right pr-0 pr-md-4"><a href="notice-single.html" class="btn btn-primary">Переглянути умову</a></div>
-          </li>
-          <li class="d-md-table mb-4 w-100 border-bottom hover-shadow">
-            <div class="d-md-table-cell text-center p-4 bg-primary text-white mb-4 mb-md-0"><span class="h2 d-block">5</span> задача</div>
-            <div class="d-md-table-cell px-4 vertical-align-middle mb-4 mb-md-0">
-              <a href="notice-single.html" class="h4 mb-3 d-block">Їдальня</a>
-              <p class="mb-0">Шкільне життя неможливо уявити без їдальні. Школярі мають можливість отримати перші та другі страви, солодощі тощо. Зрозуміло, що рецептура всіх страв строго регламентована і працівники їдальні заздалегідь прораховують необхідну кількість різноманітних інгредієнтів та суму коштів, яку необхідно витратити на їх закупівлю.</p>
-            </div>
-            <div class="d-md-table-cell text-right pr-0 pr-md-4"><a href="notice-single.html" class="btn btn-primary">Переглянути умову</a></div>
-          </li>
-          <li class="d-md-table mb-4 w-100 border-bottom hover-shadow">
-            <div class="d-md-table-cell text-center p-4 bg-primary text-white mb-4 mb-md-0"><span class="h2 d-block">6</span> задача</div>
-            <div class="d-md-table-cell px-4 vertical-align-middle mb-4 mb-md-0">
-              <a href="notice-single.html" class="h4 mb-3 d-block">Їдальня</a>
-              <p class="mb-0">Шкільне життя неможливо уявити без їдальні. Школярі мають можливість отримати перші та другі страви, солодощі тощо. Зрозуміло, що рецептура всіх страв строго регламентована і працівники їдальні заздалегідь прораховують необхідну кількість різноманітних інгредієнтів та суму коштів, яку необхідно витратити на їх закупівлю.</p>
-            </div>
-            <div class="d-md-table-cell text-right pr-0 pr-md-4"><a href="notice-single.html" class="btn btn-primary">Переглянути умову</a></div>
-          </li>
+          {%endfor%}
         </ul>
       </div>
     </div>

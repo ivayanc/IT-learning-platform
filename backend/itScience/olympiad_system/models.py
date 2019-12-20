@@ -37,9 +37,10 @@ class Task(models.Model):
         (OTHER, ('Інше')),
     ]
 
+    description     = models.TextField(verbose_name="Умова задачі")
+    task_alias      = models.CharField(verbose_name="Id задачі", max_length=15)
     olympiad        = models.ForeignKey(Olympiad,on_delete=models.CASCADE, verbose_name="Олімпіада")
     title           = models.CharField(verbose_name="Назва задачі", max_length=256)
-    description     = models.TextField(verbose_name="Опис задачі")
     files           = models.FileField(verbose_name="Додаткові матеріали", blank=True)
     task_type       = models.PositiveSmallIntegerField(verbose_name="Розділ задачі",
                             choices = TYPE_CHOICES,

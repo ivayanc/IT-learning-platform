@@ -7,79 +7,14 @@
 
 {%load static%}
 
-
-<!-- Modal -->
-<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content rounded-0 border-0 p-4">
-            <div class="modal-header border-0">
-                <h3>Register</h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="login">
-                    <form action="#" class="row">
-                        <div class="col-12">
-                            <input type="text" class="form-control mb-3" id="signupPhone" name="signupPhone" placeholder="Phone">
-                        </div>
-                        <div class="col-12">
-                            <input type="text" class="form-control mb-3" id="signupName" name="signupName" placeholder="Name">
-                        </div>
-                        <div class="col-12">
-                            <input type="email" class="form-control mb-3" id="signupEmail" name="signupEmail" placeholder="Email">
-                        </div>
-                        <div class="col-12">
-                            <input type="password" class="form-control mb-3" id="signupPassword" name="signupPassword" placeholder="Password">
-                        </div>
-                        <div class="col-12">
-                            <button type="submit" class="btn btn-primary">SIGN UP</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Modal -->
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content rounded-0 border-0 p-4">
-            <div class="modal-header border-0">
-                <h3>Login</h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="#" class="row">
-                    <div class="col-12">
-                        <input type="text" class="form-control mb-3" id="loginPhone" name="loginPhone" placeholder="Phone">
-                    </div>
-                    <div class="col-12">
-                        <input type="text" class="form-control mb-3" id="loginName" name="loginName" placeholder="Name">
-                    </div>
-                    <div class="col-12">
-                        <input type="password" class="form-control mb-3" id="loginPassword" name="loginPassword" placeholder="Password">
-                    </div>
-                    <div class="col-12">
-                        <button type="submit" class="btn btn-primary">LOGIN</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- page title -->
 <section class="page-title-section overlay" data-background="images/backgrounds/page-title.jpg">
   <div class="container">
     <div class="row">
       <div class="col-md-8">
         <ul class="list-inline custom-breadcrumb">
-          <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="notice.html">Умова задачі</a></li>
-          <li class="list-inline-item text-white h3 font-secondary nasted">Їдальня</li>
+          <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="{% url 'olympiad' id=object.olympiad.pk %}">{{object.olympiad.title}}</a></li>
+          <li class="list-inline-item text-white h3 font-secondary nasted">{{object.title}}</li>
         </ul>
         <p class="text-lighten">ПАМ’ЯТАЙТЕ: правильне розуміння умови – невід’ємна складова
             успішного розв’язання.
@@ -98,34 +33,74 @@
         <div class="d-flex">
           <div class="text-center mr-4">
             <div class="p-4 bg-primary text-white">
-                <span class="h2 d-block">1</span> задача
+                <span class="h2 d-block">
+                    {% if task.task_type == 1 %}
+                    <i class="fas fa-file-excel"></i>
+                {%elif task.task_type == 2 %}
+                    <i class="fas fa-database"></i>
+                {%elif task.task_type == 3 %}
+                    <i class="fas fa-file-word"></i>
+                {%elif task.task_type == 4 %}
+                    <i class="fas fa-file-powerpoint"></i>
+                {%elif task.task_type == 5 %}
+                    <i class="fas fa-file-alt"></i>
+                {%endif%}
+                
+                </span> 
+                {% if task.task_type == 1 %}
+                  Excel
+                {%elif task.task_type == 2 %}
+                  Access
+                {%elif task.task_type == 3 %}
+                  Word
+                {%elif task.task_type == 4 %}
+                  PowerPoint
+                {%elif task.task_type == 5 %}
+                  Задача
+                {%endif%}
             </div>
           </div>
           <!-- notice content -->
           <div>
-            <h3 class="mb-4">Їдальня</h3>
-            <section class="bg-gray">
-                <div  class="row d-flex justify-content-center">
-                <img src="static/images/teachers/food.jpg">
-                </div>
-            </section>
-            <p>Шкільне життя неможливо уявити без їдальні. Школярі мають можливість отримати перші та другі страви, солодощі тощо. Зрозуміло, що рецептура всіх страв строго регламентована і працівники їдальні заздалегідь прораховують необхідну кількість різноманітних інгредієнтів та суму коштів, яку необхідно витратити на їх закупівлю.</p>
-            <p>Учаснику пропонується, дотримуючись інструкцій файлу «Інструкція
-                Excel.pdf», розробити систему для розрахунку загальної вартості
-                інгредієнтів, які буде використано для приготування певної кількості
-                перших страв у шкільній їдальні опорної школи. Завдання необхідно виконати відповідно до поданого зразка. Усі необхідні файли та зразки Ви знайдете в папці «Завдання_1».
-                </p>
-            <ul class="list-styled mb-5">
-              <li>Кількість балів – 10</li>
-              <li>Завдання виконується виключно засобами MS EXCEL </li>
-              <li>Результат роботи учасника зберегти у файл zavd1.xlsx</li>
-              <li>Інструкція задачі зберігається у файлі«Інструкція Excel.pdf»</li>
-            </ul>
-            <a href="#" class="btn btn-primary">Завантажити інструкцію</a>
+            <h3 class="mb-4">{{object.title}}</h3>
+            {{object.description |safe }}
+            {%if object.files %}
+                <a href="{{object.files.url}}" class="btn btn-primary">Завантажити додаткові файли</a>
+            {%endif%}
           </div>
         </div>
       </div>
     </div>
+    <div class="row">
+        <br><br><br>
+        <div class="col-12">
+
+        <div  class="row d-flex justify-content-center">
+        
+            <div class="d-md-table-cell text-right pr-0 pr-md-4">
+              
+                    <form action="#" method="post">
+                      {% csrf_token %}
+                      <input type="file" style="width:200px">
+                        <button  class="btn btn-primary" type="submit">
+                          <i class="fas fa-sign-in-alt"></i> Надіслати розв'язок
+                        </button>          
+                  </form>
+                  <p>Увага! Варто зауважити що на перевірку буде відправлена тільки остання версія, яку ви надіслали </p>
+            </div>
+            
+            
+            
+          </div>
+
+           
+            </div> 
+        </div> 
+        
+    </div>  
+    
+
+    
   </div>
 </section>
 <!-- /notice details -->
