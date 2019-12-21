@@ -19,7 +19,8 @@
   </div>
 </section>
 
-  <section class="bg-white">
+{%if is_reviewer %}
+  <!-- <section class="bg-white">
       <div class="row d-flex justify-content-center" >
       <div class="container">
         <div class="row">
@@ -70,8 +71,7 @@
 
         </div>
         </div>
-    </section>
-
+    </section> -->
 
     {%load static%}
     <link href="{% static 'css/table.css' %}" rel="stylesheet">
@@ -105,30 +105,43 @@
     <th>Задача</th>
     <th>Статус перевірки</th>
     <th>Перевіряючий</th>
-    <th>Деталі</th>
    </tr>
+   {% for solution in solutions %}
       <tr>
-        <td>1</td>
-        <td>1</td>
-        <td >Microsoft Office 2003 (або пізніша версія, але успішне виконання завдання не передбачає використання нововведень щодо версії 2003).</td>
+        <td>{{solution.user.class}}</td>
+        <td>{{solution.encrypted_id}}</td>
+        <td >{{solution.task.title}}</td>
       <td>
-        <select>
-            <option>Очікує на перевірку</option>
-            <option>Перевіряється</option>
-            <option>Перевірено</option>
-            <option>Проапельовано</option>
-    </select>
+        {%if solution.status == 1%}
+            Очікує на перевірку
+        {%elif solution.status == 2%}
+            В процессі перевірки
+        {%elif solution.status == 2%}
+            Перевірено
+        {%endif%}
+        
     </td>
-      <td>-?-</td>
-      <td>
-        <a href="{% url 'school'%}" class="btn btn-primary" data-animation-out="fadeOutRight" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInLeft" data-delay-in=".7">Детальніше</a>
-      </td>
+    {%if solution.status == 1%}
+          <td>
+              <a href="/admin/olympiad_system/solution/{{solution.pk}}/change/" class="btn btn-primary" data-animation-out="fadeOutRight" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInLeft" data-delay-in=".7">Взяти на себе</a>
+          </td>
+    {%else%}  
+      {% if solution.reviewer == None %}
+            <td>Відустній</td>
+        {%else%}
+            <td>{{solution.reviewer.name}}</td>
+        {%endif%}
+    {%endif%}
+      
     </tr>
+    {%endfor%}
 
     </table>
   </div>
  
   </section>
 
+  {%else%}
+  {%endif%}
 
   {%endblock%}

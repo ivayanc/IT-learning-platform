@@ -18,7 +18,7 @@
           <li class="list-inline-item"><h3><a class="text-primary" href="">{{object.title}}</h3></a></li>
           <li class="list-inline-item text-white h3 font-secondary @@nasted"></li>
         </ul>
-        <h3 class="text-lighten">Вітаємо ,{{user.name}}</h3>
+        <h3 class="text-lighten">Вітаємо, {{user.name}}</h3>
       </div>
     </div>
   </div>
@@ -114,6 +114,7 @@
           <br>
           <br>
           <div  class="row d-flex justify-content-center">
+            
         
           <div class="d-md-table-cell text-right pr-0 pr-md-4">
             {% if not_registred %}
@@ -145,13 +146,32 @@
 
 {%if is_time_ended %}
     {% if object.is_ended %}
-          Тут таблиця результатів    
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="d-flex align-items-center section-title justify-content-between">
+            <h3>Тут скоро буде таблиця результатів</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+          
     {% else %}
-          Олімпіада переверіяєтся!
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="d-flex align-items-center section-title justify-content-between">
+            <h3>Олімпіада переверіяєтся!</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+          
     {% endif %}
 {% endif %}
 
 {% if is_time_started and not is_time_ended %}
+
 <section class="section-sm">
   <div class="container">
     <!-- course info -->
@@ -229,6 +249,20 @@
    
   </div>
 </section>
+
+{% if not_registred %}
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="d-flex align-items-center section-title justify-content-between">
+        <h3>Нажаль ви не встигли зареєструватися на цю олімпіаду :(</h3>
+        <h5>Приходьте наступного разу</h5>
+      </div>
+    </div>
+  </div>
+</div>
+    
+{%else%}
 <section class="section">
   <div class="container">
     <div class="row">
@@ -274,6 +308,7 @@
     </div>
   </div>
 </section>
+{% endif %}
 {% endif %}
 
 

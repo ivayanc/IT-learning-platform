@@ -13,3 +13,5 @@ class PostAdmin(admin.ModelAdmin):
     'description',
     'title_image',
     'publication',)
+    list_display = ('category', 'title', 'moderator', 'time_to_read')
+    filter_list = ('category', 'moderator',)

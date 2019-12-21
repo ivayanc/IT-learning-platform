@@ -126,16 +126,23 @@ class TaskSendSolutionView(UpdateView):
         new_solution = Solution.objects.create(solution_file=path, user=request.user, task=self.object, encrypted_id = encrypted_id)
         return redirect ('olympiad_task', id=self.object.olympiad.pk, task_id=self.object.task_alias)
 
-class SolutionVerifyListView(ListView):
+
+class SolutionVerifyListView(DetailView):
     def get_queryset(self):
         id_ = self.kwargs.get("id")
         #return Solution.objects.filter(task.olympiad.pk=id_).order_by('-uploaded_at')
 
 
-    model = Solution
-    paginate_by = 15
-    context_object_name = 'solutions'
-    template_name = 'materials_system/verify_list.html'
+    def get_object(self, queryset=None):
+        id_ = self.kwargs.get("id")
+        
+        olymp = get_object_or_404(Olympiad, pk=id_)
+        return olymp
+        
+    model = Olympiad
+    # paginate_by = 15
+    # context_object_name = 'solutions'
+    template_name = 'olympiad_system/verify_list.html'
 
     def get_context_data(self, **kwargs):
         context = super(SolutionVerifyListView, self).get_context_data(**kwargs) # get the default context data
@@ -146,6 +153,7 @@ class SolutionVerifyListView(ListView):
 
 
         #TODO fix time zone
+        context['is_reviewer'] = self.request.user in olymp.reviewers.all()
         context['is_time_started'] = False
         context['is_time_ended'] = False
         context['end_time'] = end_time
@@ -161,6 +169,7 @@ class SolutionVerifyListView(ListView):
 
         context['not_registred'] = not olymp.participants.filter(id=self.request.user.id).exists()
         context['tasks'] = Task.objects.filter(olympiad=olymp)
+        context['solutions'] = Solution.objects.filter(task__in=context['tasks'])
         return context
 
  
@@ -178,6 +187,12 @@ class TaskView(DetailView):
         context = super(TaskView, self).get_context_data(**kwargs) # get the default context data
         
         task = self.get_object()
+
+        try:
+            context['solution'] = Solution.objects.get(user=self.request.user,task=task)
+        except:
+            context['solution'] = 0
+        
         
         return context
 

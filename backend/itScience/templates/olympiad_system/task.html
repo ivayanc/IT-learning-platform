@@ -65,7 +65,8 @@
             <h3 class="mb-4">{{object.title}}</h3>
             {{object.description |safe }}
             {%if object.files %}
-                <a href="{{object.files.url}}" class="btn btn-primary">Завантажити додаткові файли</a>
+            <br>    
+            <a href="{{object.files.url}}" class="btn btn-primary">Завантажити додаткові файли</a>
             {%endif%}
           </div>
         </div>
@@ -88,40 +89,52 @@
                   </form>
                   <p>Увага! Варто зауважити що на перевірку буде відправлена тільки остання версія розв'язку, яку ви надіслали </p>
             </div>
-            
-            <table>
-              <tr>
-                <td></td>
-                <td>Microsoft Office 2003 (або пізніша версія, але успішне виконання завдання не передбачає використання нововведень щодо версії 2003).</td>
-               <td>
-                 <select>
-               <option>1</option>
-               <option>2</option>
-               <option>3</option>
-               <option>4</option>
-               <option>5</option>
-               <option>6</option>
-               <option>7</option>
-               <option>8</option>
-               <option>9</option>
-               <option>10</option>
-             </select>
-             </td>
-               <td>10</td>
-             </tr>
-            </table>
-            
-          </div>
 
-           
-            </div> 
+          </div> 
         </div> 
-        
-    </div>  
-    
+          
+        </div>
 
-    
-  </div>
+    {% if solution == 0%}
+    {%else%}
+
+
+
+    {%load static%}
+    <link href="{% static 'css/table.css' %}" rel="stylesheet">
+    {%load static%}
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/select2/select2.min.css' %}">
+    {%load static%}
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/perfect-scrollbar/perfect-scrollbar.css' %}">
+    {%load static%}
+    <script src="{% static 'plugins/select2/select2.min.js'%}"></script>
+
+
+  <div class="row">
+        <br><br><br>
+        <div class="col-12">
+
+        <div  class="row d-flex justify-content-center">
+        
+            <div class="d-md-table-cell text-right pr-0 pr-md-4">
+                         
+              <table>
+
+                <tr>
+                  <td>Останній розв'язок завантажено о:</td>
+                  <td>{{solution.uploaded_at}}</td>
+                </tr>
+              </table>
+          
+            </div>
+
+          </div> 
+        </div> 
+          
+    </div>
+  
+   
+  {%endif%}
 </section>
 <!-- /notice details -->
 
