@@ -174,15 +174,12 @@ class TaskView(DetailView):
         task = get_object_or_404(Task, olympiad=id_, task_alias=task_id_)
         return task
 
-
     def get_context_data(self, **kwargs):
         context = super(TaskView, self).get_context_data(**kwargs) # get the default context data
         
         task = self.get_object()
-
         
         return context
-
 
 # class VerifySolutionView(DetailView):
 #     template_name = 'olympiad_system/verify.html'

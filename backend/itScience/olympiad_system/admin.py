@@ -10,8 +10,11 @@ class TaskInline(admin.TabularInline):
 class CriteriaInline(admin.TabularInline):
     model = Criteria
     
-class ReviewGroup(admin.TabularInline):
-    model = Group
+
+class ReviewInLine(admin.TabularInline):
+    model = Review
+    readonly_fields = ('criteria', )
+    fields = ('criteria','result',)
 
 @admin.register(Olympiad)
 class OlympiadAdmin(admin.ModelAdmin):
@@ -22,9 +25,24 @@ class OlympiadAdmin(admin.ModelAdmin):
 
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
+    list_filter = ('task_type','olympiad')
     list_display = ('title', 'task_type', 'olympiad')
     model = Task
     inlines = (CriteriaInline,)
 
-admin.site.register(Solution)
+
+@admin.register(Solution)
+class SolutionAdmin(admin.ModelAdmin):
+    
+    list_display = ('encrypted_id', 'task', 'status', 'task')
+    model = Solution
+    inlines = (ReviewInLine,)
+    list_filter = ('task','status')
+    readonly_fields = ('encrypted_id', 'task', 'solution_file',)
+    fields = ('encrypted_id', 'task', 'solution_file','status', 'reviewer')
+
+  
+
+
+
 admin.site.register(Criteria)

@@ -1,7 +1,7 @@
 from django.db import models
 from django.conf import settings
 from users.models import SystemUser
-
+from django.core.exceptions import ValidationError
 
 class Olympiad(models.Model):
     PUBLIC = 1
@@ -53,6 +53,17 @@ class Task(models.Model):
         return self.title
 
 
+class Criteria(models.Model):
+    task            = models.ForeignKey(Task, on_delete=models.CASCADE, verbose_name="Задача")
+    descrition      = models.CharField(verbose_name="Опис критерія", max_length=256)
+    max_value       = models.IntegerField(verbose_name="Максимальний бал")
+    step            = models.FloatField(verbose_name="Крок оцінки")
+
+
+    def __str__(self):
+        return self.descrition + " (max = " + str(self.max_value) + ")"
+
+
 class Solution(models.Model):
     WAITING = 1
     REVIEWING = 2
@@ -68,7 +79,7 @@ class Solution(models.Model):
     solution_file   = models.FileField(verbose_name="Файл розв'язок", upload_to='solutions/',max_length='500')
     uploaded_at     = models.DateTimeField(auto_now_add=True)
     encrypted_id    = models.CharField(max_length=150, blank=True)
-    status          = models.PositiveSmallIntegerField(verbose_name="Розділ задачі",
+    status          = models.PositiveSmallIntegerField(verbose_name="Статус перевірки",
                             choices = STATUS_CHOICES,
                             default = WAITING,
     )
@@ -77,8 +88,29 @@ class Solution(models.Model):
     def __str__(self):
         return self.encrypted_id
 
-class Criteria(models.Model):
-    task            = models.ForeignKey(Task, on_delete=models.CASCADE, verbose_name="Задача")
-    descrition      = models.CharField(verbose_name="Опис критерія", max_length=256)
-    max_value       = models.IntegerField(verbose_name="Максимальний бал")
-    step            = models.FloatField(verbose_name="Крок оцінки")
+    def save(self, *args, **kwargs):
+
+        super(Solution, self).save(*args, **kwargs)
+
+        criterias = Criteria.objects.filter(task = self.task)
+        for criteria in criterias:
+            review = Review.objects.get_or_create(criteria=criteria, solution=self)
+            
+        
+
+
+class Review(models.Model):
+    solution        = models.ForeignKey(Solution, on_delete=models.CASCADE, verbose_name="Розв'язок")
+    criteria        = models.ForeignKey(Criteria, on_delete=models.CASCADE, verbose_name="Критерій")
+    result          = models.FloatField(default=0)
+
+    def save(self, *args, **kwargs):
+
+        if self.result <= self.criteria.max_value:
+            super(Review, self).save(*args, **kwargs)
+        else:
+             raise ValidationError('Неможливо завершити перевірку, один з критеріїв виставлено не правильно')
+            
+        
+    class Meta:
+        unique_together = ('solution', 'criteria',)
