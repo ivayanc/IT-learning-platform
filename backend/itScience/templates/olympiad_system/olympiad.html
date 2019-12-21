@@ -25,7 +25,7 @@
 </section>
 <!-- /page title -->
 
-<!-- notice -->
+<!-- timer to start -->
 {% if  not is_time_started %}
 
 <section class="bg-gray">
@@ -75,6 +75,8 @@
         </div>";
         
         }, 1000);
+
+   
         </script>
       
         <div class="timer-container">
@@ -140,10 +142,93 @@
 {% endif %}
 
 
+
 {%if is_time_ended %}
+    {% if object.is_ended %}
+          Тут таблиця результатів    
+    {% else %}
+          Олімпіада переверіяєтся!
+    {% endif %}
 {% endif %}
 
 {% if is_time_started and not is_time_ended %}
+<section class="section-sm">
+  <div class="container">
+    <!-- course info -->
+    <div class="row align-items-center mb-5">
+      <div class="col-xl-3 order-1 col-sm-6 mb-4 mb-xl-0">
+        <h2>{{object.title}}</h2>
+      </div>
+      <div class="col-xl-6 order-sm-3 order-xl-2 col-12 order-2">
+        <ul class="list-inline text-xl-center">
+          <li class="list-inline-item mr-4 mb-3 mb-sm-0">
+            <div class="d-flex align-items-center">
+              <style>
+                h2{
+                  margin-right: 15px;
+                }
+              </style>
+              <h2><i class="fas fa-clock"></i>
+                </h2>
+              <div class="text-left">
+                <h6 class="mb-0">До завершення</h6>
+                <script type="text/javascript">
+                  const olympDate = new Date({{ end_time|date:'Y' }}, 
+                                             {{ end_time|date:'m' }} - 1, 
+                                             {{ end_time|date:'d' }},
+                                             {{ end_time|date:'H' }},
+                                             {{ end_time|date:'i' }},
+                                             ).getTime();
+                  
+                  // countdown
+                  let timer = setInterval(function() {
+                  
+                   // get today's date
+                   const today = new Date().getTime();
+                    console.log(today.toString());
+                   // get the difference
+                   const diff = olympDate - today;
+                  
+                   // math
+                   let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                   let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                   let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                   let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                  
+                  
+          
+                  document.getElementById("timer_1").innerHTML =
+                      hours + ":" + minutes + ":" + seconds 
+                  }, 1000);
+                  </script>
+                <p class="mb-0"><div id="timer_1"></div></p>
+              </div>
+            </div>
+          </li>
+          <li class="list-inline-item mr-4 mb-3 mb-sm-0">
+            <div class="d-flex align-items-center">
+              <h2>
+                <i class="fas fa-tasks"></i>
+              </h2>
+              <div class="text-left">
+                <h6 class="mb-0">Завдань</h6>
+                <p class="mb-0">{{tasks | length}}</p>
+              </div>
+            </div>
+          </li>
+
+          
+        </ul>
+      </div>
+      <!-- border -->
+      <div class="col-12 mt-4 order-4">
+        <div class="border-bottom border-primary"></div>
+      </div>
+    </div>
+    <!-- course details -->
+   
+  </div>
+</section>
 <section class="section">
   <div class="container">
     <div class="row">

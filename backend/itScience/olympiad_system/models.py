@@ -54,11 +54,28 @@ class Task(models.Model):
 
 
 class Solution(models.Model):
+    WAITING = 1
+    REVIEWING = 2
+    REVIEWED = 3
+
+    STATUS_CHOICES    = [
+        (WAITING,   ('Очікується перевірка')),
+        (REVIEWING, ('Відбувається перевірка')),
+        (REVIEWED,  ('Перевірка завершена')),
+    ]
     user            = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="Відправник", related_name='sender')
     task            = models.ForeignKey(Task, on_delete=models.CASCADE, verbose_name="Задача")
     solution_file   = models.FileField(verbose_name="Файл розв'язок", upload_to='solutions/',max_length='500')
-    uploaded_at = models.DateTimeField(auto_now_add=True)
+    uploaded_at     = models.DateTimeField(auto_now_add=True)
+    encrypted_id    = models.CharField(max_length=150, blank=True)
+    status          = models.PositiveSmallIntegerField(verbose_name="Розділ задачі",
+                            choices = STATUS_CHOICES,
+                            default = WAITING,
+    )
     reviewer        = models.ForeignKey(settings.AUTH_USER_MODEL,  on_delete=models.CASCADE, null=True, blank=True, related_name='reviewer')
+
+    def __str__(self):
+        return self.encrypted_id
 
 class Criteria(models.Model):
     task            = models.ForeignKey(Task, on_delete=models.CASCADE, verbose_name="Задача")

@@ -5,42 +5,20 @@
 {% block content %}
 
 {%load static%}
-
 <section class="page-title-section overlay" data-background="images/backgrounds/page-title.jpg">
   <div class="container">
     <div class="row">
       <div class="col-md-8">
         <ul class="list-inline custom-breadcrumb">
-          <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="@@page-link"><h4 class="text-lighten">Система олімпіад>Олімпіада 1 </h4></a></li>
+          <li class="list-inline-item"><h3><a class="text-primary" href="">{{object.title}}</h3></a></li>
           <li class="list-inline-item text-white h3 font-secondary @@nasted"></li>
         </ul>
-        <h4 class="text-lighten">Вітаємо,Оксана Іванівно</h4>
+        <h3 class="text-lighten">Вітаємо ,{{user.name}}</h3>
       </div>
     </div>
   </div>
+</section>
 
-</section>
-<section class="section-sm">
-  <div class="container">
-<div class="row">
-  <div class="col-12 mb-50">
-    <h3>Інструкція задачі «СЕРТИФІКАТ»
-</h3>
-    <p>
-У файлі contest.txt міститься інформація про учасників конкурсу, школи та області, які вони представляли та номери сертифікатів. Учаснику олімпіади необхідно допомогти зробити сертифікати для всіх учасників Регіонального конкурсу «Ми - за здоровий спосіб життя». Зразок сертифікату у файлі Сертифікат.jpg. Усі необхідні файли та
-зразки Ви знайдете в папці «Завдання_3». Параметри для сертифікату: розмір паперу 13х18см, усі поля по 1 см. Використовуйте шрифти Verdana та Bookman Old Style. Розміри шрифту 18, 16, 14 відповідно до зразка. Використовуючи інформацію з файлу contest.txt, зробіть злиття сертифікатів усіх 53 учасників конкурсу в один документ.
-Учасник повинен також надати журі файл Алгоритм_завдання3.doсх, у якому – навести алгоритм створення спільного документу зі всіма сертифікатами (стисло в довільній формі).
-</p>
-  </div>
-</div>
-<section class="bg-gray">
-<div  class="row d-flex justify-content-center">
-  <i class="ti-download text-primary icon-md mr-2"></i>
-  <h6 class="text-primary">Завантажити розв'язок учня</h6>
-  </div>
-</section>
-  </div>
-  </section>
   <section class="bg-white">
       <div class="row d-flex justify-content-center" >
       <div class="container">
@@ -93,35 +71,46 @@
         </div>
         </div>
     </section>
+
+
+    {%load static%}
+    <link href="{% static 'css/table.css' %}" rel="stylesheet">
+    {%load static%}
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/select2/select2.min.css' %}">
+    {%load static%}
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/perfect-scrollbar/perfect-scrollbar.css' %}">
+    {%load static%}
+    <script src="{% static 'plugins/select2/select2.min.js'%}"></script>
+
+
+
   <section class="table-section" >
   
    <div class="row d-flex justify-content-center" >
+    <style>
+      table{
+        border: 16px solid #FF7F50;
+      }
+      </style>
      <table border="2" class="table_t">
-        <col width="100">
-        <col width="1000">
-        <col width="100">
+        <col width="2%">
+        <col width="5%">
+        <col width="15%">
+        <col width="5%">
+        <col width="5%">
+        <col width="5%">
    <tr>
     <th>Клас</th>
+    <th>ID</th>
     <th>Задача</th>
-    <th>Статус</th>
-    <th>До перевірки</th>
+    <th>Статус перевірки</th>
+    <th>Перевіряючий</th>
+    <th>Деталі</th>
    </tr>
-   <tr>
-     <td>1</td>
-     <td >Microsoft Office 2003 (або пізніша версія, але успішне виконання завдання не передбачає використання нововведень щодо версії 2003).</td>
-    <td>
-      <select>
-          <option>Очікує на перевірку</option>
-          <option>Перевіряється</option>
-          <option>Перевірено</option>
-          <option>Проапельовано</option>
-  </select>
-  </td>
-    <td>Перевірити</td>
-  </tr>
-  <tr>
-      <td>2</td>
-      <td >	Microsoft Office 2003 (або пізніша версія, але успішне виконання завдання не передбачає використання нововведень щодо версії 2003).</td>
+      <tr>
+        <td>1</td>
+        <td>1</td>
+        <td >Microsoft Office 2003 (або пізніша версія, але успішне виконання завдання не передбачає використання нововведень щодо версії 2003).</td>
       <td>
         <select>
             <option>Очікує на перевірку</option>
@@ -130,99 +119,11 @@
             <option>Проапельовано</option>
     </select>
     </td>
-     <td>Перевірити</td>
-   </tr>
-   <tr>
-      <td>3</td>
-      <td >	Microsoft Office 2003 (або пізніша версія, але успішне виконання завдання не передбачає використання нововведень щодо версії 2003).</td>
+      <td>-?-</td>
       <td>
-        <select>
-            <option>Очікує на перевірку</option>
-            <option>Перевіряється</option>
-            <option>Перевірено</option>
-            <option>Проапельовано</option>
-    </select>
-    </td>
-     <td>Перевірити</td>
-   </tr>
-   <tr>
-      <td>4</td>
-      <td >Microsoft Office 2003 (або пізніша версія, але успішне виконання завдання не передбачає використання нововведень щодо версії 2003).</td>
-      <td>
-        <select>
-            <option>Очікує на перевірку</option>
-            <option>Перевіряється</option>
-            <option>Перевірено</option>
-            <option>Проапельовано</option>
-    </select>
-    </td>
-     <td>Перевірити</td>
-   </tr>
-   <tr>
-      <td>5</td>
-      <td >	Microsoft Office 2003 (або пізніша версія, але успішне виконання завдання не передбачає використання нововведень щодо версії 2003).</td>
-      <td>
-        <select>
-            <option>Очікує на перевірку</option>
-            <option>Перевіряється</option>
-            <option>Перевірено</option>
-            <option>Проапельовано</option>
-    </select>
-    </td>
-     <td>Перевірити</td>
-   </tr>
-   <tr>
-      <td>6</td>
-      <td >	Microsoft Office 2003 (або пізніша версія, але успішне виконання завдання не передбачає використання нововведень щодо версії 2003).</td>
-      <td>
-        <select>
-            <option>Очікує на перевірку</option>
-            <option>Перевіряється</option>
-            <option>Перевірено</option>
-            <option>Проапельовано</option>
-    </select>
-    </td>
-     <td>Перевірити</td>
-   </tr>
-   <tr>
-      <td>7</td>
-      <td >Microsoft Office 2003 (або пізніша версія, але успішне виконання завдання не передбачає використання нововведень щодо версії 2003).</td>
-      <td>
-        <select>
-            <option>Очікує на перевірку</option>
-            <option>Перевіряється</option>
-            <option>Перевірено</option>
-            <option>Проапельовано</option>
-    </select>
-    </td>
-     <td>Перевірити</td>
-   </tr>
-   <tr>
-      <td>8</td>
-      <td >Microsoft Office 2003 (або пізніша версія, але успішне виконання завдання не передбачає використання нововведень щодо версії 2003).</td>
-      <td>
-        <select>
-            <option>Очікує на перевірку</option>
-            <option>Перевіряється</option>
-            <option>Перевірено</option>
-            <option>Проапельовано</option>
-    </select>
-    </td>
-     <td>Перевірити</td>
-   </tr>
-   <tr>
-      <td>9</td>
-      <td >	Microsoft Office 2003 (або пізніша версія, але успішне виконання завдання не передбачає використання нововведень щодо версії 2003).</td>
-      <td>
-        <select>
-            <option>Очікує на перевірку</option>
-            <option>Перевіряється</option>
-            <option>Перевірено</option>
-            <option>Проапельовано</option>
-    </select>
-    </td>
-     <td>Перевірити</td>
-   </tr>
+        <a href="{% url 'school'%}" class="btn btn-primary" data-animation-out="fadeOutRight" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInLeft" data-delay-in=".7">Детальніше</a>
+      </td>
+    </tr>
 
     </table>
   </div>
