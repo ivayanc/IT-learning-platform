@@ -29,6 +29,7 @@ __pycache__/
 # Distribution / packaging
 .Python
 itscience_env/
+backend/itScience/media/
 env/
 build/
 develop-eggs/
