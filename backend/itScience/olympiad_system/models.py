@@ -10,6 +10,7 @@ class Olympiad(models.Model):
         (PUBLIC, ('Відкрита')),
         (PRIVATE, ('За запрошенням')),
     ]
+
     start_time      = models.DateTimeField(verbose_name="Дата почтку")
     title           = models.CharField(verbose_name="Назва олімпіади", max_length=256)
     duration        = models.DurationField(verbose_name="Час проведення")
