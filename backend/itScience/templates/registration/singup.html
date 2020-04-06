@@ -6,7 +6,7 @@
 <section class="page-title-section overlay" data-background="images/backgrounds/page-title.jpg">
   <div class="container">
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-12 center">
         <ul class="list-inline custom-breadcrumb">
           <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="#">Реєстрація</a></li>   
         </ul>
@@ -15,9 +15,9 @@
   </div>
 </section>
 
-<form method="post">
+<form class="login_form_page" method="post">
   {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Зареєструватися</button>
+  {{ registration_form }}
+  <button id="login_submit" type="submit">Зареєструватися</button>
 </form>
 {% endblock %}

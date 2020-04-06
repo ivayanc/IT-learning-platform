@@ -134,7 +134,7 @@
                         <form method="post" action="/users/singup/">
                             {% csrf_token %}
                             {{registration_form}}
-                            <button type="submit">Зареєструватися</button>
+                            <button type="submit" id="login_submit">Зареєструватися</button>
                           </form>
                     </div>
                 </div>
@@ -142,20 +142,20 @@
         </div>
     </div>
     <!-- Modal -->
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade login_form" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content rounded-0 border-0 p-4">
             <div class="modal-header border-0">
-                <h3>Увійти в систему</h3>
+                <h3 text-align:center>Увійти в систему</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form method="post" action="/users/login/" class="row">
+                <form method="post" action="/users/login/" class="row login_form1">
                     {% csrf_token %}
                      {{login_form}}
-                    <button type="submit">Увійти</button>
+                    <button type="submit" id="login_submit">Увійти</button>
                 </form>
             </div>
         </div>

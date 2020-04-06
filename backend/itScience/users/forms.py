@@ -9,12 +9,12 @@ class SystemUserLoginForm(AuthenticationForm):
         self.model = SystemUser
         super(SystemUserLoginForm, self).__init__(*args, **kwargs)
 
-    username = forms.CharField(widget=forms.TextInput(
-        attrs={'class': 'form-control', 'placeholder': '', 'id': 'login'}))
-    password = forms.CharField(widget=forms.PasswordInput(
+    username = forms.CharField(label="", help_text="", widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': 'Логін', 'id': 'login'}))
+    password = forms.CharField(label="", help_text="",  widget=forms.PasswordInput(
         attrs={
             'class': 'form-control',
-            'placeholder': '',
+            'placeholder': 'Пароль',
             'id': 'pass',
         }
     ))
@@ -25,12 +25,12 @@ class SystemUserLoginForm(AuthenticationForm):
 
 class SystemUserCreationForm(UserCreationForm):
 
-    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username'}))
-    first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'First Name'}), max_length=32, help_text='First name<br>')
-    email=forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}), max_length=64, help_text='Enter a valid email address<br>')
-    about = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'About'}))
-    password1=forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}), help_text='Мінімум 8 символів<br>')
-    password2=forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password Again'}))
+    username = forms.CharField(label="", help_text="", widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Логін', 'id' : 'login'}))
+    first_name = forms.CharField(label="", help_text="", widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': "Ім'я", 'id' : 'first_name'}), max_length=32)
+    email=forms.EmailField(label="", widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email', 'id' : 'email'}), max_length=64)
+    about = forms.CharField(label="", help_text="", widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Інформація про себе', 'id' : 'about'}))
+    password1=forms.CharField(label="", widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Пароль','id' : 'pass'}))
+    password2=forms.CharField(label="", help_text="", widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Пароль ще раз','id' : 'pass'}))
 
     class Meta(UserCreationForm.Meta):
         model = SystemUser
