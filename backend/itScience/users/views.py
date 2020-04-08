@@ -11,13 +11,14 @@ from django.views.generic import (
 )
 from materials_system.models import Post
 from .models import SystemUser
-from .forms import SystemUserChangeForm, SystemUserCreationForm
+from .forms import SystemUserChangeForm, SystemUserCreationForm, SystemUserLoginForm
 
 
 class SingUp(CreateView):
     form_class = SystemUserCreationForm
     success_url = reverse_lazy('login')
     template_name = 'registration/singup.html'
+
 
 class ProfileView(DetailView):
     template_name = 'registration/profile.html'

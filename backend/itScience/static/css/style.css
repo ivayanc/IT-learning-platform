@@ -1,17 +1,9 @@
-/*!------------------------------------------------------------------
-[MAIN STYLESHEET]
-
-PROJECT:	Project Name
-VERSION:	Versoin Number
--------------------------------------------------------------------*/
-/*------------------------------------------------------------------
-[TABLE OF CONTENTS]
--------------------------------------------------------------------*/
-/*  typography */
+@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 
 *{
   font-family: "Gill Sans", sans-serif;
 }
+
 body {
   line-height: 1.2;
   font-family: "Gill Sans", sans-serif;
@@ -1197,8 +1189,8 @@ span.selectArrow,span.selected {
 }
 
 .login_form_page{
-  margin-left: 27%;
-  width: 50%;
+  margin-left: 25%;
+  width: 55%;
   margin-top: 2%;
   margin-bottom:  2%;
 }
@@ -1207,16 +1199,34 @@ span.selectArrow,span.selected {
   color: #ff5233 !important;
 }
 
-#login, #pass, #first_name, #email, #about{
+#login, #pass, #first_name, #email, #about, #id_username, #id_password{
   font-family: "Roboto", sans-serif;
   outline: 0;
   background: #f2f2f2;
   width: 100%;
   border: 0;
   margin: 0 0 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   padding: 15px;
   box-sizing: border-box;
   font-size: 15px;
+}
+
+.isa_info, .isa_success, .isa_warning, .isa_error {
+  margin: 10px 0px;
+  padding:12px;
+}
+
+.isa_error {
+  color: #D8000C;
+  background-color: #FFD2D2;
+}
+
+.isa_info i, .isa_success i, .isa_warning i, .isa_error i {
+  margin:10px 22px;
+  font-size:2em;
+  vertical-align:middle;
 }
 
 .center{

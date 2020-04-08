@@ -15,9 +15,35 @@
   </div>
 </section>
 
-<form class = "login_form_page" method="post">
-  {% csrf_token %}
-  {{ login_form }}
-  <button id="login_submit" type="submit">Увійти</button>
+<form class="login_form_page" method="post">
+	{% csrf_token %}
+  <input type="hidden" name="next" value="{{ next }}" />
+  <div class="isa_error">
+  {% for error in form.non_field_errors %}
+    {% if error == "Please enter a correct username and password. Note that both fields may be case-sensitive." %}
+    <i class="fa fa-times-circle"></i>
+    Введіть правильне ім’я користувача та пароль. Врахуйте що обидва поля можуть бути чутливі до регістру
+    {% endif %}
+  {% endfor %}
+  </div>
+	{% for field in form %}
+ <div class="field-wrapper">
+	<div class="label-wrapper">
+		{% if field.name == "username" %}
+      Логін:
+    {% endif %}
+    {% if field.name == "password" %}
+      Пароль:
+		{% endif %}
+	</div>
+	<div class="value-wrapper">
+		{{ field }}
+		{{ field.errors }}
+	</div>
+ </div>
+ {% endfor %}
+ <div class="submit-wrapper">
+  <input id="login_submit" type="submit" value="Увійти" />
+ </div>
 </form>
 {% endblock %}
