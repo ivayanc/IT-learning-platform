@@ -23,7 +23,7 @@ class SystemUserCreationForm(UserCreationForm):
     username = forms.CharField(label="Логін", help_text="", widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '', 'id' : 'login'}))
     first_name = forms.CharField(label="Ім'я", help_text="", widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': "", 'id' : 'first_name'}), max_length=32)
     email=forms.EmailField(label="Email", widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': '', 'id' : 'email'}), max_length=64)
-    about = forms.CharField(label="Інформація про себе", help_text="", widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '', 'id' : 'about'}))
+    about = forms.CharField(label="Інформація про себе", help_text="", widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '', 'id' : 'about'}), required = False)
     password1=forms.CharField(label="Пароль", widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': '','id' : 'pass'}))
     password2=forms.CharField(label="Пароль ще раз", help_text="", widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': '','id' : 'pass'}))
 

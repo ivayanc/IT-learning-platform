@@ -17,7 +17,36 @@
 
 <form class="login_form_page" method="post">
   {% csrf_token %}
-  {{ form.as_p }}
-  <button id="login_submit" type="submit">Зареєструватися</button>
-</form>
+  <div class="isa_error">
+  {% for field in form %}
+    {% for error in field.errors %}
+      <i class="fa fa-times-circle"></i>
+      {% if error == "The password is too similar to the username." %}
+        Пароль занадто схожий на ім’я користувача.
+      {% endif %}
+      {% if error == "This password is too short. It must contain at least 8 characters." %}
+        Цей пароль занадто короткий. Він повинен містити не менше 8 символів.
+      {% endif %}
+      {% if error == "This password is too common." %}
+        Цей пароль занадто поширений.
+      {% endif %}
+      {% if error == "A user with that username already exists." %}
+        Користувач із таким ім'ям вже існує.
+      {% endif %}
+      <br/>
+    {% endfor %}
+  {% endfor %}
+  </div>
+  {% for field in form %}
+  <div class="field-wrapper">
+  <div class="label-wrapper">
+    {{ field.label }}:
+  </div>
+  <div class="value-wrapper">
+    {{ field }}
+  </div>
+  </div>
+  {% endfor %}
+    <button id="login_submit" type="submit">Зареєструватися</button>
+  </form>
 {% endblock %}
