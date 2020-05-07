@@ -7,7 +7,7 @@ from django.views.generic import (
         UpdateView,
         DeleteView
 )
-from .models import Post
+from .models import Post, PostHashTag, HashTag
 from olympiad_system.models import Olympiad
 from .forms import PostCreateForm
 from django.shortcuts import render, redirect
@@ -43,6 +43,15 @@ class SinglePostView(DetailView):
         if len(self.get_object().favorite.filter(id = self.request.user.pk)):
             context['is_favorite'] = True
 
+        context['hash_tags'] = set()
+        hash_tags = PostHashTag.objects.all().filter(post = self.kwargs.get("id"))
+        for hash_tag in hash_tags:
+            parent = hash_tag.tag.tag_parent
+            while(parent != None):
+                context['hash_tags'].add(parent)
+                parent = parent.tag_parent
+            context['hash_tags'].add(hash_tag.tag)
+        print(context['hash_tags'])
         return context
     
 class PostCreateView(CreateView):
@@ -96,9 +105,38 @@ class PostView(ListView):
         context = super().get_context_data(**kwargs)
         context['category_name'] = "Статті"
         context['category_description'] = "Тут ви можете знайти стрічку всіх статей на сайті"
-        context['category_tags'] = ""
+        context['category_tags'] = []
         context['category_photo'] = "/static/images/banner/banner-4.jpg"
         context['category_link'] = "/posts/"
+        hash_tags = HashTag.objects.all().filter(tag_main=True)
+        for hash_tag in hash_tags:
+            context['category_tags'].append(hash_tag)
+        return context
+
+class PostViewTag(ListView):
+    def get_queryset(self):
+        query = PostHashTag.objects.filter(tag__tag_name=self.kwargs.get("tag"))
+        posts = []
+        for post in query:
+            posts.append(post.post.id)
+        print(posts)
+        return Post.objects.filter(id__in = posts)
+
+    model = Post
+    paginate_by = 9
+    context_object_name = 'posts'
+    template_name = 'materials_system/postsTag.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category_name'] = self.kwargs.get("tag")
+        context['category_description'] = ""
+        context['category_tags'] = []
+        context['category_photo'] = "/static/images/banner/banner-4.jpg"
+        context['category_link'] = "/poststag/" + self.kwargs.get("tag")
+        hash_tags = HashTag.objects.all().filter(tag_parent__tag_name=self.kwargs.get("tag"))
+        for hash_tag in hash_tags:
+            context['category_tags'].append(hash_tag)
         return context
 
 class ItPostView(PostView):  

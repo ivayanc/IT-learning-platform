@@ -36,14 +36,22 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse("post-details", kwargs={"id": self.pk})
+    def __str__(self):
+        return self.title
 
 
 
 class HashTag(models.Model):
     tag_name = models.CharField(max_length=50)
+    tag_parent = models.ForeignKey('self', on_delete = models.CASCADE, blank = True, null = True)
+    tag_main = models.BooleanField(blank=False, default=False)
+    def __str__(self):
+        return self.tag_name
 
 class PostHashTag(models.Model):
     post = models.ForeignKey(Post,on_delete=models.CASCADE)
     tag = models.ForeignKey(HashTag,on_delete=models.CASCADE)
+    def __str__(self):
+        return self.tag.tag_name
 
 

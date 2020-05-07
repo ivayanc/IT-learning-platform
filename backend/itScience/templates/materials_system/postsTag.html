@@ -15,10 +15,9 @@
           </ul>
           <p class="text-lighten">{{category_description}}</p>
 
-          {% for hash_tag in category_tags%}
-            <a href = "/poststag/{{hash_tag}}"><button type="submit" class="tag-item nuxt-link-active">#{{ hash_tag }}</button></a>
-          {% endfor %}
-  
+        {% for hash_tag in category_tags%}
+          <a href = "/poststag/{{hash_tag}}"><button type="submit" class="tag-item nuxt-link-active">#{{ hash_tag }}</button></a>
+        {% endfor %}
   
         </div>
   

@@ -28,13 +28,9 @@
           <li class="list-inline-item text-white h3 font-secondary nasted">{{object.title}}</li>
         </ul>
         <p class="text-lighten">{{object.description}}</p>
-        <!-- <form action="about.html">
-            <button type="submit" class="tag-item nuxt-link-active">#scratch</button>
-            <button type="submit" class="tag-item nuxt-link-active">#word</button>
-            <button type="submit" class="tag-item nuxt-link-active">#веб-технології</button>
-            <button type="submit" class="tag-item nuxt-link-active">#графіка</button>
-            <button type="submit" class="tag-item nuxt-link-active">#windows</button>
-            </form> -->
+        {% for hash_tag in hash_tags%}
+          <a href = "/poststag/{{hash_tag}}"><button type="submit" class="tag-item nuxt-link-active">#{{ hash_tag }}</button></a>
+        {% endfor %}
       </div>
     </div>
   </div>
