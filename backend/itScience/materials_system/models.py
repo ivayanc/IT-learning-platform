@@ -53,5 +53,7 @@ class PostHashTag(models.Model):
     tag = models.ForeignKey(HashTag,on_delete=models.CASCADE)
     def __str__(self):
         return self.tag.tag_name
+    class Meta:
+        unique_together = ("post", "tag")
 
 
