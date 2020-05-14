@@ -1248,6 +1248,31 @@ span.selectArrow,span.selected {
   cursor: pointer;
 }
 
+.add_post{
+  margin-top: 12%;
+  margin-left: 3%;
+  margin-right: 3%;
+  text-align: center;
+}
+
+#addPostSubmit{
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #fd7e14;
+  border: 0;
+  width: 40%;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+  margin-left: 25%;
+  margin-right: 25%;
+  margin-bottom: 0.5%;
+}
+
 div.selectOptions {
   position:absolute;
   top:28px;
