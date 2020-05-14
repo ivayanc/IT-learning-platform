@@ -18,7 +18,7 @@ class IndexView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['latest_posts'] = Post.objects.all().order_by('-published')[:6]
-        context['latest_news'] = Post.objects.all().filter(category=Post.OTHER).order_by('-published')[:3]
+        #context['latest_news'] = Post.objects.all().filter(category=Post.OTHER).order_by('-published')[:3]
         context['olympiads'] = Olympiad.objects.all().filter(olymp_type=Olympiad.PUBLIC,is_ended=False).order_by('start_time')[:3]
         
         return context
@@ -38,7 +38,7 @@ class SinglePostView(DetailView):
     def get_context_data(self, **kwargs):
                 
         context = super().get_context_data(**kwargs)
-        context['latest_posts'] = Post.objects.all().filter(category=context['object'].category)[:3]
+        #context['latest_posts'] = Post.objects.all().filter(category=context['object'].category)[:3]
         context['is_favorite'] = False
         if len(self.get_object().favorite.filter(id = self.request.user.pk)):
             context['is_favorite'] = True

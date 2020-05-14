@@ -1,39 +1,15 @@
 {% extends '../base.html' %}
 
-
 {% block title %}Створення статті{% endblock %}
 
 {% block content %}
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+<script>tinymce.init({selector:'textarea', language: 'uk'});</script>
 
-<style>
-  .django-form {
-    margin-left: 100px ;
-  }
-</style>
 <form class="post-create-form add_post" action="." method="POST" enctype="multipart/form-data">
   {%csrf_token%}
   {{form.as_p}}
-  <input type="submit" name="save" value="Зберегти">
+  <button type="submit" id="addPostSubmit" name="save">Зберегти</button>
 </form>
 
 {% endblock %}
