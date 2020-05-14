@@ -1248,31 +1248,6 @@ span.selectArrow,span.selected {
   cursor: pointer;
 }
 
-.add_post{
-  margin-top: 12%;
-  margin-left: 3%;
-  margin-right: 3%;
-  text-align: center;
-}
-
-#addPostSubmit{
-  font-family: "Roboto", sans-serif;
-  text-transform: uppercase;
-  outline: 0;
-  background: #fd7e14;
-  border: 0;
-  width: 40%;
-  padding: 15px;
-  color: #FFFFFF;
-  font-size: 14px;
-  -webkit-transition: all 0.3 ease;
-  transition: all 0.3 ease;
-  cursor: pointer;
-  margin-left: 25%;
-  margin-right: 25%;
-  margin-bottom: 0.5%;
-}
-
 div.selectOptions {
   position:absolute;
   top:28px;
@@ -1298,6 +1273,8 @@ span.selectOption:hover {
   color:#f6f6f6;
   background:#4096ee;	
 }
+
+
 #timer{color:#F6F4F3;text-align:center;text-transform:uppercase;font-family:"Lato",sans-serif;font-size:.7em;letter-spacing:5px;margin-top:25%}
 .days,.hours,.minutes,.seconds{display:inline-block;padding:20px;width:100px;border-radius:5px}
 .days{background:#EF2F3C}

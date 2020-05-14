@@ -42,8 +42,9 @@
         {% load static %}
         <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
 
-        <script src="https://cdn.tiny.cloud/1/49e0rohekk359g2h8vzt2eua9tcbzmikokf2uwwp7bwge1u4/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-        
+        {% load static %}
+        <script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+        <script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
       
       </head>
       
