@@ -1,4 +1,5 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect, render_to_response
+from django.http import HttpResponse, StreamingHttpResponse, FileResponse
 from django.views.generic import (
         TemplateView,
         ListView, 
@@ -11,6 +12,7 @@ from .models import Post, PostHashTag, HashTag
 from olympiad_system.models import Olympiad
 from .forms import PostCreateForm
 from django.shortcuts import render, redirect
+
 
 class IndexView(TemplateView):
     template_name = 'materials_system/index.html'
@@ -58,7 +60,7 @@ class PostCreateView(CreateView):
     template_name = 'materials_system/post_create.html'
     form_class = PostCreateForm
     queryset = Post.objects.all()
-
+    
     def form_valid(self, form):
         return super().form_valid(form)
 

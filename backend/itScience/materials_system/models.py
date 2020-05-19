@@ -10,7 +10,7 @@ class Post(models.Model):
 
     time_to_read     = models.CharField(max_length=20,verbose_name="Прочитаєте за")
     moderator        = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,verbose_name="Автор")
-    title            = models.CharField(max_length=255,blank=True,verbose_name="Заголовок")
+    title            = models.CharField(max_length=255,blank=True,verbose_name="Заголовок", unique=True)
     views            = models.IntegerField(default=0,verbose_name="Кількість переглядів")
     description      = models.CharField(max_length=500,blank=True, verbose_name="Короткий опис")
     published        = models.DateTimeField(auto_now=True,blank=True,verbose_name="Дата публікації")
@@ -18,6 +18,7 @@ class Post(models.Model):
     publication      = RichTextUploadingField(verbose_name="Текст публікації")
     favorite         = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="Обрані", blank=True)
     likes            = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="Лайки", blank=True)   
+
 
     def get_absolute_url(self):
         return reverse("post-details", kwargs={"id": self.pk})

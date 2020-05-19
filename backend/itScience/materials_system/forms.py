@@ -1,20 +1,30 @@
 from django import forms
+from django.conf import settings
+from .models import SystemUser
 
 from .models import Post
 
-from tinymce.widgets import TinyMCE
+from ckeditor.widgets import CKEditorWidget
 
 class PostCreateForm(forms.ModelForm):
 
+    time_to_read = forms.CharField(label = "Прочитаєте за", max_length = 250)
+    moderator = forms.ModelChoiceField(queryset = SystemUser.objects, label = "Автор")
+    title = forms.CharField(label = "Заголовок", max_length = 255)
+    description = forms.CharField(label = "Короткий опис", max_length = 150)
+    title_image = forms.ImageField(label = "Головне зображення")
+    publication = forms.CharField(label = "Текст публікації", widget=CKEditorWidget())
+    test = forms.CharField(label = "Test", max_length=150)
+    
     class Meta:
         model = Post
-        fields = [
+        fields = (
             'time_to_read',
             'moderator',
             'title',
             'description',
             'title_image',
             'publication',   
-        ]
+        )
 
 

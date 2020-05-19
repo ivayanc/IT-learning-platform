@@ -16,6 +16,13 @@
 <form class="post-create-form add_post" action="." method="POST" enctype="multipart/form-data">
   {%csrf_token%}
   {% for field in form %}
+    {% for error in field.errors %}
+      <i class="fa fa-times-circle"></i>
+      {{ error }}
+      <br/>
+    {% endfor %}
+  {% endfor %}
+  {% for field in form %}
   <div class="field-wrapper">
   <div class="form-group">
     <label>{{ field.label }}</label>
