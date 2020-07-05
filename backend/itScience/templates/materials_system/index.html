@@ -1,0 +1,219 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Інформатика{% endblock %}
+
+{% block content %}
+
+{%load static%}
+
+<!-- hero slider -->
+<section class="hero-section overlay bg-cover" data-background="{% static 'images/banner/banner-3.jpg'%}">
+  <div class="container">
+    <div class="hero-slider">
+      <!-- slider item -->
+      <div class="hero-slider-item">
+        <div class="row">
+          <div class="col-md-8">
+            <h2 class="text-white" data-animation-out="fadeOutRight" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInLeft" data-delay-in=".1">Програмування</h2>
+            <p class="text-muted mb-4" data-animation-out="fadeOutRight" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInLeft" data-delay-in=".4">Збірка статей з шкільного курсу 5-11 класів з програмування.</p>
+              <div class="articles-section__cover-tags">
+                <!-- <form action="about.html">
+                  <button type="submit" class="tag-item nuxt-link-active">#6клас</button>
+                  <button type="submit" class="tag-item nuxt-link-active">#7клас</button>
+                  <button type="submit" class="tag-item nuxt-link-active">#8клас</button>
+                  <button type="submit" class="tag-item nuxt-link-active">#9клас</button>
+                  <button type="submit" class="tag-item nuxt-link-active">#10-11клас</button>
+                  </form> -->
+
+              </div>
+
+            <a href="{% url 'programming'%}" class="btn btn-primary" data-animation-out="fadeOutRight" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInLeft" data-delay-in=".7">Детальніше</a>
+          </div>
+        </div>
+      </div>
+      <!-- slider item -->
+      <div class="hero-slider-item">
+        <div class="row">
+          <div class="col-md-8">
+            <h2 class="text-white" data-animation-out="fadeOutUp" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInDown" data-delay-in=".1">Шкільна інформатика</h2>
+            <p class="text-muted mb-4" data-animation-out="fadeOutUp" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInDown" data-delay-in=".4">На цій сторінці зібрано найпопулярніші матеріали для підготовки до олімпіади з інформатики,а також опрацьовано матеріали з шкільного курсу інформатики.</p>
+              <div class="articles-section__cover-tags">
+                <!-- <form action="about.html">
+                  <button type="submit" class="tag-item nuxt-link-active">#6клас</button>
+                  <button type="submit" class="tag-item nuxt-link-active">#7клас</button>
+                  <button type="submit" class="tag-item nuxt-link-active">#8клас</button>
+                  <button type="submit" class="tag-item nuxt-link-active">#9-10клас</button>
+                  <button type="submit" class="tag-item nuxt-link-active">#11клас</button>
+                  </form> -->
+
+              </div>
+              <a href="{% url 'school'%}" class="btn btn-primary" data-animation-out="fadeOutRight" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInLeft" data-delay-in=".7">Детальніше</a>
+            </div>
+        </div>
+      </div>
+      <!-- slider item -->
+      <div class="hero-slider-item">
+        <div class="row">
+          <div class="col-md-8">
+            <h2 class="text-white" data-animation-out="fadeOutDown" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">Інформаційні технології</h2>
+            <p class="text-muted mb-4" data-animation-out="fadeOutDown" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".4">На цій сторінці зібрано найпопулярніші матеріали для підготовки до олімпіади з інформатики,а також опрацьовано матеріали з шкільного курсу інформатики.</p>
+  
+              <div class="articles-section__cover-tags">
+                <!-- <form action="about.html">
+                  <button type="submit" class="tag-item nuxt-link-active">#6клас</button>
+                  <button type="submit" class="tag-item nuxt-link-active">#7клас</button>
+                  <button type="submit" class="tag-item nuxt-link-active">#8клас</button>
+                  <button type="submit" class="tag-item nuxt-link-active">#9-10клас</button>
+                  <button type="submit" class="tag-item nuxt-link-active">#11клас</button>
+                  </form> -->
+
+              </div>
+              <a href="{% url 'it'%}" class="btn btn-primary" data-animation-out="fadeOutRight" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInLeft" data-delay-in=".7">Детальніше</a>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /hero slider -->
+
+<!-- courses -->
+<section class="section-sm">
+  <div class="container">
+      <div class="row">
+          <div class="col-12">
+            <div class="d-flex align-items-center section-title justify-content-between">
+              <h2 class="mb-0 text-nowrap mr-3">Останні статті</h2>
+              <div class="border-top w-100 border-primary d-none d-sm-block"></div>
+              <div>
+                <a href="{%url 'posts'%}" class="btn btn-sm btn-primary-outline ml-sm-3 d-none d-sm-block">Стрічка</a>
+              </div>
+            </div>
+          </div>
+        </div>
+    <!-- course list -->
+    <div class="row justify-content-center">
+    {% for post in latest_posts %}
+    
+      <!-- course item -->
+      <div class="col-lg-4 col-sm-6 mb-5">
+        <div class="card p-0 border-primary rounded-0 hover-shadow">
+          <img class="card-img-top rounded-0" src="{{ post.title_image.url }}" alt="{{post.title}}">
+          <div class="card-body">
+            <ul class="list-inline mb-2">
+              <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>{{post.published}}</li>
+              <li class="list-inline-item"><a class="text-color" href="#">{{post.moderator}}</a></li>
+            </ul>
+            <a href="{%url 'post-details' id=post.pk%}">
+              <h4 class="card-title">{{post.title}}</h4>
+            </a>
+            <p class="card-text mb-4">{{post.description}}</p>
+            <a href="{%url 'post-details' id=post.pk%}" class="btn btn-primary btn-sm">Детальніше</a>
+          </div>
+        </div>
+      </div>
+      {%endfor%}
+    </div>
+<!-- /course list -->
+    <!-- mobile see all button -->
+    <div class="row">
+      <div class="col-12 text-center">
+                <a href="{%url 'posts'%}" class="btn btn-sm btn-primary-outline d-sm-none d-inline-block">Стрічка</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- events -->
+<section class="section bg-gray">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="d-flex align-items-center section-title justify-content-between">
+          <h2 class="mb-0 text-nowrap mr-3">Відкриті олімпіади</h2>
+          <div class="border-top w-100 border-primary d-none d-sm-block"></div>
+          <div>
+            <a href="{%url 'olympiad_system'%}" class="btn btn-sm btn-primary-outline ml-sm-3 d-none d-sm-block">Переглянути всі</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% if olympiads|length > 0 %}
+    <div class="row justify-content-center">
+        {%for olymp in olympiads%}
+        <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
+          <div class="card border-0 rounded-0 hover-shadow">
+            <div class="card-img position-relative">
+              <img class="card-img-top rounded-0" src="images/events/event-2.jpg" alt="event thumb">
+              <div class="card-date">{{olymp.start_time}}</div>
+            </div>
+            <div class="card-body">
+              <!-- location -->
+              <p><i class="ti-location-pin text-primary mr-2"></i>{{olymp.description}}</p>
+              <a href="{%url 'olympiad' id=olymp.pk%}"><h4 class="card-title">{{olymp.title}} </h4></a>
+            </div>
+          </div>
+        </div>
+        {%endfor%}
+        <!-- mobile see all button -->
+        <div class="row">
+          <div class="col-12 text-center">
+            <a href="{%url 'olympiad_system'%}" class="btn btn-sm btn-primary-outline d-sm-none d-inline-block">Переглянути всі</a>
+          </div>
+        </div>
+      </div>
+        
+      </div>
+
+    {%endif%}
+    
+    
+</section>
+<!-- /events -->
+
+<!-- blog -->
+<section class="section pt-0">
+  <div class="container">
+      <div class="row">
+          <div class="col-12">
+            <div class="d-flex align-items-center section-title justify-content-between">
+              <h2 class="mb-0 text-nowrap mr-3">Останні новини</h2>
+              <div class="border-top w-100 border-primary d-none d-sm-block"></div>
+              <div>
+                <a href="{%url 'news'%}" class="btn btn-sm btn-primary-outline ml-sm-3 d-none d-sm-block">преглянути всі</a>
+              </div>
+            </div>
+          </div>
+        </div>
+    <div class="row justify-content-center">
+  <!-- blog post -->
+  {% for post in latest_news %}
+    
+      <!-- course item -->
+      <div class="col-lg-4 col-sm-6 mb-5">
+        <div class="card p-0 border-primary rounded-0 hover-shadow">
+          <img class="card-img-top rounded-0" src="{{ post.title_image.url }}" alt="{{post.title}}">
+          <div class="card-body">
+            <ul class="list-inline mb-2">
+              <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>{{post.published}}</li>
+              <li class="list-inline-item"><a class="text-color" href="#">{{post.moderator}}</a></li>
+            </ul>
+            <a href="{%url 'post-details' id=post.pk%}">
+              <h4 class="card-title">{{post.title}}</h4>
+            </a>
+            <p class="card-text mb-4">{{post.description}}</p>
+            <a href="{%url 'post-details' id=post.pk%}" class="btn btn-primary btn-sm">Детальніше</a>
+          </div>
+        </div>
+      </div>
+      {%endfor%}
+</div>
+  </div>
+</section>
+<!-- /blog -->
+
+
+
+{% endblock %}

@@ -1,0 +1,1208 @@
+Utt;;Intent 9
+;;Finance-Monitoring
+финмон;;Finance-Monitoring
+финмон;;Finance-Monitoring
+стаття на порталі з фінансового моніторингу;;Finance-Monitoring
+статья на портале по финмону;;Finance-Monitoring
+публичные лица;;PublicPerson
+новости о просроченной идентификации;;Identification-Expired
+раскрытие структуры;;Structures-Reveal
+конечный бенефициар;;Beneficiaries-End
+задачи сети по идентификации;;Identification-Network-Task
+пеп;;PEP
+ошибки пэп новость на портале;;PEP
+задача сети по ошибкам ПЕП;;PEP
+мотивация по пеп;;PEP
+риск-триггеры;;Risk-Trigger
+комплаенс-офицер;;Oficer.Compleance
+ящик ЦЕО-ЭФЭМп;;Cio_FM-Box
+Перловская Юлия Павловна;;Manager.Indicator
+ Филоненко Олеся;;Manager.Indicator
+Федчик Виктория;;Manager.Indicator
+довідка про закриття рахунку;;Account-Close_Account-Statement
+закрытие счета по карточным продуктам;;Account-Close_Account
+закриття рахунку;;Account-Close_Account
+зачисления на счет;;Account-Transfer
+зачисление на карточный счет юрлица;;Card-Activity
+зарахування коштів на картковий рахунок ;;Card-Activity
+зачисление денежных средств на карточный счет;;Card-Activity
+зачисление средств на счет;;Account-Transfer
+перечисление на счет;;Account-Transfer
+выдача с валютного счета;;CurrencyAccount-Withdraw
+поповнення рахунку;;Account-Refill
+снятие счета со статуса замороженный;;Account-UnFreeze
+постановление счета на учет в налоговую;;Account-DPA-Registration
+перевод через май альфа банк;;MyAlfaBank-Transfer
+переказ через май альфа банк;;MyAlfaBank-Transfer
+перевод через май альфа банк с карты на карту;;Card-Payment-Miscellaneous
+переказ з картки на картку через май альфа банк;;Card-Payment-Miscellaneous
+перевод с карты на карту через май альфа банк;;Card-Payment-Miscellaneous
+переказ через май альфа банк з картки на картку;;Card-Payment-Miscellaneous
+альфапей;;Alfapay
+альфапей не працює ;;Alfapay
+ альфапей не работает;;Alfapay
+обработка обращений;;Application
+обращение клиента по перечислению денег;;Client-Ask-FundsTransfer
+обработка обращений на снятие наличных;;Cash-Withdraw-Application
+курс снятия в банкомате;;ATM-Exchange-Rate
+неуспешная операция в банкомате;;ATM-Operation-Unsuccessful
+карта изьята банкоматом;;ATM-Withdraw-Card
+банкомат не увидел карти;;ATM-Card-Problem
+карта осталась в банкомате;;ATM-Withdraw-Card
+баланс сегодня;;Balance-Inquiry-Today
+сегодня деньги будут зачислины;;Account-Transfer
+реестр рсз;;RSZ-Register
+отдел операций с пластиковыми картами;;Card-Operations-Department
+оформление операций по карте;;Card-Operations
+оформление операций с платежными картами;;PayCard-Operation-Issue
+снять деньги по закрытому карточному счету;;Card-Closed_Account-Withdraw
+зачисление на карточный счет;;Account-Transfer
+снятие денежных средств с карточного счета;;Card-Miscellaneous
+перевод средств с карточного счета ;;Account-Transfer
+ перевод денежных средств с карточного счета;;Account-Transfer
+карточный счет не активен;;Card_Account-notActive
+нас интересует снятие наличных с карточки;;Card-Miscellaneous
+зняти готівку з карти;;Card-Miscellaneous
+снятие наличных с карты;;Card-Miscellaneous
+снятие с карточки;;Card-Miscellaneous
+снятие средств без карты;;Card-Miscellaneous
+активация карты;;Card-Activate
+закрытие карты;;Card-Close_Account
+обращение клиента по закрытию карты перечисление денег;;Card-Close_Account-TransferFunds
+зачисления на карту;;Card-Activity
+зарахуванні коштів на карту;;Card-Activity
+зачисление средств на карту;;Card-Activity
+заказать курьера для перемещения карты;;Card-Order_Delivery
+спорные зачисления по карте;;Card-Activity-Dispute
+спорные зачисления денег по карте;;Card-Activity-Dispute
+удаление документа по карточным продуктам;;Card-Delete_Document
+перечисления с карты;;Card-Activity
+зачисление на карту по фонду возмещение;;Card-Reverse_Refund_Transaction
+чи буде картка вже в понеділок;;Card-When-WillBe
+перечисление денег на карту;;Card-Activity
+перевод денег с карты ;;Card-Activity
+ перевод денежных средств с карты;;Card-Activity
+переказ коштів з корпоративної карти;;Card-Activity
+переміщення карти;;Card-Logistic
+карткові операції;;Card-Activity
+неуспешная операция по карте;;Card-Problem-Operation
+заказ карт;;Card-New_Card
+проблема з зарахуванням на карты;;Card-Problem
+логистика по карточным продуктам;;Card-Logistic
+до сих пор не получил карты;;Card-Shipping_Status
+пополнение карты;;Card-Activity
+выпуск карт для нерезидентов;;Nonresident-Card-Open_Account
+карта моряка;;Sailor-Card
+куди відправили перевипущену карту;;Card-Reissue-Location
+тариф по карте;;Card-Tariff
+чи буде картка сьогодні;;Card-When-WillBe
+передача карты;;Card-Transfer
+разблокировка дебетної карти;;DebitCard-Unblock
+разблокировка бізнес карти;;BusinessCard-Block-Unblock
+неуспешная операция разблокировка карт;;Card-Blocked
+бизнескарта;;BusinessCard
+вопросы по бизнескарте;;BusinessCard-Information
+бізнескарточка неуспішна авторизація;;BusinessCard-Authorise-Problem
+баланс бизнескарты;;BusinessCard-Balance-Inquiry
+баланс выпуск бизнескарты;;BusinessCard-Balance-Inquiry
+бизнескарточка установлен лимит;;BusinessCard-Limit
+списание баланс по бизнескарте;;Business.Card.Remove.Balance
+підключення на выпуск бизнескарты;;BusinessCard-Issue
+выпуск бизнескарты;;BusinessCard-Issue
+бізнескарточка підняття ліміту;;BusinessCard-Change_Limit
+неуспішні операції по бізнескарті;;BusinessCard-Problem
+перевыпуск бізнескарти;;BusinessCard-Issue
+корпоративні карти;;CorporateCard
+зачисление на корпоративную карту;;Card-Activity
+зачисления на корпоративную карту;;Card-Activity
+корпоративная карта юр лица;;LegalPerson-CorporateCard
+меня интересует информация по корпоративным картам;;CorporateCard-Information
+корпоративная карта увеличение лимита;;CorporateCard-Change_Limit
+увеличение лимита по корпоративной карте;;CorporateCard-Change_Limit
+кредитні карти;;Card
+закриття кредитної картки;;Card-Close_Account
+випуск іменної кредитної картки;;Card-Open_Account-Name
+уточнить условия оформления кредитных карт;;Card-Open_Account-Condition
+зачисление на кредитную карту;;Card-Activity
+отделение консьерж по кредитной карте;;CreditCard-Consierge
+до какой сумма можно снизить кредитный лимит на кредитной карте;;Credit_Limit-Change_Limit-Decrease
+распределение средств по кредитной карте;;Card-Credit-Distribution_Funds
+перевыпуск кредитной карты;;CreditCard-Reissue
+перевод средств с карты на валютный депозит;;Card-Payment
+пополнение валютной карты;;Card-Activity
+закрытие счета дебетовая карта;;DebitCard-Close_Account
+активація дебетної карти;;DebitCard-Acticate
+выпуск дополнительной дебетной карты;;DebitCard-Extra
+дебетовая карта не получается снять наличные;;DebitCard-Cash-Withdraw_Trouble
+дебетовая карта перевод средств;;Card-Activity
+ перевод денежных средств по дебетовой карте;;Card-Activity
+проблема при виплаті дебетная карта;;Card-Problem
+дебетная карта перевыпустить;;DebitCard-Reissue
+перевыпуск дебетовых карт;;DebitCard-Reissue
+меня интересует перемещение карты с отделения на отделение через курьера;;Card-Order_Delivery
+доставка карты в отделении;;Card-Order_Delivery
+доставка карт на отделение;;Card-Order_Delivery
+логистика карт;;Card-Logistic
+отдел операций с платежными картами;;Card-Operations-Department
+логистика платежных карт;;Card-Logistic
+зняття з платіжних карт;;PayCard-Withdraw
+закрытие счета зарплатной карты;;SalaryCard-Close_Account
+активация зарплатной карты;;SalaryCard-Activate
+закрытие зарплатной карты;;SalaryCard-Close_Account
+интересует выпуск зарплатных карт ;;SalaryCard-Open_Account
+ зарплатная карта оформлення;;SalaryCard-Open_Account
+снятие с зарплатной карты денег;;Card-Miscellaneous
+нас интересует снятие денежных средств без карты зарплатной карточки;;SalaryCard-Miscellaneous
+некорректная зарплатная ведомость;;Wrong-Salary-Roll
+перевыпуск зарплатной карты;;SalaryCard-Reissue
+тарифы по зарплатным картам;;SalaryCard-Tariff
+отдел пластиковых карт;;Card-Operations-Department
+отдел пластиковых карточек;;Card-Operations-Department
+отдел по пластиковым карточкам;;Card-Operations-Department
+отдел логистики пластиковых карт;;Card-Operations-Department
+отдел персонализации и логистики пластиковых карт;;Card-Operations-Department
+операционный отдел пластиковых карт;;Card-Operations-Department
+отдел персонализации пластиковых карт;;Card-Operations-Department
+отдел поддержки пластиковых карт;;Card-Operations-Department
+отдел сопровождения пластиковых карт;;Card-Operations-Department
+инвентаризация пластиковых карт;;Card-Inventorisation
+логістика пластикових карт;;Card-Logistic
+снятие денег с пластиковой карты;;Card-Miscellaneous
+перевыпуск карты;;Card-Renew
+де знаходиться карта перевипущена ;;Card-Reissue-Location
+ перевипущена карта куди відправляли;;Card-Reissue-Location
+коли перевипустили карту;;Card-Reissue-When
+выдача с карты через заявление через кассу;;Card-Withdraw_Application
+заявка выдача с карты;;Card-Withdraw_Application
+операции с платежными картами;;PayCard-Operation
+неуспішна операція по кредитній карті;;CreditCard-Problem-Operation
+зміна ліміту для проведення операції по карті;;Card-Change_Limit
+платинум блек;;PlatinumBlack-Card
+платинум блек оформлення ;;PlatinumBlack-Card-Open_Account
+ платинум блек оформлення;;PlatinumBlack-Card-Open_Account
+платинум блек обслуговування поточного продукту;;PlatinumBlack-Card-Service
+дебетная карта;;Card
+дебетная карта оформлення ;;DebitCard-Open_Account
+ дебетна картка оформлення;;DebitCard-Open_Account
+дебетная карта обслуговування поточного продукту;;DebitCard-Service
+зарплатная карта;;SalaryCard
+зарплатная карта обслуговування поточного продукту;;SalaryCard-Service
+вопрос по карте;;Card-Inquiry
+списання комісії по дебетових картках;;Card-Fees-Remove
+відключення страховки по карті;;Insurance-Cancel
+снятие карт с карты;;Card-Miscellaneous
+снятие с зарплатной карты без карты;;Card-Miscellaneous
+снятие с карты без карты;;Card-Miscellaneous
+выдача с карты без карты для клиента зарплатного проекта;;Salary-Projects-Withdraw
+рішення кредитного комітету;;CreditCommittee-Decision
+консьерж сервис;;Concierge-Service
+зарахуванні коштів;;FundsTransaction
+зачисление средств;;FundsTransaction
+зачислить деньги;;FundsTransaction
+розрахунок заборгованості;;Debt-Pay
+отдел логистики;;Logistics
+отдел координации;;Coordination-Department
+цікавить звернення щодо реструктуризації;;Restructuration-Ask
+отдел координации довідка для страхової;;Coordination-Department-Statment-Inquiry
+отдел поддержки карточных продуктов;;CardProducts-Department
+отдел опэкапэ;;CardProducts-Department
+отдел опэкапэ списання комісії по кредитній карті;;CreditCard-Fees-Remove
+отдел опэкапэ закриття карти;;CardProducts-Department-Close_Account
+отдел поддержки розничной сети;;Retail-Network-Support-Department
+отдел поддержки розничной сети реструктуризації;;Restructurisation-Network-Department
+отдел поддержки и координации региональной сети;;Regional-Network-Support-Department
+отдел сопровождения и координации сети;;Network-Support-Department
+отдел поддержки и координации региональной сети реструктуризації;;Restructurisation-Network-Department
+списання комісії по кредитній карті;;CreditCard-Fees-Remove
+отдел поддержки карточных продуктов цікавить закриття карти;;CardProducts-Department-Close_Account
+кредитный отдел;;Loan-Department
+отдел кредитования;;Loan-Department
+сопровождение координации региональной сети;;Network-Support
+оформлення нового кредиту;;Loan-Application
+обслуговування існуючого кредиту;;Loan-Service
+комиссия по кредиту;;Loan-Fees
+переплата по кредиту;;Loan-OverPay
+переплата по кредиту;;Loan-OverPay
+видача піл;;Pil-Issue
+согласование индивидуальных условий юридических лиц;;LegalPerson-Individual-Conditions
+установка лимита, встановленя ліміту;;Access_Limit-Change_Limit
+май альфа банку;;MyAlphaBank
+платежи май альфа банку;;MyAlphaBank-Transactions
+копирование заявки по кредитной карте;;CreditCard-Application-Copy
+выписка по кредиту;;Loan-Statement
+переказ для фізичної особи;;NaturalPerson-FundsTransfer
+кредитные каникулы;;Credit-Holidays
+отдел поддержки;;Support-Department
+нее связаться с отделом;;Department-Contact
+депозиты;;Deposits
+депозиты оформлення;;Deposits-Issue
+депозиты обслуговування поточного продукту;;Deposits-Service
+реклама по депозитам;;Deposits-Advertisement
+розірвання депозиту;;Deposits-Break
+депозит открыли а деньги перебросится не смогли;;Deposits-FundsTransfer-Trouble
+ставки по депозиту ;;Deposits-Interest
+ ставки за депозитом;;Deposits-Interest
+поповнення депозиту;;Deposits-Refill
+возврат депозита;;Deposits-Return
+электронная очередь ;;Digital-Queue
+ електронна черга;;Digital-Queue
+удаление документа;;Paperwork-Delete
+меня интересует согласование и удаление документа из би два;;BTwo.Document.Delete
+оформлення документів по завантаженню і розвантаженню банкоматів;;ATM-Paperwork-Issue
+перевод в долларах сша;;USD-FundsTransfer
+зняття готівки;;Cash-Withdraw
+снятие доллара;;USD-Withdraw
+снятие денег ;;Cash-Withdraw
+ снятие средств;;Cash-Withdraw
+выплати по фидо банку;;FidoBank-Payment
+фонд гарантирования;;Guarantee-Foundation
+выплата по фонду;;Foundation-Payment
+транш по фонду;;Foundation-Transation
+відключення страховки;;Insurance-Cancel
+справка для страховой;;Insurance-Statement
+процедура повернення страхової суми;;Insurance-Refund
+инвентаризация;;Inventory
+как в искарде удалить договор;;Iscard-Agreement-Delete
+зміна ліміту;;Card-Change_Limit
+підняття ліміту;;Card-Change_Limit-Increase
+підняття ліміту по карті;;Card-Change_Limit-Increase
+зниження ліміту;;Card-Change_Limit_Decrease
+обработка пенсионных списков;;Pension
+кредит;;Loan
+пил кредит;;Loan-PIL
+проблеми з видачею кредитних коштів клієнту ;;Loan-Funds-Issue-Problem
+ проблеми з видачею кредитних коштів клієнту;;Loan-Funds-Issue-Problem
+списання комісії по кредиту ;;Loan-Fee-PayOff
+списання комісії по кредиту;;Loan-Fee-PayOff
+кредит наличными;;Loan-Cash
+кредит наличными оформлення;;Loan-Application
+обслуговування кредиту ;;Loan-Service
+ обслуговування кредиту;;Loan-Service
+вопрос по кредитованию;;Loan-Inforamtion
+вопрос по кредитованию оформлення;;Loan-Inforamtion
+обслуговування поточного кредиту;;Loan-Service
+интересует информация по купленному кредитному портфелю;;Loan-Bought-Information
+возможно ли оформить кредит без страховки;;Loan-Application-noInsurance
+чи можливо оформити кредит без страховки;;Loan-Application-noInsurance
+кредитный лимит ;;Credit_Limit-Inquiry
+кредитний ліміт;;Credit_Limit-Inquiry
+увеличение кредитного лимита;;Credit_Limit-Change_Limit-Increase
+выплата кредита;;Loan-Payment
+отказ по кредиту ;;Loan-Application_Declined
+ відмова по кредиту;;Loan-Application_Declined
+деньги были зачислены;;Funds-Come
+баланс сегодня деньги были зачислены;;Balance-Inquiry-Today
+некорректне зарахування коштів;;Transactions-Problem
+обработка движении средств;;Transactions-List_Transactions
+не зараховуються кошти;;Transactions-Problem
+виписка по боргу ;;Debt-Inquiry
+ виписка по заборгованості;;Debt-Inquiry
+выписка для посольства;;Statement-Inquiry-Embassy
+справка по заработной плате для клиента;;Client-Payroll-Statment
+справка по зарплате для клиента;;Client-Payroll-Statment
+отдел ооопека;;OOOPK-Department
+цікавить списання залишку з рахунку клієнта;;Balance-Account-Remove
+спорные операции;;Operation-Disputed
+не зачислен платеж;;Transactions-Problem
+зарахування зарплати;;Salary-Transactions
+ведомость по зарплате;;Salary-Transactions
+зарахування пенсій;;Pension
+зміна номеру телефону;;Account-Change_Phone
+пополнение по доверенности;;Refill-by-Attorney
+поступление средств с компании зачисление денег по зарплате;;Salary-Transactions
+узнать пополнение;;Transactions-List_Transactions
+рефинансирование ;;Refinance
+ рефінансування;;Refinance
+снятие по сибелю по заявлению;;Sibel-Transactions-Inquiry
+снятие средств по заявлению;;Cash-Withdraw-Application
+снятие наличных в сибеле;;Sibel-Cash-Withdraw
+реструкторизація;;Restructure
+зарплатні проекти ;;Salary-Projects
+ зарплатный проект;;Salary-Projects
+закриття зарплатного проекту;;Salary-Projects
+код зарплатного проэкта;;Salary-Projects
+меня интересует поговорить с сотрудником по зарплатному проекту по сопровождению;;Salary-Projects
+выпуск доп карты обращение в сибель;;Sibel-Card-Open_Account
+оформление операций с платежными картами в системе сибель;;PayCard-Operation-Issue
+обработка обращений в системе сибель;;Sibel-Application
+платежи в сибеле;;Sibel-Payment
+отработка обращений в сибеле по снятию наличных;;Sibel-Cash-Withdraw
+логистика сифронт;;Sifront-Logistics
+клиенту не пришло эсэмэс уведомление;;Alerts-Problem
+социальные выплаты;;Social-Payment
+свіфт;;Swift
+свифт перевод;;Swift-Transfer
+топ ап;;TopUp
+ошибка в слолп ;;Slolp-Problem
+ помилка в слолп;;Slolp-Problem
+отклоненная транзакция;;Transactions-Transaction_Declined
+відхилена транзакція по зарплатній картці;;SalaryCard-Operation-Problem
+відхилена транзакція по дебетовій картці;;DebitCard-Operation-Problem
+вероятность возникновения рисков при предоставлении разрешения на переоформление правоустанавливающих документов на предмет ипотеки в связи с его реконструкцией и самовольным строительством 
+ переоформлення правовстановлюючих документів на предмет іпотеки у зв'язку з його реконструкцією та самовільним будівництвом 
+ вероятные риски при разрешенни на переоформление правоустанавливающих документов на предмет ипотеки в связи с реконструкцией и самовольным строительством ;;HomeLoan-Application
+ какие риски при переоформлении ипотеки в связи с реконструкцией ;;HomeLoan-Application
+ какие риски при переоформлении ипотеки в связи с реконструкцией самовольным строительством;;HomeLoan-Application
+кредит фізичній особі в іноземній валюті ;;ForeignCurrency-Loan
+ чи можна надати кредит фізичній особі в іноземній валюті ;;ForeignCurrency-Loan
+ кредит в валюте для физического лица;;ForeignCurrency-Loan
+можно ли получить кредит физлицу в валюте;;ForeignCurrency-Loan
+чи може бути прийнята довіреність видана нотаріусом на території криму ;;Notary-Attorney-Crimea
+ чинність довіреності виданої в криму ;;Notary-Attorney-Crimea
+ принимается ли доверенность выданная в Крыму ;;Notary-Attorney-Crimea
+ доверенность выданная в Крыму;;Notary-Attorney-Crimea
+чи є дійсною довіреність що була видана на території російської федерації ;;Notary-Attorney-Russia
+ чинність довіреності виданої в російській федерації ;;Notary-Attorney-Russia
+ действительна ли доверенность выданная в российской федерации ;;Notary-Attorney-Russia
+ доверенность выданная в российской федерации ;;Notary-Attorney-Russia
+ действительна ли доверенность выданная россией;;Notary-Attorney-Russia
+чи необхідно перекладати на українську мову довіреність що була видана на території російської федерації ;;Notary-Attorney-Russia-Translate
+ нужно ли переводить на украинский язык доверенность выданную в российской федерации;;Notary-Attorney-Russia-Translate
+нужно ли переводить на украинский язык доверенность выданную в российской федерации ;;Notary-Attorney-Russia-Translate
+ необходимо ли переводить доверенность выданную в россии;;Notary-Attorney-Russia-Translate
+чи повинна бути довіреність перекладена з російської;;Notary-Attorney-Russia-Translate
+які вимоги до фізичної особи підприємця ;;FOP.Requirements
+ вимоги до ФОП ;;FOP.Requirements
+ какие требования к физическому лицу предпринимателю ;;FOP.Requirements
+ обязательные требования к физическому лицу предпринимателю;;FOP.Requirements
+чи можна видати пін конверт на підставі довіреності ;;Pin_Envelope-Attorney
+ видача пін конверту за довіреністю ;;Pin_Envelope-Attorney
+ можно ли получить пин конверт на основании доверенности ;;Pin_Envelope-Attorney
+ выдается ли пин конверт по доверенности;;Pin_Envelope-Attorney
+чи можливо видати банківську платіжну картку на підставі довіреності ;;Card-Open_Account-Attorney
+ возможно получить карту на основании доверенности ;;Card-Open_Account-Attorney
+ выдается ли платежная карта по доверенности;;Card-Open_Account-Attorney
+видача картки за довіреністю;;Card-Open_Account-Attorney
+чи можливо отримати грошові кошти з банківської платіжної картки на підставі довіреності ;;Card-Recive-Money-Attorney
+ отримання коштів з платіжної картки за довіреністю ;;Card-Recive-Money-Attorney
+ выдаются ли деньги с платежной карты по доверенности;;Card-Recive-Money-Attorney
+що має бути вказано в довіреності;;Attorney.Content
+пункти, які повинні бути в довіренності 
+ пункти, які повинні бути в довіренності 
+ что должно быть указано в доверенности 
+ необходимые поля, которые должны быть указаны в доверенности;;Attorney.Content
+необходимые поля, которые должны быть указаны в доверенности;;Attorney.Content
+в картці із зразками підписів та відбитка печатки не наведено зразок підпису першого керівника;;Card-No-Main-Signature
+чинність картки із зразками підписами та печатки без підпису першого керівника ;;Card-No-Main-Signature
+ в карте образцов подписей и печати нет подписи первого руководителя что делать ;;Card-No-Main-Signature
+ действительность карты с образцами подписей и печати без подписи первого руководителя;;Card-No-Main-Signature
+чи може довірена особа отримати інформацію що містить банківську таємницю;;BankSecter-Trusted-Person
+банківська таємниця для довіреної особи 
+ может ли доверенное лицо получить информацию, которая считается банковской тайной 
+ получает ли доверенная личность информацию, которая содержит банковскую тайну;;BankSecter-Trusted-Person
+в який термін розглядаються звернення громадян ;;Client-Ask-Term
+ терміни розгляду звернень громадян ;;Client-Ask-Term
+ в какой срок рассматриваются обращения граждан;;Client-Ask-Term
+юридична особа відкриває новий поточний рахунок чи потрібно нотаріально засвідчувати картку із зразками підписів та відбитка печатки якщо право підпису мають ті самі особи;;LegalPerson-Imprint-Open-Account
+чи є необхідність при відкритті нового рахунку для юридичної особи надавати нову картку зразків підписів та печатки ;;LegalPerson-Imprint-Open-Account
+ юридическое лицо открывает новый текущий счет нужно ли нотариально засведетельствовать карту с образцами подписей и печати если право подписи имеют те же люди ;;LegalPerson-Imprint-Open-Account
+ нотариальное подтверждение карты с образцами подписей и печати для нового счета юридического лица ;;LegalPerson-Imprint-Open-Account
+ нужно ли нотариально заверять карту с образцами подписей при открытии счета юр лицу;;LegalPerson-Imprint-Open-Account
+філія відкриває новий поточний рахунок чи потрібно засвідчувати у нотаріуса картку із зразками підписів та відбитка печатки якщо право підпису надане тим самим особам ;;LegalPerson-Imprint-Open-Account
+ чи є необхідність при відкритті нового рахунку для філії надавати нову картку зразків підписів та печатки ;;LegalPerson-Imprint-Open-Account
+ филия открывает новый текущий счет нужно ли подтверждать у нотариуса карту с образцами подписей и печати если право подписи предоставленно тем же людям ;;LegalPerson-Imprint-Open-Account
+ нужно ли нотариальное засвидетельствование карты с образцами подписей и печати у нотариуса на новый текущий счет со старыми подписантами для филии ;;LegalPerson-Imprint-Open-Account
+ нужно ли нотариально заверять карту с образцами подписей и печати при открытии счета филии;;LegalPerson-Imprint-Open-Account
+чи прирівнюється до нотаріальної довіреність посвідчена головним лікарем ;;Notary-Attorney-Certificated_HeadDoctor
+ чи дійсна довіреність посвідчена головним лікарем ;;Notary-Attorney-Certificated_HeadDoctor
+ приравнивается ли к нотариальной доверенность заверенная главным врачом ;;Notary-Attorney-Certificated_HeadDoctor
+ действительна ли доверенность заверенная главным врачом;;Notary-Attorney-Certificated_HeadDoctor
+як має бути оформлена довіреність посвідчена нотаріусом іншої держави ;;Notary-Attorney-Foreign-Notary
+ как должна быть оформлена доверенность заверенная нотариусом другой страны ;;Notary-Attorney-Foreign-Notary
+ як має бути оформлена довіреність нотаріусом за кордоном;;Notary-Attorney-Foreign-Notary
+критерії довіреності нотаріусом іншої держави ;;Notary-Attorney-Foreign-Notary
+ критерии доверенности заверенной нотариусом другой страны ;;Notary-Attorney-Foreign-Notary
+ критерии доверенности заверенной иностранным нотариусом;;Notary-Attorney-Foreign-Notary
+критерии доверенности заверенной иностранным нотариусом;;Notary-Attorney-Foreign-Notary
+как должна быть оформлена иностранная доверенность;;Notary-Attorney-Foreign-Notary
+хто має право підпису документів від імені Банку;;Bank-Subscription-Right
+які договори забезпечення потребують нотаріального посвідчення ;;Notary-Certificated-Agreement
+ какие договора обеспечения требуют нотариального заверения;;Notary-Certificated-Agreement
+нотаріально завірені договори забезпечення ;;Notary-Certificated-Agreement
+ нотариально заверенные договора обеспечения;;Notary-Certificated-Agreement
+в яких випадках необхідно вносити зміни до застави у разі укладення договору;;Pledge-Change
+випадки змін до застави;;Pledge-Change
+письменный ответ клиентам;;Client-Ask-Response
+у клієнта відсутня фотографія в паспорті при досягненні двадцять пять років чи є паспорт дійсним ;;Pasport-isValid-Photo-Trouble
+ дійсність паспорту без фото у двадцять пять років ;;Pasport-isValid-Photo-Trouble
+ у клиента отсутствует фотография в паспорте при достижении двадцать пять лет действительный ли документ;;Pasport-isValid-Photo-Trouble
+як закрити рахунок померлому клієнту ;;Account-Close_Account.Deid
+ как закрыть счет умершему клиенту;;Account-Close_Account.Deid
+чи можливо відкрити рахунок фізичній особі по паспорту громадянина України для виїзду за кордон ;;Account-Open_Account.ForeignPassport
+ можно ли открыть счет физическому лицу по паспорту Украины для выезда за границу;;Account-Open_Account.ForeignPassport
+відкриття рахунку за закордонним паспортом ;;Account-Open_Account.ForeignPassport
+ можно ли открыть счет по заграничному паспорту;;Account-Open_Account.ForeignPassport
+можно ли идентифицировать физлицо по заграничному паспорту;;Account-Open_Account.ForeignPassport
+можно ли осуществлять банковские операции по загранпаспорту;;Account-Open_Account.ForeignPassport
+чи може юридична особа продовжувати діяльність у разі відмови від печатки;;LegalPerson-without-Stamp
+может ли действовать юридическое лицо без печати;;LegalPerson-without-Stamp
+можливість діяльності юридичної особи без печатки;;LegalPerson-without-Stamp
+у клієнта зіпсований паспорт що робити;;Passport-Damaged
+який статус клієнта що зареєстрований на території донецької області чи потрібно вимагати додаткові документи;;Client-Document-Donbass
+додаткові документи при реєстрації донецької області;;Client-Document-Donbass
+в клієнта було викрадено паспорт які документи він має надати;;Client-Passport-Lost
+у клиента был украден паспорт какие документы он должен предоставить;;Client-Passport-Lost
+у клиента был украден паспорт какие документы он должен предоставить ;;Client-Passport-Lost
+ документы при краже паспорта;;Client-Passport-Lost
+у клиента был украден паспорт какие документы он должен предоставить ;;Client-Passport-Lost
+ документы при краже паспорта;;Client-Passport-Lost
+яким чином перевірити статут юридичної особи в разі його реєстрації починаючи з 2016 року;;LegalPerson-Check-Statute
+які документи необхідно надати клієнту у разі перейменування вулиць або населених пунктів;;Settlement-Rename
+необхідні документи в разі перейменування вулиць або населенних пунктів ;;Settlement-Rename
+ какие документы нужно предоставить клиенту в случае переименования улиц или населенных пунктов;;Settlement-Rename
+необхідні документи в разі перейменування вулиць або населенних пунктів ;;Settlement-Rename
+ какие документы нужно предоставить клиенту в случае переименования улиц или населенных пунктов;;Settlement-Rename
+в який термін має бути зареєстровано місце проживання фізичної особи;;NaturalPerson-LivingLocation-Register-Term
+термін реєстрації місця проживання фізичної особи;;NaturalPerson-LivingLocation-Register-Term
+термін реєстрації місця проживання фізичної особи;;NaturalPerson-LivingLocation-Register-Term
+в какой срок должно быть зарегистрированно место проживания физического лица;;NaturalPerson-LivingLocation-Register-Term
+в какой срок должно быть зарегистрированно место проживания физического лица;;NaturalPerson-LivingLocation-Register-Term
+на підставі яких документів можна відкрити рахунок малолітній особі;;Account-Open_Account-Juvenile
+на основании каких документов можно открыть счет малолетнему лицу;;Account-Open_Account-Juvenile
+на підставі яких документів можна відкрити рахунок неповнолітній особі;;Account-Open_Account-Underage
+на підставі яких документів можна відкрити рахунок неповнолітній особі;;Account-Open_Account-Underage
+які документи підтверджують місце тимчасового перебування нерезидента на території України;;LivingLocation-Temporary_Confirm
+який пакет документів необхідно надати для відкриття рахунку юридичній особі;;Account-Open_Account-LegalPerson-Paperwork
+який пакет документів необхідно надати для відкриття рахунку юридичній особі;;Account-Open_Account-LegalPerson-Paperwork
+пакет документів для юридичної особи;;Account-Open_Account-LegalPerson-Paperwork
+юридична особа змінила найменування чи потрібно щось робити;;LegalPerson-Change-Name
+дії при зміні назви юридичної особи;;LegalPerson-Change-Name
+чи можливо відкрити рахунок фізичній особі із айді карткою;;Card-Open_Account-IDCard
+можливість відкриття рахунку по айді картці;;Card-Open_Account-IDCard
+чи може юридична особа діяти на підставі модельного статуту де з ним можна ознайомитись;;LegalPerson-Module-Statute
+права дії юридичної особи на підставі модельного статуту;;LegalPerson-Module-Statute
+який пакет документів необхідно надати для відкриття рахунку особі що провадить незалежну професійну діяльність;;Independent-Activity-Documents
+пакет документів для незалежної професійної діяльності;;Independent-Activity-Documents
+пакет документів для незалежної професійної діяльності;;Independent-Activity-Documents
+хто є фізичною особою резидентом;;NaturalPerson-Resident-NonResident
+хто є фізичною особою нерезидентом;;NaturalPerson-Resident-NonResident
+чи може відрізнятись місце реєстрації у його паспорті та в державному реєстрі;;LivingLocation-Differ-Country_Register
+відмінності місця реєстрації у паспорті та реєстрі;;LivingLocation-Differ-Country_Register
+відмінності місця реєстрації у паспорті та реєстрі;;LivingLocation-Differ-Country_Register
+где можно ознакомиться с заключениями юридического управления по правовым вопросам;;Lawyer-Management-Conclusion
+висновки юридичного управління;;Lawyer-Management-Conclusion
+висновки юридичного управління;;Lawyer-Management-Conclusion
+яким чином можна виключити третейське застереження;;Tret_Warning-TurnOff
+чи можна прийняти картку зі зразками підписів в якій право першого підпису належить головному бухгалтеру;;Card-Accept-SignatureExample
+можно ли принять карту с образцами подписей в которой право первой подписи пренадлежит бухгалтеру;;Card-Accept-SignatureExample
+чи можна прийняти картку зі зразками підписів;;Card-Accept-SignatureExample
+фізична особа підприємець змінила прізвище Які подальші дії менеджера;;FOP-Account-Change_Name
+які документи мають бути надані ліквідатором з метою розпорядження рахунком юридичної особи;;Liquidator-Paperwork
+пакет документів ліквідатору для розпорядження рахунком юридичної особи;;Liquidator-Paperwork
+чи можливо відкрити рахунок клієнту якщо на інший його рахунок в банку накладений арешт;;Account-Open_Accout-ifOther-Blocked
+новий рахунок в разі арешту попереднього ;;Account-Open_Accout-ifOther-Blocked
+ новый счет в случае ареста предыдущего;;Account-Open_Accout-ifOther-Blocked
+возможно ли открыть счет клиенту если на другой его счет наложен арест;;Account-Open_Accout-ifOther-Blocked
+чи можливо до платіжної картки резидента відкрити додаткову картку нерезиденту;;Nonresident-Card-Open_Account
+який статус має місцем реєстрації в криму;;Client-Status-Crimea
+статус реєстрації в криму;;Client-Status-Crimea
+какой статус имеет место регистрации в крыму;;Client-Status-Crimea
+чи підлягає обміну посвідка на постійне проживання;;Residence.Certificate.Exchange
+подлежит ли обмену вид на жительство;;Residence.Certificate.Exchange
+подлежит ли обмену вид на жительство;;Residence.Certificate.Exchange
+який строк дії посвідки на тимчасове проживання;;TemporaryResidence-Certificate-Term
+какой срок действия вида на жительство;;TemporaryResidence-Certificate-Term
+який статус має фізична особа із посвідкою на тимчасове проживання;;NaturalPerson-Certificate-LivingLocation-Temporary
+фізична особа із посвідкою на тимчасове місце проживання;;NaturalPerson-Certificate-LivingLocation-Temporary
+фізична особа із посвідкою на тимчасове місце проживання;;NaturalPerson-Certificate-LivingLocation-Temporary
+який статус має фізична особа із посвідкою на постійне проживання;;NaturalPerson-Certificate-LivingLocation-Permanent
+фізична особа із посвідкою на постійне місце проживання;;NaturalPerson-Certificate-LivingLocation-Permanent
+фізична особа із посвідкою на постійне місце проживання;;NaturalPerson-Certificate-LivingLocation-Permanent
+какой статус имеет физическое лицо с видом на жительство на постоянной основе;;NaturalPerson-Certificate-LivingLocation-Permanent
+чи можливо здійснювати банківські операції фізичною особою на підставі посвідки на постійне проживання;;Operations-Residence-Document
+банківські операції на підставі посвідки на постійне проживання;;Operations-Residence-Document
+чи можливо ідентифікувати фізичну особу якщо в паспорті відсутня прописка ;;Passport-Identification-MissingRegistration
+ чи можливо ідентифікувати фізичну особу якщо в паспорті відсутнє місце проживання;;Passport-Identification-MissingRegistration
+ідентифікація особи без прописки у паспорті;;Passport-Identification-MissingRegistration
+идентификация в случае отсутствия прописки;;Passport-Identification-MissingRegistration
+какие вопросы не подлежат рассмотрению юридическим управлением;;Lawyer-Management-notCompitent
+питання що не розглядає юридичне управління;;Lawyer-Management-notCompitent
+письменное обращение клиентов;;Client-Ask-Response
+ответ на обращение;;Client-Ask-Response
+ответ на обращение;;Client-Ask-Response
+нотариус;;Notary
+нотариус;;Notary
+получили обращение клиента через сибель;;Sibel-Client-Ask
+справка о закрытии депозита ;;Deposits-Break-Statement
+ довідка про закриття депозита;;Deposits-Break-Statement
+виписка по рахунку для посольства;;Deposits-Break-Statement
+довідка про закриття депозита ;;Deposits-Break-Statement
+ справка о закрытии карты;;Deposits-Break-Statement
+посольство;;Embassy
+государственный орган;;Goverment-Athority
+нестандартная справка клиенту;;Statement-Inquiry-Special
+вызвать курьера ;;Courier
+ отправить курьером;;Courier
+запрос бюро кредитных историй;;Loan-Bureau
+жалобы на бонусы ;;Complaints
+ жалоба на эсэмэс ;;Complaints
+ жалоба на почту ;;Complaints
+ ошибка по бонусам;;Complaints
+жалоба на отделение;;Branch-Complaint
+проблема с коллекторами ;;Collector-Problem
+ жалоба на коллекторов ;;Collector-Problem
+ пожаловались на коллекторов;;Collector-Problem
+выплатить компенсацию ;;Payment-Make_Payment
+ оформлення компенсації;;Payment-Make_Payment
+неправильные бонусы;;Rewards_Program-Problem
+неправильные бонусы;;Rewards_Program-Problem
+нестандартная ситуация;;Situation-NotStandart
+бумага суо;;SystemOfQueue
+кофе для клиента ;;Client-Coffee
+ заказ кофе для клиентов;;Client-Coffee
+заказать бумагу;;Order-Payment
+кассовые документы за день;;CashDesk-Daily-Documents
+свод операционной кассы ;;Cashbox-Operational-Collection
+ свод послеоперационной кассы;;Cashbox-Operational-Collection
+меньше денег чем надо в кассе;;CashDesk-Trouble
+больше денег чем надо в кассе;;CashDesk-Trouble
+недостача в кассе;;CashDesk-Trouble
+авторизация операций в би два;;BTwo-Operations_Authorisation
+отчет би два;;BTwo-Report
+удаление операций;;Operation-Delete
+доступ в кассу отделения;;CashDesk-Access
+сопровождение отделения с электронным кассиром;;Branch-ElectronicCahier
+принять ветхие банкноты в кассу;;Old-Banknotes
+принять ветхие банкноты в кассу;;Old-Banknotes
+согласование распоряжений;;Order-Approval
+выдача денег с текущего счета;;BankAccount-Withdraw
+выдача денег с карточного счета;;Card-Account_Withdraw
+выдача денег из кассы вестерн юнион ;;CashDesk-Withdraw
+ выдача денег из кассы квиксофт;;CashDesk-Withdraw
+прием наличных для пополнения текущего счета в укрсоцбанке;;CurrentAccount-TopUp-Ukrsocbank
+прием в кассу наличных вестерн юнион ;;CashDesk-Receive_Cash
+ прием в кассу наличных вестерн квиксофт;;CashDesk-Receive_Cash
+продажа инвалюты ;;Foreign_Exchange
+ покупка валюты;;Foreign_Exchange
+продажа банковских металлов ;;Bank_Metal-Trade
+ покупка банковских металлов;;Bank_Metal-Trade
+платеж через юнипей без открытия счета;;Unipay-Payment
+подкрепление отделений энбэу ;;Support-Branch-OtherBanks
+ подкрепление отделений укрсоцбанка;;Support-Branch-OtherBanks
+подкрепление отделений других банков;;Support-Branch-OtherBanks
+удалить ошибочный кассовый документ;;Paperwork-Delete
+доступ в модуль саб;;Sab-Module
+выплата из фонда по би два ;;BTwo-Payment
+ выплата из фонда по старой схеме;;BTwo-Payment
+выплата из фонда через пэцээф ;;PCF-Foundation-Payment
+ выплата из фонда через процессинговый центр;;PCF-Foundation-Payment
+вкладчика нет в реестре ;;Depositor-Not-In-Register
+ вкладчик отсутствует в реестре;;Depositor-Not-In-Register
+ошибка выплаты из фонда;;Foundation-Payment-Error
+согласование доверенности на выплату из фонда;;Foundation-Payment-Attorney
+удаление выплаты из фонда ;;Foundation-Payment-Delete
+ сторно выплаты из фонда;;Foundation-Payment-Delete
+обращение наследника за выплатой из фонда;;Foundation-Payment-Inheritor
+согласование документов при несоответствии данных;;Paperwork-Approve-Discrepancy
+идентификация физического лица резидента;;Identification
+идентификация физического лица нерезидента;;Identification
+идентификация публичного лица;;PublicPerson-Identification
+идентификация физического лица предпринимателя;;FOP-Identification
+документы подтверждающие место проживания в украине;;LivingLocation-Paperwork
+источник денег физического лица нерезидента;;Money.Source.Nonresident
+заполнение анкеты клиентом ;;Questionnaire-Fill
+ заполнение анкеты доверенным лицом;;Questionnaire-Fill
+повторная идентификация ;;Identification-Repeat
+ повторное установление личности;;Identification-Repeat
+добавление контрагента в би два ;;BTwo.Add.Couterparty
+ закрытие контрагента в би два;;BTwo.Add.Couterparty
+смена резидентности физического лица;;Change-Residency
+снятие признака фоп в би два;;BTwo-FOP-Delete
+удаление признака фоп в би два;;BTwo-FOP-Delete
+формирование досье по идентификации клиента;;Client-Dossier
+открытие текущего счета физического лица ;;Investments-New_Account-Nonresident
+ закрытие текущего счета физического лица;;Investments-New_Account-Nonresident
+открытие счета физическому лицу нерезиденту инвестору;;CurrentAccount-Application
+открытие счета адвокату;;Account-Open_Account-Lawyer
+открытие текущего счета третьему лицу;;CurrentAccount-Application
+приходная операция по текущему счету физического лица ;;BankAccount-Activity
+ расходная операция по текущему счету физического лица;;BankAccount-Activity
+выплата наследнику по текущему счету физического лица;;BankAccount-Activity
+безналичный перевод по текущему счету физического лица в национальной валюте;;BankAccount-Activity
+нотариальная доверенность на текущий счет физического лица ;;BankAccount-Attornney
+ внутренняя доверенность на текущий счет физического лица;;BankAccount-Attornney
+распоряжения по текущему счету физического лица;;BankAccount-Orders
+справка по текущему счету физического лица;;BankAccount-Statement
+уведомление налоговой о текущем счете фоп;;BankAccount.FOP.Notify
+выписка по текущему счету;;BankAccount-Statement
+удержание комиссии по тарифам банка;;Account-Fees
+блокировка текущего счета ;;BankAccount-Block
+ разблокировка текущего счета;;BankAccount-Block
+перевод текущего счета физического лица в другое отделение;;BankAccount-Change-Branch
+формирование досье по текущему счету физического лица;;Client-Dossier
+открытие депозитного счета физического лица ;;DepositAccount-Application-NaturalPerson
+ закрытие депозитного счета физического лица;;DepositAccount-Application-NaturalPerson
+открытие депозитного счета третьему лицу ;;DepositAccount-Application-ThirdParty
+ открытие депозита третьему лицу;;DepositAccount-Application-ThirdParty
+операции с депозитным счетом физического лица;;DepositAccount-Application-NaturalPerson
+валютный платежный перевод;;Currency-FundsTransfer
+лоро платежи;;Loro-Payment
+конверсия;;Conversion
+поздняя покупка;;Late-Purchase
+валютные платежи;;Currency-Payment
+уточнение реквизитов по валютному платежу;;Currency-Payment
+комиссия за валютные платежи;;Currency-Payment-Fees
+неверно начислена комиссия;;Wrong-Account-Fees
+начислить комиссию;;Charge-Fees
+покрытие валютной сделки не списано;;Currency-Operation-Coverage
+оплата комиссии через кассу;;CashDesk-Fees
+привязка документа;;Paperwork-Link
+разовые комиссии;;OneTime-Fees
+смена тарифного пакета;;Tariff_Package-Change
+размещение документов в сэд;;SED-Paperwork
+выбор тарифного пакета;;Tariff_Package-Change
+выбор балансового счета;;BalanceAccount
+списание с текущего счета;;BankAccount-Activity
+закрытие текущего счета ;;BankAccount-Close_Account
+ открытие текущего счета;;BankAccount-Close_Account
+проверка гроди ;;GRODI
+ запросы гроди;;GRODI
+ответы гроди;;GRODI
+ответы гроди;;GRODI
+дополнительное соглашение с фондом гарантирования вкладов;;Fond.AdditionalAgreement
+заполнение анкеты финансового мониторинга;;FinancialMonitoring.Questionnaire
+идентификация учредителей ;;Founder-Identification
+ идентификация руководителей;;Founder-Identification
+паспорт ;;Passport
+ идентификационный код;;Passport
+нотариальная доверенность фоп;;FOP-Notary-Attorney
+несовместимость параметров при открытии счета;;Account-Open_Account-Discrepancy
+пакет документов для открытия счета;;Account-Open_Account-Paperwork
+правильность проставления параметров;;Parameters-Correct
+заверение устава;;Statute-Approval
+актуальность устава;;Statute-Actual
+согласование открытия счетов;;Account-Open_Account-Approval
+пакет документов для открытия сибель;;Sibel-Open-Paperwork
+пакет документов для открытия альфа флоу ;;AlfaFlow-Open
+ пакет документов для открытия сэд;;AlfaFlow-Open
+ошибка в пакете документов юридического лица;;LegalPerson-Paperwork-Problem
+наименование предприятия в уставе;;Company-Name
+форма опросника;;Questionnaire
+контрагент не полностью публичное лицо;;Counterparty-Not_PublicPerson
+порядок заполнения опросника;;Questionnaire-Fill
+изменения в пакете документов;;Paperwork-Change
+неполная структура собственника;;Incomplete-Owner-Structure
+заработная плата;;Salary
+зарплата;;Salary
+налоги по заработной плате;;Salary-Taxes
+налоги по зарплате;;Salary-Taxes
+подоходный налог;;Income-Taxes
+единый социальный взнос;;Single-Social-Payment
+выплата декретных;;Parental-Benefit_Payment
+пособие по родам;;Birth-Benefit
+выплата дивидендов;;Dividend-Payment
+доступ к счетам;;Account-Access
+закон украины о публичных закупках;;PublicPurchases-Law
+запрос о невыясненных счетах;;Account-Inquiry-Unknown
+зарплатная ведомость;;Salary-Roll
+командировочные в гривне ;;BusinessTrip-Payment
+ командировочные в валюте;;BusinessTrip-Payment
+изменить кассовый символ ;;CashDesk-Change-Symbol
+ уточнить кассовый символ;;CashDesk-Change-Symbol
+заполнение чеков;;Cheques-Fill
+чековые книжки;;ChequeBooks
+вексели;;PromissoryNote
+взносное;;Contribution
+пополнение счета через кассу;;Account-Refil-Cashdesk
+изменить назначение платежа;;Payment-Change_Payment
+налогообложение доходов физических лиц предпринимателей;;FOP-Taxes
+внесение денежных средств нерезидентами на свои счета;;NonResident-FundsTransation
+выдача справки клиентам счета которых закрыты ;;Account-Close_Account-Statement
+ оплата комиссии клиентами счета которых закрыты;;Account-Close_Account-Statement
+ненадлежащий получатель;;Improper-Receiver
+открытие внутренних счетов;;Account-Open_Account-Internal
+отчисления при получении заработной платы;;Salary-Deductions
+отчисления при получении зарплаты;;Salary-Deductions
+оформление доверенности сотрудникам предприятия;;Attorney-Issue-Employee
+передача счетов с отделения на отделение;;Branch-Transfer_Account
+несанкционированное перечисление денежных средств;;Account-Fraud
+граничная сумма расчета наличными между юридическим лицом и физическим лицом;;Cash-Transfer-Legal-Natural
+перезакрепить счета за другим ответственным лицом;;Account-Reassign
+переподписать документ восточный регион;;East.Document.SignAgain
+пополнение уставного капитала нерезидентом физическим лицом;;Statutory-Fund-Nonresident-Refill
+пополнение текущего счета ;;BankAccount-Activity
+ снятие денежных средств с текущих счетов;;BankAccount-Activity
+выписка по счету ;;Statement-Account
+ справка по счету;;Statement-Account
+нотариальная доверенность фоп;;FOP-Notary-Attorney
+прием платежей на счета политических партий;;Political-Account-Payment
+согласовать выдачу на другом отделении;;Other-Branch-Issue
+согласовать выплату на другом отделении;;Other-Branch-Issue
+комиссия согласно тарифам;;Tariff-Fees
+арест счета;;Account-Arrest
+инкассовое поручение;;Incasso.Order
+платежное требование;;Payment-Require
+подготовка ответа по запросу;;Request-Answer-Prepare
+порядок проведения выемки;;Removal
+расходные операции по арестованному счету;;Account-Arrest
+раскрытие банковской тайны;;Bank-Disclosure
+пакет документов для депозитного счета юридического лица;;DepositAccount-Paperwork-LegalPerson
+заключение договора на депозитный счет юридического лица;;DepositAccount-Application-LegalPerson
+актуальность формы договора;;Agreement-Actual
+не печатается договор;;Agreement.NotPrinted
+правильность заполнения договора;;Agreement-Correct
+замена на отделении;;Branch
+рассылка обучающих материалов;;Material-Distriburion
+согласование правильности документов проводок;;BookTransaction
+сопровождение операционной деятельности отделения;;Branch
+права доступа в би два;;BTwo-Access
+выплата наследнику по депозитному счету физического лица;;Deposit-Inheritor-Payment
+пополнение сберегательного депозита третьим лицом ;;Deposits-Refill-ThirdParty
+ пополнение сберегательного депозита по доверенности;;Deposits-Refill-ThirdParty
+досрочное расторжение депозита физического лица;;Deposit.Early.Break
+возврат вклада если третье лицо не предъявило права;;Deposits-Return-ThirdParty-Problem
+изменение счета корреспондента в действующих сделках;;Correspondent-Account-Change_Account
+пролонгация депозитного счета физического лица;;DepositAccount-NaturalPerson-Extension
+нотариальная доверенность на депозитный счет физического лица;;DepositAccount-NaturalPerson
+внутренняя доверенность на депозитный счет физического лица;;DepositAccount-Internal-Attorney
+распоряжения по депозитному счету физического лица;;DepositAccount-NaturalPerson
+депозит с выдачей именного депозитного сертификата;;DepositAccount-Certificate
+депозитная сделка в май альфа банк;;Deposits-MyAlfaBank
+учет бланков именных депозитных сертификатов;;Deposits-Certificate-Accounting
+блокировка депозитной сделки ;;Deposits-Deal-Blocked
+ разблокировка депозитной сделки;;Deposits-Deal-Blocked
+справка по депозитному счету физического лица;;DepositAccount-Statement
+выписка по депозитному счету;;DepositAccount-Statement
+начисление процентов по депозитному счету;;DepositAccount-Interest
+удержание налога с дохода по депозитному счету;;DepositAccount-Taxes
+ведение журналов депозитных сертификатов;;Deposits-CertificateJournal
+перевод депозитного счета физического лица в другое отделение;;DepositAccount-Change-Branch
+формирование досье по депозитному счету физического лица;;DepositAccoutn.NaturalPerson.Dossier
+арест ;;Arrest
+ эрбэтэ;;Arrest
+выемки;;Removal
+формирование бухгалтерских документов дня ;;Accouinting-Paperwork-Day
+ удаление документов в текущем дне;;Accouinting-Paperwork-Day
+согласование исправительных проводок;;BookTransaction
+согласование с уэб доверенностей которые выданы в восточном регионе;;East.Attorney.UEB
+согласование возврата коммисий;;Account-Fees-Refund
+изменение спецпараметров или назначения платежа в документах за архивную дату;;Payment-Change_Payment
+порядок передачи документов в архив;;Paperwork-Archivate
+логистика пин конвертов;;Pin_Envelope
+предоставление прав доступа к системам банка;;GrantAccess-Bank-System
+перезакрепление ответственного оператора при декрете;;Agent-Reassign
+техническая ошибка при заведении контрагента в би два;;BTwo-Technical-Error
+позднее заведение сделки по покупке;;Transaction-Add
+вопросы в ходе проверок регионального пенсионного фонда;;PensionFund
+согласование проекта дополнительного соглашения для подписания с региональным пенсионным фондом;;Approval.Agreement.Authorities
+управление продаж и координации;;Network-Support-Department
+координация региональной сети;;Network-Support-Department
+платіж;;Payment
+платежная операция;;Payment
+справка клиенту ;;Statement-Inquiry
+ оформление справки клиенту ;;Statement-Inquiry
+ довідка клієнту;;Statement-Inquiry
+сопровождение сети;;Network-Support
+неснижаемый остаток;;Minimum.Balance
+звернення в сібелі;;Sibel-Ask
+запрос в сибеле;;Sibel-Ask
+международные переводы;;Online_Banking-International_Transfer
+фонд гарантирования вкладов вектор банк;;Guarantee-Foundation-Vector_Bank
+інтернет банкінг;;Online_Banking
+зачисление денег;;FundsTransaction
+розрахунки в податковій;;DPA-Payment
+расчеты в налоговой;;DPA-Payment
+кредитный комитет ;;CreditCommittee
+ кредитний комітет;;CreditCommittee
+поддержка розницы;;Retail-Support
+касовий переказ;;CashDesk-Transfer
+перевод средств;;FundsTransaction
+перевод денег;;FundsTransaction
+реєстрація клієнта в депеа ;;Client-Register_DPA
+ регистрация клиента в гэнэа;;Client-Register_DPA
+регистрация клиента в налоговой;;Client-Register_DPA
+перерахування;;FundsTransfer
+перерахунок відсотків;;Account-Change_Interest
+выдача переводов;;FundsTransaction
+логістика;;Logistics
+проблема с выдачей дубликата договора;;Agreement-Copy-Trouble
+видача довідки ;;Statement-Inquiry
+ выдача справки;;Statement-Inquiry
+довіреність;;Attorney
+клиент банк;;Online_Banking
+технічна підтримка;;Technical_Support
+технічна служба;;Technical_Support
+техподдержка;;Technical_Support
+не выполнено обращение клиента ;;Client-Ask-Problem
+ не ответили на обращение клиента;;Client-Ask-Problem
+сейф;;DepositBox
+есемес банкінг;;SMS-Banking
+суперечлива транзакція;;Transactions-Controversial
+кредитные продукты ;;Credit-Product
+ кредитні продукти;;Credit-Product
+переказ із карти на карту;;Transfer.CardToCard
+индивидуальное согласование;;Individual-Approve
+підтримка;;Problem
+довіреність у сібелі;;Attorney.Sibel
+помилка сібель;;Problem.Sibel
+почта лотус;;Lotus-Mail
+оформление денег наличными;;Cash-Issue
+оформление наличных денег;;Cash-Issue
+отбраковка кассовой проводки;;CashDesk-Operation-Cancel
+подключить альфа чек;;Alerts-SetUp_Change
+май альфа банк;;MyAlphaBank
+управление май альфа банком;;MyAlphaBank
+гэнэа ;;DPA
+ податкова;;DPA
+регистрация в налоговой;;DPA
+консультация специалиста;;Consultancy
+зачисление нераспределенных счетов;;Account-Unallocated-Transaction
+копирование заявки;;Application-Copy
+выпуск доверенности;;Attorney-Issue
+отказ пэо слоуп;;Slolp-Refuse
+ошибка пэо слоуп;;Slolp-Problem
+открытие зарплатных проектов;;SalaryCard-Open_Account
+проблема с заявкой в слоупе ;;Slolp-Problem
+ проблема із заявкою в Слоуп;;Slolp-Problem
+выдача;;Issue
+бэкофис;;Backoffice
+начисление заработной платы;;Payroll
+заблокирована учетная запись;;User_Profile-Blocked
+замена номера;;Account-Change_Phone
+работа с сибель;;Sibel-Work
+почта;;Mail
+поменять номер телефона клиенту;;Account-Change_Phone
+выписка на электронный адрес;;EStatement
+возврат денежных средств;;Funds-Return
+выдача средств;;Funds-Issue
+социальная помощь;;Social-Help
+пенсия;;Pension
+заявка в слоуп;;BTwo-Help
+работа в би два;;BTwo-Help
+блокированная сумма;;Blocked-Sum
+заказ брошюр ;;Booklet-Order
+ заказ листівок;;Booklet-Order
+заказ прав доступа;;Access_Right-Request
+справка ;;Statement-Inquiry
+ выписка;;Statement-Inquiry
+удаление документа вестерн юнион;;Paperwork-Delete
+прекращение ипотеки ;;HomeLoan
+ припинення іпотеки;;HomeLoan
+центр обслуживания клиентов;;Service.Center
+разблокировать доступ;;Access-Unlock
+установка принтера;;Printer-SetUp
+касса;;CashDesk
+пластик альфабанк;;AlfaBank-Plastic
+счета физических лиц;;NaturalPerson-Account
+удаление контрагента;;Remove_Counterparty
+сибель;;Sibel
+підключення есемес інформування;;Alerts-SetUp_Change
+узнать статус по обращению в сибель;;Sibel-Ask-Status
+условия кредита ;;Loan-Condition
+ умови кредиту;;Loan-Condition
+альфа вотч;;AlfaWatch
+смена резидентности;;Change-Residency
+реєстрація звернення про смерть клієнта;;Client-Death-Application
+неверно проведена проводка;;BookTransactions-Problem
+пакет;;Offers
+инкассация банкомата;;ATM-Encashment
+разблокировать терминал;;Terminal-Unblock
+права доступа ;;Access-Rights
+ права доступу;;Access-Rights
+замена мобильного номера в би два;;BTwo-Account-Change_Phone
+управление продаж региональной сети;;Control-Regional-Sell
+изменение контрагента;;Counterparty-Add
+изменение телефона;;Account-Change_Phone
+списание моментальной рассрочки;;Loan-PayOff
+моментальная рассрочка на карте;;Instant-InstallmentLoan
+юридическое управление;;Lawyer-Management
+перевыпуск пакета;;Account-Change_Offers
+перевыпуск действующего пакета услуг в другой;;Account-Change_Offers
+клиент банк юрлица;;LegalPerson
+розница;;Retail
+заведение заявки в слоуп ;;Slolp-Add-Application
+ заведення заявки в слоуп;;Slolp-Add-Application
+выпуск пакетов;;Account-Change_Offers
+страховка;;Insurance
+обращение клиента;;Client-Ask
+ответ кредитного комитета;;CreditCommittee
+система слоуп неработоспособность;;Slolp-Problem
+кредитная заявка ;;Credit-Application
+ кредитна заявка;;Credit-Application
+кредитная заявка слоуп;;Slolp-Credit-Application
+идентификация;;Identification
+стоп списки;;Stop-Lists
+залишок на рахунку;;Balance-Inquiry
+информация;;Information
+окончание срока действия доверенности;;Expired.Term.Act.Attorney
+получение доступа;;Access-Application
+карта карбон;;CardCarbon
+меню ивээр;;EVR-Menu
+изменение данных клиента;;Account-Change_Account
+пакетное обслуживание;;Service-Package
+рітейл сейл;;Retail-Sale
+клиент является учредителем;;Client-Founder
+я еду за границу;;Going-Abroad
+відділ супроводу і координації регіональної мережі;;Regional-Network-Support-Department
+завантаження банкомату і проводки по банкоматах;;ATM-Wiring-Load
+удаление документа по банкомату;;ATM-Paperwork-Delete
+выдача с карточного счета при условии неактивной карты;;Card-Closed_Account-Withdraw
+вилучити;;Remove
+мобілізація;;Mobilization
+виконання сторно;;
+сума утриманих налогів по виплаченому бонусу;;Rewards_Program-Taxes
+супроводження сделок по корпоративній карті по заборгованості;;CorporateCard-Transactions_Support
+супроводження операций по бэкаи;;Credit_Bureau-Operation
+операции по постерминалу ;;Terminal-Operations
+ операции по атээм;;Terminal-Operations
+разгрузка банкомата ;;ATM-Unload
+ разгрузка атээм;;ATM-Unload
+сверка постерминала ;;Terminal-Reconcile
+ сверка атээм;;Terminal-Reconcile
+излишки в атээм;;ATM-Problem
+недостача в атээм ;;ATM-Problem
+ недостача в банкомате;;ATM-Problem
+удалить проводку по постерминалу;;Terminal-Delete-Transaction
+покрытие по банкомату;;ATM-Coverage
+не проводиться проводка по разгрузке атээм ;;ATM-Problem
+ не проводиться проводка по разгрузке банкомата;;ATM-Problem
+лисовол екатерина евгеньевна;;-
+борисенко светлана петровна;;-
+бордонос екатерина сергеевна;;-
+бордонос екатерина сергеевна;;-
+бовда марина михайловна;;-
+торговый эквайринг;;Acquiring
+счет до выяснения;;Account-Clarify
+расторжение кредита ;;Loan-Break_Loan
+ розторгнення кредиту;;Loan-Break_Loan
+расторжение договора;;Agreement-Break
+закрытие кредитного договора ;;Loan-Break_Loan
+ закриття кредитного договору;;Loan-Break_Loan
+операции в би два;;BTwo-Operations
+замена залога ;;Pledge-Replace
+ заміна застави;;Pledge-Replace
+установить пинкод;;Pin-Request_Pin
+жалоба;;Complaints
+зачисления;;Transaction
+информация по комиссии;;Account-Fees
+отмена комиссии;;Account-Cancel_Fees
+юридичні особи;;LegalPerson
+индивидульный тариф по юрлицам ;;LegalPerson-Individual-Tariff
+ тариф юр лицам ;;LegalPerson-Individual-Tariff
+ тариф юридическим лицам ;;LegalPerson-Individual-Tariff
+ продукт юр лицам;;LegalPerson-Individual-Tariff
+індивідуальне тариф по юрлицом ;;LegalPerson-Individual-Tariff
+ індивідуальний тариф по юрособам;;LegalPerson-Individual-Tariff
+сибель для мсб ;;Sibel-MassBusiness
+ сибель для массового бизнеса ;;Sibel-MassBusiness
+ сибель для среднего бизнеса ;;Sibel-MassBusiness
+ сибель для массового и среднего бизнеса;;Sibel-MassBusiness
+какой процесс открытия счета в ок альфа ;;OkAlfa-Account-Open_Account
+ какой процесс открытия счета в окей альфа ;;OkAlfa-Account-Open_Account
+ який процес відкриття рахунку в ок альфа;;OkAlfa-Account-Open_Account
+вопрос по ок альфа ;;OkAlfa-Information
+ вопрос по окей альфа ;;OkAlfa-Information
+ вопрос по процессу окей альфа ;;OkAlfa-Information
+ питання по ок альфа;;OkAlfa-Information
+подбор тарифа юридическому лицу ;;Account-Open_Account-Notary
+ подбор тарифа частному предпринимателю ;;Account-Open_Account-Notary
+ продукт частному предпринимателю;;Account-Open_Account-Notary
+процес оформлення рахунку окей альфа приватній особі ;;OkAlfa-Account-Open_Account
+ процес оформлення рахунку окей альфа приватній особі;;OkAlfa-Account-Open_Account
+підбір тарифу приватному підприємцю ;;FOP-Tariff
+ подбор тарифа частному предпринимателю ;;FOP-Tariff
+ продукт частному предпринимателю;;FOP-Tariff
+тариф приватного підприємця;;FOP-Tariff
+продукт приватному підприємцю;;FOP-Product
+открытие счета нотариусу ;;Account-Open_Account-Notary
+ відкриття рахунку нотаріусу;;Account-Open_Account-Notary
+добавить в рабочую группу ;;Working_Group
+ додаванная в робочу групу ;;Working_Group
+ додати в робочу групу;;Working_Group
+продукти;;Products
+согласование досрочного расторжения вклада;;Deposit.Early
+миттєва розстрочка ;;Instant-InstallmentLoan
+ миттєва розстрочка;;Instant-InstallmentLoan
+задолженность по ипотеке ;;HomeLoan
+ заборгованність по іпотеці;;HomeLoan
+перевыпуск;;Reissue
+перевести пакет услуг на новые условия;;Account-Change_Offers
+сума до повного погашення;;Full-PayOff
+доступа сотрудников;;Agent-Access
+вопрос по заявке;;Application
+открытие счета предпринимателя;;FOP-Account-Open_Account
+счета предпринимателя;;FOP-Account
+лимиты по картам;;Card-Access_Limit
+разблокировка карты;;Card-Blocked
+меню ивеэр;;EVR-Menu
+ідентифікація клієнта;;Client-Identify
+заказ маркетинговых материалов;;Order-Marketing
+замороження рахунку;;Account-Freeze
+разблокировка счета;;Account-Unblock
+занулення іенен клієнта;;Client-INN-Vanish
+программа лояльности;;Rewards_Program
+робота з физичними особами;;NaturalPerson-Help
+робота з ідентификаційними даними клієнта;;Client-Data-Processing
+восстановление работоспособности в бидва;;BTwo-Restore
+не сформировалась проводка в би два;;BTwo-Unsuccessful-Genatation
+проблема с программой сибель;;Sibel-Problem
+некоректна фіксація;;Wrong-Fix
+мне нужно оформить карту карбон;;CarbonCard-Issue
+доступ до системи;;System-Access
+возврат переплат;;Overpay-Return
+отдел претензионной работы;;Pretentious-Department
+управление обеспечения клиентского обслуживания;;ServiceProvider-Department
+іпотечне кредитування;;HomeLoan
+согласование доступа в программу слолп;;Slolp-Access-Approve
+излишки и недостача в кассе;;CashDesk-Trouble
+согласование доступов;;Access-Approve
+юридический департамнент;;Lawyer-Department
+довіреність по картковим рахункам;;Lawyer-Department
+операцію мап;;Operation
+зануление заявки;;Application-Vanish
+начисление бонусов;;Rewards_Program-Transactions
+реквизиты для внесения;;Deposits-Details
+система слолп;;Slolp
+изменение описания счета;;Account-Change_Description
+списание средств без выдачи;;Funds-Issue
+получить авторизацию по клиенту;;Client-Authorise
+програмный комплекс сага;;SAGA-Program
+як можна знайти та ознайомитися з тою чи іншою довіреністю;;Attorney-Information
+интересует пример доверенности;;Attorney-Information
+як можна отримати довіреність для укладання угод від імені банку;;Attorney-Bank
+оформлення запиту на виготовлення довіреності;;Attorney-Issue
+система автоматизации выдачи и отмены доверенностей;;Attorney-Issue
+получение доступа к системе автоматизации выдачи и отмены доверенностей;;Attorney-Issue
+получение доступа с правами оформления запроса на изготовление доверенности;;Attorney-Issue
+замовлення довіреностей без передбачених повноважень;;Attorney-Issue-Without-Authority
+який порядок замовлення довіреностей в пат альфа банк що містять повноваження які не передабчені матрицею повноважень;;Attorney-Issue-Without-Authority
+заказа доверенностей содержащие полномочия не предусмотренные матрицей полномочий;;Attorney-Issue-Without-Authority
+заказа доверенностей по непредусмотренным полномочиям;;Attorney-Issue-Without-Authority
+як отримати оригінал оформленої довіреності;;Attorney-Original
+хочу оригинал доверенности ;;Attorney-Original
+ получение оригинала доверенности;;Attorney-Original
+які строки виготовлення довіреностей від імені Банку;;Attorney-Bank-Term
+сколько изготовливается доверенность от имени банка;;Attorney-Bank-Term
+сколько времени делается довренность от имени банка;;Attorney-Bank-Term
+як отримати посвідчену копію довіреності;;Attorney-Copy
+состав наблюдательного совета альфабанк;;CompanySupervisors
+состав правления альфабанк;;Company-Board
+состав правления альфабанк;;Company-Board
+кто является акционером альфабанк;;AlphaBank-Shareholder
+какие кредиты являются бланковыми;;Loan-Blank
+що таке бланкові кредити;;Loan-Blank
+чи необхідно при застави договори поруки;;Guarantee-isRequire-HomeLoan
+договор поручительства с залогодателем;;Guarantee-isRequire-HomeLoan
+нужно ли заключать дополнительній договор к залога;;Guarantee-isRequire-HomeLoan
+нужно ли заключать дополнительній договор поручительства к ипотеки;;Guarantee-isRequire-HomeLoan
+процедура заключения договоров ипотеки;;HomeLoan-Agreement
+згода іншого з подружжя;;Marriage.Agreement
+заява про відсутність шлюбних відносин;;Marriage
+согласие другого супруга;;Marriage.Agreement
+выпуск дополнительной карты ;;Card-Manage_Users
+ выдача карты ;;Card-Manage_Users
+ выпуск карты ;;Card-Manage_Users
+ выпуск платежной карты;;Card-Manage_Users
+выпуск кредитной карты ;;CreditCard-Open_Account
+ оформление кредитной карты ;;CreditCard-Open_Account
+ выдача кредитной карты ;;CreditCard-Open_Account
+ випуск кредитної карти;;CreditCard-Open_Account
+индивидульный тариф по юрлицам;;LegalPerson-Individual-Tariff
+погашення задолженности по кредитной карте;;CreditCard-Unblock
+ погашення заборгованості по кредитній карті;;CreditCard-Unblock
+разблокировка кредитной карты ;;CreditCard-Unblock
+ розблокування кредитної карти;;CreditCard-Unblock
+сиси саппорт ;;Problem
+ це це саппорт ;;Problem
+ ес ес саппорт ;;Problem
+ ес ес суппорт;;Problem
+реструктуризация кредита ;;Loan-Restructure
+ реструктуризація кредиту;;Loan-Restructure
+вопрос по кредитованию ;;Loan-Inforamation
+ реструктуризація кредиту;;Loan-Inforamation
+ вопрос по кредитованию;;Loan-Inforamation
+ питання по кредитуванню;;Loan-Inforamation
+Кредитная поддержка ;;Loan-Inforamation
+ кредитна підтримка;;Loan-Inforamation
+вопрос по кредитованию ;;Loan-Inforamation
+ кредитна підтримка;;Loan-Inforamation
+кредит наличными ;;Loan-Cash
+ кредит готівкою;;Loan-Cash
+выдача дубликата договора ;;Loan-Cash
+ видача дублікату договору;;Loan-Cash
+заказ доверенности ;;Attornney.Application
+ замовлення довіреності;;Attornney.Application
+отдел координации сети;;Network-Support-Department
+ відділ координації мережі;;Network-Support-Department
+депозит физ лица;;Deposits-NaturalPerson
+депозит фізичної особи;;Deposits-NaturalPerson
+выплата по Фонду гарантирования;;Guarantee-Foundation-Payment
+ виплата по Фонду гарантування;;Guarantee-Foundation-Payment
+обращение в сибель;;Sibel-Ask
+ звернення в сібель;;Sibel-Ask
+начисление бонусов ;;Rewards_Program-Transactions
+ нарахування бонусів;;Rewards_Program-Transactions
+неуспешная операция ;;Operation-Unsuccessful
+ неуспішна операція;;Operation-Unsuccessful
+аннулирование карты ;;Card-Cancel_Account
+ анулювання карти;;Card-Cancel_Account
+оформлення операцій з платіжними картами;;PayCard-Operation-Issue
+блокировка счета;;Account-Blocked
+ блокування рахунку;;Account-Blocked
+блокировка счета;;Account-Blocked
+ блокування рахунку;;Account-Blocked
+индивидуальный банковский сейф;;DepositBox-Individual
+ індивідуальна банківська ячейка;;DepositBox-Individual
+визитки;;Vist_Card
+ візитки;;Vist_Card
+редалерт нетворк;;RedAlert
+ редалерт;;RedAlert
+маркетинговые материалы ;;RedAlert
+ маркетингові матеріали;;RedAlert
+рабочая группа ;;Working_Group
+робоча група;;Working_Group
+закрытие счета юрлица ;;Account-Close_Account-LegalPerson
+закриття рахунку юр особи ;;Account-Close_Account-LegalPerson
+ закрытие счета юридического лица ;;Account-Close_Account-LegalPerson
+закриття рахунку юридичної особи;;Account-Close_Account-LegalPerson
+закрытие счета предпринимателя ;;FOP-Account-Close_Account
+закриття рахунку підприємця;;FOP-Account-Close_Account
+депозиты юрлиц ;;LegalPerson-Deposits
+депозити юросіб ;;LegalPerson-Deposits
+ депозиты юридических лиц ;;LegalPerson-Deposits
+депозити юридичних осіб;;LegalPerson-Deposits
+ЭМЕСБЕ саппорт;;SMB-Support
+плата на остаток по текущему счету ;;CurrentAccount-Balance-Pay
+ плата на залишок по поточному рахунку;;CurrentAccount-Balance-Pay
+сменить рабочую группу;;Working_Group
+змінити робочу группу;;Working_Group
+май бізнес онлайн;;Business-Online
+начисления бонусов за расчеты ;;Rewards_Program-Transactions
+ нарахування бонусів за розрахунки;;Rewards_Program-Transactions
+начисления бонусов по карте ;;Rewards_Program-Transactions
+ нарахування бонусів за розрахунки;;Rewards_Program-Transactions
+разблокировка кредитной карты ;;CreditCard-Unblock
+ розблокування кредитної карти;;CreditCard-Unblock
+информация по депозитам ;;Deposits-Information
+ інформація по депозитах;;Deposits-Information
+не работает АТМ;;ATM-Not_Work
+не працює АТМ;;ATM-Not_Work
+не працює банкомат;;ATM-Not_Work
+не работает банкомат;;ATM-Not_Work
+коли відремонтують АТМ;;ATM-Fix
+коли запрацює банкомат;;ATM-Not_Work
+коли запрацює банкомат;;ATM-Not_Work
+коли почне працювати банкомат;;ATM-Not_Work
+не сходятся чеки;;Cheques-Trace_Cheque
+не те чеки;;Cheques-Trace_Cheque
+налаштування касет;;Cassette-Configuration
+переналаштування касет;;Cassette-Configuration
+переналаштування банкомату;;Cassette-Configuration
+когда загрузят банкомат;;ATM-Load
+загрузка банкомата;;ATM-Load
+информация о выплате зарплаты;;Salary-Payment-Information
+сколько денег в банкомате;;ATM-Funds-Count
+не работает терминал;;Terminal-Not_Work
+не працює терминал;;Terminal-Not_Work
+коли відремонтують терминал;;Terminal-Fix
+коли запрацює терминал;;Terminal-Not_Work
+коли встановлять терминал;;Terminal-Mount
+когда устоновят терминал;;Terminal-Mount
+коли демонтируют терминал;;Terminal-Demount
+немає покриття;;Coverage-Problem
+нет покрытия;;Coverage-Problem
+расходження в прокритті;;Coverage-Problem
+расходження в прокритті;;Coverage-Problem
+запит на дождоткове обладнання;;Extra-Equipment
+банкомат;;ATM-General
+не відповідає стандартам брендування;;Branding-Standarts

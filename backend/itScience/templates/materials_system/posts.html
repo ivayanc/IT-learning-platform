@@ -1,0 +1,83 @@
+{% extends '../base.html' %}
+
+
+{% block title %}{{category_name}}{% endblock %}
+
+{% block content %}
+{%load static%}
+<section class="hero-section overlay bg-cover" data-background="{{category_photo}}">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <ul class="list-inline custom-breadcrumb">
+            <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="#">{{category_name}}</a></li>
+            <li class="list-inline-item text-white h3 font-secondary @@nasted"></li>
+          </ul>
+          <p class="text-lighten">{{category_description}}</p>
+
+          {% for hash_tag in category_tags%}
+            <a href = "/poststag/{{hash_tag}}"><button type="submit" class="tag-item nuxt-link-active">#{{ hash_tag }}</button></a>
+          {% endfor %}
+  
+  
+        </div>
+  
+      </div>
+    </div>
+  </section>
+  <!-- /page title -->
+  <section class="section">
+    <div class="container">
+      <!-- course list -->
+  <div class="row justify-content-center">
+    
+    <!-- course item -->
+    {% for post in posts %}
+    <div class="col-lg-4 col-sm-6 mb-5">
+        <div class="card p-0 border-primary rounded-0 hover-shadow">
+          
+          <img class="card-img-top rounded-0" src="{{ post.title_image.url }}" alt="{{post.title}}">
+          <div class="card-body">
+            <ul class="list-inline mb-2">
+              <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>{{post.published}}</li>
+              <li class="list-inline-item"><a class="text-color" href="#">{{post.moderator}}</a></li>
+            </ul>
+            <a href="{%url 'posts'%}{{post.pk}}">
+              <h4 class="card-title">{{post.title}}</h4>
+            </a>
+            <p class="card-text mb-4">{{post.description}}</p>
+            <a href="{%url 'posts'%}{{post.pk}}" class="btn btn-primary btn-sm">Детальніше</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  <!-- /course list -->
+      
+    {% if is_paginated %}
+    <div class="d-flex justify-content-center">
+          <ul class="list-inline">
+              {% if page_obj.has_previous %}
+                  <li class="list-inline-item"><a href="{{category_link}}?page={{ page_obj.previous_page_number }}" class="btn btn-primary btn-sm">Попередня</a></li>
+                  {% else %}
+                  <li class="list-inline-item"><a href="{{category_link}}" class="btn btn-primary btn-sm">Попередня</a></li>
+              {% endif %}
+              
+              <li class="list-inline-item" aria-controls="dynamic-table" tabindex="0">
+                    <a href="{{category_link}}?page={{page_obj.number}}">{{ page_obj.number }}</a>
+              </li>
+              {% if page_obj.has_next %}
+                    <li class="list-inline-item"><a href="{{category_link}}?page={{ page_obj.next_page_number }}" class="btn btn-primary btn-sm">Наступна</a></li>
+              {% else %}
+                    <li class="list-inline-item"><a href="{{category_link}}?page={{ page_obj.paginator.num_pages }}" class="btn btn-primary btn-sm">Наступна</a></li>    
+              {% endif %}
+              
+          </ul>
+      </div>
+    </div>
+    {% endif %}
+
+  </section>
+  <!-- /courses -->
+    
+{% endblock %}

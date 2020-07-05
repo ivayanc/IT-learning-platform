@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Авторизація{% endblock %}
+
+{% block content %}
+<section class="page-title-section overlay" data-background="images/backgrounds/page-title.jpg">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 center">
+        <ul class="list-inline custom-breadcrumb">
+          <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="#">Вхід</a></li>   
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<form class="login_form_page" method="post">
+	{% csrf_token %}
+  <input type="hidden" name="next" value="{{ next }}" />
+  {% if form.non_field_errors != "" %}
+    <div class="isa_error">
+  {% endif %}
+  {% for error in form.non_field_errors %}
+    {% if error == "Please enter a correct username and password. Note that both fields may be case-sensitive." %}
+    <i class="fa fa-times-circle"></i>
+    Введіть правильне ім’я користувача та пароль. Врахуйте що обидва поля чутливі до регістру
+    {% endif %}
+  {% endfor %}
+  {% if form.non_field_errors != "" %}
+    </div>
+  {% endif %}
+	{% for field in form %}
+ <div class="field-wrapper">
+	<div class="label-wrapper">
+		{% if field.name == "username" %}
+      Логін:
+    {% endif %}
+    {% if field.name == "password" %}
+      Пароль:
+		{% endif %}
+	</div>
+	<div class="value-wrapper">
+		{{ field }}
+	</div>
+ </div>
+ {% endfor %}
+ <div class="submit-wrapper">
+  <input id="login_submit" type="submit" value="Увійти" />
+ </div>
+</form>
+{% endblock %}

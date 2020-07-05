@@ -1,0 +1,315 @@
+{% extends 'base.html' %}
+
+{% block title %}{{object.title}}{% endblock %}
+
+{% block content %}
+
+{%load static%}
+
+
+    <link rel="stylesheet" href="{% static 'css/timer.css' %}">
+    {% load static %}
+<!-- page title -->
+<section class="page-title-section overlay" data-background="images/backgrounds/page-title.jpg">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <ul class="list-inline custom-breadcrumb">
+          <li class="list-inline-item"><h3><a class="text-primary" href="">{{object.title}}</h3></a></li>
+          <li class="list-inline-item text-white h3 font-secondary @@nasted"></li>
+        </ul>
+        <h3 class="text-lighten">Вітаємо, {{user.name}}</h3>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /page title -->
+
+<!-- timer to start -->
+{% if  not is_time_started %}
+
+<section class="bg-gray">
+<div  class="row d-flex justify-content-center">
+<h2 class="text-primary">До початку олімпіади</h2>
+</div>
+</section>
+
+<section class="bg-gray">
+   
+    <div  class="row d-flex justify-content-center">
+       
+          
+        <script type="text/javascript">
+        const olympDate = new Date({{ object.start_time|date:'Y' }}, 
+                                   {{ object.start_time|date:'m' }} - 1, 
+                                   {{ object.start_time|date:'d' }},
+                                   {{ object.start_time|date:'H' }},
+                                   {{ object.start_time|date:'i' }},
+                                   ).getTime();
+        
+        // countdown
+        let timer = setInterval(function() {
+        
+         // get today's date
+         const today = new Date().getTime();
+          console.log(today.toString());
+         // get the difference
+         const diff = olympDate - today;
+        
+         // math
+         let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+         let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+         let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+         let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+        
+          //display
+         document.getElementById("timer").innerHTML =
+           "<div class=\"days\"> \
+         <div class=\"numbers\">" + days + "</div>днів</div> \
+        <div class=\"hours\"> \
+         <div class=\"numbers\">" + hours + "</div>годин</div> \
+        <div class=\"minutes\"> \
+         <div class=\"numbers\">" + minutes + "</div>хвилин</div> \
+        <div class=\"seconds\"> \
+         <div class=\"numbers\">" + seconds + "</div>секунд</div> \
+        </div>";
+        
+        }, 1000);
+
+   
+        </script>
+      
+        <div class="timer-container">
+           
+          <div class="balloon white">
+            <div class="star-red"></div>
+          <div class="face">
+            <div class="eye"></div>
+            <div class="mouth happy"></div>
+          </div>
+          <div class="triangle"></div>
+          <div class="string"></div>
+        </div>
+        
+        <div class="balloon red">
+          <div class="star"></div>
+          <div class="face">
+            <div class="eye"></div>
+            <div class="mouth happy"></div>
+          </div>
+          <div class="triangle"></div>
+          <div class="string"></div>
+        </div>
+        
+        <div class="balloon blue">
+          <div class="star"></div>
+          <div class="face">
+            <div class="eye"></div>
+            <div class="mouth happy"></div>
+          </div>
+          <div class="triangle"></div>
+          <div class="string"></div>
+        </div>
+          <div id="timer"></div>
+          <br>
+          <br>
+          <div  class="row d-flex justify-content-center">
+            
+        
+          <div class="d-md-table-cell text-right pr-0 pr-md-4">
+            {% if not_registred %}
+                  <form action="{%url 'olympiad_register' id=object.pk %}" method="post">
+                    {% csrf_token %}
+                      <button  class="btn btn-primary" type="submit">
+                        <i class="fas fa-sign-in-alt"></i> Зареєструватись
+                      </button>          
+                </form>
+              {%else%}
+                  <div  class="btn btn-primary">
+                      <i class="fas fa-sign-in-alt"></i>  Ви зареєстровані            
+                  </div>
+              {%endif%}
+
+          </div>
+          <!-- <div class="d-md-table-cell text-right pr-0 pr-md-4"><a href="{%url 'olympiad_system'%}" class="btn btn-primary">Члени жюрі</a></div> -->
+          <div class="d-md-table-cell text-right pr-0 pr-md-4"><a href="{%url 'olympiad_system'%}" class="btn btn-primary">Назад</a></div>
+          
+          
+        </div>
+        </div>
+      </div>
+
+</section>
+{% endif %}
+
+
+
+{%if is_time_ended %}
+    {% if object.is_ended %}
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="d-flex align-items-center section-title justify-content-between">
+            <h3>Тут скоро буде таблиця результатів</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+          
+    {% else %}
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="d-flex align-items-center section-title justify-content-between">
+            <h3>Олімпіада переверіяєтся!</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+          
+    {% endif %}
+{% endif %}
+
+{% if is_time_started and not is_time_ended %}
+
+<section class="section-sm">
+  <div class="container">
+    <!-- course info -->
+    <div class="row align-items-center mb-5">
+      <div class="col-xl-3 order-1 col-sm-6 mb-4 mb-xl-0">
+        <h2>{{object.title}}</h2>
+      </div>
+      <div class="col-xl-6 order-sm-3 order-xl-2 col-12 order-2">
+        <ul class="list-inline text-xl-center">
+          <li class="list-inline-item mr-4 mb-3 mb-sm-0">
+            <div class="d-flex align-items-center">
+              <style>
+                h2{
+                  margin-right: 15px;
+                }
+              </style>
+              <h2><i class="fas fa-clock"></i>
+                </h2>
+              <div class="text-left">
+                <h6 class="mb-0">До завершення</h6>
+                <script type="text/javascript">
+                  const olympDate = new Date({{ end_time|date:'Y' }}, 
+                                             {{ end_time|date:'m' }} - 1, 
+                                             {{ end_time|date:'d' }},
+                                             {{ end_time|date:'H' }},
+                                             {{ end_time|date:'i' }},
+                                             ).getTime();
+                  
+                  // countdown
+                  let timer = setInterval(function() {
+                  
+                   // get today's date
+                   const today = new Date().getTime();
+                    console.log(today.toString());
+                   // get the difference
+                   const diff = olympDate - today;
+                  
+                   // math
+                   let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                   let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                   let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                   let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                  
+                  
+          
+                  document.getElementById("timer_1").innerHTML =
+                      hours + ":" + minutes + ":" + seconds 
+                  }, 1000);
+                  </script>
+                <p class="mb-0"><div id="timer_1"></div></p>
+              </div>
+            </div>
+          </li>
+          <li class="list-inline-item mr-4 mb-3 mb-sm-0">
+            <div class="d-flex align-items-center">
+              <h2>
+                <i class="fas fa-tasks"></i>
+              </h2>
+              <div class="text-left">
+                <h6 class="mb-0">Завдань</h6>
+                <p class="mb-0">{{tasks | length}}</p>
+              </div>
+            </div>
+          </li>
+
+          
+        </ul>
+      </div>
+      <!-- border -->
+      <div class="col-12 mt-4 order-4">
+        <div class="border-bottom border-primary"></div>
+      </div>
+    </div>
+    <!-- course details -->
+   
+  </div>
+</section>
+
+{% if not_registred %}
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="d-flex align-items-center section-title justify-content-between">
+        <h3>Нажаль ви не встигли зареєструватися на цю олімпіаду :(</h3>
+        <h5>Приходьте наступного разу</h5>
+      </div>
+    </div>
+  </div>
+</div>
+    
+{%else%}
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <ul class="list-unstyled">
+          <!-- notice item -->
+          {%for task in tasks %}
+          <li class="d-md-table mb-4 w-100 border-bottom hover-shadow">
+            <div class="d-md-table-cell text-center p-4 bg-primary text-white mb-4 mb-md-0"><span class="h2 d-block">
+              {% if task.task_type == 1 %}
+                    <i class="fas fa-file-excel"></i>
+                {%elif task.task_type == 2 %}
+                    <i class="fas fa-database"></i>
+                {%elif task.task_type == 3 %}
+                    <i class="fas fa-file-word"></i>
+                {%elif task.task_type == 4 %}
+                    <i class="fas fa-file-powerpoint"></i>
+                {%elif task.task_type == 5 %}
+                    <i class="fas fa-file-alt"></i>
+                {%endif%}
+              
+            </span>
+              {% if task.task_type == 1 %}
+                  Excel
+                {%elif task.task_type == 2 %}
+                  Access
+                {%elif task.task_type == 3 %}
+                  Word
+                {%elif task.task_type == 4 %}
+                  PowerPoint
+                {%elif task.task_type == 5 %}
+                  Задача
+                {%endif%}
+            </div>
+            <div class="d-md-table-cell px-4 vertical-align-middle mb-4 mb-md-0">
+              <a href="{{task.task_alias}}" class="h4 mb-3 d-block">{{task.title}}</a>
+            </div>
+            <div class="d-md-table-cell text-right pr-0 pr-md-4"><a href="{{task.task_alias}}" class="btn btn-primary">Переглянути умову</a></div>
+          </li>
+          {%endfor%}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+{% endif %}
+
+
+{%endblock%}

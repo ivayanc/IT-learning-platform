@@ -1,0 +1,62 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Про нас{% endblock %}
+
+{% block content %}
+
+{%load static%}
+
+<!-- hero slider -->
+<section class="page-title-section overlay" data-background="images/backgrounds/page-title.jpg">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <ul class="list-inline custom-breadcrumb">
+        
+          
+        </ul>
+        
+        
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /hero slider -->
+
+
+<!-- about us -->
+<section class="section">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6 order-2 order-md-1">
+        <h2 class="section-title">Про нас</h2>
+        <p>
+Раді вітати вас на сайті "Інформатика". Даний сайт є інтелектуальною власністю розробників сайту.
+
+Авторська група:
+
+Дасюк Антон - засновник та розробник клієнтської та серверної частини, адміністратор сайту.
+Гур'янова Дар'я - front-end розробник.
+Яків Артюхов - backend розробник.
+e-mail: anton.dasyuk@gmail.com, admin@it-science.com.ua
+fb: https://www.facebook.com/anton.dasyuk
+</p>
+        <p></p>
+
+      </div>
+      <div class="col-md-6 order-1 order-md-2 mb-4 mb-md-0">
+        <img class="img-fluid w-100" src="{% static 'images/logo.png'%}"  alt="about image">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block title %}Профіль{% endblock %}
+
+{%block content%}
+<!-- page title -->
+<section class="page-title-section overlay" data-background="images/backgrounds/page-title.jpg">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <ul class="list-inline custom-breadcrumb">
+          <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="teacher.html">Профіль</a></li>
+          <li class="list-inline-item text-white h3 font-secondary nasted">{{object.name}}</li>
+        </ul>
+        <p class="text-lighten">{{object.about}}</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /page title -->
+
+<!-- teacher details -->
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 mb-5">
+        <img class="img-fluid w-25" src="{{object.avatar.url}}" alt="Фото" width="100">
+      </div>
+      <div class="col-md-6 mb-5">
+        <h3>{{object.name}}</h3>
+        <p class="mb-5">{{object.about}}</p>
+        <div class="row">
+          <div class="col-md-6 mb-5 mb-md-0">
+            <h4 class="mb-4">Контактні дані:</h4>
+            <ul class="list-unstyled">
+              <li class="mb-3"><a class="text-color" href="mailto:{{object.email}}"><i class="ti-email mr-2"></i>{{object.email}}</a></li>
+            </ul>
+          </div>
+          {%if object.pk == user.pk %}
+          
+          <div class="col-xl-3 text-sm-right text-left order-sm-2 order-3 order-xl-3 col-sm-6 mb-4 mb-xl-0">
+              <a href="{% url 'profile-edit' id=object.pk %}" class="btn btn-primary"><i class="ti-pencil  mr-1"></i>Редагувати профіль</a>
+            </div> 
+          {%endif%}
+           
+      </div>
+      
+      </div>
+
+    
+    </div>
+    {% if request.user.pk == object.pk%}
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <h4 class="mb-4">Обрані матеріали</h4>
+      </div>
+      {% if favorites|length > 0 %}
+          {%for post in favorites%}
+          <div class="col-lg-4 col-sm-6 mb-5">
+              <div class="card p-0 border-primary rounded-0 hover-shadow">
+                <img class="card-img-top rounded-0" src="{{post.title_image.url}}" alt="course thumb">
+                <div class="card-body">
+                  <ul class="list-inline mb-2">
+                    <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>{{post.published}}</li>
+                    <li class="list-inline-item"><a class="text-color" href="#">{{post.moderator}}</a></li>
+                  </ul>
+                  <a href="{%url 'post-details' id=post.pk%}">
+                    <h4 class="card-title">{{post.title}}</h4>
+                  </a>
+                  <p class="card-text mb-4">{{post.description}}</p>
+                  <a href="{%url 'post-details' id=post.pk%}" class="btn btn-primary btn-sm">Детальніше</a>
+                </div>
+              </div>
+            </div>
+          {%endfor%}
+      {%else%}
+          <div class="col-lg-5 col-sm-7 mb-8">
+            Тут будуть відображені обрані вами матеріали
+          </div>  
+      {%endif%}
+      
+  </div>
+  
+    <!-- <div class="row justify-content-center">
+      <div class="col-12">
+        <h4 class="mb-4">Зареєстровано для участі</h4>
+      </div>
+      {% if favorites|length > 0 %}
+          {%for post in favorites%}
+          <div class="col-lg-4 col-sm-6 mb-5">
+              <div class="card p-0 border-primary rounded-0 hover-shadow">
+                <img class="card-img-top rounded-0" src="{{post.title_image.url}}" alt="course thumb">
+                <div class="card-body">
+                  <ul class="list-inline mb-2">
+                    <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>{{post.published}}</li>
+                    <li class="list-inline-item"><a class="text-color" href="#">{{post.moderator}}</a></li>
+                  </ul>
+                  <a href="{%url 'post-details' id=post.pk%}">
+                    <h4 class="card-title">{{post.title}}</h4>
+                  </a>
+                  <p class="card-text mb-4">{{post.description}}</p>
+                  <a href="{%url 'post-details' id=post.pk%}" class="btn btn-primary btn-sm">Детальніше</a>
+                </div>
+              </div>
+            </div>
+          {%endfor%}
+      {%else%}
+          <div class="col-lg-5 col-sm-7 mb-8">
+            Тут будуть відображені олімпіади на які ви зареєстровані
+          </div>  
+      {%endif%} -->
+
+      
+      
+  </div>
+  {%endif%}
+</section>
+<!-- /teacher details -->
+
+{%endblock%}

@@ -1,0 +1,141 @@
+
+{% extends 'base.html' %}
+
+{% block title %}{{object.title}}{% endblock %}
+
+{% block content %}
+
+{%load static%}
+
+<!-- page title -->
+<section class="page-title-section overlay" data-background="images/backgrounds/page-title.jpg">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <ul class="list-inline custom-breadcrumb">
+          <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="{% url 'olympiad' id=object.olympiad.pk %}">{{object.olympiad.title}}</a></li>
+          <li class="list-inline-item text-white h3 font-secondary nasted">{{object.title}}</li>
+        </ul>
+        <p class="text-lighten">ПАМ’ЯТАЙТЕ: правильне розуміння умови – невід’ємна складова
+            успішного розв’язання.
+</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /page title -->
+
+<!-- notice details -->
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="d-flex">
+          <div class="text-center mr-4">
+            <div class="p-4 bg-primary text-white">
+                <span class="h2 d-block">
+                    {% if task.task_type == 1 %}
+                    <i class="fas fa-file-excel"></i>
+                {%elif task.task_type == 2 %}
+                    <i class="fas fa-database"></i>
+                {%elif task.task_type == 3 %}
+                    <i class="fas fa-file-word"></i>
+                {%elif task.task_type == 4 %}
+                    <i class="fas fa-file-powerpoint"></i>
+                {%elif task.task_type == 5 %}
+                    <i class="fas fa-file-alt"></i>
+                {%endif%}
+                
+                </span> 
+                {% if task.task_type == 1 %}
+                  Excel
+                {%elif task.task_type == 2 %}
+                  Access
+                {%elif task.task_type == 3 %}
+                  Word
+                {%elif task.task_type == 4 %}
+                  PowerPoint
+                {%elif task.task_type == 5 %}
+                  Задача
+                {%endif%}
+            </div>
+          </div>
+          <!-- notice content -->
+          <div>
+            <h3 class="mb-4">{{object.title}}</h3>
+            {{object.description |safe }}
+            {%if object.files %}
+            <br>    
+            <a href="{{object.files.url}}" class="btn btn-primary">Завантажити додаткові файли</a>
+            {%endif%}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+        <br><br><br>
+        <div class="col-12">
+
+        <div  class="row d-flex justify-content-center">
+        
+            <div class="d-md-table-cell text-right pr-0 pr-md-4">
+              
+                    <form action="{%url 'olympiad_task_send' id=object.olympiad.pk task_id=object.task_alias  %}" method="post" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      <input type="file" style="width:200px" id="solution" name="solution" required="True">
+                        <button  class="btn btn-primary" type="submit">
+                          <i class="fas fa-sign-in-alt"></i> Надіслати розв'язок
+                        </button>          
+                  </form>
+                  <p>Увага! Варто зауважити що на перевірку буде відправлена тільки остання версія розв'язку, яку ви надіслали </p>
+            </div>
+
+          </div> 
+        </div> 
+          
+        </div>
+
+    {% if solution == 0%}
+    {%else%}
+
+
+
+    {%load static%}
+    <link href="{% static 'css/table.css' %}" rel="stylesheet">
+    {%load static%}
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/select2/select2.min.css' %}">
+    {%load static%}
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/perfect-scrollbar/perfect-scrollbar.css' %}">
+    {%load static%}
+    <script src="{% static 'plugins/select2/select2.min.js'%}"></script>
+
+
+  <div class="row">
+        <br><br><br>
+        <div class="col-12">
+
+        <div  class="row d-flex justify-content-center">
+        
+            <div class="d-md-table-cell text-right pr-0 pr-md-4">
+                         
+              <table>
+
+                <tr>
+                  <td>Останній розв'язок завантажено о:</td>
+                  <td>{{solution.uploaded_at}}</td>
+                </tr>
+              </table>
+          
+            </div>
+
+          </div> 
+        </div> 
+          
+    </div>
+  
+   
+  {%endif%}
+</section>
+<!-- /notice details -->
+
+{%endblock%}

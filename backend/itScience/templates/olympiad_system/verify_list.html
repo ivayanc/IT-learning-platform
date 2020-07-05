@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+
+{% block title %}{{object.title}}{% endblock %}
+
+{% block content %}
+
+{%load static%}
+<section class="page-title-section overlay" data-background="images/backgrounds/page-title.jpg">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <ul class="list-inline custom-breadcrumb">
+          <li class="list-inline-item"><h3><a class="text-primary" href="">{{object.title}}</h3></a></li>
+          <li class="list-inline-item text-white h3 font-secondary @@nasted"></li>
+        </ul>
+        <h3 class="text-lighten">Вітаємо ,{{user.name}}</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+{%if is_reviewer %}
+  <!-- <section class="bg-white">
+      <div class="row d-flex justify-content-center" >
+      <div class="container">
+        <div class="row">
+            <div class="col-sm">
+               
+        <h4 class="text-primary">Задача</h4>
+       
+        <select>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+          </select>
+          </div>
+          
+          <div class="col-sm">
+              
+          <h4 class="text-primary">Клас</h4>
+          
+        <select>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+            <option>11</option>
+          </select>
+          </div>
+         
+          <div class="col-sm">
+             
+          <h4 class="text-primary">Статус задачі</h4>
+         
+        <select>
+            <option>Очікує на перевірку</option>
+            <option>Перевіряється</option>
+            <option>Перевірено</option>
+            <option>Проапельовано</option>
+          </select>
+          </div>
+          </div>
+          </div>
+         
+
+        </div>
+        </div>
+    </section> -->
+
+    {%load static%}
+    <link href="{% static 'css/table.css' %}" rel="stylesheet">
+    {%load static%}
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/select2/select2.min.css' %}">
+    {%load static%}
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/perfect-scrollbar/perfect-scrollbar.css' %}">
+    {%load static%}
+    <script src="{% static 'plugins/select2/select2.min.js'%}"></script>
+
+
+
+  <section class="table-section" >
+  
+   <div class="row d-flex justify-content-center" >
+    <style>
+      table{
+        border: 16px solid #FF7F50;
+      }
+      </style>
+     <table border="2" class="table_t">
+        <col width="2%">
+        <col width="5%">
+        <col width="15%">
+        <col width="5%">
+        <col width="5%">
+        <col width="5%">
+   <tr>
+    <th>Клас</th>
+    <th>ID</th>
+    <th>Задача</th>
+    <th>Статус перевірки</th>
+    <th>Перевіряючий</th>
+   </tr>
+   {% for solution in solutions %}
+      <tr>
+        <td>{{solution.user.class}}</td>
+        <td>{{solution.encrypted_id}}</td>
+        <td >{{solution.task.title}}</td>
+      <td>
+        {%if solution.status == 1%}
+            Очікує на перевірку
+        {%elif solution.status == 2%}
+            В процессі перевірки
+        {%elif solution.status == 2%}
+            Перевірено
+        {%endif%}
+        
+    </td>
+    {%if solution.status == 1%}
+          <td>
+              <a href="/admin/olympiad_system/solution/{{solution.pk}}/change/" class="btn btn-primary" data-animation-out="fadeOutRight" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInLeft" data-delay-in=".7">Взяти на себе</a>
+          </td>
+    {%else%}  
+      {% if solution.reviewer == None %}
+            <td>Відустній</td>
+        {%else%}
+            <td>{{solution.reviewer.name}}</td>
+        {%endif%}
+    {%endif%}
+      
+    </tr>
+    {%endfor%}
+
+    </table>
+  </div>
+ 
+  </section>
+
+  {%else%}
+  {%endif%}
+
+  {%endblock%}

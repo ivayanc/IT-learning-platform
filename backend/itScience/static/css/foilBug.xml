@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><design xmlns="http://www.farheap.com/dvs/xsd/design" xmlns:flow="http://www.farheap.com/dvs/xsd/design" xmlns:svg="http://www.farheap.com/dvs/xsd/svg" version="1.1.1" type="blank">
+  <pages>
+    <page id="1">
+    <foldRefs/>
+    <cutRefs>
+        <cutRef ref="1" bleed="0.0625" safe="0.0625" ppi="300" scaleX="1.68993993993994" scaleY="1.68993993993994"/>
+    </cutRefs>
+    <faceContainerRefs><faceContainerRef ref="2" ppi="300" x="-0.0625" y="-0.0625" type="front" scaleX="1.68993993993994" scaleY="1.68993993993994"/></faceContainerRefs>
+</page>
+  </pages>
+  <folds/>
+  <diecuts>
+    <cut id="1" face="1"/>
+  </diecuts>
+  <faceContainers>
+    <faceContainer id="1">
+    <face>
+        <processes>
+            <process group="1" type="regular"/>
+        </processes>
+        <assets>
+            <fonts/>
+            <images/>
+            <textBlocks/>
+            <vectorGraphics><vg id="1" format="svg"><svg:svg version="1.1"><svg:rect width="643.8098622834295" height="377.5282096845846" style="fill:rgb(0,0,0)"/></svg:svg></vg></vectorGraphics>
+        </assets>
+        <groups>
+            <group id="1">
+                <assetRefs><vgRef ref="1"/></assetRefs>
+            </group>
+        </groups>
+    </face>
+</faceContainer>
+  <faceContainer id="2"><face><processes><process group="1" type="regular"/><process id="2" type="foil_silver" group="1" enabled="true" state="off" blend="layers"/></processes><assets><images><image id="1" lowResScale="1" width="666" height="399.71834740115503" token="BACKGROUND" color="d0a5d3" colorModel="rgb-hex"/><image id="2" format="jpg" uri="https://storage.poweredbydavinci.com/ea/c6/25/gene21e5db19168984c3.png" hrUri="https://storage.poweredbydavinci.com/2a/b5/7c/genf6275db19160db303.jpg" lowResScale="0.45145631067961" width="372" hrWidth="824" height="578" hrHeight="1280"/></images><vectorGraphics><vg id="1" format="svg"><svg:svg version="1.1"><svg:rect x="0" y="0" width="372" height="578" style="fill:rgb(0,0,0)"/></svg:svg></vg></vectorGraphics></assets><groups><group id="1"><assetRefs><imageRef ref="1" x="0" y="0" scaleX="1" scaleY="1" rotation="0"><processRefs><processRef ref="2" threshold="200" filter="blackAndWhite"/></processRefs></imageRef><groupRef ref="3" x="213.0967299424016" y="36.97183474011547" scaleX="0.5532433874064431" scaleY="0.5532433874064431" rotation="0"/></assetRefs></group><group id="2"><assetRefs><vgRef ref="1"/></assetRefs></group><group id="3"><mask group="2"/><assetRefs><imageRef ref="2" x="0" y="0" scaleX="1" scaleY="1" rotation="0"/></assetRefs></group></groups></face></faceContainer></faceContainers>
+</design>
