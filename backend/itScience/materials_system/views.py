@@ -10,9 +10,9 @@ from django.views.generic import (
 )
 from .models import Post, PostHashTag, HashTag
 from olympiad_system.models import Olympiad
-from .forms import PostCreateForm
+from .forms import PostCreateForm, HashTagForm
 from django.shortcuts import render, redirect
-
+import simplejson as json
 
 class IndexView(TemplateView):
     template_name = 'materials_system/index.html'
@@ -53,27 +53,105 @@ class SinglePostView(DetailView):
                 context['hash_tags'].add(parent)
                 parent = parent.tag_parent
             context['hash_tags'].add(hash_tag.tag)
-        print(context['hash_tags'])
         return context
-    
+
+class HashTagListView(TemplateView):
+    template_name = 'materials_system/index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['latest_posts'] = Post.objects.all().order_by('-published')[:6]
+        #context['latest_news'] = Post.objects.all().filter(category=Post.OTHER).order_by('-published')[:3]
+        context['olympiads'] = Olympiad.objects.all().filter(olymp_type=Olympiad.PUBLIC,is_ended=False).order_by('start_time')[:3]
+        
+        return context
+
+class HashTagCreateView(CreateView):
+    template_name = 'materials_system/hashtag_create.html'
+    form_class = HashTagForm
+    queryset = HashTag.objects.all()
+
+    def form_valid(self, form):
+        print('Anton dayn typoy')
+        return super().form_valid(form)
+
+
 class PostCreateView(CreateView):
     template_name = 'materials_system/post_create.html'
     form_class = PostCreateForm
     queryset = Post.objects.all()
     
     def form_valid(self, form):
+        self.object = form.save()
+        self.object.title = self.request.POST.get("title")
+        post = Post.objects.get(title=self.object.title)
+        try:
+            self.object.hashtags = json.loads(self.request.POST.get("hashtagsAdd"))
+            for hashtag in self.object.hashtags:
+                hashTagM = HashTag.objects.get(tag_name=hashtag)
+                PostHashTag.objects.create(post=post, tag=hashTagM)
+        except:
+            print("error with adding hashtags to post")
+        try:
+            self.object.hashtagsDelete = json.loads(self.request.POST.get("hashtagsDelete"))
+            for hashtag in self.object.hashtagsDelete:
+                hashTagM = HashTag.objects.get(tag_name=hashtag)
+                PostHashTag.objects.get(post=post, tag=hashTagM).delete()
+        except:
+            print("error with deleting hashtags from post")
         return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        hashtags = HashTag.objects.all()
+        context['hashtagsArray'] = []
+        for hashtag in hashtags:
+            context['hashtagsArray'].append(hashtag.tag_name)
+        context['hashtagsArray'] = json.dumps(context['hashtagsArray'])
+        return context
 
 class PostUpdateView(UpdateView):
     template_name = 'materials_system/post_create.html'
     form_class = PostCreateForm
 
     def form_valid(self, form):
+        self.object = form.save()
+        self.object.title = self.request.POST.get("title")
+        post = Post.objects.get(title=self.object.title)
+        try:
+            self.object.hashtags = json.loads(self.request.POST.get("hashtagsAdd"))
+            for hashtag in self.object.hashtags:
+                hashTagM = HashTag.objects.get(tag_name=hashtag)
+                PostHashTag.objects.create(post=post, tag=hashTagM)
+        except:
+            print("error with adding hashtags to post")
+        try:
+            self.object.hashtagsDelete = json.loads(self.request.POST.get("hashtagsDelete"))
+            for hashtag in self.object.hashtagsDelete:
+                hashTagM = HashTag.objects.get(tag_name=hashtag)
+                PostHashTag.objects.get(post=post, tag=hashTagM).delete()
+        except:
+            print("error with deleting hashtags from post")
         return super().form_valid(form)
 
     def get_object(self, queryset=None):
         id_ = self.kwargs.get("id")
         return  get_object_or_404(Post, pk=id_)
+    
+    def get_context_data(self, **kwargs):
+        id_ = self.kwargs.get("id")
+        post = Post.objects.get(id=id_)
+        context = super().get_context_data(**kwargs)
+        hashtags = HashTag.objects.all()
+        context['hashtagsArray'] = []
+        for hashtag in hashtags:
+            context['hashtagsArray'].append(hashtag.tag_name)
+        context['hashtagsArray'] = json.dumps(context['hashtagsArray'])
+        context['addedHashtags'] = []
+        hashtagsPost = PostHashTag.objects.all().filter(post = post)
+        for hashtagPost in hashtagsPost:
+            context['addedHashtags'].append(hashtagPost.tag.tag_name) 
+        return context
 
 class AddToFavoriteView(UpdateView):
 

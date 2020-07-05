@@ -19,7 +19,6 @@ class Post(models.Model):
     favorite         = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="Обрані", blank=True)
     likes            = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="Лайки", blank=True)   
 
-
     def get_absolute_url(self):
         return reverse("post-details", kwargs={"id": self.pk})
     def __str__(self):
@@ -31,8 +30,15 @@ class HashTag(models.Model):
     tag_name = models.CharField(max_length=50)
     tag_parent = models.ForeignKey('self', on_delete = models.CASCADE, blank = True, null = True)
     tag_main = models.BooleanField(blank=False, default=False)
+
+    class Meta:
+        unique_together = ("tag_name", "tag_parent")
+    
     def __str__(self):
         return self.tag_name
+    
+    def get_absolute_url(self):
+        return reverse("hashtag-details", kwargs={"id": self.pk})
 
 class PostHashTag(models.Model):
     post = models.ForeignKey(Post,on_delete=models.CASCADE)

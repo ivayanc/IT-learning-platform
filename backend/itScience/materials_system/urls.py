@@ -20,4 +20,8 @@ urlpatterns = [
     path('posts/<int:id>/update/', views.PostUpdateView.as_view(), name='post-update'),
     #path('posts/<int:id>/delete', views.PostDeleteView.as_view(), name='post-details'),
 
+    path('hashtags/create/', views.HashTagCreateView.as_view(), name='hashtag-create'),
+    path('hashtags/<int:id>/', views.HashTagListView.as_view(), name='hashtag-details'),
+    #path('hashtags/', views.HashTagListView.as_view(), name='hashtag-list'),
+
 ]
