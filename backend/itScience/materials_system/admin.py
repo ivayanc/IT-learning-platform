@@ -5,7 +5,6 @@ from .models import Post, HashTag, PostHashTag
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     fields = (
-    'category',
     'time_to_read',
     'moderator',
     'title',
@@ -13,8 +12,8 @@ class PostAdmin(admin.ModelAdmin):
     'description',
     'title_image',
     'publication',)
-    list_display = ('category', 'title', 'moderator', 'time_to_read')
-    filter_list = ('category', 'moderator',)
+    list_display = ('title', 'moderator', 'time_to_read')
+    filter_list = ('moderator',)
 
 @admin.register(HashTag)
 class HashTags(admin.ModelAdmin):

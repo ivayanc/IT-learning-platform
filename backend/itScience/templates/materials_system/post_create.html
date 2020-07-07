@@ -1,39 +1,81 @@
 {% extends '../base.html' %}
 
-
 {% block title %}Створення статті{% endblock %}
 
 {% block content %}
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+{% load static %}
+<link href="{% static 'css/addingPost.css' %}" rel="stylesheet">
 
-<style>
-  .django-form {
-    margin-left: 100px ;
-  }
-</style>
+
 <form class="post-create-form add_post" action="." method="POST" enctype="multipart/form-data">
   {%csrf_token%}
-  {{form.as_p}}
-  <input type="submit" name="save" value="Зберегти">
+  {% for field in form %}
+    {% for error in field.errors %}
+      <i class="fa fa-times-circle"></i>
+      {{ error }}
+      <br/>
+    {% endfor %}
+  {% endfor %}
+  {% for field in form %}
+  <div class="field-wrapper">
+  <div class="form-group">
+    <label>{{ field.label }}</label>
+    {{ field }}
+  </div>
+  {% endfor %}
+  <div class="form-group">
+    <label>Hashtags</labeL>
+    <input type="text" id="hashtag"><button id="hashtagclick" type="button" onclick="addHashTag()">Додати до статті</button>
+  </div>
+  <div class="form-group" id = "hashtagsAdded">
+    {% for hashtagPost in addedHashtags%}
+      <button id="{{ hashtagPost }}" onclick="deleteHashTag(this.id)" type="button">{{ hashtagPost }}</button>
+    {% endfor %}
+  </div>
+  <button type="submit" id="addPostSubmit" name="save">Зберегти</button>
+  <input type="hidden" id="hashtagsAdd" name="hashtagsAdd">
+  <input type="hidden" id="hashtagsDelete" name="hashtagsDelete">
 </form>
+<script>
+  var hashtag = document.getElementById("hashtag");
+  var hashtagbutton = document.getElementById("hashtagclick");
+  var hashtagsAdd = document.getElementById("hashtagsAdd");
+  var hashtagsDelete = document.getElementById("hashtagsDelete");
+  var hashtagsArray = "{{ hashtagsArray }}";
+  var addedHashTag = [];
+  var deletedHashTag = [];
+  hashtagsArray = JSON.parse(hashtagsArray.replace(/&quot;/g,'"'));
+  hashtag.addEventListener('keypress', function(event){
+    if(event.keyCode == 13){
+      event.preventDefault();
+      hashtagbutton.click();
+    }
+  });
+  function addHashTag(){
+
+    if(hashtagsArray.includes(hashtag.value) && !addedHashTag.includes(hashtag.value)){
+      var hashtagbtn = document.createElement("button");
+      hashtagbtn.innerHTML = hashtag.value;
+      hashtagbtn.setAttribute("id", hashtag.value);
+      hashtagbtn.setAttribute("onclick", "deleteHashTag(this.id)");
+      hashtagbtn.setAttribute("type", "button");
+      document.getElementById("hashtagsAdded").appendChild(hashtagbtn);
+      addedHashTag.push(hashtag.value);
+      hashtagsAdd.value = JSON.stringify(addedHashTag);
+      hashtag.value = "";
+    } else{
+      alert("Помилка. Цього хештегу не існує або його вже було доданно.");
+    }
+
+  }
+  function deleteHashTag(id){
+    if(confirm("Ви впевнені що хочете видалити хештег?")){
+      deletedHashTag.push(id);
+      hashtagsDelete.value = JSON.stringify(deletedHashTag);
+      document.getElementById(id).parentNode.removeChild(document.getElementById(id));
+    }
+  }
+</script>
 
 {% endblock %}
