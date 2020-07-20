@@ -75,6 +75,18 @@ class HashTagCreateView(CreateView):
         print('Anton dayn typoy')
         return super().form_valid(form)
 
+class HashTagUpdate(UpdateView):
+    template_name = 'materials_system/hashtag_create.html'
+    form_class = HashTagForm
+
+    def form_valid(self, form):
+        print('Anton dayn typoy')
+        return super().form_valid(form)
+
+    def get_object(self, queryset=None):
+        id_ = self.kwargs.get("id")
+        return  get_object_or_404(HashTag, pk=id_)
+
 
 class PostCreateView(CreateView):
     template_name = 'materials_system/post_create.html'

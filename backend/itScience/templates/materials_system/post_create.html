@@ -26,7 +26,7 @@
   {% endfor %}
   <div class="form-group">
     <label>Hashtags</labeL>
-    <input type="text" id="hashtag"><button id="hashtagclick" type="button" onclick="addHashTag()">Додати до статті</button>
+    <input type="text" id="hashtag"><button id="hashtagclick" type="button" onclick="addHashTag()">Додати до статті</button><a href="/hashtags/create/"><button type="button">Додати hashtag</button></a>
   </div>
   <div class="form-group" id = "hashtagsAdded">
     {% for hashtagPost in addedHashtags%}
