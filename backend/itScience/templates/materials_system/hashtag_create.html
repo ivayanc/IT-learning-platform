@@ -1,14 +1,44 @@
 {% extends '../base.html' %}
 
-{% block title %}Створення статті{% endblock %}
+{% block title %}Створення хештегу{% endblock %}
 
 {% block content %}
 
 {% load static %}
 <link href="{% static 'css/addingPost.css' %}" rel="stylesheet">
 
+<style>
+  #hashtagUl {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  #hashtagUl li a {
+    border: 1px solid #ddd; 
+    margin-top: -1px; 
+    background-color: #f6f6f6; 
+    padding: 12px; 
+    text-decoration: none;
+    font-size: 18px;
+    color: black; 
+    display: block; 
+  }
+  #hashtagUl li a:hover:not(.header) {
+    background-color: #eee; /* Add a hover effect to all links, except for headers */
+  }
+  .tag-item{
+    background-color: #ffcd6e;
+    color: white !important;
+    font-weight: 600 !important;
+    margin-right: 1%;
+  }
+  .tag-item:hover{
+    text-decoration: line-through !important;
+    text-decoration-color: black !important;
+  }
+</style>
 
-<form class="post-create-form add_post" action="." method="POST">
+<form class="post-create-form add_post" action="." method="POST">\
     {%csrf_token%}
     {% for field in form %}
         {% for error in field.errors %}
@@ -24,6 +54,44 @@
             {{ field }}
         </div>
     {% endfor %}
-    <button type="submit" id="addPostSubmit" name="save">Додати</button>
+    <div class="form-group">
+        <label>Предок</labeL>
+        {% if hashtag_parent != none %}
+          <input type="text" name = "hashtag_parent" id="hashtag" onkeyup="hashtagFilter()" value="{{hashtag_parent}}">
+        {% else %}
+          <input type="text" name = "hashtag_parent" id="hashtag" onkeyup="hashtagFilter()">
+        {% endif %}
+        <br/>
+        <ul style="height: 234px; overflow: auto" id="hashtagUl">
+          {%for hashtag in all_hashtags %}
+            <li class="hashtagLi"><a id = "{{hashtag}}#" onclick="addHashTagli(this.id)">{{hashtag.tag_name}}</a></li>
+          {% endfor %}
+        </ul>
+    </div>
+
+    <button type="submit" id="addPostSubmit" name="save">{{buttonName}}</button>
 </form>
+
+<script type="text/javascript">
+    function hashtagFilter(){
+        var input, filter, ul, li, a, i, txtValue;
+        input = document.getElementById("hashtag");
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("hashtagUl");
+        li = document.getElementsByClassName("hashtagLi");
+
+        for(i = 0; i < li.length; i++){
+        a = li[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+        }
+    }
+    function addHashTagli(id){
+      document.getElementById("hashtag").value = document.getElementById(id).textContent;
+    }
+</script>
 {% endblock %}

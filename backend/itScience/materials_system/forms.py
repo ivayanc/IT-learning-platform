@@ -30,7 +30,6 @@ class HashTagForm(forms.ModelForm):
         model = HashTag
         fields = [
             'tag_name',
-            'tag_parent',
             'tag_main',
         ]
 
