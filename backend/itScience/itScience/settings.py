@@ -24,7 +24,9 @@ SECRET_KEY = '*o_q-wm-pg!r@5!-$sym)1p$d6&*ykj=k-1af=&ekk=xzedtvh'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+	"145.14.158.234",
+]
 
 
 # Application definition
@@ -90,8 +92,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'itscience',
-        'USER': 'itscience_admin',
-        'PASSWORD': 'qwerty',
+        'USER': 'admin',
+        'PASSWORD': 'admin',
         'HOST': 'localhost',
         'PORT': '',
     }
@@ -137,6 +139,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 AUTH_USER_MODEL = 'users.SystemUser' 
 
@@ -148,65 +151,65 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
 CKEDITOR_UPLOAD_PATH = "uploads/"
-# CKEDITOR_CONFIGS = {
-#     'default': {
-#         'skin': 'moono',
-#         # 'skin': 'office2013',
-#         'toolbar_Basic': [
-#             ['Source', '-', 'Bold', 'Italic']
-#         ],
-#         'toolbar_YourCustomToolbarConfig': [
-#             {'name': 'document', 'items': ['Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates']},
-#             {'name': 'clipboard', 'items': ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']},
-#             {'name': 'editing', 'items': ['Find', 'Replace', '-', 'SelectAll']},
-#             {'name': 'forms',
-#              'items': ['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton',
-#                        'HiddenField']},
-#             '/',
-#             {'name': 'basicstyles',
-#              'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat']},
-#             {'name': 'paragraph',
-#              'items': ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-',
-#                        'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl',
-#                        'Language']},
-#             {'name': 'links', 'items': ['Link', 'Unlink', 'Anchor']},
-#             {'name': 'insert',
-#              'items': ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe']},
-#             '/',
-#             {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},
-#             {'name': 'colors', 'items': ['TextColor', 'BGColor']},
-#             {'name': 'tools', 'items': ['Maximize', 'ShowBlocks']},
-#             {'name': 'about', 'items': ['About']},
-#             '/',  # put this to force next toolbar on new line
-#             {'name': 'yourcustomtools', 'items': [
-#                 'Preview',
-#                 'Maximize',
+CKEDITOR_CONFIGS = {
+    'default': {
+        'skin': 'moono',
+        # 'skin': 'office2013',
+        'toolbar_Basic': [
+            ['Source', '-', 'Bold', 'Italic']
+        ],
+        'toolbar_YourCustomToolbarConfig': [
+            {'name': 'document', 'items': ['Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates']},
+            {'name': 'clipboard', 'items': ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']},
+            {'name': 'editing', 'items': ['Find', 'Replace', '-', 'SelectAll']},
+            {'name': 'forms',
+             'items': ['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton',
+                       'HiddenField']},
+            '/',
+            {'name': 'basicstyles',
+             'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat']},
+            {'name': 'paragraph',
+             'items': ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-',
+                       'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl',
+                       'Language']},
+            {'name': 'links', 'items': ['Link', 'Unlink', 'Anchor']},
+            {'name': 'insert',
+             'items': ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe']},
+            '/',
+            {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},
+            {'name': 'colors', 'items': ['TextColor', 'BGColor']},
+            {'name': 'tools', 'items': ['Maximize', 'ShowBlocks']},
+            {'name': 'about', 'items': ['About']},
+            '/',  # put this to force next toolbar on new line
+            {'name': 'yourcustomtools', 'items': [
+                'Preview',
+                'Maximize',
 
-#             ]},
-#         ],
-#         'toolbar': 'YourCustomToolbarConfig',
-#         'toolbarGroups': [{ 'name': 'document', 'groups': [ 'mode', 'document', 'doctools' ] }],
-#         # 'height': 291,
-#         'width': '100%',
-#         'filebrowserWindowHeight': 725,
-#         'filebrowserWindowWidth': 940,
-#         'toolbarCanCollapse': True,
-#         'mathJaxLib': '//cdn.mathjax.org/mathjax/2.2-latest/MathJax.js?config=TeX-AMS_HTML',
-#         'tabSpaces': 4,
-#         'extraPlugins': ','.join([
-#             'uploadimage',
-#             'div',
-#             'autolink',
-#             'autoembed',
-#             'embedsemantic',
-#             'autogrow',
-#             #'devtools',
-#             'widget',
-#             'lineutils',
-#             'clipboard',
-#             'dialog',
-#             'dialogui',
-#             'elementspath'
-#         ]),
-#     }
-# }
+            ]},
+        ],
+        'toolbar': 'YourCustomToolbarConfig',
+        'toolbarGroups': [{ 'name': 'document', 'groups': [ 'mode', 'document', 'doctools' ] }],
+        # 'height': 291,
+        'width': '100%',
+        'filebrowserWindowHeight': 725,
+        'filebrowserWindowWidth': 940,
+        'toolbarCanCollapse': True,
+        'mathJaxLib': '//cdn.mathjax.org/mathjax/2.2-latest/MathJax.js?config=TeX-AMS_HTML',
+        'tabSpaces': 4,
+        'extraPlugins': ','.join([
+            'uploadimage',
+            'div',
+            'autolink',
+            'autoembed',
+            'embedsemantic',
+            'autogrow',
+            #'devtools',
+            'widget',
+            'lineutils',
+            'clipboard',
+            'dialog',
+            'dialogui',
+            'elementspath'
+        ]),
+    }
+}

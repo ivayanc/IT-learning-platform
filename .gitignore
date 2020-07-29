@@ -30,6 +30,7 @@ __pycache__/
 .Python
 itscience_env/
 backend/itScience/media/
+backend/itScience/deployment
 env/
 build/
 develop-eggs/
