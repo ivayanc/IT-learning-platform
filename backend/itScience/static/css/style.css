@@ -248,7 +248,8 @@ body {
   justify-content: center;
 }
 
-.articles-section__cover-tags .tag-item {
+.tag-item {
+    font: inherit;
     border-radius: 2px;
     box-shadow: 3px 0 20px rgba(0,0,0,.12);
     background: #fff;
@@ -260,6 +261,9 @@ body {
     margin-right: 30px;
     margin-bottom: 20px;
     transition: .3s ease;
+}
+.tag-item:hover{
+  color: #db4454;
 }
 .articles-section__cover-tags .tag-item {
     border-radius: 2px;

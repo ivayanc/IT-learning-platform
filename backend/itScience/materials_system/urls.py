@@ -21,7 +21,7 @@ urlpatterns = [
     #path('posts/<int:id>/delete', views.PostDeleteView.as_view(), name='post-details'),
 
     path('hashtags/create/', views.HashTagCreateView.as_view(), name='hashtag-create'),
+    path('hashtags/', views.HashTagListView.as_view(), name='hashtag-list'),
     path('hashtags/<int:id>/', views.HashTagUpdate.as_view(), name='hashtag-details'),
-    #path('hashtags/', views.HashTagListView.as_view(), name='hashtag-list'),
 
 ]

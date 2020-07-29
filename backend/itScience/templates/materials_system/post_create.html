@@ -7,6 +7,36 @@
 {% load static %}
 <link href="{% static 'css/addingPost.css' %}" rel="stylesheet">
 
+<style>
+  #hashtagUl {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  #hashtagUl li a {
+    border: 1px solid #ddd; 
+    margin-top: -1px; 
+    background-color: #f6f6f6; 
+    padding: 12px; 
+    text-decoration: none;
+    font-size: 18px;
+    color: black; 
+    display: block; 
+  }
+  #hashtagUl li a:hover:not(.header) {
+    background-color: #eee; /* Add a hover effect to all links, except for headers */
+  }
+  .tag-item{
+    background-color: #ffcd6e;
+    color: white !important;
+    font-weight: 600 !important;
+    margin-right: 1%;
+  }
+  .tag-item:hover{
+    text-decoration: line-through !important;
+    text-decoration-color: black !important;
+  }
+</style>
 
 <form class="post-create-form add_post" action="." method="POST" enctype="multipart/form-data">
   {%csrf_token%}
@@ -26,11 +56,16 @@
   {% endfor %}
   <div class="form-group">
     <label>Hashtags</labeL>
-    <input type="text" id="hashtag"><button id="hashtagclick" type="button" onclick="addHashTag()">Додати до статті</button><a href="/hashtags/create/"><button type="button">Додати hashtag</button></a>
+    <input type="text" id="hashtag" onkeyup="hashtagFilter()"><button id="hashtagclick" type="button" onclick="addHashTag()">Додати до статті</button><a href="/hashtags/create/"><button type="button">Додати hashtag</button></a>
+    <ul style="height: 234px; overflow: auto" id="hashtagUl">
+      {%for hashtag in all_hashtags %}
+        <li class="hashtagLi"><a id = "{{hashtag}}#" onclick="addHashTagli(this.id)">{{hashtag.tag_name}}</a></li>
+      {% endfor %}
+    </ul>
   </div>
   <div class="form-group" id = "hashtagsAdded">
     {% for hashtagPost in addedHashtags%}
-      <button id="{{ hashtagPost }}" onclick="deleteHashTag(this.id)" type="button">{{ hashtagPost }}</button>
+      <a class="tag-item" id="{{ hashtagPost }}" onclick="deleteHashTag(this.id)" type="button">{{ hashtagPost }}</button></a>
     {% endfor %}
   </div>
   <button type="submit" id="addPostSubmit" name="save">Зберегти</button>
@@ -53,13 +88,22 @@
     }
   });
   function addHashTag(){
-
     if(hashtagsArray.includes(hashtag.value) && !addedHashTag.includes(hashtag.value)){
-      var hashtagbtn = document.createElement("button");
+      alert(deletedHashTag);
+      for(var i = 0; i < deletedHashTag.length; i++){
+        if(deletedHashTag[i] == hashtag.value){
+          deletedHashTag.splice(i, 1);
+          break;
+        }
+      }
+      alert(deletedHashTag);
+      hashtagsDelete.value = JSON.stringify(deletedHashTag);
+      var hashtagbtn = document.createElement("a");
       hashtagbtn.innerHTML = hashtag.value;
       hashtagbtn.setAttribute("id", hashtag.value);
       hashtagbtn.setAttribute("onclick", "deleteHashTag(this.id)");
       hashtagbtn.setAttribute("type", "button");
+      hashtagbtn.setAttribute("class", "tag-item");
       document.getElementById("hashtagsAdded").appendChild(hashtagbtn);
       addedHashTag.push(hashtag.value);
       hashtagsAdd.value = JSON.stringify(addedHashTag);
@@ -71,10 +115,57 @@
   }
   function deleteHashTag(id){
     if(confirm("Ви впевнені що хочете видалити хештег?")){
-      deletedHashTag.push(id);
+      deletedHashTag.push(document.getElementById(id).textContent);
       hashtagsDelete.value = JSON.stringify(deletedHashTag);
+      for(var i = 0; i < addedHashTag.length; i++){
+        if(addedHashTag[i] == document.getElementById(id).textContent){
+          addedHashTag.splice(i, 1);
+          break;
+        }
+      }
+      hashtagsAdd.value = JSON.stringify(addedHashTag);
       document.getElementById(id).parentNode.removeChild(document.getElementById(id));
     }
+  }
+  function hashtagFilter(){
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("hashtag");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("hashtagUl");
+    li = document.getElementsByClassName("hashtagLi");
+
+    for(i = 0; i < li.length; i++){
+      a = li[i].getElementsByTagName("a")[0];
+      txtValue = a.textContent || a.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        li[i].style.display = "";
+      } else {
+        li[i].style.display = "none";
+      }
+    }
+  }
+  function addHashTagli(id){
+      if(!addedHashTag.includes(document.getElementById(id).textContent)){
+        for(var i = 0; i < deletedHashTag.length; i++){
+          if(deletedHashTag[i] == document.getElementById(id).textContent){
+            deletedHashTag.splice(i, 1);
+            break;
+          }
+        }
+        hashtagsDelete.value = JSON.stringify(deletedHashTag);
+        var hashtagbtn = document.createElement("a");
+        hashtagbtn.innerHTML = document.getElementById(id).textContent;
+        hashtagbtn.setAttribute("id", document.getElementById(id).textContent + "##");
+        hashtagbtn.setAttribute("onclick", "deleteHashTag(this.id)");
+        hashtagbtn.setAttribute("type", "button");
+        document.getElementById("hashtagsAdded").appendChild(hashtagbtn);
+        hashtagbtn.setAttribute("class", "tag-item");
+        addedHashTag.push(document.getElementById(id).textContent);
+        hashtagsAdd.value = JSON.stringify(addedHashTag);
+        hashtag.value = "";
+      } else{
+        alert("Помилка. Цей хештег вже було доданно.");
+      }
   }
 </script>
 

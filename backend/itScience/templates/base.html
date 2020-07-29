@@ -63,6 +63,8 @@
               <div class="col-lg-8 text-center text-lg-right">
                 <ul class="list-inline">
                   {% if user.is_superuser %}
+                  <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="{%url 'hashtag-list'%}">Редагувати хештег</a></li>
+                  <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="{%url 'hashtag-create'%}">Додати хештег</a></li>
                   <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="{%url 'post-create'%}">Додати статю</a></li>
                   <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="/admin">Адмін панель</a></li>
                   {% endif %}
@@ -105,8 +107,12 @@
                   <li class="nav-item">
                     <a class="nav-link" href="{% url 'about'%}">Про нас</a>
                   </li>
-                  <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">Увійти</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#signupModal">Реєстрація</a></li>
+                  {%if user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="{%url 'logout'%}">Вийти</a></li>
+                  {%else%}
+                    <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">Увійти</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#signupModal">Реєстрація</a></li>
+                  {%endif%}
                 </ul>
               </div>
             </nav>

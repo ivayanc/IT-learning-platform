@@ -27,12 +27,9 @@ class Post(models.Model):
 
 
 class HashTag(models.Model):
-    tag_name = models.CharField(max_length=50)
+    tag_name = models.CharField(max_length=50, unique=True)
     tag_parent = models.ForeignKey('self', on_delete = models.CASCADE, blank = True, null = True)
     tag_main = models.BooleanField(blank=False, default=False)
-
-    class Meta:
-        unique_together = ("tag_name", "tag_parent")
     
     def __str__(self):
         return self.tag_name

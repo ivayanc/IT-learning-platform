@@ -14,12 +14,13 @@
             <li class="list-inline-item text-white h3 font-secondary @@nasted"></li>
           </ul>
           <p class="text-lighten">{{category_description}}</p>
-
-        {% for hash_tag in category_tags%}
-          <a href = "/poststag/{{hash_tag}}"><button type="submit" class="tag-item nuxt-link-active">#{{ hash_tag }}</button></a>
-        {% endfor %}
-  
         </div>
+        <div class="col-md-12">
+          {% for hash_tag in category_tags%}
+              <a class = "tag-item" href = "/poststag/{{hash_tag}}">#{{ hash_tag }}</a>
+          {% endfor %}
+        </div>
+
   
       </div>
     </div>
