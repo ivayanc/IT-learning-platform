@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
+from django.http import HttpResponse, StreamingHttpResponse, FileResponse, Http404
 from django.views.generic import (
         TemplateView,
         ListView, 
@@ -39,4 +40,8 @@ class ProfileUpdateView(UpdateView):
     
     def get_object(self, queryset=None):
         id_ = self.kwargs.get("id")
+        if(str(self.request.user) == "AnonymousUser"):
+            raise Http404("no permision")
+        if(self.request.user.role.can_edit_users == False and str(self.request.user) != str(get_object_or_404(SystemUser, pk=id_).username)):
+            raise Http404("no permision")
         return get_object_or_404(SystemUser, pk=id_)

@@ -56,14 +56,12 @@
               </div>
             </div>
           </li>
-
-          {%if user.is_superuser%}
+          {%if user.role.can_post == True and object.moderator == user or user.role.can_edit_posts == True%}
           <li class="list-inline-item mr-4 mb-3 mb-sm-0">
               <div class="d-flex align-items-center">
                   <a href="{% url 'post-update' id=object.pk %}">
                 <i class="ti-pencil text-primary icon-md mr-2"></i>
                 <div class="text-left">
-                  
                       <h6 class="mb-0">Редагувати</h6>
                   </a>
                 </div>
