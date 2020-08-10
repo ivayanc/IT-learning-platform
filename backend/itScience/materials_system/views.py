@@ -1,5 +1,5 @@
-from django.shortcuts import render, get_object_or_404, redirect, render_to_response
-from django.http import HttpResponse, StreamingHttpResponse, FileResponse
+from django.shortcuts import render, get_object_or_404, redirect, render_to_response 
+from django.http import HttpResponse, StreamingHttpResponse, FileResponse, Http404
 from django.views.generic import (
         TemplateView,
         ListView, 
@@ -44,7 +44,6 @@ class SinglePostView(DetailView):
         context['is_favorite'] = False
         if len(self.get_object().favorite.filter(id = self.request.user.pk)):
             context['is_favorite'] = True
-
         context['hash_tags'] = set()
         hash_tags = PostHashTag.objects.all().filter(post = self.kwargs.get("id"))
         for hash_tag in hash_tags:
@@ -59,6 +58,10 @@ class HashTagListView(TemplateView):
     template_name = 'materials_system/hashtag_list.html'
 
     def get_context_data(self, **kwargs):
+        if(str(self.request.user) == "AnonymousUser"):
+            raise Http404("no permision")
+        if(self.request.user.role.can_change_hashtags == False):
+            raise Http404("no permision")
         context = super().get_context_data(**kwargs)
         context['all_hashtags'] = HashTag.objects.all()  
         return context
@@ -81,6 +84,10 @@ class HashTagCreateView(CreateView):
         return response
 
     def get_context_data(self, **kwargs):
+        if(str(self.request.user) == "AnonymousUser"):
+            raise Http404("no permision")
+        if(self.request.user.role.can_change_hashtags == False):
+            raise Http404("no permision")
         context = super().get_context_data(**kwargs)
         context['all_hashtags'] = HashTag.objects.all()
         hashtags = HashTag.objects.all()
@@ -124,6 +131,10 @@ class HashTagUpdate(UpdateView):
         return context
 
     def get_object(self, queryset=None):
+        if(str(self.request.user) == "AnonymousUser"):
+            raise Http404("no permision")
+        if(self.request.user.role.can_change_hashtags == False):
+            raise Http404("no permision")
         id_ = self.kwargs.get("id")
         return  get_object_or_404(HashTag, pk=id_)
     
@@ -155,6 +166,10 @@ class PostCreateView(CreateView):
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
+        if(str(self.request.user) == "AnonymousUser"):
+            raise Http404("no permision")
+        if(self.request.user.role.can_post == False):
+            raise Http404("no permision")
         context = super().get_context_data(**kwargs)
         hashtags = HashTag.objects.all()
         context['all_hashtags'] = HashTag.objects.all()
@@ -190,7 +205,12 @@ class PostUpdateView(UpdateView):
 
     def get_object(self, queryset=None):
         id_ = self.kwargs.get("id")
-        return  get_object_or_404(Post, pk=id_)
+        if(str(self.request.user) == "AnonymousUser"):
+            raise Http404("no permision")
+        if(self.request.user.role.can_post == True and get_object_or_404(Post, pk=id_).moderator == self.request.user or self.request.user.role.can_edit_posts == True):
+            return  get_object_or_404(Post, pk=id_)
+        else:
+            raise Http404("no permision")
     
     def get_context_data(self, **kwargs):
         id_ = self.kwargs.get("id")
@@ -265,7 +285,7 @@ class PostViewTag(ListView):
         posts = set()
         for hashtag in hashtags:
             query = PostHashTag.objects.filter(tag__tag_name=hashtag.tag_name)
-            print(hashtag, query)
+
             for post in query:
                 posts.add(post.post.id)
         return Post.objects.filter(id__in = posts).order_by('-published')

@@ -36,11 +36,10 @@
               <li class="mb-3"><a class="text-color" href="mailto:{{object.email}}"><i class="ti-email mr-2"></i>{{object.email}}</a></li>
             </ul>
           </div>
-          {%if object.pk == user.pk %}
-          
+          {%if object.pk == user.pk or user.role.can_edit_users == True%}
           <div class="col-xl-3 text-sm-right text-left order-sm-2 order-3 order-xl-3 col-sm-6 mb-4 mb-xl-0">
               <a href="{% url 'profile-edit' id=object.pk %}" class="btn btn-primary"><i class="ti-pencil  mr-1"></i>Редагувати профіль</a>
-            </div> 
+          </div> 
           {%endif%}
            
       </div>
