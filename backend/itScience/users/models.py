@@ -17,7 +17,7 @@ class SystemUser(AbstractUser):
     stydy_class = models.IntegerField(verbose_name="Клас навчанн", blank=True, default=9)
     about = models.TextField(verbose_name="Про себе")
     avatar = models.ImageField(upload_to='avatars/',verbose_name="Ваше фото",default="avatars/default-avatar.png")
-    role = models.ForeignKey(Role, on_delete=models.CASCADE, blank=True, null=True)
+    role = models.ForeignKey(Role, on_delete=models.CASCADE, blank=True, null=True, default=2)
     def __str__(self):
         return self.username
     

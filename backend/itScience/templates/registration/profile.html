@@ -48,10 +48,10 @@
 
     
     </div>
-    {% if request.user.pk == object.pk%}
     <div class="row justify-content-center">
+    {% if request.user.pk == object.pk%}
       <div class="col-12">
-        <h4 class="mb-4">Обрані матеріали</h4>
+        <h4 class="mb-4" style="text-align: center;">Обрані матеріали</h4>
       </div>
       {% if favorites|length > 0 %}
           {%for post in favorites%}
@@ -73,13 +73,43 @@
             </div>
           {%endfor%}
       {%else%}
-          <div class="col-lg-5 col-sm-7 mb-8">
-            Тут будуть відображені обрані вами матеріали
+          <div class="col-12">
+            <h5 class="mb-4" style="text-align: center;">Ви не обрали матеріали</h4>
           </div>  
       {%endif%}
-      
-  </div>
-  
+      {%endif%}
+  <!-- user posts -->
+  {% if 1 == 1 %}
+    <div class="col-12">
+      <h4 class="mb-4" style="text-align: center;">Пости користувача</h4>
+    </div>
+    {% if posts|length > 0 %}
+        {%for post in posts%}
+        <div class="col-lg-4 col-sm-6 mb-5">
+            <div class="card p-0 border-primary rounded-0 hover-shadow">
+              <img class="card-img-top rounded-0" src="{{post.title_image.url}}" alt="course thumb">
+              <div class="card-body">
+                <ul class="list-inline mb-2">
+                  <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>{{post.published}}</li>
+                  <li class="list-inline-item"><a class="text-color" href="#">{{post.moderator}}</a></li>
+                </ul>
+                <a href="{%url 'post-details' id=post.pk%}">
+                  <h4 class="card-title">{{post.title}}</h4>
+                </a>
+                <p class="card-text mb-4">{{post.description}}</p>
+                <a href="{%url 'post-details' id=post.pk%}" class="btn btn-primary btn-sm">Детальніше</a>
+              </div>
+            </div>
+          </div>
+        {%endfor%}
+    {%else%}
+        <div class="col-12">
+          <h5 class="mb-4" style="text-align: center;">Ви не обрали матеріали</h4>
+        </div>  
+    {%endif%}
+    {%endif%}
+</div>
+
     <!-- <div class="row justify-content-center">
       <div class="col-12">
         <h4 class="mb-4">Зареєстровано для участі</h4>
@@ -112,7 +142,6 @@
       
       
   </div>
-  {%endif%}
 </section>
 <!-- /teacher details -->
 

@@ -5,6 +5,8 @@
 
 {% block content %}
 
+{% load static %}
+<link href="{% static 'css/addingPost.css' %}" rel="stylesheet">
 
 <section class="page-title-section overlay" data-background="images/backgrounds/page-title.jpg">
     <div class="container">
@@ -20,10 +22,19 @@
     </div>
   </section>
 
-<form action="." method="POST">
+  <form class="post-create-form add_post" action="." method="POST" enctype="multipart/form-data" style="margin-top:1%;">
   {%csrf_token%}
-  {{form.as_p}}
-  <input type="submit" name="save" value="Зберегти">
+  {% for field in form %}
+  {% if field.label != "Password" %}
+  <div class="field-wrapper">
+    <div class="form-group">
+      <label>{{ field.label }}</label>
+      {{ field }}
+    </div>
+  {% endif %}
+  {% endfor %}
+  <button type="submit" id="addPostSubmit" name="save">Зберегти</button>
+  <input type="hidden" name="user" id="" value="{{user.pk}}">
 </form>
 
 {% endblock %}

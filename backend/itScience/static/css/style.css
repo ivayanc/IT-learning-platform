@@ -23,7 +23,7 @@ p, .paragraph {
 
 h1, h2, h3, h4, h5, h6 {
   color: #1e1e4b;
-  font-family: "futura-bold";
+  font-family: 'Ubuntu', sans-serif;
   font-weight: 700;
   line-height: 1.2;
 }
@@ -469,7 +469,7 @@ a h4:hover {
 }
 
 .font-secondary {
-  font-family: "futura-bold";
+  font-family: 'Ubuntu', sans-serif;
 }
 
 .mb-10 {
@@ -991,7 +991,7 @@ link:focus,
 .card-date {
   position: absolute;
   background: #ff5233;
-  font-family: "futura-bold";
+  font-family: 'Ubuntu', sans-serif;
   text-align: center;
   padding: 10px;
   color: #fff;

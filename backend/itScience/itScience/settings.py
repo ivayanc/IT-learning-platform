@@ -25,7 +25,7 @@ SECRET_KEY = '*o_q-wm-pg!r@5!-$sym)1p$d6&*ykj=k-1af=&ekk=xzedtvh'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-	"145.14.158.234",
+	"145.14.158.234", "127.0.0.1"
 ]
 
 
@@ -92,8 +92,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'itscience',
-        'USER': 'admin',
-        'PASSWORD': 'admin',
+        'USER': 'itscience_admin',
+        'PASSWORD': 'qwerty',
         'HOST': 'localhost',
         'PORT': '',
     }
@@ -139,7 +139,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+#STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 AUTH_USER_MODEL = 'users.SystemUser' 
 
