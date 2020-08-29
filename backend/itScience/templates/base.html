@@ -12,7 +12,7 @@
         <!-- ** Plugins Needed for the Project ** -->
         <!-- Bootstrap -->
         <script src="https://kit.fontawesome.com/20ebbdf649.js" crossorigin="anonymous"></script>
-
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
         
         {% load static %}
         <link rel="stylesheet" href="{% static 'plugins/bootstrap/bootstrap.min.css' %}">
@@ -107,7 +107,7 @@
                   </li>
                   <li class="nav-item ">
                     {%if user.is_authenticated %}
-                    <a class="nav-link" href="{% url 'olympiad_system'%}">Олімпіади</a>
+                    <a class="nav-link buttonforindev" href="#" data-toggle="modal" data-target="#inDev">Олімпіади</a>
                     {%else%}
                     <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModalInfo">Олімпіади</a></li>
                     {%endif%}
@@ -129,7 +129,6 @@
       </header>
       <!-- /header -->
 <body>
-
     <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content rounded-0 border-0 p-4">
@@ -170,6 +169,21 @@
             </div>
         </div>
     </div>
+</div>
+<div class="modal fade login_form" id="inDev" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content rounded-0 border-0 p-4">
+          <div class="modal-header border-0">
+              <h3 text-align:center>В розробці</h3>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+            Даний розділ в розробці. Стежіть за оновленнями.
+          </div>
+      </div>
+  </div>
 </div>
 
 <div class="modal fade" id="loginModalInfo" tabindex="-1" role="dialog" aria-hidden="true">

@@ -1,7 +1,10 @@
 from django.urls import path
+from django.conf.urls import handler404
 from django.views.generic.base import TemplateView
 
 from . import views
+
+handler404 = "materials_system.views.view_404"
 
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),

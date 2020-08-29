@@ -138,6 +138,9 @@ class SinglePostView(DetailView):
             context['hash_tags'].add(hash_tag.tag)
         return context
 
+def view_404(request, exception):
+    return render(request, 'template/404.html',)
+
 class HashTagListView(TemplateView):
     template_name = 'materials_system/hashtag_list.html'
 
