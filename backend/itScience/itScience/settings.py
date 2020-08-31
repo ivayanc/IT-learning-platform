@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '*o_q-wm-pg!r@5!-$sym)1p$d6&*ykj=k-1af=&ekk=xzedtvh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
 	"145.14.158.234", "127.0.0.1"
@@ -51,7 +51,16 @@ INSTALLED_APPS = [
     #HTML editor
     'ckeditor',
     'ckeditor_uploader',
+
+    #google auth
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google'
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
