@@ -130,7 +130,7 @@
       </header>
       <!-- /header -->
 <body>
-    <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade login_form" id="signupModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content rounded-0 border-0 p-4">
                 <div class="modal-header border-0">
@@ -145,8 +145,12 @@
                             {% csrf_token %}
                             {{registration_form}}
                             <button type="submit" id="login_submit">Зареєструватися</button>
-                            <a href="{% provider_login_url "google" method = "oauth2" %}">Google</a>
                           </form>
+                          <br/>
+                          <div class="social_media">
+                            <h4>Або увійдіть через</h4>
+                            <a href="{% provider_login_url "google" method = "oauth2" %}" id ="google"><i class="fa fa-google" style="font-size: 25px;"></i></a>
+                          </div>
                     </div>
                 </div>
             </div>
@@ -167,8 +171,12 @@
                     {% csrf_token %}
                      {{login_form}}
                     <button type="submit" id="login_submit">Увійти</button>
-                    <a href="{% provider_login_url "google" method = "oauth2" %}">Google</a>
                 </form>
+                <br/>
+                <div class="social_media">
+                  <h4>Або увійдіть через</h4>
+                  <a href="{% provider_login_url "google" method = "oauth2" %}" id ="google"><i class="fa fa-google" style="font-size: 25px;"></i></a>
+                </div>
             </div>
         </div>
     </div>
@@ -204,8 +212,12 @@
                     {% csrf_token %}
                      {{login_form}}
                     <button type="submit">Увійти</button>
-                    <a href="{% provider_login_url "google" method = "oauth2" %}">Google</a>
                 </form>
+                <br/>
+                <div class="social_media">
+                  <h4>Або увійдіть через</h4>
+                  <a href="{% provider_login_url "google" method = "oauth2" %}" id ="google"><i class="fa fa-google" style="font-size: 25px;"></i></a>
+                </div>
             </div>
         </div>
     </div>

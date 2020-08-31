@@ -62,6 +62,10 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
+ACCOUNT_ADAPTER = 'materials_system.views.AccountAdapter'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

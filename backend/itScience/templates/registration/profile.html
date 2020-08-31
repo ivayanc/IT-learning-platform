@@ -24,7 +24,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-3 mb-5">
-        <img class="img-fluid w-25" src="{{object.avatar.url}}" alt="Фото" width="100">
+        <img class="img-fluid w-25" {% if object.google_avatar != "" %} src="{{object.google_avatar}}" {% else %} src = "{{object.avatar.url}}" {% endif %} alt="Фото" width="100">
       </div>
       <div class="col-md-6 mb-5">
         <h3>{{object.name}}</h3>

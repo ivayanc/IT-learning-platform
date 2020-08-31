@@ -9,13 +9,50 @@ from django.views.generic import (
         DeleteView
 )
 from .models import Post, PostHashTag, HashTag, Comments
+from users.models import SystemUser
+from allauth.socialaccount.models import SocialAccount
 from olympiad_system.models import Olympiad
 from users.models import SystemUser
 from .forms import PostCreateForm, HashTagForm, CommentsForm
 from django.shortcuts import render, redirect
 import simplejson as json
 from django.utils import timezone, dateformat
+from django.shortcuts import resolve_url
 import pytz
+
+from allauth.account.adapter import DefaultAccountAdapter
+
+class AccountAdapter(DefaultAccountAdapter):
+
+    def get_login_redirect_url(self, request):
+        threshold = 90
+
+        if (request.user.last_login - request.user.date_joined).seconds < threshold:
+            social_info = SocialAccount.objects.get(user=request.user)
+            extra_data = str(social_info.extra_data)
+            extra_data = extra_data.replace('\'', '\"')
+            extra_data = extra_data.replace('True', '"True"')
+            extra_data = json.loads(extra_data)
+            user = request.user
+            user.name = extra_data['name']
+            user.email = extra_data['email']
+            user.google_avatar = extra_data['picture']
+            user.save()
+            url = '/'
+        else:
+            social_info = SocialAccount.objects.get(user=request.user)
+            extra_data = str(social_info.extra_data)
+            extra_data = extra_data.replace('\'', '\"')
+            extra_data = extra_data.replace('True', '"True"')
+            extra_data = json.loads(extra_data)
+            user = request.user
+            user.name = extra_data['name']
+            user.email = extra_data['email']
+            user.google_avatar = extra_data['picture']
+            user.save()
+            url = '/'
+        return resolve_url(url)
+
 class IndexView(TemplateView):
     template_name = 'materials_system/index.html'
 

@@ -24,15 +24,27 @@
 
   <form class="post-create-form add_post" action="." method="POST" enctype="multipart/form-data" style="margin-top:1%;">
   {%csrf_token%}
-  {% for field in form %}
-  {% if field.label != "Password" %}
-  <div class="field-wrapper">
-    <div class="form-group">
-      <label>{{ field.label }}</label>
-      {{ field }}
-    </div>
+  {% if object.google_avatar == ""%}
+    {% for field in form %}
+    {% if field.label != "Password"%}
+    <div class="field-wrapper">
+      <div class="form-group">
+        <label>{{ field.label }}</label>
+        {{ field }}
+      </div>
+    {% endif %}
+    {% endfor %}
+  {% else %}
+    {% for field in form %}
+    {% if field.label != "Password" and field.label != "Ваше фото" and field.label != "Новий пароль(якщо не хочете змінювати залишить порожнім)"%}
+    <div class="field-wrapper">
+      <div class="form-group">
+        <label>{{ field.label }}</label>
+        {{ field }}
+      </div>
+    {% endif %}
+    {% endfor %}
   {% endif %}
-  {% endfor %}
   <button type="submit" id="addPostSubmit" name="save">Зберегти</button>
   <input type="hidden" name="user" id="" value="{{user.pk}}">
 </form>
