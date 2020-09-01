@@ -24,6 +24,15 @@
 
   <form class="post-create-form add_post" action="." method="POST" enctype="multipart/form-data" style="margin-top:1%;">
   {%csrf_token%}
+  {% for error in errors %}
+    <div style="margin-left: 40%;">
+      <i class="fa fa-times-circle"></i>
+      {{ error }}
+      <br/>
+    </div>
+  {% endfor %}
+  <br/>
+  <br/>
   {% if object.google_avatar == ""%}
     {% for field in form %}
     {% if field.label != "Password"%}
@@ -32,11 +41,18 @@
         <label>{{ field.label }}</label>
         {{ field }}
       </div>
+    </div>
     {% endif %}
     {% endfor %}
+    <div class="field-wrapper">
+      <div class="form-group">
+        <label>Поточний пароль</label>
+        <input type="password" name="password" class="form-control" placeholder="" id = "pass" required="true">
+      </div>
+    </div>
   {% else %}
     {% for field in form %}
-    {% if field.label != "Password" and field.label != "Ваше фото" and field.label != "Новий пароль(якщо не хочете змінювати залишить порожнім)"%}
+    {% if field.label != "Password" and field.label != "Ваше фото" and field.label != "Новий пароль(якщо не хочете змінювати залишить порожнім)" and field.label != "Поточний пароль" %}
     <div class="field-wrapper">
       <div class="form-group">
         <label>{{ field.label }}</label>

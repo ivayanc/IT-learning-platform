@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import update_session_auth_hash
+from django.contrib import messages
 from django.urls import reverse_lazy
 from django.http import HttpResponse, StreamingHttpResponse, FileResponse, Http404
 from django.views.generic import (
@@ -14,6 +15,8 @@ from django.views.generic import (
 from materials_system.models import Post
 from .models import SystemUser
 from .forms import SystemUserChangeForm, SystemUserCreationForm, SystemUserLoginForm
+from passlib.hash import pbkdf2_sha256
+from passlib.apps import django_context
 
 
 class SingUp(CreateView):
@@ -38,8 +41,12 @@ class ProfileView(DetailView):
 class ProfileUpdateView(UpdateView):
     template_name = 'registration/edit.html'
     form_class = SystemUserChangeForm
-    
+
     def form_valid(self, form):
+        password = self.request.POST.get("password")
+        user = SystemUser.objects.get(pk=self.request.POST.get("user"))
+        if django_context.verify(password, user.password) == False:
+            return self.render_to_response(self.get_context_data(form=form))
         response = super().form_valid(form)
         new_password = self.request.POST.get("password2")
         if(new_password != ""):
@@ -48,6 +55,18 @@ class ProfileUpdateView(UpdateView):
             user.save()
             update_session_auth_hash(self.request, user) 
         return response
+
+    def get_context_data(self, **kwargs):
+        context = super(ProfileUpdateView, self).get_context_data() # get the default context data
+        context['errors'] = []
+        try:
+            password = self.request.POST.get("password")
+            user = SystemUser.objects.get(pk=self.request.POST.get("user"))
+            if django_context.verify(password, user.password) == False:
+                context['errors'].append('Ваш поточний пароль введен не вірно.')
+        except:
+            pass
+        return context
 
     def get_object(self, queryset=None):
         id_ = self.kwargs.get("id")
