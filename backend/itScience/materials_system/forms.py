@@ -2,9 +2,9 @@ from django import forms
 from django.conf import settings
 from .models import SystemUser
 
-from .models import Post, HashTag
+from .models import Post, HashTag, Comments
 
-from ckeditor.widgets import CKEditorWidget
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
 class PostCreateForm(forms.ModelForm):
     time_to_read = forms.CharField(label = "Прочитаєте за", max_length = 250)
@@ -12,7 +12,7 @@ class PostCreateForm(forms.ModelForm):
     title = forms.CharField(label = "Заголовок", max_length = 255)
     description = forms.CharField(label = "Короткий опис", max_length = 150)
     title_image = forms.ImageField(label = "Головне зображення")
-    publication = forms.CharField(label = "Текст публікації", widget=CKEditorWidget())
+    publication = forms.CharField(label = "Текст публікації", widget=CKEditorUploadingWidget())
     
     class Meta:
         model = Post
@@ -33,4 +33,14 @@ class HashTagForm(forms.ModelForm):
             'tag_main',
         ]
 
+class CommentsForm(forms.ModelForm):
+    class Meta:
+        model = Comments
+        fields = [
+            'post',
+            'user',
+            'text',
+            'date',
+            'reply_to',
+        ]
 

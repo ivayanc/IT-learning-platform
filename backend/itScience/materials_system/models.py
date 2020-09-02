@@ -13,7 +13,7 @@ class Post(models.Model):
     title            = models.CharField(max_length=255,blank=True,verbose_name="Заголовок", unique=True)
     views            = models.IntegerField(default=0,verbose_name="Кількість переглядів")
     description      = models.CharField(max_length=500,blank=True, verbose_name="Короткий опис")
-    published        = models.DateTimeField(auto_now=True,blank=True,verbose_name="Дата публікації")
+    published        = models.DateTimeField(blank=True,verbose_name="Дата публікації")
     title_image      = models.ImageField(upload_to="posts",blank=True, verbose_name="Зображення",default="posts/default.png")
     publication      = RichTextUploadingField(verbose_name="Текст публікації")
     favorite         = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="Обрані", blank=True)
@@ -24,7 +24,12 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
-
+class Comments(models.Model):
+    post = models.ForeignKey(Post, verbose_name="Пост до якого написан комментар", on_delete = models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name="Автор комментара", on_delete = models.CASCADE)
+    text = models.CharField(max_length=200, verbose_name="Текст комментаря")
+    date = models.DateTimeField(blank=True, verbose_name="Дата написання коментаря", null=True)
+    reply_to = models.ForeignKey('self', on_delete = models.CASCADE, blank = True, null = True, verbose_name="Вiдповiдь на")
 
 class HashTag(models.Model):
     tag_name = models.CharField(max_length=50, unique=True)

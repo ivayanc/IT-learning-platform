@@ -5,6 +5,8 @@
 
 {% block content %}
 
+{% load static %}
+<link href="{% static 'css/addingPost.css' %}" rel="stylesheet">
 
 <section class="page-title-section overlay" data-background="images/backgrounds/page-title.jpg">
     <div class="container">
@@ -20,10 +22,47 @@
     </div>
   </section>
 
-<form action="." method="POST">
+  <form class="post-create-form add_post" action="." method="POST" enctype="multipart/form-data" style="margin-top:1%;">
   {%csrf_token%}
-  {{form.as_p}}
-  <input type="submit" name="save" value="Зберегти">
+  {% for error in errors %}
+    <div style="margin-left: 40%;">
+      <i class="fa fa-times-circle"></i>
+      {{ error }}
+      <br/>
+    </div>
+  {% endfor %}
+  <br/>
+  <br/>
+  {% if object.google_avatar == ""%}
+    {% for field in form %}
+    {% if field.label != "Password"%}
+    <div class="field-wrapper">
+      <div class="form-group">
+        <label>{{ field.label }}</label>
+        {{ field }}
+      </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+    <div class="field-wrapper">
+      <div class="form-group">
+        <label>Поточний пароль</label>
+        <input type="password" name="password" class="form-control" placeholder="" id = "pass" required="true">
+      </div>
+    </div>
+  {% else %}
+    {% for field in form %}
+    {% if field.label != "Password" and field.label != "Ваше фото" and field.label != "Новий пароль(якщо не хочете змінювати залишить порожнім)" and field.label != "Поточний пароль" %}
+    <div class="field-wrapper">
+      <div class="form-group">
+        <label>{{ field.label }}</label>
+        {{ field }}
+      </div>
+    {% endif %}
+    {% endfor %}
+  {% endif %}
+  <button type="submit" id="addPostSubmit" name="save">Зберегти</button>
+  <input type="hidden" name="user" id="" value="{{user.pk}}">
 </form>
 
 {% endblock %}

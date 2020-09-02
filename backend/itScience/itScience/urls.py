@@ -27,4 +27,5 @@ urlpatterns = [
     path('users/', include('django.contrib.auth.urls')),
     path('olymp/', include('olympiad_system.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('accounts/', include('allauth.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
