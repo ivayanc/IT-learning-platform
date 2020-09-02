@@ -20,6 +20,9 @@ from django.utils import timezone, dateformat
 from django.shortcuts import resolve_url
 import pytz
 
+import mysql.connector, requests
+from mysql.connector import Error
+
 from allauth.account.adapter import DefaultAccountAdapter
 
 class AccountAdapter(DefaultAccountAdapter):
@@ -280,6 +283,36 @@ class PostCreateView(CreateView):
             context['hashtagsArray'].append(hashtag.tag_name)
         context['hashtagsArray'] = json.dumps(context['hashtagsArray'])
         return context
+
+def PostCreateViewFromOldDB(request):
+    connection = mysql.connector.connect(host='remotemysql.com',
+                                        database='WCGe2YT4PZ',
+                                        user='WCGe2YT4PZ',
+                                        password='jtQ8jGk8OU')
+    if connection.is_connected():
+        db_Info = connection.get_server_info()
+        print("Connected to MySQL Server version ", db_Info)
+        cursor = connection.cursor()
+        cursor.execute("select database();")
+        record = cursor.fetchone()
+        print("You're connected to database: ", record)
+    cursos = connection.cursor()
+    query = "SELECT * FROM dev"
+    cursos.execute(query)
+    for id, title, short, image, text, date, author, comments, likes, views in cursor:
+        text += "<br/><br/>\n<h3>Автор матеріалу - " + author + "</h3>"
+        text = text.replace("/img/blocks/", "/media/uploads/2020/09/02/")
+        moderator = SystemUser.objects.get(username = "test")
+        Post.objects.create(time_to_read = 5, moderator = moderator, title = title, views = views, description = short, published = date, publication = text)
+        created_post = Post.objects.get(title=title)
+        created_post.title_image = 'blocks/dev_' + str(id) + '.png'
+        created_post.save()
+        PostHashTag.objects.create(post = created_post, tag = HashTag.objects.get(tag_name="Програмування"))
+    if (connection.is_connected()):
+        cursor.close()
+        connection.close()
+        print("MySQL connection is closed")
+    return HttpResponse(200)
 
 class PostUpdateView(UpdateView):
     template_name = 'materials_system/post_create.html'
