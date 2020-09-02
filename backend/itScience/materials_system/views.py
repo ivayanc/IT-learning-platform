@@ -297,17 +297,18 @@ def PostCreateViewFromOldDB(request):
         record = cursor.fetchone()
         print("You're connected to database: ", record)
     cursos = connection.cursor()
-    query = "SELECT * FROM dev"
+    query = "SELECT * FROM it"
     cursos.execute(query)
-    for id, title, short, image, text, date, author, comments, likes, views in cursor:
+    result = cursos.fetchall()
+    for id, title, short, image, text, date, author, comments, likes, views, id in result:
         text += "<br/><br/>\n<h3>Автор матеріалу - " + author + "</h3>"
         text = text.replace("/img/blocks/", "/media/uploads/2020/09/02/")
         moderator = SystemUser.objects.get(username = "test")
         Post.objects.create(time_to_read = 5, moderator = moderator, title = title, views = views, description = short, published = date, publication = text)
-        created_post = Post.objects.get(title=title)
-        created_post.title_image = 'blocks/dev_' + str(id) + '.png'
+        created_post = Post.objects.get(title=title, publication = text)
+        created_post.title_image = 'blocks/it_' + str(id) + '.png'
         created_post.save()
-        PostHashTag.objects.create(post = created_post, tag = HashTag.objects.get(tag_name="Програмування"))
+        PostHashTag.objects.create(post = created_post, tag = HashTag.objects.get(tag_name="Інформаційні Технології"))
     if (connection.is_connected()):
         cursor.close()
         connection.close()
