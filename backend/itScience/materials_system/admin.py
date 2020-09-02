@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, HashTag, PostHashTag
+from .models import Post, HashTag, PostHashTag, Comments
 
 
 @admin.register(Post)
@@ -11,7 +11,8 @@ class PostAdmin(admin.ModelAdmin):
     'views',
     'description',
     'title_image',
-    'publication',)
+    'publication',
+    'published',)
     list_display = ('title', 'moderator', 'time_to_read')
     filter_list = ('moderator',)
 
@@ -23,6 +24,15 @@ class HashTags(admin.ModelAdmin):
     'tag_main',)
     list_display = ('tag_name', 'tag_parent', 'tag_main')
     filter_list = ('tag_parent', 'tag_main')
+
+@admin.register(Comments)
+class Comments(admin.ModelAdmin):
+    fields = (
+    'post',
+    'user',
+    'text',
+    'date',)
+    filter_list = ('post')
 
 @admin.register(PostHashTag)
 class HashTags(admin.ModelAdmin):

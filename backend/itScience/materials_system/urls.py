@@ -1,7 +1,10 @@
 from django.urls import path
+from django.conf.urls import handler404
 from django.views.generic.base import TemplateView
 
 from . import views
+
+handler404 = "materials_system.views.view_404"
 
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
@@ -12,6 +15,8 @@ urlpatterns = [
     path('scratch/', views.ScratchPostView.as_view(), name='scratch'),
     path('news/', views.NewsPostView.as_view(), name='news'),
     
+    path('sendComment/', views.sendComment, name="sendComment"),
+
     path('posts/', views.PostView.as_view(), name='posts'),
     path('poststag/<str:tag>', views.PostViewTag.as_view(), name='posts-tag'),
     path('posts/create/', views.PostCreateView.as_view(), name='post-create'),

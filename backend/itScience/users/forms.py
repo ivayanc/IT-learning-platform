@@ -32,7 +32,7 @@ class SystemUserCreationForm(UserCreationForm):
         fields = UserCreationForm.Meta.fields + ('first_name', 'about', 'email',)
 
 class SystemUserChangeForm(UserChangeForm):
-
+    password2=forms.CharField(label="Новий пароль(якщо не хочете змінювати залишить порожнім)", required = False, widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': '','id' : 'pass'}))
     class Meta:
         model = SystemUser
-        fields = ('email', 'name', 'about')
+        fields = ('name', 'about', 'avatar', 'password')

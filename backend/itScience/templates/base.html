@@ -1,4 +1,5 @@
 <!-- templates/base.html -->
+{% load socialaccount %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,7 +13,7 @@
         <!-- ** Plugins Needed for the Project ** -->
         <!-- Bootstrap -->
         <script src="https://kit.fontawesome.com/20ebbdf649.js" crossorigin="anonymous"></script>
-
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
         
         {% load static %}
         <link rel="stylesheet" href="{% static 'plugins/bootstrap/bootstrap.min.css' %}">
@@ -45,7 +46,11 @@
         {% load static %}
         <script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
         <script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
-      
+
+        <!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+        <!-- <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
+        <!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap" rel="stylesheet"> 
       </head>
       
       <body>
@@ -103,9 +108,9 @@
                   </li>
                   <li class="nav-item ">
                     {%if user.is_authenticated %}
-                    <a class="nav-link" href="{% url 'olympiad_system'%}">Олімпіади</a>
+                    <a class="nav-link buttonforindev" href="#" data-toggle="modal" data-target="#inDev">Олімпіади</a>
                     {%else%}
-                    <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModalInfo">Олімпіади</a></li>
+                    <a class="nav-link buttonforindev" href="#" data-toggle="modal" data-target="#inDev">Олімпіади</a></li>
                     {%endif%}
                   </li>
                   <li class="nav-item">
@@ -125,8 +130,7 @@
       </header>
       <!-- /header -->
 <body>
-
-    <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade login_form" id="signupModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content rounded-0 border-0 p-4">
                 <div class="modal-header border-0">
@@ -142,6 +146,11 @@
                             {{registration_form}}
                             <button type="submit" id="login_submit">Зареєструватися</button>
                           </form>
+                          <br/>
+                          <div class="social_media">
+                            <h4>Або увійдіть через</h4>
+                            <a href="{% provider_login_url "google" method = "oauth2" %}" id ="google"><i class="fa fa-google" style="font-size: 25px;"></i></a>
+                          </div>
                     </div>
                 </div>
             </div>
@@ -163,9 +172,29 @@
                      {{login_form}}
                     <button type="submit" id="login_submit">Увійти</button>
                 </form>
+                <br/>
+                <div class="social_media">
+                  <h4>Або увійдіть через</h4>
+                  <a href="{% provider_login_url "google" method = "oauth2" %}" id ="google"><i class="fa fa-google" style="font-size: 25px;"></i></a>
+                </div>
             </div>
         </div>
     </div>
+</div>
+<div class="modal fade login_form" id="inDev" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content rounded-0 border-0 p-4">
+          <div class="modal-header border-0">
+              <h3 text-align:center>В розробці</h3>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+            Даний розділ в розробці. Стежіть за оновленнями.
+          </div>
+      </div>
+  </div>
 </div>
 
 <div class="modal fade" id="loginModalInfo" tabindex="-1" role="dialog" aria-hidden="true">
@@ -184,6 +213,11 @@
                      {{login_form}}
                     <button type="submit">Увійти</button>
                 </form>
+                <br/>
+                <div class="social_media">
+                  <h4>Або увійдіть через</h4>
+                  <a href="{% provider_login_url "google" method = "oauth2" %}" id ="google"><i class="fa fa-google" style="font-size: 25px;"></i></a>
+                </div>
             </div>
         </div>
     </div>
@@ -240,10 +274,10 @@
           <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-5 mb-md-0">
             <h4 class="text-white mb-5">Корисні матеріли</h4>
             <ul class="list-unstyled">
-              <li class="mb-3"><a class="text-color" href="{% url 'scratch'%}">Scratch</a></li>
-              <li class="mb-3"><a class="text-color" href="{% url 'programming'%}">Програмування</a></li>
-              <li class="mb-3"><a class="text-color" href="{% url 'school'%}">Шкільна інформатика</a></li>
-              <li class="mb-3"><a class="text-color" href="{% url 'it'%}">Інформаційні технології</a></li>
+              <li class="mb-3"><a class="text-color" href="{% url 'posts-tag' tag='Scratch'%}">Scratch</a></li>
+              <li class="mb-3"><a class="text-color" href="{% url 'posts-tag' tag='Програмування'%}">Програмування</a></li>
+              <li class="mb-3"><a class="text-color" href="{% url 'posts-tag' tag='Шкільна Інформатика'%}">Шкільна інформатика</a></li>
+              <li class="mb-3"><a class="text-color" href="{% url 'posts-tag' tag='Інформаційні Технології' %}">Інформаційні технології</a></li>
             </ul>
           </div>
           <!-- support -->

@@ -23,7 +23,7 @@ p, .paragraph {
 
 h1, h2, h3, h4, h5, h6 {
   color: #1e1e4b;
-  font-family: "futura-bold";
+  font-family: 'Ubuntu', sans-serif;
   font-weight: 700;
   line-height: 1.2;
 }
@@ -469,7 +469,7 @@ a h4:hover {
 }
 
 .font-secondary {
-  font-family: "futura-bold";
+  font-family: 'Ubuntu', sans-serif;
 }
 
 .mb-10 {
@@ -985,13 +985,56 @@ link:focus,
   width: 0;
   transition: 0s ease;
 }
-
 /* /success story */
+.alert {
+  border: 0;
+  border-radius: 0;
+  padding: 20px 15px !important;
+  line-height: 20px;
+  font-weight: 300;
+  color: #fff;
+}
+
+.alert .alert-icon {
+  display: block;
+  float: left;
+  margin-right: 1.071rem;
+}
+
+.alert b {
+  font-weight: 500;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.close {
+  float: right;
+  font-size: 1.5rem;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  opacity: .5;
+}
+.alert .close {
+  color: #fff;
+  text-shadow: none;
+  opacity: .9;
+}
+.alert .close i {
+  font-size: 20px;
+}
+.alert .close:hover{
+  opacity: 1;
+  color: #fff;
+}
+.alert.alert-info {
+  background-color: #00cae3;
+  color: #fff;
+}
 /* events */
 .card-date {
   position: absolute;
   background: #ff5233;
-  font-family: "futura-bold";
+  font-family: 'Ubuntu', sans-serif;
   text-align: center;
   padding: 10px;
   color: #fff;

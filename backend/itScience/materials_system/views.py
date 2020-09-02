@@ -8,11 +8,50 @@ from django.views.generic import (
         UpdateView,
         DeleteView
 )
-from .models import Post, PostHashTag, HashTag
+from .models import Post, PostHashTag, HashTag, Comments
+from users.models import SystemUser
+from allauth.socialaccount.models import SocialAccount
 from olympiad_system.models import Olympiad
-from .forms import PostCreateForm, HashTagForm
+from users.models import SystemUser
+from .forms import PostCreateForm, HashTagForm, CommentsForm
 from django.shortcuts import render, redirect
 import simplejson as json
+from django.utils import timezone, dateformat
+from django.shortcuts import resolve_url
+import pytz
+
+from allauth.account.adapter import DefaultAccountAdapter
+
+class AccountAdapter(DefaultAccountAdapter):
+
+    def get_login_redirect_url(self, request):
+        threshold = 90
+
+        if (request.user.last_login - request.user.date_joined).seconds < threshold:
+            social_info = SocialAccount.objects.get(user=request.user)
+            extra_data = str(social_info.extra_data)
+            extra_data = extra_data.replace('\'', '\"')
+            extra_data = extra_data.replace('True', '"True"')
+            extra_data = json.loads(extra_data)
+            user = request.user
+            user.name = extra_data['name']
+            user.email = extra_data['email']
+            user.google_avatar = extra_data['picture']
+            user.save()
+            url = '/'
+        else:
+            social_info = SocialAccount.objects.get(user=request.user)
+            extra_data = str(social_info.extra_data)
+            extra_data = extra_data.replace('\'', '\"')
+            extra_data = extra_data.replace('True', '"True"')
+            extra_data = json.loads(extra_data)
+            user = request.user
+            user.name = extra_data['name']
+            user.email = extra_data['email']
+            user.google_avatar = extra_data['picture']
+            user.save()
+            url = '/'
+        return resolve_url(url)
 
 class IndexView(TemplateView):
     template_name = 'materials_system/index.html'
@@ -33,15 +72,18 @@ class SinglePostView(DetailView):
     def get_object(self, queryset=None):
         id_ = self.kwargs.get("id")
         post = get_object_or_404(Post, pk=id_)
-        post.views += 1
-        post.save()
         return post
     
     def get_context_data(self, **kwargs):
-                
+        id_ = self.kwargs.get("id")
+        post = get_object_or_404(Post, pk=id_)
+        post.views = post.views + 1
+        post.save()
         context = super().get_context_data(**kwargs)
-        #context['latest_posts'] = Post.objects.all().filter(category=context['object'].category)[:3]
+        context['latest_posts'] = Post.objects.all()[:3]
         context['is_favorite'] = False
+        context['comments'] = Comments.objects.all().filter(post = self.kwargs.get("id")).order_by('-date')
+        #print(context['comments'][0].text)
         if len(self.get_object().favorite.filter(id = self.request.user.pk)):
             context['is_favorite'] = True
         context['hash_tags'] = set()
@@ -98,6 +140,65 @@ class HashTagCreateView(CreateView):
         context['hashtagsArray'] = json.dumps(context['hashtagsArray'])
         return context
 
+class SinglePostView(DetailView):
+    template_name = 'materials_system/post_page.html'
+    
+    queryset = Post.objects.all()
+
+    def get_object(self, queryset=None):
+        id_ = self.kwargs.get("id")
+        post = get_object_or_404(Post, pk=id_)
+        return post
+    
+    def get_context_data(self, **kwargs):
+        month = ['січня', 'лютого', 'березеня', 'квітня', 'травня', 'червня', 'липня', 'серпня', 'вересня', 'жовтня', 'листопада', 'грудня']
+        id_ = self.kwargs.get("id")
+        post = get_object_or_404(Post, pk=id_)
+        post.views = post.views + 1
+        post.save()
+        context = super().get_context_data(**kwargs)
+        context['latest_posts'] = Post.objects.all()[:3]
+        context['is_favorite'] = False
+        context['comments'] = Comments.objects.all().filter(post = self.kwargs.get("id")).order_by('-date')
+        for comment in context['comments']:
+            comment.date1 = str(dateformat.format(comment.date, 'd')) + " " + str(month[int(dateformat.format(comment.date, 'm')) - 1]) + " " + str(dateformat.format(comment.date, 'Y')) + " року"
+        
+        if len(self.get_object().favorite.filter(id = self.request.user.pk)):
+            context['is_favorite'] = True
+        context['hash_tags'] = set()
+        hash_tags = PostHashTag.objects.all().filter(post = self.kwargs.get("id"))
+        for hash_tag in hash_tags:
+            parent = hash_tag.tag.tag_parent
+            while(parent != None):
+                context['hash_tags'].add(parent)
+                parent = parent.tag_parent
+            context['hash_tags'].add(hash_tag.tag)
+        return context
+
+def view_404(request, exception):
+    return render(request, 'template/404.html',)
+
+class HashTagListView(TemplateView):
+    template_name = 'materials_system/hashtag_list.html'
+
+    def get_context_data(self, **kwargs):
+        if(str(self.request.user) == "AnonymousUser"):
+            raise Http404("no permision")
+        if(self.request.user.role.can_change_hashtags == False):
+            raise Http404("no permision")
+        context = super().get_context_data(**kwargs)
+        context['all_hashtags'] = HashTag.objects.all()  
+        return context
+
+def sendComment(request):
+    if request.method == 'POST':
+        post, user = request.POST.get("postId").split(", ")
+        post = Post.objects.get(pk = post)
+        user = SystemUser.objects.get(pk = user)
+        text = request.POST.get("comment")
+        Comments.objects.create(post = post, user = user, text = text, date=timezone.now())
+    return redirect('post-details', id=request.POST.get("postId").split(", ")[0])
+
 class HashTagUpdate(UpdateView):
     template_name = 'materials_system/hashtag_create.html'
     form_class = HashTagForm
@@ -145,12 +246,11 @@ class PostCreateView(CreateView):
     queryset = Post.objects.all()
     
     def form_valid(self, form):
-        self.object = form.save()
+        response = super().form_valid(form)
         self.object.title = self.request.POST.get("title")
         post = Post.objects.get(title=self.object.title)
         try:
             self.object.hashtags = json.loads(self.request.POST.get("hashtagsAdd"))
-            print(self.object.hashtags)
             for hashtag in self.object.hashtags:
                 hashTagM = HashTag.objects.get(tag_name=hashtag)
                 PostHashTag.objects.create(post=post, tag=hashTagM)
@@ -163,7 +263,9 @@ class PostCreateView(CreateView):
                 PostHashTag.objects.get(post=post, tag=hashTagM).delete()
         except:
             print("error with deleting hashtags from post")
-        return super().form_valid(form)
+        post.published = timezone.now()
+        post.save()
+        return response
 
     def get_context_data(self, **kwargs):
         if(str(self.request.user) == "AnonymousUser"):
