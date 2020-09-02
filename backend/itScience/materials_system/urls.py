@@ -16,6 +16,7 @@ urlpatterns = [
     path('news/', views.NewsPostView.as_view(), name='news'),
     
     path('sendComment/', views.sendComment, name="sendComment"),
+    path('loadPosts/', views.PostCreateViewFromOldDB, name="loadPosts"),
 
     path('posts/', views.PostView.as_view(), name='posts'),
     path('poststag/<str:tag>', views.PostViewTag.as_view(), name='posts-tag'),
