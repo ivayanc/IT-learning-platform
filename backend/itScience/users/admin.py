@@ -12,7 +12,7 @@ class SystemUserAdmin(UserAdmin):
     list_display = ['email', 'username', 'name', 'about']
 
     fieldsets = UserAdmin.fieldsets + (
-            (None, {'fields': ('name','about', 'avatar')}),
+            (None, {'fields': ('name','about', 'avatar', 'role')}),
     )
 
 @admin.register(Role)

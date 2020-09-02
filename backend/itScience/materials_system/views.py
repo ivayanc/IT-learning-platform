@@ -286,9 +286,9 @@ class PostCreateView(CreateView):
 
 def PostCreateViewFromOldDB(request):
     connection = mysql.connector.connect(host='remotemysql.com',
-                                        database='WCGe2YT4PZ',
-                                        user='WCGe2YT4PZ',
-                                        password='jtQ8jGk8OU')
+                                            database='WCGe2YT4PZ',
+                                            user='WCGe2YT4PZ',
+                                            password='jtQ8jGk8OU')
     if connection.is_connected():
         db_Info = connection.get_server_info()
         print("Connected to MySQL Server version ", db_Info)
@@ -297,24 +297,26 @@ def PostCreateViewFromOldDB(request):
         record = cursor.fetchone()
         print("You're connected to database: ", record)
     cursos = connection.cursor()
-    query = "SELECT * FROM it"
+    query = "SELECT * FROM school9_11"
     cursos.execute(query)
     result = cursos.fetchall()
-    for id, title, short, image, text, date, author, comments, likes, views, id in result:
-        text += "<br/><br/>\n<h3>Автор матеріалу - " + author + "</h3>"
-        text = text.replace("/img/blocks/", "/media/uploads/2020/09/02/")
-        moderator = SystemUser.objects.get(username = "test")
-        Post.objects.create(time_to_read = 5, moderator = moderator, title = title, views = views, description = short, published = date, publication = text)
-        created_post = Post.objects.get(title=title, publication = text)
-        created_post.title_image = 'blocks/it_' + str(id) + '.png'
-        created_post.save()
-        PostHashTag.objects.create(post = created_post, tag = HashTag.objects.get(tag_name="Інформаційні Технології"))
+    for id, title, short, image, text, date, author, comments, likes, views in result:
+        try:
+            text += "<br/><br/>\n<h3>Автор матеріалу - " + author + "</h3>"
+            text = text.replace("/img/blocks/", "/media/uploads/2020/09/02/")
+            moderator = SystemUser.objects.get(username = "admin")
+            #Post.objects.create(time_to_read = 5, moderator = moderator, title = title, views = views, description = short, published = date, publication = text)
+            created_post = Post.objects.get(title=title, publication = text)
+            created_post.title_image = 'blocks/school9_11_' + str(id) + '.png'
+            created_post.save()
+            PostHashTag.objects.create(post = created_post, tag = HashTag.objects.get(pk = 4))
+        except:
+            pass
     if (connection.is_connected()):
         cursor.close()
         connection.close()
         print("MySQL connection is closed")
     return HttpResponse(200)
-
 class PostUpdateView(UpdateView):
     template_name = 'materials_system/post_create.html'
     form_class = PostCreateForm

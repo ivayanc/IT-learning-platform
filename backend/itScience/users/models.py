@@ -18,7 +18,7 @@ class SystemUser(AbstractUser):
     about = models.TextField(verbose_name="Про себе")
     avatar = models.ImageField(upload_to='avatars/',verbose_name="Ваше фото",default="avatars/default-avatar.png")
     google_avatar = models.CharField(max_length=250, verbose_name="Google avatar", default="")
-    role = models.ForeignKey(Role, on_delete=models.CASCADE, blank=True, null=True, default=2)
+    role = models.ForeignKey(Role, on_delete=models.CASCADE, blank=True, null=True, default = 1)
     def __str__(self):
         return self.username
     
