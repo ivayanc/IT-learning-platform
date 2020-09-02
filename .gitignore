@@ -29,7 +29,7 @@ __pycache__/
 # Distribution / packaging
 .Python
 itscience_env/
-backend/itScience/media/
+#backend/itScience/media/
 backend/itScience/deployment
 env/
 build/

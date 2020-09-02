@@ -24,6 +24,11 @@ class SingUp(CreateView):
     success_url = reverse_lazy('login')
     template_name = 'registration/singup.html'
 
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        user = SystemUser.objects.get(username = self.request.POST.get("username"))
+        user.name = self.request.POST.get("first_name")
+        return response
 
 class ProfileView(DetailView):
     template_name = 'registration/profile.html'
