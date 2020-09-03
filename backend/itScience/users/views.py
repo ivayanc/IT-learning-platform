@@ -28,6 +28,7 @@ class SingUp(CreateView):
         response = super().form_valid(form)
         user = SystemUser.objects.get(username = self.request.POST.get("username"))
         user.name = self.request.POST.get("first_name")
+        user.save()
         return response
 
 class ProfileView(DetailView):

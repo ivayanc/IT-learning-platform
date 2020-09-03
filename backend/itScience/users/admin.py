@@ -9,7 +9,7 @@ class SystemUserAdmin(UserAdmin):
     add_form = SystemUserCreationForm
     form = SystemUserChangeForm
     model = SystemUser
-    list_display = ['email', 'username', 'name', 'about', 'role']
+    list_display = ['email', 'username', 'name', 'about']
 
     fieldsets = UserAdmin.fieldsets + (
             (None, {'fields': ('name','about', 'avatar', 'role')}),

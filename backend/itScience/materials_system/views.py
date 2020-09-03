@@ -251,7 +251,8 @@ class PostCreateView(CreateView):
     def form_valid(self, form):
         response = super().form_valid(form)
         self.object.title = self.request.POST.get("title")
-        post = Post.objects.get(title=self.object.title)
+        
+        post = Post.objects.get(title=self.object.title, publication = self.request.POST.get("publication"))
         try:
             self.object.hashtags = json.loads(self.request.POST.get("hashtagsAdd"))
             for hashtag in self.object.hashtags:
@@ -286,9 +287,9 @@ class PostCreateView(CreateView):
 
 def PostCreateViewFromOldDB(request):
     connection = mysql.connector.connect(host='remotemysql.com',
-                                        database='WCGe2YT4PZ',
-                                        user='WCGe2YT4PZ',
-                                        password='jtQ8jGk8OU')
+                                            database='WCGe2YT4PZ',
+                                            user='WCGe2YT4PZ',
+                                            password='jtQ8jGk8OU')
     if connection.is_connected():
         db_Info = connection.get_server_info()
         print("Connected to MySQL Server version ", db_Info)
@@ -297,24 +298,26 @@ def PostCreateViewFromOldDB(request):
         record = cursor.fetchone()
         print("You're connected to database: ", record)
     cursos = connection.cursor()
-    query = "SELECT * FROM it"
+    query = "SELECT * FROM school9_11"
     cursos.execute(query)
     result = cursos.fetchall()
-    for id, title, short, image, text, date, author, comments, likes, views, id in result:
-        text += "<br/><br/>\n<h3>Автор матеріалу - " + author + "</h3>"
-        text = text.replace("/img/blocks/", "/media/uploads/2020/09/02/")
-        moderator = SystemUser.objects.get(username = "test")
-        Post.objects.create(time_to_read = 5, moderator = moderator, title = title, views = views, description = short, published = date, publication = text)
-        created_post = Post.objects.get(title=title, publication = text)
-        created_post.title_image = 'blocks/it_' + str(id) + '.png'
-        created_post.save()
-        PostHashTag.objects.create(post = created_post, tag = HashTag.objects.get(tag_name="Інформаційні Технології"))
+    for id, title, short, image, text, date, author, comments, likes, views in result:
+        try:
+            text += "<br/><br/>\n<h3>Автор матеріалу - " + author + "</h3>"
+            text = text.replace("/img/blocks/", "/media/uploads/2020/09/02/")
+            moderator = SystemUser.objects.get(username = "admin")
+            #Post.objects.create(time_to_read = 5, moderator = moderator, title = title, views = views, description = short, published = date, publication = text)
+            created_post = Post.objects.get(title=title, publication = text)
+            created_post.title_image = 'blocks/school9_11_' + str(id) + '.png'
+            created_post.save()
+            PostHashTag.objects.create(post = created_post, tag = HashTag.objects.get(pk = 4))
+        except:
+            pass
     if (connection.is_connected()):
         cursor.close()
         connection.close()
         print("MySQL connection is closed")
     return HttpResponse(200)
-
 class PostUpdateView(UpdateView):
     template_name = 'materials_system/post_create.html'
     form_class = PostCreateForm
@@ -322,7 +325,7 @@ class PostUpdateView(UpdateView):
     def form_valid(self, form):
         self.object = form.save()
         self.object.title = self.request.POST.get("title")
-        post = Post.objects.get(title=self.object.title)
+        post = Post.objects.get(pk = self.kwargs.get("id"))
         try:
             self.object.hashtags = json.loads(self.request.POST.get("hashtagsAdd"))
             for hashtag in self.object.hashtags:
@@ -413,11 +416,15 @@ class PostViewTag(ListView):
         hash_tags = HashTag.objects.filter(tag_parent=HashTag.objects.get(tag_name=self.kwargs.get("tag")))
         for hash_tag in hash_tags:
             hashtags.add(hash_tag)
-            phash_tags = HashTag.objects.filter(tag_parent=hash_tag)
+            phash_tags = [HashTag.objects.filter(tag_parent=hash_tag)]
             while(len(phash_tags) > 0):
                 for phash_tag in phash_tags:
-                    hashtags.add(phash_tag)
-                phash_tags = HashTag.objects.filter(tag_parent=phash_tags)
+                    #print(phash_tag)
+                    if(len(phash_tag) > 0):
+                        hashtags.add(phash_tag[0])
+                        for new_hashtag in HashTag.objects.filter(tag_parent=phash_tag[0]):
+                            phash_tags.append(new_hashtags)
+                phash_tags.pop()
         posts = set()
         for hashtag in hashtags:
             query = PostHashTag.objects.filter(tag__tag_name=hashtag.tag_name)
