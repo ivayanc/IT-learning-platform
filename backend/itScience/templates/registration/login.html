@@ -18,7 +18,7 @@
 <form class="login_form_page" method="post">
 	{% csrf_token %}
   <input type="hidden" name="next" value="{{ next }}" />
-  {% if form.non_field_errors != "" %}
+  {% if form.non_field_errors|length > 0  %}
     <div class="isa_error">
   {% endif %}
   {% for error in form.non_field_errors %}
@@ -27,7 +27,7 @@
     Введіть правильне ім’я користувача та пароль. Врахуйте що обидва поля чутливі до регістру
     {% endif %}
   {% endfor %}
-  {% if form.non_field_errors != "" %}
+  {% if form.non_field_errors|length > 0 %}
     </div>
   {% endif %}
 	{% for field in form %}

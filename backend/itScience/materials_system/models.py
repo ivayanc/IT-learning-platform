@@ -13,7 +13,7 @@ class Post(models.Model):
     title            = models.CharField(max_length=255,blank=True,verbose_name="Заголовок", unique=False)
     views            = models.IntegerField(default=0,verbose_name="Кількість переглядів")
     description      = models.CharField(max_length=500,blank=True, verbose_name="Короткий опис")
-    published        = models.DateTimeField(blank=True,verbose_name="Дата публікації")
+    published        = models.DateTimeField(blank=True,verbose_name="Дата публікації", null = True)
     title_image      = models.ImageField(upload_to="posts",blank=True, verbose_name="Зображення",default="posts/default.png")
     publication      = RichTextUploadingField(verbose_name="Текст публікації")
     favorite         = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="Обрані", blank=True)

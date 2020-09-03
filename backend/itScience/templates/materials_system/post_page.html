@@ -43,12 +43,13 @@
 <section class="page-title-section overlay" data-background="{% static 'images/backgrounds/page-title.jpg' %}">
   <div class="container">
     <div class="row">
-      <div class="col-md-8">
-        <ul class="list-inline custom-breadcrumb" style="text-align: center; max-width: 45%;">
-          <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="{%url 'posts'%}">Статті</a></li>
-          <li class="list-inline-item text-white h3 font-secondary nasted">{{object.title}}</li>
+      <div class="col-md-12">
+        <ul class="list-inline custom-breadcrumb" style="max-width: 100%;">
+          <!-- <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="{%url 'posts'%}">Статті</a></li> -->
+          <li class="list-inline-item text-white h3 font-secondary">{{object.title}}</li>
         </ul>
-        <p class="text-lighten">{{object.description}}</p>
+        <br/>
+        <!-- <p class="text-lighten">{{object.description}}</p> -->
       </div>
       <div class="col-md-12">
         {% for hash_tag in hash_tags%}
@@ -66,7 +67,7 @@
     <!-- course info -->
     <div class="row align-items-center mb-5">
       <div class="col-xl-12 order-1 col-sm-12 mb-12 mb-xl-12">
-        <h2 style="text-align: center; word-wrap: break-word; vertical-align:middle;">{{object.title}}</h2>
+        <h2 style="text-align: center; word-wrap: break-word; vertical-align:middle;">{{object.description}}</h2>
       </div>
       <br/>
       <br/>
@@ -137,7 +138,7 @@
     
       <!-- teacher -->
       <div class="col-12">
-        a<h5 class="mb-3">Автор</h5>
+        <h5 class="mb-3">Автор</h5>
         <div class="d-flex justify-content-between align-items-center flex-wrap">
           <div class="media mb-2 mb-sm-0">
             <a href="{% url 'profile' id=object.moderator.pk%}"><img class="mr-4 img-fluid" {% if post.moderator.google_avatar != "" %} src="{{post.moderator.google_avatar}}" {% else %} src = "{{post.moderator.avatar.url}}" {% endif %} alt="Teacher" width="50"></a>
@@ -154,6 +155,33 @@
   </div>
 </section>
 <!-- /section -->
+
+<div class="container mt-5 mb-5">
+  <h2 style="text-align: center;">Коментарі</h1>
+    <div class="d-flex justify-content-center row">
+      <div class="col-md-8">
+        <form name="sendComment" action="{% url 'sendComment' %}" method="post" style="width: 100%; padding-top: 8px; padding-bottom: 8px; padding-left: 4px;">
+          {% csrf_token %}
+          <input type="hidden" name="postId" value = "{{object.pk}}, {{user.pk}}">
+          <div class="d-flex flex-row align-items-center add-comment p-2 bg-white rounded"><img class="rounded-circle" {% if not user.is_authenticated %}src="/media/avatars/default-avatar.png" {% else %} {% if comment.user.google_avatar != None %} src="{{user.google_avatar}}" {% else %} src = "{{user.avatar.url}}" {% endif %} {% endif %}width="40"><input type="text" name="comment" class="form-control border-0 no-box-shadow ml-1" {% if not user.is_authenticated %} disabled="yes" {% endif %} placeholder={% if user.is_authenticated %}"Ваш коментар..." {%else%} "" {% endif %}{% if not user.is_authenticated %}value='Увійдіть для можливості залишати коментарі' {% endif %}></div>
+        </form>
+        {% for comment in comments %}
+        <div class="p-3 bg-white mt-2 rounded">
+            <div class="d-flex justify-content-between">
+                <div class="d-flex flex-row user"><img class="rounded-circle img-fluid img-responsive" {% if comment.user.google_avatar != "" %} src="{{comment.user.google_avatar}}" {% else %} src = "{{comment.user.avatar.url}}" {% endif%} width="40">
+                    <div class="d-flex flex-column ml-2"><span class="font-weight-bold">{{comment.user.name}}</span><span class="day">{{comment.date1}}</span></div>
+                </div>
+                <!-- <div class="d-flex align-items-center px-3 heart border"><i class="fa fa-heart heart-icon"></i><span class="ml-2">35</span></div> -->
+            </div>
+            <div class="comment-text text-justify mt-2">
+                <p>{{comment.text}}</p>
+                </p>
+            </div>
+        </div>
+        {% endfor %}
+      </div>
+  </div>
+</div>
 
 <!-- related course -->
 <section class="section pt-0">
@@ -184,32 +212,6 @@
         </div>
       </div>
       {% endfor %}
-    </div>
-  </div>
-  <div class="container mt-5 mb-5">
-    <h2 style="text-align: center;">Коментарі</h1>
-      <div class="d-flex justify-content-center row">
-        <div class="col-md-8">
-          <form name="sendComment" action="{% url 'sendComment' %}" method="post" style="width: 100%; padding-top: 8px; padding-bottom: 8px; padding-left: 4px;">
-            {% csrf_token %}
-            <input type="hidden" name="postId" value = "{{object.pk}}, {{user.pk}}">
-            <div class="d-flex flex-row align-items-center add-comment p-2 bg-white rounded"><img class="rounded-circle" {% if not user.is_authenticated %}src="/media/avatars/default-avatar.png"{% else %} {% if comment.user.google_avatar != "" %} src="{{user.google_avatar}}" {% else %} src = "{{user.avatar.url}}" {% endif %} {% endif %}width="40"><input type="text" name="comment" class="form-control border-0 no-box-shadow ml-1" {% if not user.is_authenticated %} disabled="yes" {% endif %} placeholder={% if user.is_authenticated %}"Ваш коментар..." {%else%} "" {% endif %}{% if not user.is_authenticated %}value='Увійдіть для можливості залишати коментарі' {% endif %}></div>
-          </form>
-          {% for comment in comments %}
-          <div class="p-3 bg-white mt-2 rounded">
-              <div class="d-flex justify-content-between">
-                  <div class="d-flex flex-row user"><img class="rounded-circle img-fluid img-responsive" {% if comment.user.google_avatar != "" %} src="{{comment.user.google_avatar}}" {% else %} src = "{{comment.user.avatar.url}}" {% endif%} width="40">
-                      <div class="d-flex flex-column ml-2"><span class="font-weight-bold">{{comment.user.name}}</span><span class="day">{{comment.date1}}</span></div>
-                  </div>
-                  <!-- <div class="d-flex align-items-center px-3 heart border"><i class="fa fa-heart heart-icon"></i><span class="ml-2">35</span></div> -->
-              </div>
-              <div class="comment-text text-justify mt-2">
-                  <p>{{comment.text}}</p>
-                  </p>
-              </div>
-          </div>
-          {% endfor %}
-        </div>
     </div>
   </div>
 

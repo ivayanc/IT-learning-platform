@@ -126,7 +126,7 @@
 </section>
 
 
-<!-- events -->
+<!-- events
 <section class="section bg-gray">
   <div class="container">
     <div class="row">
@@ -150,14 +150,14 @@
               <div class="card-date">{{olymp.start_time}}</div>
             </div>
             <div class="card-body">
-              <!-- location -->
+              location
               <p><i class="ti-location-pin text-primary mr-2"></i>{{olymp.description}}</p>
               <a href="{%url 'olympiad' id=olymp.pk%}"><h4 class="card-title">{{olymp.title}} </h4></a>
             </div>
           </div>
         </div>
         {%endfor%}
-        <!-- mobile see all button -->
+        mobile see all button
         <div class="row">
           <div class="col-12 text-center">
             <a href="{%url 'olympiad_system'%}" class="btn btn-sm btn-primary-outline d-sm-none d-inline-block">Переглянути всі</a>
@@ -171,7 +171,7 @@
     
     
 </section>
-<!-- /events -->
+/events -->
 
 <!-- blog -->
 <section class="section pt-0">
@@ -182,16 +182,15 @@
               <h2 class="mb-0 text-nowrap mr-3">Останні новини</h2>
               <div class="border-top w-100 border-primary d-none d-sm-block"></div>
               <div>
-                <a href="{%url 'news'%}" class="btn btn-sm btn-primary-outline ml-sm-3 d-none d-sm-block">преглянути всі</a>
+                <a href="{% url 'posts-tag' tag='Новини' %}"" class="btn btn-sm btn-primary-outline ml-sm-3 d-none d-sm-block">преглянути всі</a>
               </div>
             </div>
           </div>
         </div>
     <div class="row justify-content-center">
   <!-- blog post -->
-  <!-- {% for post in latest_news %}
+  {% for post in latest_news %}
     
-      course item
       <div class="col-lg-4 col-sm-6 mb-5">
         <div class="card p-0 border-primary rounded-0 hover-shadow">
           <img class="card-img-top rounded-0" src="{{ post.title_image.url }}" alt="{{post.title}}">
@@ -208,7 +207,7 @@
           </div>
         </div>
       </div>
-      {%endfor%} -->
+      {%endfor%}
 </div>
   </div>
 </section>

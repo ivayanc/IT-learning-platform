@@ -63,7 +63,13 @@ class IndexView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['latest_posts'] = Post.objects.all().order_by('-published')[:6]
         #context['latest_news'] = Post.objects.all().filter(category=Post.OTHER).order_by('-published')[:3]
-        context['olympiads'] = Olympiad.objects.all().filter(olymp_type=Olympiad.PUBLIC,is_ended=False).order_by('start_time')[:3]
+        post_hashtags = PostHashTag.objects.filter(tag=HashTag.objects.get(tag_name="Новини"))
+        posts = set()
+        for post_hashtag in post_hashtags:
+            posts.add(Post.objects.get(pk = post_hashtag.post.pk).id)
+        print(posts)
+        context['latest_news'] = Post.objects.filter(id__in = posts).order_by('-published')[:3]
+        #context['olympiads'] = Olympiad.objects.all().filter(olymp_type=Olympiad.PUBLIC,is_ended=False).order_by('start_time')[:3]
         
         return context
 
@@ -160,7 +166,7 @@ class SinglePostView(DetailView):
         post.views = post.views + 1
         post.save()
         context = super().get_context_data(**kwargs)
-        context['latest_posts'] = Post.objects.all()[:3]
+        context['latest_posts'] = Post.objects.order_by('-published')[:3]
         context['is_favorite'] = False
         context['comments'] = Comments.objects.all().filter(post = self.kwargs.get("id")).order_by('-date')
         for comment in context['comments']:
@@ -251,8 +257,7 @@ class PostCreateView(CreateView):
     def form_valid(self, form):
         response = super().form_valid(form)
         self.object.title = self.request.POST.get("title")
-        
-        post = Post.objects.get(title=self.object.title, publication = self.request.POST.get("publication"))
+        post = Post.objects.get(pk = self.object.pk)
         try:
             self.object.hashtags = json.loads(self.request.POST.get("hashtagsAdd"))
             for hashtag in self.object.hashtags:

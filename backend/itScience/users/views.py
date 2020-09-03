@@ -41,7 +41,7 @@ class ProfileView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(ProfileView, self).get_context_data(**kwargs) # get the default context data
         context['favorites'] = Post.objects.filter(favorite__in=[self.get_object().pk])
-        context['posts'] = Post.objects.filter(moderator__in=[self.get_object().pk])
+        context['posts'] = Post.objects.filter(moderator__in=[self.get_object().pk])[:6]
         return context
 
 class ProfileUpdateView(UpdateView):
@@ -49,27 +49,38 @@ class ProfileUpdateView(UpdateView):
     form_class = SystemUserChangeForm
 
     def form_valid(self, form):
-        password = self.request.POST.get("password")
-        user = SystemUser.objects.get(pk=self.request.POST.get("user"))
-        if django_context.verify(password, user.password) == False:
-            return self.render_to_response(self.get_context_data(form=form))
-        response = super().form_valid(form)
         new_password = self.request.POST.get("password2")
         if(new_password != ""):
+            password = self.request.POST.get("password")
             user = SystemUser.objects.get(pk=self.request.POST.get("user"))
-            user.set_password(new_password)
-            user.save()
-            update_session_auth_hash(self.request, user) 
-        return response
+            if django_context.verify(password, user.password) == False:
+                return self.render_to_response(self.get_context_data(form=form))
+            response = super().form_valid(form)
+            if(new_password != ""):
+                user = SystemUser.objects.get(pk=self.request.POST.get("user"))
+                user.set_password(new_password)
+                user.save()
+                update_session_auth_hash(self.request, user) 
+            return response
+        else:
+            response = super().form_valid(form)
+            if(new_password != ""):
+                user = SystemUser.objects.get(pk=self.request.POST.get("user"))
+                user.set_password(new_password)
+                user.save()
+                update_session_auth_hash(self.request, user) 
+            return response
 
     def get_context_data(self, **kwargs):
         context = super(ProfileUpdateView, self).get_context_data() # get the default context data
         context['errors'] = []
         try:
-            password = self.request.POST.get("password")
-            user = SystemUser.objects.get(pk=self.request.POST.get("user"))
-            if django_context.verify(password, user.password) == False:
-                context['errors'].append('Ваш поточний пароль введен не вірно.')
+            new_password = self.request.POST.get("password2")
+            if(new_password != ""):
+                password = self.request.POST.get("password")
+                user = SystemUser.objects.get(pk=self.request.POST.get("user"))
+                if django_context.verify(password, user.password) == False:
+                    context['errors'].append('Ваш поточний пароль введен не вірно.')
         except:
             pass
         return context
