@@ -31,6 +31,8 @@ __pycache__/
 itscience_env/
 backend/itScience/media/
 backend/itScience/deployment
+backend/itScience/materials_system/migrations
+backend/itScience/users/migrations
 env/
 build/
 develop-eggs/
