@@ -251,7 +251,8 @@ class PostCreateView(CreateView):
     def form_valid(self, form):
         response = super().form_valid(form)
         self.object.title = self.request.POST.get("title")
-        post = Post.objects.get(title=self.object.title)
+        
+        post = Post.objects.get(title=self.object.title, publication = self.request.POST.get("publication"))
         try:
             self.object.hashtags = json.loads(self.request.POST.get("hashtagsAdd"))
             for hashtag in self.object.hashtags:
@@ -324,7 +325,7 @@ class PostUpdateView(UpdateView):
     def form_valid(self, form):
         self.object = form.save()
         self.object.title = self.request.POST.get("title")
-        post = Post.objects.get(title=self.object.title)
+        post = Post.objects.get(pk = self.kwargs.get("id"))
         try:
             self.object.hashtags = json.loads(self.request.POST.get("hashtagsAdd"))
             for hashtag in self.object.hashtags:
@@ -415,11 +416,15 @@ class PostViewTag(ListView):
         hash_tags = HashTag.objects.filter(tag_parent=HashTag.objects.get(tag_name=self.kwargs.get("tag")))
         for hash_tag in hash_tags:
             hashtags.add(hash_tag)
-            phash_tags = HashTag.objects.filter(tag_parent=hash_tag)
+            phash_tags = [HashTag.objects.filter(tag_parent=hash_tag)]
             while(len(phash_tags) > 0):
                 for phash_tag in phash_tags:
-                    hashtags.add(phash_tag)
-                phash_tags = HashTag.objects.filter(tag_parent=phash_tags)
+                    #print(phash_tag)
+                    if(len(phash_tag) > 0):
+                        hashtags.add(phash_tag[0])
+                        for new_hashtag in HashTag.objects.filter(tag_parent=phash_tag[0]):
+                            phash_tags.append(new_hashtags)
+                phash_tags.pop()
         posts = set()
         for hashtag in hashtags:
             query = PostHashTag.objects.filter(tag__tag_name=hashtag.tag_name)
