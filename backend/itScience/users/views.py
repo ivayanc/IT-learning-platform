@@ -41,7 +41,7 @@ class ProfileView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(ProfileView, self).get_context_data(**kwargs) # get the default context data
         context['favorites'] = Post.objects.filter(favorite__in=[self.get_object().pk])
-        context['posts'] = Post.objects.filter(moderator__in=[self.get_object().pk])
+        context['posts'] = Post.objects.filter(moderator__in=[self.get_object().pk])[:6]
         return context
 
 class ProfileUpdateView(UpdateView):
