@@ -63,7 +63,7 @@ class IndexView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['latest_posts'] = Post.objects.all().order_by('-published')[:6]
         #context['latest_news'] = Post.objects.all().filter(category=Post.OTHER).order_by('-published')[:3]
-        context['olympiads'] = Olympiad.objects.all().filter(olymp_type=Olympiad.PUBLIC,is_ended=False).order_by('start_time')[:3]
+        #context['olympiads'] = Olympiad.objects.all().filter(olymp_type=Olympiad.PUBLIC,is_ended=False).order_by('start_time')[:3]
         
         return context
 
@@ -160,7 +160,7 @@ class SinglePostView(DetailView):
         post.views = post.views + 1
         post.save()
         context = super().get_context_data(**kwargs)
-        context['latest_posts'] = Post.objects.all()[:3]
+        context['latest_posts'] = Post.objects.order_by('-published')[:3]
         context['is_favorite'] = False
         context['comments'] = Comments.objects.all().filter(post = self.kwargs.get("id")).order_by('-date')
         for comment in context['comments']:

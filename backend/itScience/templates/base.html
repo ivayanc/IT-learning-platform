@@ -141,16 +141,19 @@
                 </div>
                 <div class="modal-body">
                     <div class="login">
+                        <div class="social_media">
+                          <h4>Зареєструйтесь за допомогою</h4>
+                          <a href="{% provider_login_url "google" method = "oauth2" %}" id ="google"><i class="fa fa-google" style="font-size: 25px;"></i></a>
+                        </div>
+                        <br/>
+                        <h4>або</h4>
+                        <br/>
                         <form method="post" action="/users/singup/">
                             {% csrf_token %}
                             {{registration_form}}
                             <button type="submit" id="login_submit">Зареєструватися</button>
                           </form>
                           <br/>
-                          <div class="social_media">
-                            <h4>Або увійдіть через</h4>
-                            <a href="{% provider_login_url "google" method = "oauth2" %}" id ="google"><i class="fa fa-google" style="font-size: 25px;"></i></a>
-                          </div>
                     </div>
                 </div>
             </div>
@@ -191,7 +194,7 @@
               </button>
           </div>
           <div class="modal-body">
-            Даний розділ в розробці. Стежіть за оновленнями.
+            Даний розділ в розробці. Слідкуйте за оновленнями.
           </div>
       </div>
   </div>
