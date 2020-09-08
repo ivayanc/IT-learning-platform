@@ -448,7 +448,7 @@ class PostViewTag(ListView):
         context['category_name'] = self.kwargs.get("tag")
         context['category_description'] = ""
         context['category_tags'] = []
-        context['category_photo'] = "/static/images/banner/banner-4.jpg"
+        context['category_photo'] = HashTag.objects.all().get(tag_name=self.kwargs.get("tag")).page_photo.url
         context['category_link'] = "/poststag/" + self.kwargs.get("tag")
         hash_tags = HashTag.objects.all().filter(tag_parent__tag_name=self.kwargs.get("tag"))
         for hash_tag in hash_tags:

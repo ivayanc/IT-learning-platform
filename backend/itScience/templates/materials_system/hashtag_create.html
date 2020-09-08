@@ -38,7 +38,7 @@
   }
 </style>
 
-<form class="post-create-form add_post" action="." method="POST">\
+<form class="post-create-form add_post" action="." method="POST" enctype="multipart/form-data">\
     {%csrf_token%}
     {% for field in form %}
         {% for error in field.errors %}
