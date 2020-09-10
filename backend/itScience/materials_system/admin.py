@@ -21,7 +21,8 @@ class HashTags(admin.ModelAdmin):
     fields = (
     'tag_name',
     'tag_parent',
-    'tag_main',)
+    'tag_main',
+    'page_photo',)
     list_display = ('tag_name', 'tag_parent', 'tag_main')
     filter_list = ('tag_parent', 'tag_main')
 

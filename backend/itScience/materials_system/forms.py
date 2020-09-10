@@ -31,6 +31,7 @@ class HashTagForm(forms.ModelForm):
         fields = [
             'tag_name',
             'tag_main',
+            'page_photo',
         ]
 
 class CommentsForm(forms.ModelForm):

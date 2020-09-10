@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect, render_to_response 
 from django.http import HttpResponse, StreamingHttpResponse, FileResponse, Http404
+from django.template.defaulttags import register
 from django.views.generic import (
         TemplateView,
         ListView, 
@@ -124,30 +125,40 @@ class HashTagCreateView(CreateView):
 
     def form_valid(self, form):
         response = super().form_valid(form)
-        hashtag_parent = self.request.POST.get("hashtag_parent")
+        hashtag_parent = self.request.POST.get("hashtag_parent_hidden")
         if(hashtag_parent == ""):
             return response
-        hashtag = self.request.POST.get("tag_name")
-        tagparent = HashTag.objects.get(tag_name=hashtag_parent)
-        tag = HashTag.objects.get(tag_name=hashtag)
+        tagparent = HashTag.objects.get(pk=hashtag_parent)
+        tag = HashTag.objects.get(pk=self.kwargs.get("id"))
         tag.tag_parent = tagparent
         tag.save()
         return response
 
     def get_context_data(self, **kwargs):
-        if(str(self.request.user) == "AnonymousUser"):
-            raise Http404("no permision")
-        if(self.request.user.role.can_change_hashtags == False):
-            raise Http404("no permision")
         context = super().get_context_data(**kwargs)
+        context['hashtag_parent'] = None
+        try:
+            context['hashtag_parent'] = HashTag.objects.get(id=self.kwargs.get("id")).tag_parent
+        except:
+            pass 
         context['all_hashtags'] = HashTag.objects.all()
+        context['buttonName'] = 'Створити'
         hashtags = HashTag.objects.all()
         context['hashtagsArray'] = []
-        context['buttonName'] = 'Додати'
+        context['hashtag_parents'] = {}
         for hashtag in hashtags:
             context['hashtagsArray'].append(hashtag.tag_name)
+            parent = hashtag.tag_parent
+            context['hashtag_parents'][hashtag.pk] = []
+            while(parent != None):
+                context['hashtag_parents'][hashtag.pk].append(parent)
+                parent = parent.tag_parent
         context['hashtagsArray'] = json.dumps(context['hashtagsArray'])
         return context
+
+    @register.filter
+    def lookup(dictionary, key):
+        return dictionary.get(key)
 
 class SinglePostView(DetailView):
     template_name = 'materials_system/post_page.html'
@@ -214,12 +225,11 @@ class HashTagUpdate(UpdateView):
 
     def form_valid(self, form):
         response = super().form_valid(form)
-        hashtag_parent = self.request.POST.get("hashtag_parent")
+        hashtag_parent = self.request.POST.get("hashtag_parent_hidden")
         if(hashtag_parent == ""):
             return response
-        hashtag = self.request.POST.get("tag_name")
-        tagparent = HashTag.objects.get(tag_name=hashtag_parent)
-        tag = HashTag.objects.get(tag_name=hashtag)
+        tagparent = HashTag.objects.get(pk=hashtag_parent)
+        tag = HashTag.objects.get(pk=self.kwargs.get("id"))
         tag.tag_parent = tagparent
         tag.save()
         return response
@@ -235,10 +245,20 @@ class HashTagUpdate(UpdateView):
         context['buttonName'] = 'Зберегти'
         hashtags = HashTag.objects.all()
         context['hashtagsArray'] = []
+        context['hashtag_parents'] = {}
         for hashtag in hashtags:
             context['hashtagsArray'].append(hashtag.tag_name)
+            parent = hashtag.tag_parent
+            context['hashtag_parents'][hashtag.pk] = []
+            while(parent != None):
+                context['hashtag_parents'][hashtag.pk].append(parent)
+                parent = parent.tag_parent
         context['hashtagsArray'] = json.dumps(context['hashtagsArray'])
         return context
+
+    @register.filter
+    def lookup(dictionary, key):
+        return dictionary.get(key)
 
     def get_object(self, queryset=None):
         if(str(self.request.user) == "AnonymousUser"):
@@ -261,14 +281,14 @@ class PostCreateView(CreateView):
         try:
             self.object.hashtags = json.loads(self.request.POST.get("hashtagsAdd"))
             for hashtag in self.object.hashtags:
-                hashTagM = HashTag.objects.get(tag_name=hashtag)
+                hashTagM = HashTag.objects.get(pk=hashtag)
                 PostHashTag.objects.create(post=post, tag=hashTagM)
         except:
             print("error with adding hashtags to post")
         try:
             self.object.hashtagsDelete = json.loads(self.request.POST.get("hashtagsDelete"))
             for hashtag in self.object.hashtagsDelete:
-                hashTagM = HashTag.objects.get(tag_name=hashtag)
+                hashTagM = HashTag.objects.get(pk=hashtag)
                 PostHashTag.objects.get(post=post, tag=hashTagM).delete()
         except:
             print("error with deleting hashtags from post")
@@ -284,11 +304,23 @@ class PostCreateView(CreateView):
         context = super().get_context_data(**kwargs)
         hashtags = HashTag.objects.all()
         context['all_hashtags'] = HashTag.objects.all()
+        hashtags = HashTag.objects.all()
         context['hashtagsArray'] = []
+        context['hashtag_parents'] = {}
         for hashtag in hashtags:
             context['hashtagsArray'].append(hashtag.tag_name)
+            parent = hashtag.tag_parent
+            context['hashtag_parents'][hashtag.pk] = []
+            while(parent != None):
+                context['hashtag_parents'][hashtag.pk].append(parent)
+                parent = parent.tag_parent
         context['hashtagsArray'] = json.dumps(context['hashtagsArray'])
         return context
+
+    @register.filter
+    def lookup(dictionary, key):
+        return dictionary.get(key)
+
 
 def PostCreateViewFromOldDB(request):
     connection = mysql.connector.connect(host='remotemysql.com',
@@ -334,14 +366,14 @@ class PostUpdateView(UpdateView):
         try:
             self.object.hashtags = json.loads(self.request.POST.get("hashtagsAdd"))
             for hashtag in self.object.hashtags:
-                hashTagM = HashTag.objects.get(tag_name=hashtag)
+                hashTagM = HashTag.objects.get(pk=hashtag)
                 PostHashTag.objects.create(post=post, tag=hashTagM)
         except:
             print("error with adding hashtags to post")
         try:
             self.object.hashtagsDelete = json.loads(self.request.POST.get("hashtagsDelete"))
             for hashtag in self.object.hashtagsDelete:
-                hashTagM = HashTag.objects.get(tag_name=hashtag)
+                hashTagM = HashTag.objects.get(pk=hashtag)
                 PostHashTag.objects.get(post=post, tag=hashTagM).delete()
         except:
             print("error with deleting hashtags from post")
@@ -362,8 +394,14 @@ class PostUpdateView(UpdateView):
         context = super().get_context_data(**kwargs)
         hashtags = HashTag.objects.all()
         context['hashtagsArray'] = []
+        context['hashtag_parents'] = {}
         for hashtag in hashtags:
             context['hashtagsArray'].append(hashtag.tag_name)
+            parent = hashtag.tag_parent
+            context['hashtag_parents'][hashtag.pk] = []
+            while(parent != None):
+                context['hashtag_parents'][hashtag.pk].append(parent)
+                parent = parent.tag_parent
         hashtags = HashTag.objects.all()
         context['all_hashtags'] = HashTag.objects.all()
         context['hashtagsArray'] = json.dumps(context['hashtagsArray'])
@@ -373,6 +411,10 @@ class PostUpdateView(UpdateView):
         for hashtagPost in hashtagsPost:
             context['addedHashtags'].append(hashtagPost.tag.tag_name) 
         return context
+    
+    @register.filter
+    def lookup(dictionary, key):
+        return dictionary.get(key)
 
 class AddToFavoriteView(UpdateView):
 
@@ -417,22 +459,22 @@ class PostView(ListView):
 class PostViewTag(ListView):
     def get_queryset(self):
         hashtags = set()
-        hashtags.add(HashTag.objects.get(tag_name=self.kwargs.get("tag")))
-        hash_tags = HashTag.objects.filter(tag_parent=HashTag.objects.get(tag_name=self.kwargs.get("tag")))
+        hashtags.add(HashTag.objects.get(pk=self.kwargs.get("tag")))
+        hash_tags = HashTag.objects.filter(tag_parent=HashTag.objects.get(pk=self.kwargs.get("tag")))
         for hash_tag in hash_tags:
             hashtags.add(hash_tag)
-            phash_tags = [HashTag.objects.filter(tag_parent=hash_tag)]
+            phash_tags = list(HashTag.objects.filter(tag_parent=hash_tag))
             while(len(phash_tags) > 0):
                 for phash_tag in phash_tags:
-                    #print(phash_tag)
-                    if(len(phash_tag) > 0):
-                        hashtags.add(phash_tag[0])
-                        for new_hashtag in HashTag.objects.filter(tag_parent=phash_tag[0]):
-                            phash_tags.append(new_hashtags)
+                        if(phash_tag not in hashtags):
+                            hashtags.add(phash_tag)
+                            for new_hashtag in HashTag.objects.filter(tag_parent=phash_tag):
+                                phash_tags.append(new_hashtag)
                 phash_tags.pop()
+        print(hashtags)
         posts = set()
         for hashtag in hashtags:
-            query = PostHashTag.objects.filter(tag__tag_name=hashtag.tag_name)
+            query = PostHashTag.objects.filter(tag__pk=hashtag.pk)
 
             for post in query:
                 posts.add(post.post.id)
@@ -445,12 +487,12 @@ class PostViewTag(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['category_name'] = self.kwargs.get("tag")
+        context['category_name'] = HashTag.objects.all().get(pk=self.kwargs.get("tag"))
         context['category_description'] = ""
         context['category_tags'] = []
-        context['category_photo'] = "/static/images/banner/banner-4.jpg"
-        context['category_link'] = "/poststag/" + self.kwargs.get("tag")
-        hash_tags = HashTag.objects.all().filter(tag_parent__tag_name=self.kwargs.get("tag"))
+        context['category_photo'] = HashTag.objects.all().get(pk=self.kwargs.get("tag")).page_photo.url
+        context['category_link'] = "/poststag/" + str(self.kwargs.get("tag"))
+        hash_tags = HashTag.objects.all().filter(tag_parent__pk=self.kwargs.get("tag"))
         for hash_tag in hash_tags:
             context['category_tags'].append(hash_tag)
         return context
