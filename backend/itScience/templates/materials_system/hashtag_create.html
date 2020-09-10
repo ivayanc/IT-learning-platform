@@ -57,16 +57,21 @@
     <div class="form-group">
         <label>Предок</labeL>
         {% if hashtag_parent != none %}
-          <input type="text" name = "hashtag_parent" id="hashtag" onkeyup="hashtagFilter()" value="{{hashtag_parent}}">
+          <input type="text" name = "hashtag_parent" id="hashtag" onkeyup="hashtagFilter()" value="{{hashtag.tag_name}} | {% for parent in hashtag_parents|lookup:hashtag.pk %}{{parent}} | {% endfor %}">
         {% else %}
           <input type="text" name = "hashtag_parent" id="hashtag" onkeyup="hashtagFilter()">
         {% endif %}
         <br/>
         <ul style="height: 234px; overflow: auto" id="hashtagUl">
           {%for hashtag in all_hashtags %}
-            <li class="hashtagLi"><a id = "{{hashtag}}#" onclick="addHashTagli(this.id)">{{hashtag.tag_name}}</a></li>
+            <li class="hashtagLi"><a id = "{{hashtag.pk}}" onclick="addHashTagli(this.id)">{{hashtag.tag_name}} {% for parent in hashtag_parents|lookup:hashtag.pk %} | {{parent}} {% endfor %} </a></li>
           {% endfor %}
         </ul>
+        {% if hashtag_parent != none %}
+          <input type="hidden" name = "hashtag_parent_hidden" id="hashtag_parent_hidden" onkeyup="hashtagFilter()" value="{{hashtag_parent}}">
+        {% else %}
+          <input type="hidden" name = "hashtag_parent_hidden" id="hashtag_parent_hidden" onkeyup="hashtagFilter()">
+        {% endif %}
     </div>
 
     <button type="submit" id="addPostSubmit" name="save">{{buttonName}}</button>
@@ -92,6 +97,7 @@
     }
     function addHashTagli(id){
       document.getElementById("hashtag").value = document.getElementById(id).textContent;
+      document.getElementById("hashtag_parent_hidden").value = id;
     }
 </script>
 {% endblock %}

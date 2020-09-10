@@ -32,10 +32,14 @@ class Comments(models.Model):
     reply_to = models.ForeignKey('self', on_delete = models.CASCADE, blank = True, null = True, verbose_name="Вiдповiдь на")
 
 class HashTag(models.Model):
-    tag_name = models.CharField(max_length=50, unique=True)
+    tag_name = models.CharField(max_length=50)
     tag_parent = models.ForeignKey('self', on_delete = models.CASCADE, blank = True, null = True)
     tag_main = models.BooleanField(blank=False, default=False)
-    page_photo = models.ImageField(upload_to="posts", blank = True, verbose_name="Зоображеня категорії")
+    page_photo = models.ImageField(upload_to="posts", blank = True, verbose_name="Зоображеня категорії", default="posts/default.png")
+
+    class Meta:
+        unique_together = ("tag_name", "tag_parent")
+
     def __str__(self):
         return self.tag_name
     

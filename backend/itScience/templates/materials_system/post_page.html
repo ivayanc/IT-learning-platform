@@ -53,7 +53,7 @@
       </div>
       <div class="col-md-12">
         {% for hash_tag in hash_tags%}
-          <a class = "tag-item" href = "/poststag/{{hash_tag}}">#{{ hash_tag }}</a>
+          <a class = "tag-item" href = "/poststag/{{hash_tag.pk}}">#{{ hash_tag }}</a>
         {% endfor %}
       </div>
     </div>

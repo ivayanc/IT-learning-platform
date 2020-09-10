@@ -19,7 +19,7 @@ urlpatterns = [
     path('loadPosts/', views.PostCreateViewFromOldDB, name="loadPosts"),
 
     path('posts/', views.PostView.as_view(), name='posts'),
-    path('poststag/<str:tag>', views.PostViewTag.as_view(), name='posts-tag'),
+    path('poststag/<int:tag>', views.PostViewTag.as_view(), name='posts-tag'),
     path('posts/create/', views.PostCreateView.as_view(), name='post-create'),
     path('posts/<int:id>/', views.SinglePostView.as_view(), name='post-details'),
     path('posts/<int:id>/favorite_post', views.AddToFavoriteView.as_view(), name='post-favorite'),

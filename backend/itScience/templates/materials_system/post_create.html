@@ -59,7 +59,7 @@
     <input type="text" id="hashtag" onkeyup="hashtagFilter()"><button id="hashtagclick" type="button" onclick="addHashTag()">Додати до статті</button><a href="/hashtags/create/"><button type="button">Додати hashtag</button></a>
     <ul style="height: 234px; overflow: auto" id="hashtagUl">
       {%for hashtag in all_hashtags %}
-        <li class="hashtagLi"><a id = "{{hashtag}}#" onclick="addHashTagli(this.id)">{{hashtag.tag_name}}</a></li>
+        <li class="hashtagLi"><a id = "{{hashtag.pk}}" onclick="addHashTagli(this.id)">{{hashtag.tag_name}} {% for parent in hashtag_parents|lookup:hashtag.pk %} | {{parent}} {% endfor %}</a></li>
       {% endfor %}
     </ul>
   </div>
@@ -88,24 +88,22 @@
     }
   });
   function addHashTag(){
-    if(hashtagsArray.includes(hashtag.value) && !addedHashTag.includes(hashtag.value)){
-      alert(deletedHashTag);
+    if(hashtagsArray.includes(hashtag.id) && !addedHashTag.includes(hashtag.id)){
       for(var i = 0; i < deletedHashTag.length; i++){
         if(deletedHashTag[i] == hashtag.value){
           deletedHashTag.splice(i, 1);
           break;
         }
       }
-      alert(deletedHashTag);
       hashtagsDelete.value = JSON.stringify(deletedHashTag);
       var hashtagbtn = document.createElement("a");
       hashtagbtn.innerHTML = hashtag.value;
-      hashtagbtn.setAttribute("id", hashtag.value);
+      hashtagbtn.setAttribute("id", hashtag.id);
       hashtagbtn.setAttribute("onclick", "deleteHashTag(this.id)");
       hashtagbtn.setAttribute("type", "button");
       hashtagbtn.setAttribute("class", "tag-item");
       document.getElementById("hashtagsAdded").appendChild(hashtagbtn);
-      addedHashTag.push(hashtag.value);
+      addedHashTag.push(hashtag.id);
       hashtagsAdd.value = JSON.stringify(addedHashTag);
       hashtag.value = "";
     } else{
@@ -115,10 +113,10 @@
   }
   function deleteHashTag(id){
     if(confirm("Ви впевнені що хочете видалити хештег?")){
-      deletedHashTag.push(document.getElementById(id).textContent);
+      deletedHashTag.push(id);
       hashtagsDelete.value = JSON.stringify(deletedHashTag);
       for(var i = 0; i < addedHashTag.length; i++){
-        if(addedHashTag[i] == document.getElementById(id).textContent){
+        if(addedHashTag[i] == id){
           addedHashTag.splice(i, 1);
           break;
         }
@@ -145,9 +143,9 @@
     }
   }
   function addHashTagli(id){
-      if(!addedHashTag.includes(document.getElementById(id).textContent)){
+      if(!addedHashTag.includes(id)){
         for(var i = 0; i < deletedHashTag.length; i++){
-          if(deletedHashTag[i] == document.getElementById(id).textContent){
+          if(deletedHashTag[i] == id){
             deletedHashTag.splice(i, 1);
             break;
           }
@@ -155,12 +153,12 @@
         hashtagsDelete.value = JSON.stringify(deletedHashTag);
         var hashtagbtn = document.createElement("a");
         hashtagbtn.innerHTML = document.getElementById(id).textContent;
-        hashtagbtn.setAttribute("id", document.getElementById(id).textContent + "##");
+        hashtagbtn.setAttribute("id", id);
         hashtagbtn.setAttribute("onclick", "deleteHashTag(this.id)");
         hashtagbtn.setAttribute("type", "button");
         document.getElementById("hashtagsAdded").appendChild(hashtagbtn);
         hashtagbtn.setAttribute("class", "tag-item");
-        addedHashTag.push(document.getElementById(id).textContent);
+        addedHashTag.push(id);
         hashtagsAdd.value = JSON.stringify(addedHashTag);
         hashtag.value = "";
       } else{
