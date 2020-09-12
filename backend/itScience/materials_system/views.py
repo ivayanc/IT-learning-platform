@@ -129,7 +129,7 @@ class HashTagCreateView(CreateView):
         if(hashtag_parent == ""):
             return response
         tagparent = HashTag.objects.get(pk=hashtag_parent)
-        tag = HashTag.objects.get(pk=self.kwargs.get("id"))
+        tag = HashTag.objects.get(pk=self.object.id)
         tag.tag_parent = tagparent
         tag.save()
         return response
@@ -327,7 +327,6 @@ def PostCreateViewFromOldDB(request):
         post.publication = post.publication.replace("/img/news/", "/media/uploads/2020/09/02/")
         post.save()
     return HttpResponse(200)
-
 class PostUpdateView(UpdateView):
     template_name = 'materials_system/post_create.html'
     form_class = PostCreateForm
@@ -418,12 +417,27 @@ class PostView(ListView):
     template_name = 'materials_system/posts.html'
 
     def get_context_data(self, **kwargs):
+        try:
+            page = int(self.request.GET.get("page", 1))
+        except:
+            page = 1
         context = super().get_context_data(**kwargs)
         context['category_name'] = "Статті"
         context['category_description'] = "Тут ви можете знайти стрічку всіх статей на сайті"
         context['category_tags'] = []
         context['category_photo'] = "/static/images/banner/banner-4.jpg"
         context['category_link'] = "/posts/"
+        context['pages'] = []
+        count = 0
+        pages = max(page - 2, 1)
+        while(pages <= page):
+            context['pages'].append(pages)
+            count += 1
+            pages += 1
+        while(count <= 5):
+            context['pages'].append(pages)
+            count += 1
+            pages += 1
         hash_tags = HashTag.objects.all().filter(tag_main=True)
         for hash_tag in hash_tags:
             context['category_tags'].append(hash_tag)
@@ -458,6 +472,10 @@ class PostViewTag(ListView):
     template_name = 'materials_system/postsTag.html'
 
     def get_context_data(self, **kwargs):
+        try:
+            page = int(self.request.GET.get("page", 1))
+        except:
+            page = 1
         context = super().get_context_data(**kwargs)
         context['category_name'] = HashTag.objects.all().get(pk=self.kwargs.get("tag"))
         context['category_description'] = ""
@@ -467,6 +485,17 @@ class PostViewTag(ListView):
         hash_tags = HashTag.objects.all().filter(tag_parent__pk=self.kwargs.get("tag"))
         for hash_tag in hash_tags:
             context['category_tags'].append(hash_tag)
+        context['pages'] = []
+        count = 0
+        pages = max(page - 2, 1)
+        while(pages <= page):
+            context['pages'].append(pages)
+            count += 1
+            pages += 1
+        while(count <= 5):
+            context['pages'].append(pages)
+            count += 1
+            pages += 1
         return context
 
 class ItPostView(PostView):  
