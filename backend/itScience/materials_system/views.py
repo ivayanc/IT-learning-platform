@@ -129,7 +129,7 @@ class HashTagCreateView(CreateView):
         if(hashtag_parent == ""):
             return response
         tagparent = HashTag.objects.get(pk=hashtag_parent)
-        tag = HashTag.objects.get(pk=self.kwargs.get("id"))
+        tag = HashTag.objects.get(pk=self.object.id)
         tag.tag_parent = tagparent
         tag.save()
         return response
