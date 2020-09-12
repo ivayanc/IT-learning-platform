@@ -5,6 +5,39 @@
 
 {% block content %}
 {%load static%}
+
+<style>
+   .pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  border: 1px solid #ddd;
+}
+
+.pagination a.active {
+  background-color: #ff5233;
+  color: white;
+  border: 1px solid #ff5233;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+.pagination a:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.pagination a:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+</style>
+
 <section class="hero-section overlay bg-cover" data-background="{{category_photo}}">
     <div class="container">
       <div class="row">
@@ -13,8 +46,11 @@
             {% if category_name.tag_parent != None %}
             <li class="list-inline-item"><a class="h2 text-white font-secondary" href="/poststag/{{category_name.tag_parent.pk}}">{{category_name.tag_parent}}</a></li>
             <li class="list-inline-item text-white h3 font-secondary @@nasted">></li>
+            {% else %}
+            <li class="list-inline-item"><a class="h2 text-white font-secondary" href="/posts/">Статті</a></li>
+            <li class="list-inline-item text-white h3 font-secondary @@nasted">></li>
             {% endif %}
-            <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="/poststag/{{category_name.tag_parent.pk}}">{{category_name}}</a></li>
+            <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="#">{{category_name}}</a></li>
           </ul>
           <p class="text-lighten">{{category_description}}</p>
         </div>
@@ -57,28 +93,19 @@
   </div>
   <!-- /course list -->
       
-    {% if is_paginated %}
-    <div class="d-flex justify-content-center">
-          <ul class="list-inline">
-              {% if page_obj.has_previous %}
-                  <li class="list-inline-item"><a href="{{category_link}}?page={{ page_obj.previous_page_number }}" class="btn btn-primary btn-sm">Попередня</a></li>
-                  {% else %}
-                  <li class="list-inline-item"><a href="{{category_link}}" class="btn btn-primary btn-sm">Попередня</a></li>
-              {% endif %}
-              
-              <li class="list-inline-item" aria-controls="dynamic-table" tabindex="0">
-                    <a href="{{category_link}}?page={{page_obj.number}}">{{ page_obj.number }}</a>
-              </li>
-              {% if page_obj.has_next %}
-                    <li class="list-inline-item"><a href="{{category_link}}?page={{ page_obj.next_page_number }}" class="btn btn-primary btn-sm">Наступна</a></li>
-              {% else %}
-                    <li class="list-inline-item"><a href="{{category_link}}?page={{ page_obj.paginator.num_pages }}" class="btn btn-primary btn-sm">Наступна</a></li>    
-              {% endif %}
-              
-          </ul>
-      </div>
-    </div>
-    {% endif %}
+  {% if is_paginated %}
+  <div class="pagination" style="margin-left: 34%; width: 100%; height: 100%;">
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
+        {% endif %}
+        {% for page in pages %}
+          {% if page <= page_obj.paginator.num_pages %}<a {% if page == page_obj.number %} class="active" {% endif %} href="?page={{page}}">{{page}}</a> {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+      {% endif %}
+</div>
+{% endif %}
 
   </section>
   <!-- /courses -->
