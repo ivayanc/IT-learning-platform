@@ -63,6 +63,8 @@ class IndexView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['latest_posts'] = Post.objects.all().order_by('-published')[:6]
+        context['show_welcome_banner'] = self.request.session.get('show_welcome_banner', True)
+        self.request.session['show_welcome_banner'] = False
         #context['latest_news'] = Post.objects.all().filter(category=Post.OTHER).order_by('-published')[:3]
         post_hashtags = PostHashTag.objects.filter(tag=HashTag.objects.get(tag_name="Новини"))
         posts = set()
