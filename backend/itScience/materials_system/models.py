@@ -10,9 +10,9 @@ class Post(models.Model):
 
     time_to_read     = models.CharField(max_length=20,verbose_name="Прочитаєте за")
     moderator        = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,verbose_name="Автор")
-    title            = models.CharField(max_length=255,blank=True,verbose_name="Заголовок", unique=False)
+    title            = models.TextField(blank=True,verbose_name="Заголовок", unique=False)
     views            = models.IntegerField(default=0,verbose_name="Кількість переглядів")
-    description      = models.CharField(max_length=500,blank=True, verbose_name="Короткий опис")
+    description      = models.TextField(blank=True, verbose_name="Короткий опис")
     published        = models.DateTimeField(blank=True,verbose_name="Дата публікації", null = True)
     title_image      = models.ImageField(upload_to="posts",blank=True, verbose_name="Зображення",default="posts/default.png")
     publication      = RichTextUploadingField(verbose_name="Текст публікації")
@@ -36,7 +36,6 @@ class HashTag(models.Model):
     tag_parent = models.ForeignKey('self', on_delete = models.CASCADE, blank = True, null = True)
     tag_main = models.BooleanField(blank=False, default=False)
     page_photo = models.ImageField(upload_to="posts", blank = True, verbose_name="Зоображеня категорії", default="posts/alexandru-acea-XEB8y0nRRP4-unsplash.jpg")
-
     class Meta:
         unique_together = ("tag_name", "tag_parent")
 
