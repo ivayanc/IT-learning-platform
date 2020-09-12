@@ -323,47 +323,12 @@ class PostCreateView(CreateView):
     def lookup(dictionary, key):
         return dictionary.get(key)
 
-
 def PostCreateViewFromOldDB(request):
-    connection = mysql.connector.connect(host='remotemysql.com',
-                                            database='WCGe2YT4PZ',
-                                            user='WCGe2YT4PZ',
-                                            password='jtQ8jGk8OU')
-    if connection.is_connected():
-        db_Info = connection.get_server_info()
-        print("Connected to MySQL Server version ", db_Info)
-        cursor = connection.cursor()
-        cursor.execute("select database();")
-        record = cursor.fetchone()
-        print("You're connected to database: ", record)
-    cursos = connection.cursor()
-    query = "SELECT * FROM school9_11"
-    cursos.execute(query)
-    result = cursos.fetchall()
-    for id, title, short, image, text, date, author, comments, likes, views in result:
-        try:
-            text += "<br/><br/>\n<h3>Автор матеріалу - " + author + "</h3>"
-            text = text.replace("/img/blocks/", "/media/uploads/2020/09/02/")
-            moderator = SystemUser.objects.get(username = "admin")
-            #Post.objects.create(time_to_read = 5, moderator = moderator, title = title, views = views, description = short, published = date, publication = text)
-            created_post = Post.objects.get(title=title, publication = text)
-            created_post.title_image = 'blocks/school9_11_' + str(id) + '.png'
-            created_post.save()
-            PostHashTag.objects.create(post = created_post, tag = HashTag.objects.get(pk = 4))
-        except:
-            pass
-    if (connection.is_connected()):
-        cursor.close()
-        connection.close()
-        print("MySQL connection is closed")
+    posts = Post.objects.all()
+    for post in posts:
+        post.publication = post.publication.replace("/img/news/", "/media/uploads/2020/09/02/")
+        post.save()
     return HttpResponse(200)
-
-# def PostCreateViewFromOldDB(request):
-#     posts = Post.objects.all()
-#     for post in posts:
-#         post.publication = hashtag.publication.replace("/img/news/", "/media/uploads/2020/09/02/")
-#         post.save()
-#     return HttpResponse(200)
 class PostUpdateView(UpdateView):
     template_name = 'materials_system/post_create.html'
     form_class = PostCreateForm
@@ -495,7 +460,6 @@ class PostViewTag(ListView):
                             for new_hashtag in HashTag.objects.filter(tag_parent=phash_tag):
                                 phash_tags.append(new_hashtag)
                 phash_tags.pop()
-        print(hashtags)
         posts = set()
         for hashtag in hashtags:
             query = PostHashTag.objects.filter(tag__pk=hashtag.pk)
