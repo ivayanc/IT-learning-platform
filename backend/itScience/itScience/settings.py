@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '*o_q-wm-pg!r@5!-$sym)1p$d6&*ykj=k-1af=&ekk=xzedtvh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
 	"145.14.158.234", "127.0.0.1"
@@ -65,6 +65,9 @@ SITE_ID = 1
 ACCOUNT_ADAPTER = 'materials_system.views.AccountAdapter'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = "email"
+
+FILE_UPLOAD_MAX_MEMORY_SIZE = 100000000
+FILE_UPLOAD_PERMISSIONS  = 0o644
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
