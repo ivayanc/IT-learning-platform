@@ -93,6 +93,11 @@
               </div>
             </div>
           </li>
+	            <li class="list-inline-item mr-4 mb-3 mb-sm-0">
+            <div id="fb-root"></div>
+            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/uk_UA/sdk.js#xfbml=1&version=v8.0" nonce="ucYC331Q"></script>
+            <div class="fb-share-button" data-href="{{ request.path }}" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Поделиться</a></div>
+          </li>
           {%if user.role.can_post == True and object.moderator == user or user.role.can_edit_posts == True%}
           <li class="list-inline-item mr-4 mb-3 mb-sm-0">
               <div class="d-flex align-items-center">
@@ -104,8 +109,7 @@
                 </div>
               </div>
             </li>
-          {% endif %}
-         
+          {% endif %} 
         </ul>
       </div>
       <div class="col-xl-3 text-sm-right text-left order-sm-2 order-3 order-xl-3 col-sm-6 mb-4 mb-xl-0">
