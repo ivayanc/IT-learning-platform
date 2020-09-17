@@ -5,12 +5,23 @@
     <head>
         <meta charset="utf-8">
         <title>{% block title %}Інформатика{% endblock %}</title>
-      
+   	<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-68988527-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-68988527-1');
+</script>   
         <!-- mobile responsive meta -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      
-        <!-- ** Plugins Needed for the Project ** -->
+        
+	<meta name="description" content={% block description %}'Навчальний ресурс "Інформатика". Олімпіади, шкільна інформатика та останні новини технологій' {% endblock %}>         
+	{% load static %}
+	<meta property="og:image" content="{% block metaphoto %}{% static 'images/logo.png' %} {% endblock %}" />	
+	<!-- ** Plugins Needed for the Project ** -->
         <!-- Bootstrap -->
         <script src="https://kit.fontawesome.com/20ebbdf649.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
@@ -62,7 +73,7 @@
             <div class="row no-gutters">
               <div class="col-lg-4 text-center text-lg-left">
                   {% load static %}
-                <a class="text-color mr-3"><strong>Інф<img src="{% static 'images/logo.png' %}" alt="logo" width=20px height=20px>рматика</strong></a>
+		  <a class="text-color mr-3" href="{% url 'index' %}"><strong>Інф<img src="{% static 'images/logo.png' %}" alt="logo" width=20px height=20px>рматика</strong></a>
       
               </div>
               <div class="col-lg-8 text-center text-lg-right">
@@ -217,8 +228,8 @@
               <li>Оновленний адаптивний дизайн;</li>
               <li>В найближчому майбутньому буде додана платформа для проведення онлайн-олімпіад.</li>
             </ul>
-            <br/>
-            <i>Знайшли помилку? Будь ласка, повідомте нам на пошту admin@it-science.com.ua</i>
+	    <br/>
+	    <i>Знайшли помилку? Будь ласка, повідомте нам на пошту anton.dasyuk@gmail.com</i>
           </div>
       </div>
   </div>
@@ -285,7 +296,7 @@
             <a class="logo-footer" href="{% url 'index'%}"><img class="img-fluid mb-4" src="{% static 'images/logo.png' %}" width=100px height=100pxalt="logo"></a>
             <ul class="list-unstyled">
               <li class="mb-2">місто Чернігів, Україна</li>
-              <li class="mb-2">admin@it-science.com.ua</li>
+              <li class="mb-2">anton.dasyuk@gmail.com</li>
             </ul>
           </div>
           <!-- company -->
@@ -320,7 +331,8 @@
         <div class="row">
           <div class="col-sm-7 text-sm-left text-center">
             <p class="mb-0">Всі права захищені ©
-              <script>
+              2015 -
+	      <script>
                 var CurrentYear = new Date().getFullYear()
                 document.write(CurrentYear)
               </script>

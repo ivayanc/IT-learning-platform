@@ -9,11 +9,11 @@ handler404 = "materials_system.views.view_404"
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
     path('about/', TemplateView.as_view(template_name='materials_system/about.html'), name='about'),
-    path('it/', views.ItPostView.as_view(), name='it'),
-    path('programming/', views.ProgrammingPostView.as_view(), name='programming'),
-    path('school/', views.SchoolPostView.as_view(), name='school'),
-    path('scratch/', views.ScratchPostView.as_view(), name='scratch'),
-    path('news/', views.NewsPostView.as_view(), name='news'),
+    #path('it/', views.ItPostView.as_view(), name='it'),
+    #path('programming/', views.ProgrammingPostView.as_view(), name='programming'),
+    #path('school/', views.SchoolPostView.as_view(), name='school'),
+    #path('scratch/', views.ScratchPostView.as_view(), name='scratch'),
+    #path('news/', views.NewsPostView.as_view(), name='news'),
     
     path('sendComment/', views.sendComment, name="sendComment"),
     path('loadPosts/', views.PostCreateViewFromOldDB, name="loadPosts"),
