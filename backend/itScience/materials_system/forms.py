@@ -2,6 +2,8 @@ from django import forms
 from django.conf import settings
 from .models import SystemUser
 
+import datetime
+
 from .models import Post, HashTag, Comments
 
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
@@ -13,7 +15,7 @@ class PostCreateForm(forms.ModelForm):
     description = forms.CharField(label = "Короткий опис", max_length = 150)
     title_image = forms.ImageField(label = "Головне зображення")
     publication = forms.CharField(label = "Текст публікації", widget=CKEditorUploadingWidget())
-    
+    #date = forms.DateField(widget=forms.HiddenInput(), initial=datetime.now())
     class Meta:
         model = Post
         fields = (
