@@ -347,7 +347,7 @@ class PostUpdateView(UpdateView):
         try:
             self.object.hashtagsDelete = json.loads(self.request.POST.get("hashtagsDelete"))
             for hashtag in self.object.hashtagsDelete:
-                hashTagM = HashTag.objects.get(pk=hashtag)
+                hashTagM = HashTag.objects.get(pk=hashtag[0:len(hashtag) - 1])
                 PostHashTag.objects.get(post=post, tag=hashTagM).delete()
         except:
             print("error with deleting hashtags from post")
@@ -383,7 +383,7 @@ class PostUpdateView(UpdateView):
         context['addedHashtags'] = []
         hashtagsPost = PostHashTag.objects.all().filter(post = post)
         for hashtagPost in hashtagsPost:
-            context['addedHashtags'].append(hashtagPost.tag.tag_name) 
+            context['addedHashtags'].append(hashtagPost.tag) 
         return context
     
     @register.filter

@@ -65,7 +65,7 @@
   </div>
   <div class="form-group" id = "hashtagsAdded">
     {% for hashtagPost in addedHashtags%}
-      <a class="tag-item" id="{{ hashtagPost }}" onclick="deleteHashTag(this.id)" type="button">{{ hashtagPost }}</button></a>
+      <a class="tag-item" id="{{ hashtagPost.pk }}#" onclick="deleteHashTag(this.id)" type="button">{{ hashtagPost }}</button></a>
     {% endfor %}
   </div>
   <button type="submit" id="addPostSubmit" name="save">Зберегти</button>
@@ -90,7 +90,7 @@
   function addHashTag(){
     if(hashtagsArray.includes(hashtag.id) && !addedHashTag.includes(hashtag.id)){
       for(var i = 0; i < deletedHashTag.length; i++){
-        if(deletedHashTag[i] == hashtag.value){
+        if(deletedHashTag[i] == hashtag.value + "#"){
           deletedHashTag.splice(i, 1);
           break;
         }
@@ -98,7 +98,7 @@
       hashtagsDelete.value = JSON.stringify(deletedHashTag);
       var hashtagbtn = document.createElement("a");
       hashtagbtn.innerHTML = hashtag.value;
-      hashtagbtn.setAttribute("id", hashtag.id);
+      hashtagbtn.setAttribute("id", hashtag.id + "#");
       hashtagbtn.setAttribute("onclick", "deleteHashTag(this.id)");
       hashtagbtn.setAttribute("type", "button");
       hashtagbtn.setAttribute("class", "tag-item");
@@ -115,8 +115,9 @@
     if(confirm("Ви впевнені що хочете видалити хештег?")){
       deletedHashTag.push(id);
       hashtagsDelete.value = JSON.stringify(deletedHashTag);
+      id_2 = id.substring(0, id.length - 1)
       for(var i = 0; i < addedHashTag.length; i++){
-        if(addedHashTag[i] == id){
+        if(addedHashTag[i] == id_2){
           addedHashTag.splice(i, 1);
           break;
         }
@@ -145,7 +146,7 @@
   function addHashTagli(id){
       if(!addedHashTag.includes(id)){
         for(var i = 0; i < deletedHashTag.length; i++){
-          if(deletedHashTag[i] == id){
+          if(deletedHashTag[i] == id + "#"){
             deletedHashTag.splice(i, 1);
             break;
           }
@@ -153,7 +154,7 @@
         hashtagsDelete.value = JSON.stringify(deletedHashTag);
         var hashtagbtn = document.createElement("a");
         hashtagbtn.innerHTML = document.getElementById(id).textContent;
-        hashtagbtn.setAttribute("id", id);
+        hashtagbtn.setAttribute("id", id + "#");
         hashtagbtn.setAttribute("onclick", "deleteHashTag(this.id)");
         hashtagbtn.setAttribute("type", "button");
         document.getElementById("hashtagsAdded").appendChild(hashtagbtn);
