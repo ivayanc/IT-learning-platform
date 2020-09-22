@@ -277,6 +277,7 @@ class PostCreateView(CreateView):
     queryset = Post.objects.all()
     
     def form_valid(self, form):
+        self.request.POST.set
         response = super().form_valid(form)
         self.object.title = self.request.POST.get("title")
         post = Post.objects.get(pk = self.object.pk)
