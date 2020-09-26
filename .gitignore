@@ -33,6 +33,7 @@ backend/itScience/media/
 backend/itScience/deployment
 backend/itScience/materials_system/migrations
 backend/itScience/users/migrations
+backend/itScience/itScience/settings.py
 env/
 build/
 develop-eggs/
