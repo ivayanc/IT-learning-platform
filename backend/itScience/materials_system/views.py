@@ -40,7 +40,10 @@ class AccountAdapter(DefaultAccountAdapter):
             user = request.user
             user.name = extra_data['name']
             user.email = extra_data['email']
-            user.google_avatar = extra_data['picture']
+            try:
+                user.google_avatar = extra_data['picture']
+            except:
+                pass
             user.save()
             url = '/'
         else:
@@ -52,7 +55,10 @@ class AccountAdapter(DefaultAccountAdapter):
             user = request.user
             user.name = extra_data['name']
             user.email = extra_data['email']
-            user.google_avatar = extra_data['picture']
+            try:
+                user.google_avatar = extra_data['picture']
+            except:
+                pass
             user.save()
             url = '/'
         return resolve_url(url)
