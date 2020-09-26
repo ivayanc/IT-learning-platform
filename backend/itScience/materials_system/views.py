@@ -30,7 +30,7 @@ class AccountAdapter(DefaultAccountAdapter):
 
     def get_login_redirect_url(self, request):
         threshold = 90
-
+        
         if (request.user.last_login - request.user.date_joined).seconds < threshold:
             social_info = SocialAccount.objects.get(user=request.user)
             extra_data = str(social_info.extra_data)
@@ -277,7 +277,6 @@ class PostCreateView(CreateView):
     queryset = Post.objects.all()
     
     def form_valid(self, form):
-        self.request.POST.set
         response = super().form_valid(form)
         self.object.title = self.request.POST.get("title")
         post = Post.objects.get(pk = self.object.pk)
