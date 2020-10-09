@@ -3,6 +3,116 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <style>
+          body {
+		background: #dfe7e9;
+		font-family: 'Roboto', sans-serif;
+	}
+    .form-control {
+		font-size: 16px;
+		transition: all 0.4s;
+		box-shadow: none;
+	}
+	.form-control:focus {
+        border-color: #5cb85c;
+    }
+    .form-control, .btn {
+        border-radius: 50px;
+		outline: none !important;
+    }
+	.signup-form {
+		width: 280px;
+    	margin: 0 auto;
+		padding: 30px 0;
+	}
+    .signup-form form {
+		border-radius: 5px;
+    	margin-bottom: 20px;
+        background: #fff;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        padding: 40px;
+    }
+	.signup-form a {
+		color: #5cb85c;
+	}    
+	.signup-form h2 {
+		text-align: center;
+		font-size: 34px;
+		margin: 10px 0 15px;
+	}
+	.signup-form .hint-text {
+		color: #999;
+		text-align: center;
+		margin-bottom: 20px;
+	}
+	.signup-form .form-group {
+		margin-bottom: 20px;
+	}
+    .signup-form .btn {        
+        font-size: 18px;
+		line-height: 26px;
+        font-weight: bold;
+		text-align: center;
+    }
+	.signup-btn {
+		text-align: center;
+		border-color: #ff5233;
+		transition: all 0.4s;
+	}
+	.signup-btn:hover {
+		background: #ff5233;
+		opacity: 0.8;
+	}
+    .or-seperator {
+        margin: 50px 0 15px;
+        text-align: center;
+        border-top: 1px solid #e0e0e0;
+    }
+    .or-seperator b {
+        padding: 0 10px;
+		width: 50px;
+		height: 40px;
+		font-size: 16px;
+		text-align: center;
+		line-height: 40px;
+		background: #fff;
+		display: inline-block;
+        border: 1px solid #e0e0e0;
+		border-radius: 50%;
+        position: relative;
+        top: -22px;
+        z-index: 1;
+    }
+    .social-btn .btn {
+		color: #fff;
+        margin: 10px 0 0 15px;
+		font-size: 15px;
+		border-radius: 50px;
+		font-weight: normal;
+		border: none;
+		transition: all 0.4s;
+    }	
+	.social-btn .btn:first-child {
+		margin-left: 0;
+	}
+	.social-btn .btn:hover {
+		opacity: 0.8;
+	}
+	.social-btn .btn-primary {
+		background: #507cc0;
+	}
+	.social-btn .btn-info {
+		background: #64ccf1;
+	}
+	.social-btn .btn-danger {
+		background: #df4930;
+	}
+	.social-btn .btn i {
+		float: left;
+		margin: 3px 10px;
+		font-size: 20px;
+	}
+        </style>
         <meta charset="utf-8">
         <title>{% block title %}Інформатика{% endblock %}</title>
    	<!-- Global site tag (gtag.js) - Google Analytics -->
@@ -141,61 +251,79 @@
       </header>
       <!-- /header -->
 <body>
-    <div class="modal fade login_form" id="signupModal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content rounded-0 border-0 p-4">
+        <div class="modal fade login_form" id="signupModal" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content rounded-0 border-0 p-4">
                 <div class="modal-header border-0">
-                    <h3>Реєстрація</h3>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
                 </div>
-                <div class="modal-body">
-                    <div class="login">
-                        <div class="social_media">
-                          <h4>Зареєструйтесь за допомогою</h4>
-                          <a href="{% provider_login_url "google" method = "oauth2" %}" id ="google"><i class="fa fa-google" style="font-size: 25px;"></i></a>
-                          <a href="{% provider_login_url "facebook" method = "js_sdk" %}" id ="google"><i class="fa fa-facebook" style="margin-left: 2.5%; font-size: 25px;"></i></a>
-                        </div>
-                        <br/>
-                        <h4>або</h4>
-                        <br/>
-                        <form method="post" action="/users/singup/">
-                            {% csrf_token %}
-                            {{registration_form}}
-                            <button type="submit" id="login_submit">Зареєструватися</button>
-                          </form>
-                          <br/>
-                    </div>
+                <div class="modal-body" >
+                  <h2>Реєстрація</h2>
+                  <p class="hint-text">Зареєструйтесь через соціальні мережі або e-mail адресу</p>
+                  <div class="social-btn text-center">
+                    <a href="{% provider_login_url "facebook" method = "js_sdk" %}" class="btn btn-primary btn-lg"><i class="fa fa-facebook"></i> Facebook</a>
+                    <a href="{% provider_login_url "google" method = "oauth2" %}" class="btn btn-danger btn-lg"><i class="fa fa-google"></i> Google</a>
+                  </div>
+                  <div class="or-seperator"><b>Або</b></div>
+                  <form method="post" action="/users/singup/">
+                    {% csrf_token %}
+                      <div class="form-group">
+                        <input type="text" class="form-control input-lg" name="username" placeholder="Логін" required="required">
+                  </div>
+                  <div class="form-group">
+                        <input type="text" class="form-control input-lg" name="first_name" placeholder="Ім'я" required="required">
+                      </div>
+                  <div class="form-group">
+                        <input type="email" class="form-control input-lg" name="email" placeholder="Email" required="required">
+                      </div>
+                  <div class="form-group">
+                          <input type="password" class="form-control input-lg" name="password1" placeholder="Пароль" required="required">
+                      </div>
+                  <div class="form-group">
+                          <input type="password" class="form-control input-lg" name="password2" placeholder="Підтвердіть пароль" required="required">
+                      </div>  
+                      <div class="form-group">
+                          <button type="submit" class="btn btn-primary btn-lg btn-block signup-btn">Зареєструватися</button>
+                      </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
     <!-- Modal -->
 <div class="modal fade login_form" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content rounded-0 border-0 p-4">
-            <div class="modal-header border-0">
-                <h3 text-align:center>Увійти в систему</h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form method="post" action="/users/login/" class="row login_form1">
-                    {% csrf_token %}
-                     {{login_form}}
-                    <button type="submit" id="login_submit">Увійти</button>
-                </form>
-                <br/>
-                <div class="social_media">
-                  <h4>Або увійдіть через</h4>
-                  <a href="{% provider_login_url "google" method = "oauth2" %}" id ="google"><i class="fa fa-google" style="font-size: 25px;"></i></a>
-                  <a href="{% provider_login_url "facebook" method = "js_sdk" %}" id ="google"><i class="fa fa-facebook" style="margin-left: 2.5%; font-size: 25px;"></i></a>
-                </div>
-            </div>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content rounded-0 border-0 p-4">
+      <div class="modal-header border-0">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" >
+        <h2>Вхід</h2>
+        <p class="hint-text">Увійдіть через соціальні мережі або логін</p>
+        <div class="social-btn text-center">
+          <a href="{% provider_login_url "facebook" method = "js_sdk" %}" class="btn btn-primary btn-lg"><i class="fa fa-facebook"></i> Facebook</a>
+          <a href="{% provider_login_url "google" method = "oauth2" %}" class="btn btn-danger btn-lg"><i class="fa fa-google"></i> Google</a>
         </div>
-    </div>
+        <div class="or-seperator"><b>Або</b></div>
+        <form method="post" action="/users/login/">
+          {% csrf_token %}
+            <div class="form-group">
+              <input type="text" class="form-control input-lg" name="username" placeholder="Логін" required="required">
+        </div>
+        <div class="form-group">
+                <input type="password" class="form-control input-lg" name="password" placeholder="Пароль" required="required">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-lg btn-block signup-btn">Увійти</button>
+        </div>
+        </form>
+      </div>
+  </div>
+</div>
 </div>
 <div class="modal fade login_form" id="inDev" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
