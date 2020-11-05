@@ -21,6 +21,8 @@ from django.utils import timezone, dateformat
 from django.shortcuts import resolve_url
 import pytz
 
+import datetime
+
 import mysql.connector, requests
 from mysql.connector import Error
 
@@ -71,12 +73,16 @@ class IndexView(TemplateView):
         context['latest_posts'] = Post.objects.all().order_by('-published')[:6]
         context['show_welcome_banner'] = self.request.session.get('show_welcome_banner', True)
         self.request.session['show_welcome_banner'] = False
+        context['show_notification_about_change_user'] = False
+        if str(self.request.user) != 'AnonymousUser':
+            login_diff = timezone.now() - self.request.user.date_joined
+            if(login_diff.seconds <= 2):
+                context['show_notification_about_change_user'] = True
         #context['latest_news'] = Post.objects.all().filter(category=Post.OTHER).order_by('-published')[:3]
         post_hashtags = PostHashTag.objects.filter(tag=HashTag.objects.get(tag_name="Новини"))
         posts = set()
         for post_hashtag in post_hashtags:
             posts.add(Post.objects.get(pk = post_hashtag.post.pk).id)
-        print(posts)
         context['latest_news'] = Post.objects.filter(id__in = posts).order_by('-published')[:3]
         #context['olympiads'] = Olympiad.objects.all().filter(olymp_type=Olympiad.PUBLIC,is_ended=False).order_by('start_time')[:3]
         
