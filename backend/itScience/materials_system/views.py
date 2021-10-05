@@ -71,13 +71,7 @@ class IndexView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['latest_posts'] = Post.objects.all().order_by('-published')[:6]
-        context['show_welcome_banner'] = self.request.session.get('show_welcome_banner', True)
-        self.request.session['show_welcome_banner'] = False
         context['show_notification_about_change_user'] = False
-        if str(self.request.user) != 'AnonymousUser':
-            login_diff = timezone.now() - self.request.user.date_joined
-            if(login_diff.seconds <= 2):
-                context['show_notification_about_change_user'] = True
         #context['latest_news'] = Post.objects.all().filter(category=Post.OTHER).order_by('-published')[:3]
         post_hashtags = PostHashTag.objects.filter(tag=HashTag.objects.get(tag_name="Новини"))
         posts = set()
@@ -321,6 +315,7 @@ class PostCreateView(CreateView):
         hashtags = HashTag.objects.all()
         context['hashtagsArray'] = []
         context['hashtag_parents'] = {}
+        context['active_user'] = self.request.user
         for hashtag in hashtags:
             context['hashtagsArray'].append(hashtag.tag_name)
             parent = hashtag.tag_parent
