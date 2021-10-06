@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.http import HttpResponse, StreamingHttpResponse, FileResponse, Http404
@@ -21,7 +22,7 @@ from passlib.apps import django_context
 
 class SingUp(CreateView):
     form_class = SystemUserCreationForm
-    success_url = reverse_lazy('login')
+    success_url = reverse_lazy('index')
     template_name = 'registration/singup.html'
 
     def form_valid(self, form):
@@ -29,6 +30,7 @@ class SingUp(CreateView):
         user = SystemUser.objects.get(username = self.request.POST.get("username"))
         user.name = self.request.POST.get("first_name")
         user.save()
+        login(self.request, user)
         return response
 
 class ProfileView(DetailView):

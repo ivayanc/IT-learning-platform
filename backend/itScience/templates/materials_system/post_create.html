@@ -38,7 +38,7 @@
   }
 </style>
 
-<form class="post-create-form add_post" action="." method="POST" enctype="multipart/form-data">
+<form class="post-create-form add_post" action="." method="POST" enctype="multipart/form-data" onload="select_active_user()">
   {%csrf_token%}
   {% for field in form %}
     {% for error in field.errors %}
@@ -87,6 +87,7 @@
       hashtagbutton.click();
     }
   });
+  document.getElementById("id_moderator").value = "{{ active_user.pk }}";
   function addHashTag(){
     if(hashtagsArray.includes(hashtag.id) && !addedHashTag.includes(hashtag.id)){
       for(var i = 0; i < deletedHashTag.length; i++){
