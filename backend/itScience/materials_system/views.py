@@ -21,6 +21,8 @@ from django.utils import timezone, dateformat
 from django.shortcuts import resolve_url
 import pytz
 
+import datetime
+
 import mysql.connector, requests
 from mysql.connector import Error
 
@@ -69,14 +71,12 @@ class IndexView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['latest_posts'] = Post.objects.all().order_by('-published')[:6]
-        context['show_welcome_banner'] = self.request.session.get('show_welcome_banner', True)
-        self.request.session['show_welcome_banner'] = False
+        context['show_notification_about_change_user'] = False
         #context['latest_news'] = Post.objects.all().filter(category=Post.OTHER).order_by('-published')[:3]
         post_hashtags = PostHashTag.objects.filter(tag=HashTag.objects.get(tag_name="Новини"))
         posts = set()
         for post_hashtag in post_hashtags:
             posts.add(Post.objects.get(pk = post_hashtag.post.pk).id)
-        print(posts)
         context['latest_news'] = Post.objects.filter(id__in = posts).order_by('-published')[:3]
         #context['olympiads'] = Olympiad.objects.all().filter(olymp_type=Olympiad.PUBLIC,is_ended=False).order_by('start_time')[:3]
         
@@ -315,6 +315,7 @@ class PostCreateView(CreateView):
         hashtags = HashTag.objects.all()
         context['hashtagsArray'] = []
         context['hashtag_parents'] = {}
+        context['active_user'] = self.request.user
         for hashtag in hashtags:
             context['hashtagsArray'].append(hashtag.tag_name)
             parent = hashtag.tag_parent
