@@ -21,8 +21,8 @@ from django.utils import timezone, dateformat
 from django.shortcuts import resolve_url
 import pytz
 
-import mysql.connector, requests
-from mysql.connector import Error
+#import mysql.connector, requests
+#from mysql.connector import Error
 
 from allauth.account.adapter import DefaultAccountAdapter
 
