@@ -10,7 +10,6 @@ from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
 class PostCreateForm(forms.ModelForm):
     time_to_read = forms.CharField(label = "Прочитаєте за", max_length = 250)
-    moderator = forms.ModelChoiceField(queryset = SystemUser.objects, label = "Автор")
     title = forms.CharField(label = "Заголовок", max_length = 255)
     description = forms.CharField(label = "Короткий опис", max_length = 150)
     title_image = forms.ImageField(label = "Головне зображення")
@@ -19,8 +18,7 @@ class PostCreateForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = (
-            'time_to_read',
-            'moderator',
+            'time_to_read', 
             'title',
             'description',
             'title_image',

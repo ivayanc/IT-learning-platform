@@ -9,7 +9,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 class Post(models.Model):
 
     time_to_read     = models.CharField(max_length=20,verbose_name="Прочитаєте за")
-    moderator        = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,verbose_name="Автор")
+    moderator        = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,null=True,blank=True,verbose_name="Автор")
     title            = models.TextField(blank=True,verbose_name="Заголовок", unique=False)
     views            = models.IntegerField(default=0,verbose_name="Кількість переглядів")
     description      = models.TextField(blank=True, verbose_name="Короткий опис")

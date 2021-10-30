@@ -22,8 +22,8 @@ from django.shortcuts import resolve_url
 import pytz
 import datetime
 
-import mysql.connector, requests
-from mysql.connector import Error
+#import mysql.connector, requests
+#from mysql.connector import Error
 
 from allauth.account.adapter import DefaultAccountAdapter
 
@@ -285,6 +285,7 @@ class PostCreateView(CreateView):
         response = super().form_valid(form)
         self.object.title = self.request.POST.get("title")
         post = Post.objects.get(pk = self.object.pk)
+        post.moderator = SystemUser.objects.get(username=self.request.POST.get('moderator'))
         try:
             self.object.hashtags = json.loads(self.request.POST.get("hashtagsAdd"))
             for hashtag in self.object.hashtags:
@@ -311,7 +312,13 @@ class PostCreateView(CreateView):
         context = super().get_context_data(**kwargs)
         hashtags = HashTag.objects.all()
         context['all_hashtags'] = HashTag.objects.all()
+        context['all_users'] = SystemUser.objects.all()
         hashtags = HashTag.objects.all()
+        users = SystemUser.objects.all()
+        context['usersArray'] = []
+        for user in users:
+            context['usersArray'].append(user.name)
+        context['usersArray'] = json.dumps(context['usersArray'])
         context['hashtagsArray'] = []
         context['hashtag_parents'] = {}
         context['active_user'] = self.request.user
@@ -343,6 +350,7 @@ class PostUpdateView(UpdateView):
         self.object = form.save()
         self.object.title = self.request.POST.get("title")
         post = Post.objects.get(pk = self.kwargs.get("id"))
+        post.moderator = SystemUser.objects.get(username=self.request.POST.get('moderator'))
         try:
             self.object.hashtags = json.loads(self.request.POST.get("hashtagsAdd"))
             for hashtag in self.object.hashtags:
@@ -373,6 +381,13 @@ class PostUpdateView(UpdateView):
         post = Post.objects.get(id=id_)
         context = super().get_context_data(**kwargs)
         hashtags = HashTag.objects.all()
+        users = SystemUser.objects.all()
+        context['usersArray'] = []
+        for user in users:
+            context['usersArray'].append(user.name)
+        context['usersArray'] = json.dumps(context['usersArray'])
+        context['all_users'] = SystemUser.objects.all()
+        context['active_moderator'] = post.moderator.username
         context['hashtagsArray'] = []
         context['hashtag_parents'] = {}
         for hashtag in hashtags:

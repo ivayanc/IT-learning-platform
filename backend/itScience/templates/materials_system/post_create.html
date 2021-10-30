@@ -26,6 +26,24 @@
   #hashtagUl li a:hover:not(.header) {
     background-color: #eee; /* Add a hover effect to all links, except for headers */
   }
+  #userUl {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  #userUl li a {
+    border: 1px solid #ddd;
+    margin-top: -1px;
+    background-color: #f6f6f6;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+    display: block;
+  }
+  #userUl li a:hover:not(.header) {
+    background-color: #eee; /* Add a hover effect to all links, except for headers */
+  }
   .tag-item{
     background-color: #ffcd6e;
     color: white !important;
@@ -52,6 +70,15 @@
   <div class="form-group">
     <label>{{ field.label }}</label>
     {{ field }}
+    {% if field.label == 'Прочитаєте за' %}
+	<label>Автор</label>
+	<input type="text" id="user_input" value="{{active_moderator}}" name="moderator" onkeyup="UserFilter()">
+	<ul style="height: 234px; overflow: auto" id="userUl">
+      	{%for user in all_users %}
+        	<li class="userLi"><a id = "{{user.username}}" onclick="addUserli(this.id)">{{user.username}}</a></li>
+	{% endfor %}
+    	</ul>
+    {% endif %}
   </div>
   {% endfor %}
   <div class="form-group">
@@ -78,9 +105,11 @@
   var hashtagsAdd = document.getElementById("hashtagsAdd");
   var hashtagsDelete = document.getElementById("hashtagsDelete");
   var hashtagsArray = "{{ hashtagsArray }}";
+  var usersArray = "{{ usersArray }}";
   var addedHashTag = [];
   var deletedHashTag = [];
   hashtagsArray = JSON.parse(hashtagsArray.replace(/&quot;/g,'"'));
+  usersArray = JSON.parse(usersArray.replace(/&quot;/g,'"'));
   hashtag.addEventListener('keypress', function(event){
     if(event.keyCode == 13){
       event.preventDefault();
@@ -112,6 +141,10 @@
     }
 
   }
+  function addUserli(id){
+	var input = document.getElementById('user_input'); 
+	input.value = id;
+  }
   function deleteHashTag(id){
     if(confirm("Ви впевнені що хочете видалити хештег?")){
       deletedHashTag.push(id);
@@ -133,6 +166,23 @@
     filter = input.value.toUpperCase();
     ul = document.getElementById("hashtagUl");
     li = document.getElementsByClassName("hashtagLi");
+
+    for(i = 0; i < li.length; i++){
+      a = li[i].getElementsByTagName("a")[0];
+      txtValue = a.textContent || a.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        li[i].style.display = "";
+      } else {
+        li[i].style.display = "none";
+      }
+    }
+  }
+  function UserFilter(){
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("user_input");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("userUl");
+    li = document.getElementsByClassName("userLi");
 
     for(i = 0; i < li.length; i++){
       a = li[i].getElementsByTagName("a")[0];
